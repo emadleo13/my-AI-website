@@ -1,0 +1,501 @@
+{
+  "common": {
+    "brand": "Emad",
+    "tagline": "AI Consultant & Software Developer · Romania",
+    "bookNow": "Book Now",
+    "loading": "Loading…",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "rateLimited": "Too many requests — please wait a few minutes and try again.",
+    "comingSoon": "Coming soon",
+    "getInTouch": "Get in touch"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact",
+    "consultant": "AI Consultant",
+    "dashboard": "Dashboard",
+    "booking": "Book a Consultation",
+    "auth": "Sign In",
+    "signOut": "Sign out",
+    "admin": "Admin",
+    "language": "Language",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "demo": {
+    "supabase": "Supabase is not configured — submissions are not being saved. Add your keys to .env.local to enable persistence.",
+    "anthropic": "Anthropic API key is not configured — the AI assistant will return demo responses. Add ANTHROPIC_API_KEY to .env.local to enable real chat."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Hello, I'm Emad",
+      "title": "AI Consultant & Software Developer",
+      "subtitle": "Romania",
+      "tagline": "I help companies and individuals adopt AI, ship modern software, and navigate Romania's tech landscape.",
+      "ctaPrimary": "Book a Consultation",
+      "ctaSecondary": "View Services"
+    },
+    "aiFuture": {
+      "eyebrow": "The Next 5 Years",
+      "title": "AI is rewriting how we build, work, and learn",
+      "body": "From GPT-class assistants and Claude-powered agents to multi-modal models that see, hear, and reason, AI is moving from a tool you query to a collaborator you delegate to. In the next five years, autonomous agents will plan and execute multi-step work, every team will have a copilot, and the gap between idea and product will collapse. The opportunity is no longer access to AI — it is integrating it well, safely, and with measurable outcomes. That is exactly where I help.",
+      "cards": {
+        "agents": { "title": "Autonomous Agents", "caption": "Long-running, tool-using agents that plan and execute work end-to-end." },
+        "multimodal": { "title": "Multi-modal AI", "caption": "Models that fuse text, vision, audio, and code into a single reasoning loop." },
+        "claude": { "title": "Claude & Frontier Models", "caption": "Production-grade reasoning with safety, citations, and large context windows." },
+        "automation": { "title": "Workflow Automation", "caption": "Replacing brittle scripts with intelligent agents that adapt to change." }
+      }
+    },
+    "servicesPreview": {
+      "title": "What I do",
+      "subtitle": "Strategy, implementation, and hands-on building.",
+      "viewAll": "Explore all services",
+      "items": {
+        "consult": { "title": "AI Consulting & Strategy", "desc": "Adoption roadmaps, vendor selection, and ROI-driven AI plans." },
+        "agents":  { "title": "AI Agent Design",          "desc": "LangChain, CrewAI, and custom agents that ship to production." },
+        "dev":     { "title": "Software Development",     "desc": "Full-stack web apps, APIs, and integrations." },
+        "career":  { "title": "Career Consulting in Romania", "desc": "CV review, market insights, and interview prep for the Romanian tech market." }
+      }
+    },
+    "stats": {
+      "projects": "Projects delivered",
+      "experience": "Years of experience",
+      "countries": "Countries served",
+      "clients": "Happy clients"
+    },
+    "testimonials": {
+      "title": "What clients say",
+      "items": {
+        "1": { "quote": "Emad turned a six-month roadmap into a working agent in three weeks.", "author": "CTO, fintech startup" },
+        "2": { "quote": "The clearest, most practical AI consulting we've had.", "author": "Head of Product, EU SaaS" },
+        "3": { "quote": "Helped me land a senior dev role in Bucharest — interview prep was gold.", "author": "Software Engineer" }
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About me",
+      "title": "About Emad",
+      "subtitle": "AI consultant, software developer, and tech advisor based in Romania.",
+      "downloadResume": "Download CV",
+      "contactMe": "Contact me"
+    },
+    "bio": {
+      "title": "A short story",
+      "p1": "I'm Emad — a software developer turned AI consultant. Over the last decade I've shipped products across e-commerce, SaaS, and fintech, and over the last three years I've focused almost entirely on AI: agent design, retrieval, evals, and turning prototypes into reliable production systems.",
+      "p2": "I'm based in Bucharest. I work with companies adopting AI for the first time, with engineering teams building agentic products, and with individuals navigating the Romanian tech market.",
+      "p3": "I prefer pragmatic over fashionable: the right model, the right framework, and the smallest possible system that actually solves the problem."
+    },
+    "skills": {
+      "title": "Skills & Stack",
+      "subtitle": "What I reach for, day to day.",
+      "groups": {
+        "languages": "Languages",
+        "frameworks": "Frameworks",
+        "ai": "AI / ML",
+        "infra": "Infra & Data"
+      }
+    },
+    "education": {
+      "title": "Education & Certifications",
+      "items": {
+        "1": { "degree": "M.Sc. Computer Science", "school": "University of Tehran", "period": "2012 — 2014", "note": "Focus: machine learning, distributed systems." },
+        "2": { "degree": "B.Sc. Software Engineering", "school": "Sharif University of Technology", "period": "2008 — 2012", "note": "Cum laude." },
+        "3": { "degree": "Deep Learning Specialization", "school": "DeepLearning.AI", "period": "2021", "note": "Sequence models and NLP." }
+      }
+    },
+    "experience": {
+      "title": "Work Experience",
+      "items": {
+        "1": { "role": "AI Consultant (Independent)", "company": "Self-employed · Bucharest", "period": "2023 — Present", "summary": "Advising European SMEs and startups on AI adoption and shipping production agents." },
+        "2": { "role": "Lead Software Engineer", "company": "Fintech Scale-up · EU", "period": "2019 — 2023", "summary": "Led a 6-engineer team building a payments platform, then drove the AI roadmap." },
+        "3": { "role": "Full-stack Developer", "company": "E-commerce SaaS", "period": "2015 — 2019", "summary": "Owned core checkout and integrations across multiple Stripe regions." },
+        "4": { "role": "Junior Developer", "company": "Web agency · Tehran", "period": "2012 — 2015", "summary": "Shipped 30+ client projects in PHP, Node.js, and early React." }
+      }
+    },
+    "documents": {
+      "title": "Documents & Credentials",
+      "subtitle": "Selected diplomas and certificates.",
+      "viewLabel": "View",
+      "closeLabel": "Close",
+      "items": {
+        "1": { "title": "M.Sc. Diploma", "caption": "University of Tehran" },
+        "2": { "title": "B.Sc. Diploma", "caption": "Sharif University" },
+        "3": { "title": "Deep Learning Certificate", "caption": "DeepLearning.AI" },
+        "4": { "title": "Romania Work Permit", "caption": "Issued 2023" },
+        "5": { "title": "ML Specialist Cert", "caption": "Coursera" },
+        "6": { "title": "AI Ethics Cert", "caption": "MIT OCW" }
+      }
+    },
+    "resume": {
+      "title": "Want the full picture?",
+      "body": "Download my CV for a complete professional history with contact details.",
+      "download": "Download CV"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "Strategy, agents, software, and career help",
+      "subtitle": "Pick the track that fits where you are. All packages start with a free 30-minute discovery call."
+    },
+    "items": {
+      "consult": {
+        "title": "AI Consulting & Strategy",
+        "desc": "Adoption roadmaps, vendor selection, and ROI-driven AI plans.",
+        "bullets": { "1": "Tailored adoption roadmap", "2": "Build vs buy analysis", "3": "Risk and compliance review" },
+        "cta": "Get in touch"
+      },
+      "agents": {
+        "title": "AI Agent Design & Implementation",
+        "desc": "LangChain, CrewAI, AutoGen, and custom agents shipped to production.",
+        "bullets": { "1": "Agent architecture", "2": "Tool integrations", "3": "Evals & monitoring" },
+        "cta": "Get in touch"
+      },
+      "dev": {
+        "title": "Custom Software Development",
+        "desc": "Full-stack web apps, APIs, and integrations.",
+        "bullets": { "1": "Next.js / Node / Python", "2": "Postgres / Supabase", "3": "CI/CD on Vercel & AWS" },
+        "cta": "Get in touch"
+      },
+      "ml": {
+        "title": "Machine Learning Solutions",
+        "desc": "Model training, fine-tuning, and deployment.",
+        "bullets": { "1": "Custom model training", "2": "Fine-tuning Claude / OSS", "3": "Inference deployment" },
+        "cta": "Get in touch"
+      },
+      "romaniaTech": {
+        "title": "Tech Consulting for Romanian Companies",
+        "desc": "Digital transformation and AI integration for SMEs.",
+        "bullets": { "1": "Process digitization", "2": "AI integration", "3": "Team upskilling" },
+        "cta": "Get in touch"
+      },
+      "career": {
+        "title": "Job Hunting & Career Consulting in Romania",
+        "desc": "CV review, market insights, and interview prep.",
+        "bullets": { "1": "CV / LinkedIn review", "2": "Romanian market insights", "3": "Interview prep" },
+        "cta": "Get in touch"
+      }
+    },
+    "pricing": {
+      "title": "Packages",
+      "subtitle": "Transparent pricing — start free.",
+      "popular": "Most popular",
+      "plans": {
+        "free": {
+          "name": "Discovery",
+          "price": "€0",
+          "period": "30 min",
+          "desc": "Free intro call to scope your needs.",
+          "cta": "Book free call",
+          "items": { "1": "30-minute video call", "2": "Tailored next steps", "3": "No commitment" }
+        },
+        "standard": {
+          "name": "Standard",
+          "price": "€1,200",
+          "period": "per engagement",
+          "desc": "A focused engagement for one concrete outcome.",
+          "cta": "Get started",
+          "items": { "1": "Discovery + scoping", "2": "Hands-on implementation", "3": "Async support for 4 weeks", "4": "Final handover" }
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "€3,500",
+          "period": "per month",
+          "desc": "Ongoing AI partner for your team.",
+          "cta": "Book intro call",
+          "items": { "1": "Weekly working sessions", "2": "Architecture & code reviews", "3": "Dedicated Slack channel", "4": "Priority response", "5": "Quarterly roadmap review" }
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Tell me about your project, role, or challenge — I usually reply within 24 hours.",
+    "form": {
+      "name": "Your name",
+      "namePlaceholder": "Jane Doe",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Pick a topic",
+      "subjectOptions": {
+        "general": "General Inquiry",
+        "ai": "AI Consulting",
+        "dev": "Software Development",
+        "job": "Job / Career Consulting",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "What can I help with?",
+      "submit": "Send message",
+      "submitting": "Sending…",
+      "success": "Thanks! Your message is on its way.",
+      "error": "We couldn't send your message. Please try again."
+    },
+    "info": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "location": "Location",
+      "locationValue": "Bucharest, Romania"
+    }
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Create Account",
+    "or": "or",
+    "google": "Continue with Google",
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm password"
+    },
+    "signin": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account to manage bookings and chat history.",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "forgot": "Forgot your password?",
+      "toSignUp": "Don't have an account? Create one"
+    },
+    "signup": {
+      "title": "Create your account",
+      "subtitle": "It only takes a minute.",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "toSignIn": "Already have an account? Sign in"
+    },
+    "reset": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we'll send a reset link.",
+      "email": "Email",
+      "submit": "Send reset link",
+      "submitting": "Sending…",
+      "sent": "Check your email for the reset link.",
+      "backToSignIn": "Back to sign in"
+    },
+    "callback": {
+      "processing": "Signing you in…",
+      "error": "Authentication failed. Try again."
+    },
+    "errors": {
+      "invalid": "Invalid email or password.",
+      "passwordMin": "Password must be at least 8 characters.",
+      "passwordMatch": "Passwords don't match.",
+      "generic": "Authentication failed. Please try again.",
+      "demo": "Sign-up requires Supabase to be configured."
+    },
+    "success": {
+      "signedIn": "Signed in successfully.",
+      "signedUp": "Check your email to confirm your account."
+    }
+  },
+  "consultant": {
+    "title": "AI Consultant",
+    "subtitle": "Ask me about jobs in Romania, AI strategy, software help, or building agents.",
+    "chips": {
+      "job": "Find a Job in Romania",
+      "ai": "AI Consulting",
+      "dev": "Programming Help",
+      "agents": "AI Agents in Romania"
+    },
+    "starters": {
+      "job": "I'm looking for a tech job in Romania. Where should I start?",
+      "ai": "How should my company start adopting AI in 2026?",
+      "dev": "Can you help me debug a Next.js project?",
+      "agents": "What's the best stack to deploy an AI agent for a Romanian SME?"
+    },
+    "placeholder": "Type your question…",
+    "send": "Send",
+    "clear": "Clear chat",
+    "thinking": "Thinking…",
+    "limit": {
+      "title": "Free preview limit reached",
+      "desc": "You've used your 10 free messages. Sign in to keep chatting.",
+      "cta": "Sign in to continue"
+    },
+    "demo": "Demo response — configure ANTHROPIC_API_KEY for real answers.",
+    "rateLimited": "Slow down — too many messages in a short window. Try again shortly.",
+    "cta": {
+      "title": "Want to dig deeper?",
+      "body": "Ask the AI consultant about your specific situation — it'll suggest stacks, timelines, and next steps.",
+      "action": "Open the chat"
+    }
+  },
+  "booking": {
+    "title": "Book a Consultation",
+    "subtitle": "Pick a service, pick a time, and we'll meet.",
+    "steps": {
+      "service": "Service",
+      "datetime": "Date & Time",
+      "details": "Your Details"
+    },
+    "services": {
+      "ai":     { "title": "AI Strategy",            "desc": "60-min strategic session on adopting AI in your org." },
+      "agent":  { "title": "Agent Implementation",   "desc": "Hands-on agent design and prototyping." },
+      "career": { "title": "Career & Job Consulting","desc": "CV review, interview prep, and Romania market guidance." },
+      "tech":   { "title": "General Tech Consulting","desc": "Architecture review, code review, or technical sparring." }
+    },
+    "datetime": {
+      "title": "Pick a date and time",
+      "subtitle": "All times are Europe/Bucharest. Mon–Fri, four slots per day.",
+      "pickDate": "Date",
+      "pickTime": "Time",
+      "noSlots": "No slots available — try another day."
+    },
+    "details": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "notes": "Notes (optional)",
+      "notesPlaceholder": "Anything I should know before our call?"
+    },
+    "actions": {
+      "next": "Next",
+      "back": "Back",
+      "confirm": "Confirm booking",
+      "submitting": "Booking…",
+      "saveToAccount": "Sign in to save this to your account"
+    },
+    "confirm": {
+      "title": "You're booked",
+      "desc": "I'll send you a confirmation email shortly.",
+      "newBooking": "Book another"
+    },
+    "errors": {
+      "slotTaken": "That slot was just taken — pick another.",
+      "generic": "Booking failed. Please try again.",
+      "rateLimited": "Too many booking attempts — wait a moment and try again."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greet": "Welcome back, {name}",
+    "guestGreet": "Welcome back",
+    "upcoming": {
+      "title": "Upcoming consultations",
+      "empty": "No upcoming bookings yet."
+    },
+    "past": {
+      "title": "Past consultations",
+      "empty": "No past consultations yet."
+    },
+    "profile": {
+      "title": "Your profile",
+      "fullName": "Full name",
+      "phone": "Phone",
+      "notes": "Notes",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Profile updated.",
+      "saveFailed": "Couldn't save profile."
+    },
+    "actions": {
+      "openChat": "Open chat",
+      "newBooking": "New booking",
+      "logout": "Sign out"
+    },
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Completed"
+    },
+    "notSignedIn": {
+      "title": "Sign in to view your dashboard",
+      "body": "Bookings and profile are tied to your account.",
+      "cta": "Sign in"
+    },
+    "cancel": {
+      "action": "Cancel",
+      "title": "Cancel this booking?",
+      "body": "The slot will reopen for others. You can book again from the booking page.",
+      "keep": "Keep booking",
+      "confirm": "Cancel booking",
+      "cancelling": "Cancelling…",
+      "done": "Booking cancelled.",
+      "failed": "Couldn't cancel — try again.",
+      "demo": "Cancellation requires Supabase to be configured."
+    },
+    "avatar": {
+      "upload": "Upload photo",
+      "replace": "Replace photo",
+      "uploading": "Uploading…",
+      "remove": "Remove",
+      "uploaded": "Profile photo updated.",
+      "removed": "Profile photo removed.",
+      "failed": "Couldn't update profile photo.",
+      "badType": "Use a PNG, JPEG, or WebP image.",
+      "tooLarge": "Image must be 5 MB or smaller.",
+      "demo": "Photo upload requires Supabase to be configured.",
+      "hint": "PNG, JPEG, or WebP · up to 5 MB."
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Notes on AI, building, and the Romanian tech scene.",
+    "empty": "No posts yet — check back soon.",
+    "readMore": "Read more",
+    "back": "Back to all posts",
+    "minRead": "{n} min read",
+    "topics": "Topics",
+    "topic": "Topic",
+    "allTopics": "All",
+    "taggedTitle": "#{tag}",
+    "taggedSubtitle": "{count, plural, =0 {No posts} =1 {1 post} other {# posts}} tagged #{tag}.",
+    "rss": "RSS feed",
+    "searchPlaceholder": "Search posts…",
+    "searchClear": "Clear search",
+    "searchEmpty": "No posts match your filters.",
+    "resultCount": "{count, plural, =0 {No posts} =1 {1 post} other {# posts}}"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Recent bookings and contact submissions.",
+    "demo": "Admin requires SUPABASE_SERVICE_ROLE_KEY and ADMIN_EMAILS to be configured.",
+    "tabs": {
+      "bookings": "Bookings",
+      "contacts": "Contacts"
+    },
+    "bookings": {
+      "title": "Bookings",
+      "empty": "No bookings yet.",
+      "headers": {
+        "when": "When",
+        "service": "Service",
+        "guest": "Guest",
+        "status": "Status"
+      }
+    },
+    "contacts": {
+      "title": "Contact submissions",
+      "empty": "No submissions yet."
+    },
+    "notAdmin": {
+      "title": "Admin only",
+      "body": "This area is restricted. Sign in with an admin account.",
+      "cta": "Sign in"
+    }
+  },
+  "footer": {
+    "tagline": "AI Consultant & Software Developer · Romania",
+    "rights": "All rights reserved.",
+    "links": {
+      "navigation": "Navigation",
+      "social": "Social"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter / X"
+    }
+  }
+}

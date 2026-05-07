@@ -1,0 +1,501 @@
+{
+  "common": {
+    "brand": "Emad",
+    "tagline": "Consultant AI și Dezvoltator Software · România",
+    "bookNow": "Rezervă acum",
+    "loading": "Se încarcă…",
+    "errorGeneric": "Ceva nu a mers. Te rog încearcă din nou.",
+    "rateLimited": "Prea multe cereri — așteaptă câteva minute și încearcă din nou.",
+    "comingSoon": "În curând",
+    "getInTouch": "Contactează-mă"
+  },
+  "nav": {
+    "home": "Acasă",
+    "about": "Despre",
+    "services": "Servicii",
+    "blog": "Blog",
+    "contact": "Contact",
+    "consultant": "Consultant AI",
+    "dashboard": "Panou",
+    "booking": "Rezervă o consultație",
+    "auth": "Autentificare",
+    "signOut": "Deconectare",
+    "admin": "Admin",
+    "language": "Limbă",
+    "theme": "Temă",
+    "themeLight": "Luminoasă",
+    "themeDark": "Întunecată",
+    "themeSystem": "Sistem",
+    "openMenu": "Deschide meniu",
+    "closeMenu": "Închide meniu"
+  },
+  "demo": {
+    "supabase": "Supabase nu este configurat — datele nu sunt salvate. Adaugă cheile în .env.local pentru a activa salvarea.",
+    "anthropic": "Cheia Anthropic nu este configurată — asistentul oferă răspunsuri demo. Adaugă ANTHROPIC_API_KEY în .env.local."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Salut, sunt Emad",
+      "title": "Consultant AI și Dezvoltator Software",
+      "subtitle": "România",
+      "tagline": "Ajut companii și persoane să adopte AI, să livreze software modern și să navigheze peisajul tech din România.",
+      "ctaPrimary": "Rezervă o consultație",
+      "ctaSecondary": "Vezi serviciile"
+    },
+    "aiFuture": {
+      "eyebrow": "Următorii 5 ani",
+      "title": "AI rescrie modul în care construim, muncim și învățăm",
+      "body": "De la asistenți de tip GPT și agenți pe Claude la modele multi-modale care văd, aud și raționează, AI trece de la o unealtă la un colaborator. În următorii cinci ani, agenți autonomi vor planifica și executa muncă de la cap la coadă, fiecare echipă va avea un copilot, iar distanța dintre idee și produs se va prăbuși. Oportunitatea nu mai este accesul la AI — este integrarea bună, sigură și măsurabilă a acestuia. Exact aici intervin eu.",
+      "cards": {
+        "agents": { "title": "Agenți autonomi", "caption": "Agenți care folosesc unelte pentru a planifica și executa sarcini complete." },
+        "multimodal": { "title": "AI multi-modal", "caption": "Modele care fuzionează text, imagine, audio și cod într-o singură buclă de raționament." },
+        "claude": { "title": "Claude și modele frontieră", "caption": "Raționament la nivel de producție cu siguranță, citate și ferestre mari de context." },
+        "automation": { "title": "Automatizare flux", "caption": "Înlocuirea scripturilor fragile cu agenți care se adaptează schimbărilor." }
+      }
+    },
+    "servicesPreview": {
+      "title": "Ce fac",
+      "subtitle": "Strategie, implementare și construcție hands-on.",
+      "viewAll": "Vezi toate serviciile",
+      "items": {
+        "consult": { "title": "Consultanță și strategie AI", "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI." },
+        "agents":  { "title": "Design de agenți AI",         "desc": "LangChain, CrewAI și agenți custom care ajung în producție." },
+        "dev":     { "title": "Dezvoltare software",         "desc": "Aplicații web full-stack, API-uri și integrări." },
+        "career":  { "title": "Consultanță de carieră în România", "desc": "Revizuire CV, ghidaj de piață și pregătire interviu." }
+      }
+    },
+    "stats": {
+      "projects": "Proiecte livrate",
+      "experience": "Ani de experiență",
+      "countries": "Țări deservite",
+      "clients": "Clienți mulțumiți"
+    },
+    "testimonials": {
+      "title": "Ce spun clienții",
+      "items": {
+        "1": { "quote": "Emad a transformat un plan de șase luni într-un agent funcțional în trei săptămâni.", "author": "CTO, startup fintech" },
+        "2": { "quote": "Cea mai clară și practică consultanță AI pe care am avut-o.", "author": "Head of Product, SaaS UE" },
+        "3": { "quote": "M-a ajutat să prind un rol senior în București — pregătirea de interviu a fost de aur.", "author": "Inginer software" }
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "Despre mine",
+      "title": "Despre Emad",
+      "subtitle": "Consultant AI, dezvoltator software și consultant tech din România.",
+      "downloadResume": "Descarcă CV",
+      "contactMe": "Contactează-mă"
+    },
+    "bio": {
+      "title": "O scurtă poveste",
+      "p1": "Sunt Emad — un dezvoltator software devenit consultant AI. În ultimul deceniu am livrat produse în e-commerce, SaaS și fintech, iar în ultimii trei ani m-am concentrat aproape exclusiv pe AI: design de agenți, retrieval, evaluare și transformarea prototipurilor în sisteme de producție fiabile.",
+      "p2": "Locuiesc în București. Lucrez cu companii care adoptă AI pentru prima dată, cu echipe de inginerie care construiesc produse agentice și cu persoane care își construiesc cariera în piața tech din România.",
+      "p3": "Prefer pragmatismul în locul modei: modelul potrivit, framework-ul potrivit și cel mai mic sistem care chiar rezolvă problema."
+    },
+    "skills": {
+      "title": "Competențe & Stack",
+      "subtitle": "Cu ce lucrez zi de zi.",
+      "groups": {
+        "languages": "Limbaje",
+        "frameworks": "Framework-uri",
+        "ai": "AI / ML",
+        "infra": "Infra & Date"
+      }
+    },
+    "education": {
+      "title": "Educație și certificări",
+      "items": {
+        "1": { "degree": "Master Informatică", "school": "Universitatea din Tehran", "period": "2012 — 2014", "note": "Focus: machine learning, sisteme distribuite." },
+        "2": { "degree": "Licență Inginerie Software", "school": "Sharif University of Technology", "period": "2008 — 2012", "note": "Cu distincție." },
+        "3": { "degree": "Specializare Deep Learning", "school": "DeepLearning.AI", "period": "2021", "note": "Sequence models și NLP." }
+      }
+    },
+    "experience": {
+      "title": "Experiență profesională",
+      "items": {
+        "1": { "role": "Consultant AI (Independent)", "company": "Pe cont propriu · București", "period": "2023 — Prezent", "summary": "Consultanță pentru IMM-uri și startup-uri europene în adopție AI și livrare de agenți de producție." },
+        "2": { "role": "Lead Software Engineer", "company": "Scale-up Fintech · UE", "period": "2019 — 2023", "summary": "Conducere echipă de 6 ingineri pe o platformă de plăți, apoi roadmap AI." },
+        "3": { "role": "Dezvoltator Full-stack", "company": "SaaS e-commerce", "period": "2015 — 2019", "summary": "Owner pe checkout și integrări Stripe în mai multe regiuni." },
+        "4": { "role": "Dezvoltator Junior", "company": "Agenție web · Tehran", "period": "2012 — 2015", "summary": "Peste 30 de proiecte client în PHP, Node.js și React timpuriu." }
+      }
+    },
+    "documents": {
+      "title": "Documente și acreditări",
+      "subtitle": "Selecție de diplome și certificate.",
+      "viewLabel": "Vezi",
+      "closeLabel": "Închide",
+      "items": {
+        "1": { "title": "Diplomă Master", "caption": "Universitatea din Tehran" },
+        "2": { "title": "Diplomă Licență", "caption": "Universitatea Sharif" },
+        "3": { "title": "Certificat Deep Learning", "caption": "DeepLearning.AI" },
+        "4": { "title": "Permis de muncă România", "caption": "Emis 2023" },
+        "5": { "title": "Certificat ML Specialist", "caption": "Coursera" },
+        "6": { "title": "Certificat Etica AI", "caption": "MIT OCW" }
+      }
+    },
+    "resume": {
+      "title": "Vrei imaginea completă?",
+      "body": "Descarcă CV-ul pentru istoricul profesional complet și date de contact.",
+      "download": "Descarcă CV"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Servicii",
+      "title": "Strategie, agenți, software și ghidaj de carieră",
+      "subtitle": "Alege drumul potrivit. Toate pachetele încep cu un apel gratuit de descoperire de 30 de minute."
+    },
+    "items": {
+      "consult": {
+        "title": "Consultanță și strategie AI",
+        "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI.",
+        "bullets": { "1": "Plan de adopție personalizat", "2": "Analiză build vs buy", "3": "Revizuire risc și conformitate" },
+        "cta": "Contactează-mă"
+      },
+      "agents": {
+        "title": "Design și implementare agenți AI",
+        "desc": "LangChain, CrewAI, AutoGen și agenți custom în producție.",
+        "bullets": { "1": "Arhitectură agent", "2": "Integrări de unelte", "3": "Evaluare și monitorizare" },
+        "cta": "Contactează-mă"
+      },
+      "dev": {
+        "title": "Dezvoltare software custom",
+        "desc": "Aplicații web full-stack, API-uri și integrări.",
+        "bullets": { "1": "Next.js / Node / Python", "2": "Postgres / Supabase", "3": "CI/CD pe Vercel & AWS" },
+        "cta": "Contactează-mă"
+      },
+      "ml": {
+        "title": "Soluții de machine learning",
+        "desc": "Antrenare, fine-tuning și deployment de modele.",
+        "bullets": { "1": "Antrenare modele custom", "2": "Fine-tuning Claude / OSS", "3": "Deployment de inferență" },
+        "cta": "Contactează-mă"
+      },
+      "romaniaTech": {
+        "title": "Consultanță tech pentru companii românești",
+        "desc": "Transformare digitală și integrare AI pentru IMM-uri.",
+        "bullets": { "1": "Digitalizare procese", "2": "Integrare AI", "3": "Upskilling echipă" },
+        "cta": "Contactează-mă"
+      },
+      "career": {
+        "title": "Job hunting și consultanță de carieră în România",
+        "desc": "Revizuire CV, ghidaj de piață și pregătire interviu.",
+        "bullets": { "1": "Revizuire CV / LinkedIn", "2": "Ghidaj piață România", "3": "Pregătire interviu" },
+        "cta": "Contactează-mă"
+      }
+    },
+    "pricing": {
+      "title": "Pachete",
+      "subtitle": "Preț transparent — începe gratuit.",
+      "popular": "Cel mai popular",
+      "plans": {
+        "free": {
+          "name": "Discovery",
+          "price": "€0",
+          "period": "30 min",
+          "desc": "Apel introductiv gratuit pentru clarificarea nevoilor.",
+          "cta": "Rezervă gratuit",
+          "items": { "1": "Apel video 30 minute", "2": "Pași următori personalizați", "3": "Fără angajament" }
+        },
+        "standard": {
+          "name": "Standard",
+          "price": "€1.200",
+          "period": "per proiect",
+          "desc": "Un angajament focalizat pentru un rezultat concret.",
+          "cta": "Începe acum",
+          "items": { "1": "Discovery + scoping", "2": "Implementare hands-on", "3": "Suport asincron 4 săptămâni", "4": "Predare finală" }
+        },
+        "premium": {
+          "name": "Premium",
+          "price": "€3.500",
+          "period": "pe lună",
+          "desc": "Partener AI continuu pentru echipa ta.",
+          "cta": "Rezervă apel intro",
+          "items": { "1": "Sesiuni săptămânale de lucru", "2": "Review arhitectură și cod", "3": "Canal Slack dedicat", "4": "Răspuns prioritar", "5": "Review trimestrial roadmap" }
+        }
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Spune-mi despre proiect, rol sau provocare — răspund de obicei în 24 de ore.",
+    "form": {
+      "name": "Numele tău",
+      "namePlaceholder": "Ion Popescu",
+      "email": "Email",
+      "emailPlaceholder": "tu@exemplu.com",
+      "subject": "Subiect",
+      "subjectPlaceholder": "Alege un subiect",
+      "subjectOptions": {
+        "general": "Întrebare generală",
+        "ai": "Consultanță AI",
+        "dev": "Dezvoltare software",
+        "job": "Consultanță carieră",
+        "other": "Altul"
+      },
+      "message": "Mesaj",
+      "messagePlaceholder": "Cu ce te pot ajuta?",
+      "submit": "Trimite mesaj",
+      "submitting": "Se trimite…",
+      "success": "Mulțumesc! Mesajul tău e pe drum.",
+      "error": "Nu am putut trimite mesajul. Încearcă din nou."
+    },
+    "info": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "location": "Locație",
+      "locationValue": "București, România"
+    }
+  },
+  "auth": {
+    "signIn": "Autentificare",
+    "signUp": "Creează cont",
+    "or": "sau",
+    "google": "Continuă cu Google",
+    "fields": {
+      "fullName": "Nume complet",
+      "email": "Email",
+      "password": "Parolă",
+      "confirmPassword": "Confirmă parola"
+    },
+    "signin": {
+      "title": "Bine ai revenit",
+      "subtitle": "Autentifică-te pentru a-ți gestiona rezervările și istoricul de chat.",
+      "submit": "Autentifică-te",
+      "submitting": "Se autentifică…",
+      "forgot": "Ai uitat parola?",
+      "toSignUp": "Nu ai cont? Creează unul"
+    },
+    "signup": {
+      "title": "Creează-ți contul",
+      "subtitle": "Durează doar un minut.",
+      "submit": "Creează cont",
+      "submitting": "Se creează contul…",
+      "toSignIn": "Ai deja cont? Autentifică-te"
+    },
+    "reset": {
+      "title": "Resetează parola",
+      "subtitle": "Introdu emailul și îți trimitem un link de resetare.",
+      "email": "Email",
+      "submit": "Trimite link de resetare",
+      "submitting": "Se trimite…",
+      "sent": "Verifică emailul pentru linkul de resetare.",
+      "backToSignIn": "Înapoi la autentificare"
+    },
+    "callback": {
+      "processing": "Te autentificăm…",
+      "error": "Autentificare eșuată. Încearcă din nou."
+    },
+    "errors": {
+      "invalid": "Email sau parolă incorecte.",
+      "passwordMin": "Parola trebuie să aibă cel puțin 8 caractere.",
+      "passwordMatch": "Parolele nu se potrivesc.",
+      "generic": "Autentificare eșuată. Încearcă din nou.",
+      "demo": "Înregistrarea necesită Supabase configurat."
+    },
+    "success": {
+      "signedIn": "Autentificare reușită.",
+      "signedUp": "Verifică emailul pentru a confirma contul."
+    }
+  },
+  "consultant": {
+    "title": "Consultant AI",
+    "subtitle": "Întreabă despre joburi în România, strategie AI, programare sau construire de agenți.",
+    "chips": {
+      "job": "Găsește un job în România",
+      "ai": "Consultanță AI",
+      "dev": "Ajutor la programare",
+      "agents": "Agenți AI în România"
+    },
+    "starters": {
+      "job": "Caut un job tech în România. De unde să încep?",
+      "ai": "Cum ar trebui să adopt AI în companie în 2026?",
+      "dev": "Mă poți ajuta să debughez un proiect Next.js?",
+      "agents": "Care e cel mai bun stack pentru un agent AI dedicat unui IMM din România?"
+    },
+    "placeholder": "Scrie întrebarea ta…",
+    "send": "Trimite",
+    "clear": "Șterge chatul",
+    "thinking": "Gândește…",
+    "limit": {
+      "title": "Limita demo atinsă",
+      "desc": "Ai folosit cele 10 mesaje gratuite. Autentifică-te pentru a continua.",
+      "cta": "Autentifică-te pentru a continua"
+    },
+    "demo": "Răspuns demo — configurează ANTHROPIC_API_KEY pentru răspunsuri reale.",
+    "rateLimited": "Mai încet — prea multe mesaje într-un timp scurt. Încearcă din nou în curând.",
+    "cta": {
+      "title": "Vrei să sapi mai adânc?",
+      "body": "Întreabă consultantul AI despre situația ta specifică — îți va sugera stack-ul, calendarul și pașii următori.",
+      "action": "Deschide chatul"
+    }
+  },
+  "booking": {
+    "title": "Rezervă o consultație",
+    "subtitle": "Alege un serviciu, alege ora, ne întâlnim.",
+    "steps": {
+      "service": "Serviciu",
+      "datetime": "Dată & Oră",
+      "details": "Detaliile tale"
+    },
+    "services": {
+      "ai":     { "title": "Strategie AI",                "desc": "Sesiune strategică de 60 min despre adoptarea AI în organizație." },
+      "agent":  { "title": "Implementare agent",          "desc": "Design și prototipare practică de agenți." },
+      "career": { "title": "Consultanță carieră & job",  "desc": "Revizuire CV, pregătire interviu și ghidaj piață România." },
+      "tech":   { "title": "Consultanță tech generală",   "desc": "Revizuire arhitectură, code review sau sparring tehnic." }
+    },
+    "datetime": {
+      "title": "Alege data și ora",
+      "subtitle": "Toate orele sunt Europe/Bucharest. Lun–Vin, patru sloturi pe zi.",
+      "pickDate": "Data",
+      "pickTime": "Ora",
+      "noSlots": "Niciun slot disponibil — încearcă altă zi."
+    },
+    "details": {
+      "name": "Nume complet",
+      "email": "Email",
+      "phone": "Telefon (opțional)",
+      "notes": "Note (opțional)",
+      "notesPlaceholder": "Ceva ce ar trebui să știu înainte de apel?"
+    },
+    "actions": {
+      "next": "Înainte",
+      "back": "Înapoi",
+      "confirm": "Confirmă rezervarea",
+      "submitting": "Se rezervă…",
+      "saveToAccount": "Autentifică-te pentru a salva în cont"
+    },
+    "confirm": {
+      "title": "Rezervarea ta e confirmată",
+      "desc": "Vei primi în scurt timp un email de confirmare.",
+      "newBooking": "Rezervă încă una"
+    },
+    "errors": {
+      "slotTaken": "Slotul a fost luat — alege altul.",
+      "generic": "Rezervare eșuată. Încearcă din nou.",
+      "rateLimited": "Prea multe încercări de rezervare — așteaptă un moment și încearcă din nou."
+    }
+  },
+  "dashboard": {
+    "title": "Panou",
+    "greet": "Bine ai revenit, {name}",
+    "guestGreet": "Bine ai revenit",
+    "upcoming": {
+      "title": "Consultații viitoare",
+      "empty": "Nu ai rezervări viitoare."
+    },
+    "past": {
+      "title": "Consultații trecute",
+      "empty": "Nu ai consultații trecute."
+    },
+    "profile": {
+      "title": "Profilul tău",
+      "fullName": "Nume complet",
+      "phone": "Telefon",
+      "notes": "Note",
+      "save": "Salvează",
+      "saving": "Se salvează…",
+      "saved": "Profil actualizat.",
+      "saveFailed": "Nu am putut salva profilul."
+    },
+    "actions": {
+      "openChat": "Deschide chat",
+      "newBooking": "Rezervare nouă",
+      "logout": "Deconectează-te"
+    },
+    "status": {
+      "pending": "În așteptare",
+      "confirmed": "Confirmată",
+      "cancelled": "Anulată",
+      "completed": "Finalizată"
+    },
+    "notSignedIn": {
+      "title": "Autentifică-te pentru a vedea panoul",
+      "body": "Rezervările și profilul sunt legate de contul tău.",
+      "cta": "Autentifică-te"
+    },
+    "cancel": {
+      "action": "Anulează",
+      "title": "Anulezi această rezervare?",
+      "body": "Slotul se eliberează pentru alții. Poți rezerva din nou de pe pagina de rezervare.",
+      "keep": "Păstrează rezervarea",
+      "confirm": "Anulează rezervarea",
+      "cancelling": "Se anulează…",
+      "done": "Rezervare anulată.",
+      "failed": "Anularea a eșuat — încearcă din nou.",
+      "demo": "Anularea necesită Supabase configurat."
+    },
+    "avatar": {
+      "upload": "Încarcă fotografia",
+      "replace": "Înlocuiește fotografia",
+      "uploading": "Se încarcă…",
+      "remove": "Elimină",
+      "uploaded": "Fotografia de profil a fost actualizată.",
+      "removed": "Fotografia de profil a fost eliminată.",
+      "failed": "Actualizarea fotografiei a eșuat.",
+      "badType": "Folosește o imagine PNG, JPEG sau WebP.",
+      "tooLarge": "Imaginea trebuie să fie de cel mult 5 MB.",
+      "demo": "Încărcarea fotografiei necesită Supabase configurat.",
+      "hint": "PNG, JPEG sau WebP · până la 5 MB."
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Note despre AI, construcție și scena tech din România.",
+    "empty": "Niciun articol încă — revino în curând.",
+    "readMore": "Citește mai mult",
+    "back": "Înapoi la toate articolele",
+    "minRead": "{n} min de citit",
+    "topics": "Subiecte",
+    "topic": "Subiect",
+    "allTopics": "Toate",
+    "taggedTitle": "#{tag}",
+    "taggedSubtitle": "{count, plural, =0 {Niciun articol} =1 {1 articol} other {# articole}} cu eticheta #{tag}.",
+    "rss": "Flux RSS",
+    "searchPlaceholder": "Caută articole…",
+    "searchClear": "Șterge căutarea",
+    "searchEmpty": "Niciun articol pentru filtrele tale.",
+    "resultCount": "{count, plural, =0 {Niciun articol} =1 {1 articol} other {# articole}}"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Rezervări și mesaje recente.",
+    "demo": "Admin necesită SUPABASE_SERVICE_ROLE_KEY și ADMIN_EMAILS configurate.",
+    "tabs": {
+      "bookings": "Rezervări",
+      "contacts": "Contacte"
+    },
+    "bookings": {
+      "title": "Rezervări",
+      "empty": "Nicio rezervare încă.",
+      "headers": {
+        "when": "Când",
+        "service": "Serviciu",
+        "guest": "Client",
+        "status": "Status"
+      }
+    },
+    "contacts": {
+      "title": "Mesaje de contact",
+      "empty": "Niciun mesaj încă."
+    },
+    "notAdmin": {
+      "title": "Doar admin",
+      "body": "Această zonă este restricționată. Autentifică-te cu un cont de admin.",
+      "cta": "Autentifică-te"
+    }
+  },
+  "footer": {
+    "tagline": "Consultant AI și Dezvoltator Software · România",
+    "rights": "Toate drepturile rezervate.",
+    "links": {
+      "navigation": "Navigare",
+      "social": "Social"
+    },
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter / X"
+    }
+  }
+}
