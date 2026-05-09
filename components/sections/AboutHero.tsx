@@ -23,12 +23,12 @@ export function AboutHero() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full" />
           <div className="relative aspect-square w-[220px] md:w-[260px] rounded-3xl overflow-hidden border border-border shadow-xl">
             <Image
-              src="https://picsum.photos/seed/emad-about/520/520"
+              src="/emad.png"
               alt="Emad portrait"
               fill
               priority
               sizes="260px"
-              className="object-cover"
+              className="object-cover object-[center_20%]"
             />
           </div>
         </motion.div>

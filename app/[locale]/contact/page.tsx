@@ -72,8 +72,8 @@ export default async function ContactPage({
 
           <div className="overflow-hidden rounded-xl border border-border">
             <iframe
-              title="Bucharest map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=26.0%2C44.4%2C26.2%2C44.5&amp;layer=mapnik"
+              title="Cluj-Napoca map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=23.5%2C46.7%2C23.7%2C46.8&amp;layer=mapnik"
               className="w-full h-64"
               loading="lazy"
             />

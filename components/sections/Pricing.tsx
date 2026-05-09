@@ -46,7 +46,7 @@ export function Pricing() {
               {plan.popular && (
                 <Badge
                   variant="accent"
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 gap-1"
+                  className="absolute -top-6 left-1/2 -translate-x-1/2 gap-1"
                 >
                   <Sparkles className="h-3 w-3" />
                   {t('popular')}
