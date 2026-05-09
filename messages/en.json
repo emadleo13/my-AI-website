@@ -199,7 +199,7 @@
         },
         "standard": {
           "name": "Standard",
-          "price": "€1,200",
+          "price": "€,200",
           "period": "per engagement",
           "desc": "A focused engagement for one concrete outcome.",
           "cta": "Get started",
@@ -207,7 +207,7 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "€3,500",
+          "price": "€,500",
           "period": "per month",
           "desc": "Ongoing AI partner for your team.",
           "cta": "Book intro call",
@@ -241,10 +241,10 @@
       "error": "We couldn't send your message. Please try again."
     },
     "info": {
-      "email": "Email",
+      "email": "hamidleo1984@gmail.com",
       "linkedin": "LinkedIn",
       "location": "Location",
-      "locationValue": "Bucharest, Romania"
+      "locationValue": "CLUJ NAPOCA, Romania"
     }
   },
   "auth": {
