@@ -65,13 +65,13 @@ export function Hero() {
           className="relative mx-auto"
         >
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full" />
-          <div className="relative aspect-square w-[280px] md:w-[380px] rounded-3xl overflow-hidden border border-border shadow-2xl">
+          <div className="relative aspect-[16/9] w-[420px] md:w-[640px] rounded-3xl overflow-hidden border border-border shadow-2xl">
             <Image
-              src="https://picsum.photos/seed/emad/600/600"
+              src="/AI PIC.png"
               alt="Emad — AI consultant and software developer"
               fill
               priority
-              className="object-cover"
+              className="object-cover object-center"
               sizes="(max-width: 768px) 280px, 380px"
             />
           </div>

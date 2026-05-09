@@ -463,7 +463,8 @@
     "demo": "ادمین نیاز به تنظیم SUPABASE_SERVICE_ROLE_KEY و ADMIN_EMAILS دارد.",
     "tabs": {
       "bookings": "رزروها",
-      "contacts": "پیام‌ها"
+      "contacts": "پیام‌ها",
+      "documents": "اسناد"
     },
     "bookings": {
       "title": "رزروها",
@@ -478,6 +479,41 @@
     "contacts": {
       "title": "پیام‌های تماس",
       "empty": "هنوز پیامی نیست."
+    },
+    "documents": {
+      "title": "پایگاه دانش",
+      "empty": "هنوز سندی نیست. فایل‌ها را آپلود کنید تا دستیار هوشمند بهتر پاسخ دهد.",
+      "upload": "آپلود فایل",
+      "uploading": "در حال آپلود…",
+      "addWebText": "افزودن متن",
+      "addWebTextTitle": "متن وب‌سایت یا محتوای دلخواه را وارد کنید",
+      "addWebTextLabel": "محتوا",
+      "addWebTextPlaceholder": "هر متن، محتوای وب‌سایت یا یادداشتی را اینجا بچسبانید…",
+      "titleLabel": "عنوان سند",
+      "save": "ذخیره",
+      "saving": "در حال ذخیره…",
+      "delete": "حذف",
+      "deleting": "در حال حذف…",
+      "confirmDelete": "این سند حذف شود؟ این عمل قابل بازگشت نیست.",
+      "confirm": "تأیید",
+      "cancel": "لغو",
+      "chunks": "{n} بخش",
+      "chars": "{n} کاراکتر",
+      "types": {
+        "pdf": "PDF",
+        "docx": "DOCX",
+        "txt": "TXT",
+        "md": "MD",
+        "web": "وب"
+      },
+      "errors": {
+        "badType": "نوع فایل پشتیبانی نمی‌شود. از PDF، DOCX، TXT یا Markdown استفاده کنید.",
+        "tooLarge": "حجم فایل باید کمتر از ۱۰ مگابایت باشد.",
+        "uploadFailed": "آپلود ناموفق بود. لطفاً دوباره امتحان کنید.",
+        "deleteFailed": "حذف ناموفق بود. لطفاً دوباره امتحان کنید.",
+        "emptyContent": "عنوان و محتوا نمی‌توانند خالی باشند."
+      },
+      "hint": "PDF، DOCX، TXT، MD · حداکثر ۱۰ مگابایت."
     },
     "notAdmin": {
       "title": "فقط ادمین",

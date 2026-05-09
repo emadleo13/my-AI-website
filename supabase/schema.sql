@@ -143,3 +143,62 @@ create policy "avatars owner delete" on storage.objects
     bucket_id = 'avatars'
     and auth.uid()::text = (storage.foldername(name))[1]
   );
+
+-- =============================================================
+-- RAG: documents + document_chunks
+-- =============================================================
+
+create table if not exists public.documents (
+  id          uuid primary key default gen_random_uuid(),
+  title       text not null,
+  source_type text not null check (source_type in ('pdf','docx','txt','md','web')),
+  file_path   text,
+  char_count  integer not null default 0,
+  chunk_count integer not null default 0,
+  created_at  timestamptz not null default now()
+);
+
+alter table public.documents enable row level security;
+-- No public RLS policies — all access is via service-role (getSupabaseAdmin).
+
+create table if not exists public.document_chunks (
+  id          uuid primary key default gen_random_uuid(),
+  document_id uuid not null references public.documents on delete cascade,
+  chunk_index integer not null,
+  content     text not null,
+  tsv         tsvector generated always as (to_tsvector('english', content)) stored,
+  created_at  timestamptz not null default now()
+);
+
+create index if not exists document_chunks_tsv_idx
+  on public.document_chunks using gin(tsv);
+
+create index if not exists document_chunks_doc_idx
+  on public.document_chunks (document_id, chunk_index);
+
+alter table public.document_chunks enable row level security;
+-- No public RLS policies — service-role only.
+
+-- =============================================================
+-- documents storage bucket (private)
+-- =============================================================
+insert into storage.buckets (id, name, public)
+values ('documents', 'documents', false)
+on conflict (id) do nothing;
+
+-- =============================================================
+-- Full-text search helper for RAG retrieval
+-- =============================================================
+create or replace function public.search_chunks(query text, top_k integer default 5)
+returns table(content text, rank real)
+language sql
+security definer
+set search_path = public
+as $$
+  select content, ts_rank(tsv, plainto_tsquery('english', query)) as rank
+  from public.document_chunks
+  where tsv @@ plainto_tsquery('english', query)
+    and length(query) > 0
+  order by rank desc
+  limit top_k;
+$$;

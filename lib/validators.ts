@@ -46,3 +46,10 @@ export const chatRequestSchema = z.object({
   messages: z.array(chatMessageSchema).min(1).max(40),
 });
 export type ChatRequest = z.infer<typeof chatRequestSchema>;
+
+export const documentWebContentSchema = z.object({
+  type: z.literal('web'),
+  title: z.string().min(1).max(200),
+  content: z.string().min(10).max(200_000),
+});
+export type DocumentWebContentInput = z.infer<typeof documentWebContentSchema>;

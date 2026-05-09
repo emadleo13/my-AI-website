@@ -106,9 +106,8 @@
     "education": {
       "title": "Education & Certifications",
       "items": {
-        "1": { "degree": "M.Sc. Computer Science", "school": "University of Tehran", "period": "2012 — 2014", "note": "Focus: machine learning, distributed systems." },
-        "2": { "degree": "B.Sc. Software Engineering", "school": "Sharif University of Technology", "period": "2008 — 2012", "note": "Cum laude." },
-        "3": { "degree": "Deep Learning Specialization", "school": "DeepLearning.AI", "period": "2021", "note": "Sequence models and NLP." }
+        "1": { "degree": "M.Sc. Computer Science", "school": "University of Technic Cluj Napoca", "period": "2024 — 2028", "note": "Focus: machine learning, distributed systems." },
+        "2": { "degree": "Deep Learning Specialization", "school": "CAREERPRENEUR ACADEMY", "period": "2026", "note": "Sequence models and NLP." }
       }
     },
     "experience": {
@@ -465,7 +464,8 @@
     "demo": "Admin requires SUPABASE_SERVICE_ROLE_KEY and ADMIN_EMAILS to be configured.",
     "tabs": {
       "bookings": "Bookings",
-      "contacts": "Contacts"
+      "contacts": "Contacts",
+      "documents": "Documents"
     },
     "bookings": {
       "title": "Bookings",
@@ -480,6 +480,41 @@
     "contacts": {
       "title": "Contact submissions",
       "empty": "No submissions yet."
+    },
+    "documents": {
+      "title": "Knowledge Base",
+      "empty": "No documents yet. Upload files to power the AI assistant.",
+      "upload": "Upload file",
+      "uploading": "Uploading…",
+      "addWebText": "Add text",
+      "addWebTextTitle": "Paste website or custom text",
+      "addWebTextLabel": "Content",
+      "addWebTextPlaceholder": "Paste any text, website content, or notes here…",
+      "titleLabel": "Document title",
+      "save": "Save",
+      "saving": "Saving…",
+      "delete": "Delete",
+      "deleting": "Deleting…",
+      "confirmDelete": "Delete this document? This cannot be undone.",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "chunks": "{n} chunks",
+      "chars": "{n} chars",
+      "types": {
+        "pdf": "PDF",
+        "docx": "DOCX",
+        "txt": "TXT",
+        "md": "MD",
+        "web": "Web"
+      },
+      "errors": {
+        "badType": "Unsupported file type. Use PDF, DOCX, TXT, or Markdown.",
+        "tooLarge": "File must be 10 MB or smaller.",
+        "uploadFailed": "Upload failed. Please try again.",
+        "deleteFailed": "Delete failed. Please try again.",
+        "emptyContent": "Title and content cannot be empty."
+      },
+      "hint": "PDF, DOCX, TXT, MD · up to 10 MB."
     },
     "notAdmin": {
       "title": "Admin only",

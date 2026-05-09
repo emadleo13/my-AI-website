@@ -10,6 +10,10 @@ import {
   AdminContacts,
   type AdminContactRow,
 } from '@/components/admin/AdminContacts';
+import {
+  AdminDocuments,
+  type DocumentRow,
+} from '@/components/admin/AdminDocuments';
 import { LogoutButton } from '@/components/dashboard/LogoutButton';
 import { getAdminUser } from '@/lib/auth';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
@@ -69,24 +73,31 @@ export default async function AdminPage({
     );
   }
 
-  const [{ data: bookingsData }, { data: contactsData }] = await Promise.all([
-    supabase
-      .from('bookings')
-      .select(
-        'id, service_type, booking_date, booking_time, status, notes, guest_name, guest_email, user_id, created_at',
-      )
-      .order('booking_date', { ascending: false })
-      .order('booking_time', { ascending: false })
-      .limit(100),
-    supabase
-      .from('contacts')
-      .select('id, name, email, subject, message, created_at')
-      .order('created_at', { ascending: false })
-      .limit(50),
-  ]);
+  const [{ data: bookingsData }, { data: contactsData }, { data: documentsData }] =
+    await Promise.all([
+      supabase
+        .from('bookings')
+        .select(
+          'id, service_type, booking_date, booking_time, status, notes, guest_name, guest_email, user_id, created_at',
+        )
+        .order('booking_date', { ascending: false })
+        .order('booking_time', { ascending: false })
+        .limit(100),
+      supabase
+        .from('contacts')
+        .select('id, name, email, subject, message, created_at')
+        .order('created_at', { ascending: false })
+        .limit(50),
+      supabase
+        .from('documents')
+        .select('id, title, source_type, char_count, chunk_count, created_at')
+        .order('created_at', { ascending: false })
+        .limit(100),
+    ]);
 
   const bookings = (bookingsData ?? []) as AdminBookingRow[];
   const contacts = (contactsData ?? []) as AdminContactRow[];
+  const documents = (documentsData ?? []) as DocumentRow[];
 
   return (
     <div className="container py-12 md:py-16">
@@ -120,12 +131,21 @@ export default async function AdminPage({
                 {contacts.length}
               </span>
             </TabsTrigger>
+            <TabsTrigger value="documents">
+              {t('tabs.documents')}{' '}
+              <span className="ml-2 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium">
+                {documents.length}
+              </span>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="bookings" className="mt-6">
             <AdminBookings rows={bookings} />
           </TabsContent>
           <TabsContent value="contacts" className="mt-6">
             <AdminContacts rows={contacts} />
+          </TabsContent>
+          <TabsContent value="documents" className="mt-6">
+            <AdminDocuments initialDocuments={documents} />
           </TabsContent>
         </Tabs>
       </div>

@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Sparkles } from 'lucide-react';
 import { Link, usePathname } from '@/lib/i18n-routing';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -26,12 +26,9 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 glass">
-      <div className="container flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-md">
-            <Sparkles className="h-4 w-4" />
-          </span>
-          <span>{t('common.brand')}</span>
+      <div className="container flex h-24 items-center justify-between gap-4">
+        <Link href="/" className="flex items-center mt-4">
+          <Image src="/BLUE AI.png" alt="Emad AI" width={110} height={130} className="object-contain" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 text-sm">
