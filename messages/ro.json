@@ -90,7 +90,7 @@
     "bio": {
       "title": "O scurtă poveste",
       "p1": "Sunt Emad — un dezvoltator software devenit consultant AI. În ultimul deceniu am livrat produse în e-commerce, SaaS și fintech, iar în ultimii trei ani m-am concentrat aproape exclusiv pe AI: design de agenți, retrieval, evaluare și transformarea prototipurilor în sisteme de producție fiabile.",
-      "p2": "Locuiesc în București. Lucrez cu companii care adoptă AI pentru prima dată, cu echipe de inginerie care construiesc produse agentice și cu persoane care își construiesc cariera în piața tech din România.",
+      "p2": "Locuiesc în Cluj-Napoca. Lucrez cu companii care adoptă AI pentru prima dată, cu echipe de inginerie care construiesc produse agentice și cu persoane care își construiesc cariera în piața tech din România.",
       "p3": "Prefer pragmatismul în locul modei: modelul potrivit, framework-ul potrivit și cel mai mic sistem care chiar rezolvă problema."
     },
     "skills": {
@@ -106,18 +106,17 @@
     "education": {
       "title": "Educație și certificări",
       "items": {
-        "1": { "degree": "Master Informatică", "school": "Universitatea din Tehran", "period": "2012 — 2014", "note": "Focus: machine learning, sisteme distribuite." },
-        "2": { "degree": "Licență Inginerie Software", "school": "Sharif University of Technology", "period": "2008 — 2012", "note": "Cu distincție." },
-        "3": { "degree": "Specializare Deep Learning", "school": "DeepLearning.AI", "period": "2021", "note": "Sequence models și NLP." }
+        "1": { "degree": "Informatică", "school": "Universitatea Tehnică din Cluj-Napoca", "period": "2024 — 2028", "note": "În curs de studiu." },
+        "2": { "degree": "Specializare Deep Learning", "school": "CareerPreneur Academy · Canada", "period": "2026", "note": "Deep learning aplicat și AI." }
       }
     },
     "experience": {
       "title": "Experiență profesională",
       "items": {
-        "1": { "role": "Consultant AI (Independent)", "company": "Pe cont propriu · București", "period": "2023 — Prezent", "summary": "Consultanță pentru IMM-uri și startup-uri europene în adopție AI și livrare de agenți de producție." },
-        "2": { "role": "Lead Software Engineer", "company": "Scale-up Fintech · UE", "period": "2019 — 2023", "summary": "Conducere echipă de 6 ingineri pe o platformă de plăți, apoi roadmap AI." },
-        "3": { "role": "Dezvoltator Full-stack", "company": "SaaS e-commerce", "period": "2015 — 2019", "summary": "Owner pe checkout și integrări Stripe în mai multe regiuni." },
-        "4": { "role": "Dezvoltator Junior", "company": "Agenție web · Tehran", "period": "2012 — 2015", "summary": "Peste 30 de proiecte client în PHP, Node.js și React timpuriu." }
+        "1": { "role": "Consultant AI (în colaborare cu Academia CareerPreneur)", "company": "Ai Academy · Canada", "period": "2024 — Prezent", "summary": "Consultanță pentru IMM-uri și startup-uri europene în adopție AI și livrare de agenți de producție." },
+        "2": { "role": "Software Engineer", "company": "Scale-up Fintech · UE", "period": "2019 — 2023", "summary": "Colaborare cu echipă de 6 ingineri pe o platformă de plăți, apoi roadmap AI." },
+        "3": { "role": "Dezvoltator", "company": "SaaS e-commerce", "period": "2015 — 2018", "summary": "Owner pe checkout și integrări Stripe în mai multe regiuni." },
+        "4": { "role": "Dezvoltator Junior", "company": "Agenție web · Tehran", "period": "2015 — 2018", "summary": "Peste 30 de proiecte client în PHP, Node.js și React timpuriu." }
       }
     },
     "documents": {
@@ -126,12 +125,12 @@
       "viewLabel": "Vezi",
       "closeLabel": "Închide",
       "items": {
-        "1": { "title": "Diplomă Master", "caption": "Universitatea din Tehran" },
-        "2": { "title": "Diplomă Licență", "caption": "Universitatea Sharif" },
-        "3": { "title": "Certificat Deep Learning", "caption": "DeepLearning.AI" },
-        "4": { "title": "Permis de muncă România", "caption": "Emis 2023" },
+        "1": { "title": "Diplomă Licență", "caption": "Universitatea din Guilan · Iran" },
+        "2": { "title": "Diplomă Licență", "caption": "Universitatea Azad Lahijan" },
+        "3": { "title": "Certificat Informatică", "caption": "CareerPreneur AI" },
+        "4": { "title": "Permis de muncă România", "caption": "Emis 2022" },
         "5": { "title": "Certificat ML Specialist", "caption": "Coursera" },
-        "6": { "title": "Certificat Etica AI", "caption": "MIT OCW" }
+        "6": { "title": "Certificat AI-Python", "caption": "Pytopia.ai" }
       }
     },
     "resume": {
@@ -244,7 +243,7 @@
       "email": "Email",
       "linkedin": "LinkedIn",
       "location": "Locație",
-      "locationValue": "București, România"
+      "locationValue": "Cluj-Napoca, România"
     }
   },
   "auth": {
