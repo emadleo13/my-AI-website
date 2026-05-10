@@ -106,10 +106,8 @@ export function Footer() {
           </div>
         </div>
 
-        <hr className="border-t border-white/10 mb-4" />
-
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+        {/* Bottom bar — social + copyright above the text effect */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3 pb-4">
           <div className="flex gap-5 text-gray-500">
             <a href="https://github.com/emadleo13" target="_blank" rel="noreferrer"
               aria-label="GitHub" className="hover:text-[#3ca2fa] transition-colors">
@@ -128,10 +126,12 @@ export function Footer() {
             © {year} EMAD AI Consultant. {t('footer.rights')}
           </p>
         </div>
+
+        <hr className="border-t border-gray-600/60" />
       </div>
 
-      {/* Text hover effect */}
-      <div className="lg:flex hidden h-[28rem] -mt-48 -mb-32 z-10 relative">
+      {/* Text hover effect — smaller */}
+      <div className="lg:flex hidden h-[18rem] -mb-16 z-10 relative">
         <TextHoverEffect text="EMAD AI" />
       </div>
     </footer>
