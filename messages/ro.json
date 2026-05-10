@@ -46,11 +46,12 @@
       "eyebrow": "Următorii 5 ani",
       "title": "AI rescrie modul în care construim, muncim și învățăm",
       "body": "De la asistenți de tip GPT și agenți pe Claude la modele multi-modale care văd, aud și raționează, AI trece de la o unealtă la un colaborator. În următorii cinci ani, agenți autonomi vor planifica și executa muncă de la cap la coadă, fiecare echipă va avea un copilot, iar distanța dintre idee și produs se va prăbuși. Oportunitatea nu mai este accesul la AI — este integrarea bună, sigură și măsurabilă a acestuia. Exact aici intervin eu.",
-      "cards": {
-        "agents": { "title": "Agenți autonomi", "caption": "Agenți care folosesc unelte pentru a planifica și executa sarcini complete." },
-        "multimodal": { "title": "AI multi-modal", "caption": "Modele care fuzionează text, imagine, audio și cod într-o singură buclă de raționament." },
-        "claude": { "title": "Claude și modele frontieră", "caption": "Raționament la nivel de producție cu siguranță, citate și ferestre mari de context." },
-        "automation": { "title": "Automatizare flux", "caption": "Înlocuirea scripturilor fragile cu agenți care se adaptează schimbărilor." }
+      "items": {
+        "consulting": "Consultanță & Strategie AI",
+        "agents": "Agenți Autonomi",
+        "rag": "Chatbot & RAG Inteligent",
+        "dev": "Dezvoltare Software",
+        "career": "Consultanță de Carieră"
       }
     },
     "servicesPreview": {

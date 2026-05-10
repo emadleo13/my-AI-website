@@ -46,11 +46,12 @@
       "eyebrow": "The Next 5 Years",
       "title": "AI is rewriting how we build, work, and learn",
       "body": "From GPT-class assistants and Claude-powered agents to multi-modal models that see, hear, and reason, AI is moving from a tool you query to a collaborator you delegate to. In the next five years, autonomous agents will plan and execute multi-step work, every team will have a copilot, and the gap between idea and product will collapse. The opportunity is no longer access to AI — it is integrating it well, safely, and with measurable outcomes. That is exactly where I help.",
-      "cards": {
-        "agents": { "title": "Autonomous Agents", "caption": "Long-running, tool-using agents that plan and execute work end-to-end." },
-        "multimodal": { "title": "Multi-modal AI", "caption": "Models that fuse text, vision, audio, and code into a single reasoning loop." },
-        "claude": { "title": "Claude & Frontier Models", "caption": "Production-grade reasoning with safety, citations, and large context windows." },
-        "automation": { "title": "Workflow Automation", "caption": "Replacing brittle scripts with intelligent agents that adapt to change." }
+      "items": {
+        "consulting": "AI Consulting & Strategy",
+        "agents": "Autonomous Agents",
+        "rag": "RAG & AI Chatbots",
+        "dev": "Software Development",
+        "career": "Career Consulting"
       }
     },
     "servicesPreview": {
