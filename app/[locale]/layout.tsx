@@ -9,6 +9,7 @@ import { locales, localeMeta, type Locale } from '@/lib/i18n';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollToTop } from '@/components/ui/scroll-to-top';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -112,6 +113,7 @@ export default async function LocaleLayout({
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+              <ScrollToTop />
             </div>
             <Toaster richColors position="top-right" />
           </NextIntlClientProvider>
