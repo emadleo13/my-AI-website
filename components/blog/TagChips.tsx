@@ -1,5 +1,5 @@
 import { Link } from '@/lib/i18n-routing';
-import { tagToSlug } from '@/lib/blog';
+import { tagToSlug } from '@/lib/blog-utils';
 import { cn } from '@/lib/utils';
 
 interface Props {

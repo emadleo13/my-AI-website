@@ -9,7 +9,7 @@ import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { TagChips } from './TagChips';
-import { tagToSlug } from '@/lib/blog';
+import { tagToSlug } from '@/lib/blog-utils';
 import { cn } from '@/lib/utils';
 
 export interface BlogIndexPost {
