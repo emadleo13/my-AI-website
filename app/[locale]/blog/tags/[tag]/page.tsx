@@ -23,12 +23,12 @@ export async function generateMetadata({
 }) {
   const { locale, tag } = await params;
   const decoded = decodeURIComponent(tag);
-  const { label } = await getPostsByTagSlug(locale as Locale, decoded);
+  const { label, posts } = await getPostsByTagSlug(locale as Locale, decoded);
   if (!label) return {};
   const t = await getTranslations({ locale, namespace: 'blog' });
   return {
     title: t('taggedTitle', { tag: label }),
-    description: t('taggedSubtitle', { tag: label }),
+    description: t('taggedSubtitle', { tag: label, count: posts.length }),
   };
 }
 

@@ -6,7 +6,11 @@ export async function extractText(
 ): Promise<string> {
   switch (sourceType) {
     case 'pdf': {
-      const pdfParse = (await import('pdf-parse')).default;
+      // pdf-parse is CJS; cast to any to avoid ESM/CJS interop type mismatch
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const mod = (await import('pdf-parse')) as any;
+      const pdfParse: (buf: Buffer) => Promise<{ text: string }> =
+        mod.default ?? mod;
       const result = await pdfParse(buffer);
       return result.text;
     }
