@@ -23,9 +23,13 @@ export default async function AuthPage({
   const tDemo = await getTranslations('demo');
 
   return (
-    <div className="container py-16 md:py-24">
-      <div className="mx-auto max-w-md">
-        {!isSupabaseConfigured && <DemoBanner message={tDemo('supabase')} />}
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#060818] to-[#0d1023] px-4 py-8">
+      {!isSupabaseConfigured && (
+        <div className="w-full max-w-4xl mb-4">
+          <DemoBanner message={tDemo('supabase')} />
+        </div>
+      )}
+      <div className="w-full max-w-4xl">
         <AuthTabs />
       </div>
     </div>
