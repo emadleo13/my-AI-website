@@ -113,10 +113,10 @@
     "experience": {
       "title": "Work Experience",
       "items": {
-        "1": { "role": "AI Consultant (Independent)", "company": "Self-employed · Bucharest", "period": "2023 — Present", "summary": "Advising European SMEs and startups on AI adoption and shipping production agents." },
-        "2": { "role": "Lead Software Engineer", "company": "Fintech Scale-up · EU", "period": "2019 — 2023", "summary": "Led a 6-engineer team building a payments platform, then drove the AI roadmap." },
-        "3": { "role": "Full-stack Developer", "company": "E-commerce SaaS", "period": "2015 — 2019", "summary": "Owned core checkout and integrations across multiple Stripe regions." },
-        "4": { "role": "Junior Developer", "company": "Web agency · Tehran", "period": "2012 — 2015", "summary": "Shipped 30+ client projects in PHP, Node.js, and early React." }
+        "1": { "role": "AI Consultant (in collaboration with the Academy CAREERPRENEUR)", "company": "Ai Academy - Canada", "period": "2024 — Present", "summary": "Advising European SMEs and startups on AI adoption and shipping production agents." },
+        "2": { "role": "Software Engineer", "company": "Fintech Scale-up · EU", "period": "2019 — 2023", "summary": "Collaboration with 6-engineer team building a payments platform, then drove the AI roadmap." },
+        "3": { "role": "Developer", "company": "E-commerce SaaS", "period": "2015 — 2018", "summary": "Owned core checkout and integrations across multiple Stripe regions." },
+        "4": { "role": "Junior Developer", "company": "Web agency · Tehran", "period": "2015 — 2018", "summary": "Shipped 30+ client projects in PHP, Node.js, and early React." }
       }
     },
     "documents": {
@@ -125,12 +125,12 @@
       "viewLabel": "View",
       "closeLabel": "Close",
       "items": {
-        "1": { "title": "M.Sc. Diploma", "caption": "University of Tehran" },
-        "2": { "title": "B.Sc. Diploma", "caption": "Sharif University" },
-        "3": { "title": "Deep Learning Certificate", "caption": "DeepLearning.AI" },
-        "4": { "title": "Romania Work Permit", "caption": "Issued 2023" },
+        "1": { "title": "B.Sc. Diploma", "caption": "University of Guilan-Iran" },
+        "2": { "title": "B.Sc. Diploma", "caption": "Azad Lahijan University" },
+        "3": { "title": "Computer Science Certificate", "caption": "CAREERPRENEUR-AI" },
+        "4": { "title": "Romania Work Permit", "caption": "Issued 2022" },
         "5": { "title": "ML Specialist Cert", "caption": "Coursera" },
-        "6": { "title": "AI Ethics Cert", "caption": "MIT OCW" }
+        "6": { "title": "AI- PYTHON Certificate", "caption": "Pytopia.ai" }
       }
     },
     "resume": {
