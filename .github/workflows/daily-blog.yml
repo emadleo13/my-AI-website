@@ -1,0 +1,44 @@
+name: Daily AI News Blog Post
+
+on:
+  schedule:
+    # Runs at 07:00 UTC every day (09:00 Romania time / 10:30 Tehran time)
+    - cron: '0 7 * * *'
+  workflow_dispatch: # allow manual trigger from GitHub UI
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate daily post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-daily-post.mjs
+
+      - name: Commit and push new post
+        run: |
+          git config user.name "Emad Blog Bot"
+          git config user.email "hamidleo1984@gmail.com"
+          git add content/blog/
+          if git diff --cached --quiet; then
+            echo "No new post generated today."
+          else
+            DATE=$(date +%Y-%m-%d)
+            git commit -m "blog: daily AI news post for $DATE"
+            git push
+          fi
