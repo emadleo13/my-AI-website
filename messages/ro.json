@@ -198,7 +198,7 @@
         },
         "standard": {
           "name": "Standard",
-          "price": "€1.200",
+          "price": "€200",
           "period": "per proiect",
           "desc": "Un angajament focalizat pentru un rezultat concret.",
           "cta": "Începe acum",
@@ -206,7 +206,7 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "€3.500",
+          "price": "€500",
           "period": "pe lună",
           "desc": "Partener AI continuu pentru echipa ta.",
           "cta": "Rezervă apel intro",
