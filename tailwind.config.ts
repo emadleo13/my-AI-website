@@ -72,10 +72,15 @@ const config: Config = {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },
+        'gradient-shift': {
+          '0%': { transform: 'rotate(0deg) scale(1)' },
+          '100%': { transform: 'rotate(360deg) scale(1)' },
+        },
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         shimmer: 'shimmer 2.4s linear infinite',
+        gradient: 'gradient-shift 8s linear infinite',
       },
     },
   },
