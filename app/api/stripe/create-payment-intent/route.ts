@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { stripe, SERVICE_PRICES } from '@/lib/stripe';
+import { getStripeClient, SERVICE_PRICES } from '@/lib/stripe';
 import { isStripeConfigured } from '@/lib/env';
 
 export async function POST(req: Request) {
@@ -16,6 +16,7 @@ export async function POST(req: Request) {
   const amount = SERVICE_PRICES[serviceType] ?? 200_00;
 
   try {
+    const stripe = getStripeClient();
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'eur',

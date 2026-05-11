@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { stripe, PACKAGE_PRICES } from '@/lib/stripe';
+import { getStripeClient, PACKAGE_PRICES } from '@/lib/stripe';
 import { isStripeConfigured, env } from '@/lib/env';
 
 export async function POST(req: Request) {
@@ -21,6 +21,7 @@ export async function POST(req: Request) {
   const baseUrl = env.siteUrl;
 
   try {
+    const stripe = getStripeClient();
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: [
