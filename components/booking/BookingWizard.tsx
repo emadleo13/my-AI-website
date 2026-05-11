@@ -12,7 +12,7 @@ import { DetailsStep, type DetailsState } from './DetailsStep';
 import { PaymentStep } from './PaymentStep';
 import { Confirmation } from './Confirmation';
 import { type BookingTime } from '@/lib/utils';
-import { SERVICE_PRICES } from '@/lib/stripe';
+import { SERVICE_PRICES } from '@/lib/service-prices';
 
 type Step = 1 | 2 | 3 | 4;
 
