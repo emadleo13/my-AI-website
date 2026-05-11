@@ -9,10 +9,12 @@ import { cn } from '@/lib/utils';
 import { ServiceStep, type ServiceKey } from './ServiceStep';
 import { DateTimeStep } from './DateTimeStep';
 import { DetailsStep, type DetailsState } from './DetailsStep';
+import { PaymentStep } from './PaymentStep';
 import { Confirmation } from './Confirmation';
 import { type BookingTime } from '@/lib/utils';
+import { SERVICE_PRICES } from '@/lib/stripe';
 
-type Step = 1 | 2 | 3;
+type Step = 1 | 2 | 3 | 4;
 
 const EMPTY_DETAILS: DetailsState = { name: '', email: '', phone: '', notes: '' };
 
@@ -28,14 +30,22 @@ export function BookingWizard() {
   const [errors, setErrors] = React.useState<Partial<Record<keyof DetailsState, string>>>({});
   const [submitting, setSubmitting] = React.useState(false);
   const [done, setDone] = React.useState(false);
+  const [clientSecret, setClientSecret] = React.useState<string | null>(null);
+  const [paymentDemo, setPaymentDemo] = React.useState(false);
 
-  const stepLabels = [t('steps.service'), t('steps.datetime'), t('steps.details')];
+  const stepLabels = [
+    t('steps.service'),
+    t('steps.datetime'),
+    t('steps.details'),
+    t('steps.payment'),
+  ];
   const tServices = useTranslations('booking.services');
 
   const canNext =
     (step === 1 && !!service) ||
     (step === 2 && !!date && !!time) ||
-    step === 3;
+    step === 3 ||
+    step === 4;
 
   const validateDetails = () => {
     const e: typeof errors = {};
@@ -45,9 +55,8 @@ export function BookingWizard() {
     return Object.keys(e).length === 0;
   };
 
-  const submit = async () => {
-    if (!validateDetails() || !service || !date || !time) return;
-    setSubmitting(true);
+  const submitBooking = async () => {
+    if (!service || !date || !time) return;
     try {
       const res = await fetch('/api/booking', {
         method: 'POST',
@@ -71,14 +80,46 @@ export function BookingWizard() {
         } else {
           toast.error(body?.message ?? tErr('generic'));
         }
-        return;
+        return false;
       }
-      setDone(true);
+      return true;
+    } catch {
+      toast.error(tErr('generic'));
+      return false;
+    }
+  };
+
+  const handleDetailsNext = async () => {
+    if (!validateDetails() || !service) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/stripe/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          serviceType: service,
+          guestName: details.name,
+          guestEmail: details.email,
+        }),
+      });
+      const body = await res.json();
+      if (body.demo) {
+        setPaymentDemo(true);
+        setClientSecret('demo');
+      } else {
+        setClientSecret(body.clientSecret);
+      }
+      setStep(4);
     } catch {
       toast.error(tErr('generic'));
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handlePaymentSuccess = async () => {
+    const ok = await submitBooking();
+    if (ok) setDone(true);
   };
 
   const reset = () => {
@@ -89,6 +130,8 @@ export function BookingWizard() {
     setDetails(EMPTY_DETAILS);
     setErrors({});
     setDone(false);
+    setClientSecret(null);
+    setPaymentDemo(false);
   };
 
   if (done && service && date && time) {
@@ -102,6 +145,8 @@ export function BookingWizard() {
       />
     );
   }
+
+  const amount = service ? (SERVICE_PRICES[service] ?? 200_00) : 200_00;
 
   return (
     <div className="space-y-8">
@@ -146,44 +191,68 @@ export function BookingWizard() {
           <DateTimeStep
             date={date}
             time={time}
-            onDate={(d) => {
-              setDate(d);
-              setTime(null);
-            }}
+            onDate={(d) => { setDate(d); setTime(null); }}
             onTime={setTime}
           />
         )}
         {step === 3 && (
           <DetailsStep value={details} onChange={setDetails} errors={errors} />
         )}
+        {step === 4 && clientSecret && (
+          <PaymentStep
+            clientSecret={clientSecret}
+            amount={amount}
+            onSuccess={handlePaymentSuccess}
+            demo={paymentDemo}
+          />
+        )}
       </div>
 
-      <div className="flex justify-between gap-2">
+      {step < 4 && (
+        <div className="flex justify-between gap-2">
+          <Button
+            variant="ghost"
+            onClick={() => setStep((s) => Math.max(1, s - 1) as Step)}
+            disabled={step === 1 || submitting}
+            className="gap-1.5"
+          >
+            <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+            {t('actions.back')}
+          </Button>
+
+          {step < 3 ? (
+            <Button
+              onClick={() => setStep((s) => Math.min(3, s + 1) as Step)}
+              disabled={!canNext}
+              className="gap-1.5"
+            >
+              {t('actions.next')}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+            </Button>
+          ) : (
+            <Button
+              onClick={handleDetailsNext}
+              disabled={submitting}
+              variant="accent"
+              className="gap-1.5"
+            >
+              {submitting ? t('actions.submitting') : t('actions.next')}
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+            </Button>
+          )}
+        </div>
+      )}
+
+      {step === 4 && (
         <Button
           variant="ghost"
-          onClick={() => setStep((s) => Math.max(1, s - 1) as Step)}
-          disabled={step === 1 || submitting}
+          onClick={() => setStep(3)}
           className="gap-1.5"
         >
           <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
           {t('actions.back')}
         </Button>
-
-        {step < 3 ? (
-          <Button
-            onClick={() => setStep((s) => Math.min(3, s + 1) as Step)}
-            disabled={!canNext}
-            className="gap-1.5"
-          >
-            {t('actions.next')}
-            <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-          </Button>
-        ) : (
-          <Button onClick={submit} disabled={submitting} variant="accent">
-            {submitting ? t('actions.submitting') : t('actions.confirm')}
-          </Button>
-        )}
-      </div>
+      )}
     </div>
   );
 }

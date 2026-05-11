@@ -188,6 +188,8 @@
       "title": "Pachete",
       "subtitle": "Preț transparent — începe gratuit.",
       "popular": "Cel mai popular",
+      "processing": "Se procesează…",
+      "demoNote": "Stripe nu este configurat — plata este în modul demo.",
       "plans": {
         "free": {
           "name": "Discovery",
@@ -336,7 +338,8 @@
     "steps": {
       "service": "Serviciu",
       "datetime": "Dată & Oră",
-      "details": "Detaliile tale"
+      "details": "Detaliile tale",
+      "payment": "Plată"
     },
     "services": {
       "ai":     { "title": "Strategie AI",                "desc": "Sesiune strategică de 60 min despre adoptarea AI în organizație." },
@@ -364,6 +367,16 @@
       "confirm": "Confirmă rezervarea",
       "submitting": "Se rezervă…",
       "saveToAccount": "Autentifică-te pentru a salva în cont"
+    },
+    "payment": {
+      "title": "Plată",
+      "total": "Total",
+      "pay": "Plătește",
+      "processing": "Se procesează…",
+      "secureNote": "Plată securizată prin Stripe — datele cardului nu sunt stocate.",
+      "demoNote": "Stripe nu este configurat. Aceasta este o plată demo.",
+      "simulatePay": "Simulează plata",
+      "errorGeneric": "Plata a eșuat. Încearcă din nou."
     },
     "confirm": {
       "title": "Rezervarea ta e confirmată",

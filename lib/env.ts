@@ -12,6 +12,8 @@ export const env = {
     .split(',')
     .map((s) => s.trim().toLowerCase())
     .filter(Boolean),
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY ?? '',
+  stripePublishableKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? '',
 };
 
 /** Strict: a real http(s) URL, not a placeholder like `your_supabase_url`. */
@@ -31,8 +33,10 @@ export const isAdminConfigured =
   isSupabaseConfigured &&
   Boolean(env.supabaseServiceKey) &&
   env.adminEmails.length > 0;
+export const isStripeConfigured = Boolean(env.stripeSecretKey) && Boolean(env.stripePublishableKey);
 
 /** Public flags safe to read in client components. */
 export const publicFlags = {
   supabase: isSupabaseConfigured,
+  stripe: Boolean(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY),
 };

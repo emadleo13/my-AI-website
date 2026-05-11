@@ -187,9 +187,9 @@
     "pricing": {
       "title": "Packages",
       "subtitle": "Transparent pricing — start free.",
-
       "popular": "Most popular",
-
+      "processing": "Processing…",
+      "demoNote": "Stripe is not configured — payment is in demo mode.",
       "plans": {
         "free": {
           "name": "Discovery",
@@ -338,7 +338,8 @@
     "steps": {
       "service": "Service",
       "datetime": "Date & Time",
-      "details": "Your Details"
+      "details": "Your Details",
+      "payment": "Payment"
     },
     "services": {
       "ai":     { "title": "AI Strategy",            "desc": "60-min strategic session on adopting AI in your org." },
@@ -366,6 +367,16 @@
       "confirm": "Confirm booking",
       "submitting": "Booking…",
       "saveToAccount": "Sign in to save this to your account"
+    },
+    "payment": {
+      "title": "Payment",
+      "total": "Total",
+      "pay": "Pay",
+      "processing": "Processing…",
+      "secureNote": "Secured by Stripe — your card details are never stored.",
+      "demoNote": "Stripe is not configured. This is a demo payment.",
+      "simulatePay": "Simulate Payment",
+      "errorGeneric": "Payment failed. Please try again."
     },
     "confirm": {
       "title": "You're booked",

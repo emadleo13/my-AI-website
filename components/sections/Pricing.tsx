@@ -1,28 +1,55 @@
-import { useTranslations } from 'next-intl';
-import { Check, Sparkles } from 'lucide-react';
+'use client';
+
+import { useTranslations, useLocale } from 'next-intl';
+import { Check, Sparkles, Loader2 } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { ScrollReveal } from './ScrollReveal';
+import * as React from 'react';
 
 interface Plan {
   key: 'free' | 'standard' | 'premium';
   itemCount: number;
-  href: string;
+  href?: string;
+  stripePlan?: 'standard' | 'premium';
   popular?: boolean;
   variant: 'default' | 'accent';
 }
 
 const PLANS: Plan[] = [
-  { key: 'free',     itemCount: 3, href: '/booking', variant: 'default' },
-  { key: 'standard', itemCount: 4, href: '/contact', variant: 'accent', popular: true },
-  { key: 'premium',  itemCount: 5, href: '/contact', variant: 'default' },
+  { key: 'free',     itemCount: 3, href: '/booking',   variant: 'default' },
+  { key: 'standard', itemCount: 4, stripePlan: 'standard', variant: 'accent', popular: true },
+  { key: 'premium',  itemCount: 5, stripePlan: 'premium',  variant: 'default' },
 ];
 
 export function Pricing() {
   const t = useTranslations('services.pricing');
+  const locale = useLocale();
+  const [loading, setLoading] = React.useState<string | null>(null);
+
+  const handleCheckout = async (plan: 'standard' | 'premium') => {
+    setLoading(plan);
+    try {
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan, locale }),
+      });
+      const body = await res.json();
+      if (body.url && body.url !== '/services') {
+        window.location.href = body.url;
+      } else if (body.demo) {
+        alert(t('demoNote'));
+      }
+    } catch {
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setLoading(null);
+    }
+  };
 
   return (
     <section className="container py-20 md:py-28">
@@ -75,14 +102,26 @@ export function Pricing() {
                     ),
                   )}
                 </ul>
-                <Button
-                  asChild
-                  variant={plan.variant}
-                  className="mt-6 w-full"
-                  size="lg"
-                >
-                  <Link href={plan.href}>{t(`plans.${plan.key}.cta`)}</Link>
-                </Button>
+
+                {plan.href ? (
+                  <Button asChild variant={plan.variant} className="mt-6 w-full" size="lg">
+                    <Link href={plan.href}>{t(`plans.${plan.key}.cta`)}</Link>
+                  </Button>
+                ) : (
+                  <Button
+                    variant={plan.variant}
+                    className="mt-6 w-full"
+                    size="lg"
+                    disabled={loading === plan.stripePlan}
+                    onClick={() => plan.stripePlan && handleCheckout(plan.stripePlan)}
+                  >
+                    {loading === plan.stripePlan ? (
+                      <><Loader2 className="h-4 w-4 animate-spin mr-2" />{t('processing')}</>
+                    ) : (
+                      t(`plans.${plan.key}.cta`)
+                    )}
+                  </Button>
+                )}
               </CardContent>
             </Card>
           </ScrollReveal>
