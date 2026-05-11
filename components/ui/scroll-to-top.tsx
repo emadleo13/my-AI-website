@@ -11,7 +11,7 @@ export function ScrollToTop() {
     const onScroll = () => {
       const scrolled = window.scrollY;
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      setVisible(total > 0 && scrolled / total > 0.65);
+      setVisible(total > 0 && scrolled / total > 0.35);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
