@@ -12,7 +12,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0F0F11]/10 relative rounded-3xl overflow-hidden mx-4 mb-4 mt-16 border border-white/5">
+    <footer className="bg-[#0d0f1a] relative rounded-3xl overflow-hidden mx-4 mb-4 mt-16 border border-white/10">
       <FooterBackgroundGradient />
 
       <div className="max-w-7xl mx-auto px-8 pt-14 pb-6 z-40 relative">
