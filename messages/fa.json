@@ -598,6 +598,10 @@
   },
   "floatingChat": {
     "label": "چت با هوش مصنوعی",
-    "ariaLabel": "باز کردن دستیار هوشمند"
+    "ariaLabel": "باز کردن دستیار هوشمند",
+    "popupTitle": "دستیار هوشمند",
+    "fullChat": "چت کامل",
+    "placeholder": "سوال بپرسید…",
+    "continueInFullChat": "ادامه در چت کامل"
   }
 }

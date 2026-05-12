@@ -598,6 +598,10 @@
   },
   "floatingChat": {
     "label": "Chat cu AI",
-    "ariaLabel": "Deschide asistentul AI"
+    "ariaLabel": "Deschide asistentul AI",
+    "popupTitle": "Asistent AI",
+    "fullChat": "Chat complet",
+    "placeholder": "Întreabă-mă orice…",
+    "continueInFullChat": "Continuă în chat complet"
   }
 }

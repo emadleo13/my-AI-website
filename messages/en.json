@@ -598,6 +598,10 @@
   },
   "floatingChat": {
     "label": "Chat with AI",
-    "ariaLabel": "Open AI chat assistant"
+    "ariaLabel": "Open AI chat assistant",
+    "popupTitle": "AI Assistant",
+    "fullChat": "Full chat",
+    "placeholder": "Ask me anything…",
+    "continueInFullChat": "Continue in full chat"
   }
 }
