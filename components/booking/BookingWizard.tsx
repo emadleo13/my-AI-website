@@ -118,6 +118,10 @@ export function BookingWizard() {
   };
 
   const handlePaymentSuccess = async () => {
+    if (paymentDemo) {
+      setDone(true);
+      return;
+    }
     const ok = await submitBooking();
     if (ok) setDone(true);
   };
