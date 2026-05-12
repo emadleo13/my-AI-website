@@ -59,10 +59,53 @@
       "subtitle": "Strategy, implementation, and hands-on building.",
       "viewAll": "Explore all services",
       "items": {
-        "consult": { "title": "AI Consulting & Strategy", "desc": "Adoption roadmaps, vendor selection, and ROI-driven AI plans." },
-        "agents":  { "title": "AI Agent Design",          "desc": "LangChain, CrewAI, and custom agents that ship to production." },
-        "dev":     { "title": "Software Development",     "desc": "Full-stack web apps, APIs, and integrations." },
-        "career":  { "title": "Career Consulting in Romania", "desc": "CV review, market insights, and interview prep for the Romanian tech market." }
+        "consult":  { "title": "AI Consulting & Strategy",    "desc": "Adoption roadmaps, vendor selection, and ROI-driven AI plans." },
+        "agents":   { "title": "AI Agent & Chatbot Design",   "desc": "LangChain, CrewAI, and custom chatbots that ship to production." },
+        "workflow": { "title": "Workflow Automation",         "desc": "Automate lead intake, follow-ups, CRM updates, and repetitive tasks." },
+        "dev":      { "title": "Software Development",        "desc": "Full-stack web apps, APIs, and integrations." },
+        "career":   { "title": "Career Consulting in Romania","desc": "CV review, market insights, and interview prep for the Romanian tech market." }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "The process",
+      "title": "How it works",
+      "subtitle": "From first conversation to a live AI system — four clear steps.",
+      "steps": {
+        "discover": {
+          "title": "Tell me what's broken",
+          "desc": "A free 30-minute call to identify where you're losing time and money, and what AI can fix first."
+        },
+        "plan": {
+          "title": "I map out the plan",
+          "desc": "You get a specific solution, tool selection, timeline, and projected ROI — before any work begins."
+        },
+        "build": {
+          "title": "I build and launch",
+          "desc": "Full implementation without you needing to manage developers. Connects to your existing tools and goes live."
+        },
+        "support": {
+          "title": "I keep it running",
+          "desc": "Monitoring, performance tuning, monthly reviews, and expanding capabilities as your business grows."
+        }
+      }
+    },
+    "whatDrivesUs": {
+      "eyebrow": "What drives me",
+      "title": "Purpose behind the work",
+      "subtitle": "Not just building AI — building AI that actually matters for your business.",
+      "pillars": {
+        "mission": {
+          "title": "Mission",
+          "desc": "Take the manual, repetitive work off your plate so you can focus on what actually grows your business — relationships, strategy, and the work only you can do."
+        },
+        "vision": {
+          "title": "Vision",
+          "desc": "Enable any business — regardless of size — to operate with the speed and efficiency of a company ten times larger through practical, reliable AI."
+        },
+        "values": {
+          "title": "Values",
+          "desc": "Pragmatic over fashionable. The right model, the right framework, and the smallest system that solves the problem. No hype, just results."
+        }
       }
     },
     "stats": {
@@ -175,6 +218,12 @@
         "title": "Tech Consulting for Romanian Companies",
         "desc": "Digital transformation and AI integration for SMEs.",
         "bullets": { "1": "Process digitization", "2": "AI integration", "3": "Team upskilling" },
+        "cta": "Get in touch"
+      },
+      "workflow": {
+        "title": "Workflow Automation",
+        "desc": "Automate repetitive processes so your team focuses on what matters.",
+        "bullets": { "1": "Lead intake & CRM updates", "2": "Automated follow-ups & notifications", "3": "Process mapping & integration" },
         "cta": "Get in touch"
       },
       "career": {
@@ -546,5 +595,9 @@
       "linkedin": "LinkedIn",
       "twitter": "Twitter / X"
     }
+  },
+  "floatingChat": {
+    "label": "Chat with AI",
+    "ariaLabel": "Open AI chat assistant"
   }
 }

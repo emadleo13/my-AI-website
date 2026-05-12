@@ -10,6 +10,7 @@ import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/ui/scroll-to-top';
+import { FloatingChat } from '@/components/FloatingChat';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -114,6 +115,7 @@ export default async function LocaleLayout({
               <main className="flex-1">{children}</main>
               <Footer />
               <ScrollToTop />
+              <FloatingChat />
             </div>
             <Toaster richColors position="top-right" />
           </NextIntlClientProvider>

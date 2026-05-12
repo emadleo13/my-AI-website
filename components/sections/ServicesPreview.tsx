@@ -1,14 +1,15 @@
 import { useTranslations } from 'next-intl';
-import { Briefcase, Bot, Code2, Compass, ArrowRight } from 'lucide-react';
+import { Briefcase, Bot, Code2, Compass, ArrowRight, Workflow } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollReveal } from './ScrollReveal';
 
 const ITEMS = [
-  { key: 'consult', icon: Compass },
-  { key: 'agents',  icon: Bot },
-  { key: 'dev',     icon: Code2 },
-  { key: 'career',  icon: Briefcase },
+  { key: 'consult',  icon: Compass },
+  { key: 'agents',   icon: Bot },
+  { key: 'workflow', icon: Workflow },
+  { key: 'dev',      icon: Code2 },
+  { key: 'career',   icon: Briefcase },
 ] as const;
 
 export function ServicesPreview() {
@@ -23,7 +24,7 @@ export function ServicesPreview() {
         <p className="mt-3 text-muted-foreground">{t('subtitle')}</p>
       </ScrollReveal>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
         {ITEMS.map(({ key, icon: Icon }, i) => (
           <ScrollReveal key={key} delay={i * 0.05}>
             <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-lg hover:border-primary/40">

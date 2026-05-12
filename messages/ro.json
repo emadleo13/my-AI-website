@@ -59,10 +59,53 @@
       "subtitle": "Strategie, implementare și construcție hands-on.",
       "viewAll": "Vezi toate serviciile",
       "items": {
-        "consult": { "title": "Consultanță și strategie AI", "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI." },
-        "agents":  { "title": "Design de agenți AI",         "desc": "LangChain, CrewAI și agenți custom care ajung în producție." },
-        "dev":     { "title": "Dezvoltare software",         "desc": "Aplicații web full-stack, API-uri și integrări." },
-        "career":  { "title": "Consultanță de carieră în România", "desc": "Revizuire CV, ghidaj de piață și pregătire interviu." }
+        "consult":  { "title": "Consultanță și strategie AI",     "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI." },
+        "agents":   { "title": "Design agenți AI & chatbot",      "desc": "LangChain, CrewAI și chatboți custom care ajung în producție." },
+        "workflow": { "title": "Automatizarea fluxurilor",        "desc": "Automatizează preluarea lead-urilor, follow-up-urile, actualizările CRM și sarcinile repetitive." },
+        "dev":      { "title": "Dezvoltare software",             "desc": "Aplicații web full-stack, API-uri și integrări." },
+        "career":   { "title": "Consultanță de carieră în România","desc": "Revizuire CV, ghidaj de piață și pregătire interviu." }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Procesul",
+      "title": "Cum funcționează",
+      "subtitle": "De la prima conversație la un sistem AI live — patru pași clari.",
+      "steps": {
+        "discover": {
+          "title": "Spune-mi ce nu merge",
+          "desc": "Un apel gratuit de 30 de minute pentru a identifica unde pierzi timp și bani și ce poate rezolva AI-ul mai întâi."
+        },
+        "plan": {
+          "title": "Planific soluția",
+          "desc": "Primești o soluție specifică, selecție de instrumente, calendar și ROI proiectat — înainte de a începe orice lucru."
+        },
+        "build": {
+          "title": "Construiesc și lansez",
+          "desc": "Implementare completă fără să fie nevoie să gestionezi dezvoltatori. Se conectează la sistemele existente și merge live."
+        },
+        "support": {
+          "title": "Mențin totul funcțional",
+          "desc": "Monitorizare, optimizare a performanței, revizii lunare și extinderea capacităților pe măsură ce afacerea ta crește."
+        }
+      }
+    },
+    "whatDrivesUs": {
+      "eyebrow": "Ce mă motivează",
+      "title": "Scopul din spatele muncii",
+      "subtitle": "Nu doar construiesc AI — construiesc AI care contează cu adevărat pentru afacerea ta.",
+      "pillars": {
+        "mission": {
+          "title": "Misiune",
+          "desc": "Să îndepărtez munca manuală și repetitivă de pe umerii tăi ca să te poți concentra pe ce crește cu adevărat afacerea — relații, strategie și munca pe care numai tu o poți face."
+        },
+        "vision": {
+          "title": "Viziune",
+          "desc": "Orice afacere — indiferent de dimensiune — să poată funcționa cu viteza și eficiența unei companii de zece ori mai mari prin AI practic și fiabil."
+        },
+        "values": {
+          "title": "Valori",
+          "desc": "Pragmatic în locul la modă. Modelul potrivit, cadrul potrivit și cel mai mic sistem care rezolvă problema. Fără hype, doar rezultate."
+        }
       }
     },
     "stats": {
@@ -175,6 +218,12 @@
         "title": "Consultanță tech pentru companii românești",
         "desc": "Transformare digitală și integrare AI pentru IMM-uri.",
         "bullets": { "1": "Digitalizare procese", "2": "Integrare AI", "3": "Upskilling echipă" },
+        "cta": "Contactează-mă"
+      },
+      "workflow": {
+        "title": "Automatizarea fluxurilor de lucru",
+        "desc": "Automatizează procesele repetitive ca echipa ta să se concentreze pe ce contează.",
+        "bullets": { "1": "Preluare lead-uri și actualizări CRM", "2": "Follow-up-uri și notificări automate", "3": "Cartografiere procese și integrare" },
         "cta": "Contactează-mă"
       },
       "career": {
@@ -546,5 +595,9 @@
       "linkedin": "LinkedIn",
       "twitter": "Twitter / X"
     }
+  },
+  "floatingChat": {
+    "label": "Chat cu AI",
+    "ariaLabel": "Deschide asistentul AI"
   }
 }

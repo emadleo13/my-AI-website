@@ -6,6 +6,7 @@ import {
   BrainCircuit,
   Building2,
   Briefcase,
+  Workflow,
   Check,
   ArrowRight,
 } from 'lucide-react';
@@ -17,6 +18,7 @@ import { ScrollReveal } from './ScrollReveal';
 const SERVICES = [
   { key: 'consult',     icon: Compass },
   { key: 'agents',      icon: Bot },
+  { key: 'workflow',    icon: Workflow },
   { key: 'dev',         icon: Code2 },
   { key: 'ml',          icon: BrainCircuit },
   { key: 'romaniaTech', icon: Building2 },
