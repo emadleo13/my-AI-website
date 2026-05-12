@@ -146,17 +146,24 @@ async function main() {
   console.log(`Found ${stories.length} stories:`);
   stories.forEach((s) => console.log(`  - ${s.title} (${s.score} pts)`));
 
+  let successCount = 0;
   for (const locale of ['en', 'fa', 'ro']) {
     console.log(`\nGenerating ${locale} post…`);
     try {
       const post = await generatePost(stories, locale);
       writeMd(locale, slug, post, today);
+      successCount++;
     } catch (err) {
       console.error(`  Failed for ${locale}:`, err.message);
     }
   }
 
-  console.log('\nDone.');
+  if (successCount === 0) {
+    console.error('\nAll locales failed — check ANTHROPIC_API_KEY and credit balance.');
+    process.exit(1);
+  }
+
+  console.log(`\nDone. ${successCount}/3 locales generated.`);
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });
