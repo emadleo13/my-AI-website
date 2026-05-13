@@ -66,6 +66,20 @@ export const metadata: Metadata = {
     description:
       'AI consultant and software developer based in Romania.',
   },
+  manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [
+      { url: '/icons/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: { url: '/icons/icon-180.png', sizes: '180x180', type: 'image/png' },
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Emad AI',
+  },
+  themeColor: '#09090b',
   robots: {
     index: true,
     follow: true,
