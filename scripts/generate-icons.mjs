@@ -10,6 +10,7 @@ const outDir = join(root, 'public', 'icons');
 
 mkdirSync(outDir, { recursive: true });
 
+// trim() removes surrounding black/dark borders, then resize with transparent background
 const sizes = [
   { name: 'icon-32.png', size: 32 },
   { name: 'icon-180.png', size: 180 },
@@ -18,10 +19,17 @@ const sizes = [
 ];
 
 for (const { name, size } of sizes) {
-  await sharp(src).resize(size, size, { fit: 'contain', background: { r: 9, g: 9, b: 11, alpha: 1 } }).png().toFile(join(outDir, name));
+  await sharp(src)
+    .trim({ background: '#000000', threshold: 30 })
+    .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .png()
+    .toFile(join(outDir, name));
   console.log(`✓ ${name}`);
 }
 
-// favicon.ico (32px PNG works as favicon in modern browsers)
-await sharp(src).resize(32, 32, { fit: 'contain', background: { r: 9, g: 9, b: 11, alpha: 1 } }).png().toFile(join(root, 'public', 'favicon.png'));
+await sharp(src)
+  .trim({ background: '#000000', threshold: 30 })
+  .resize(32, 32, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png()
+  .toFile(join(root, 'public', 'favicon.png'));
 console.log('✓ favicon.png');
