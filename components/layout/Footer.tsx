@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Github, Linkedin, Twitter, Mail, MapPin, Bot } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
 
@@ -21,13 +22,7 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
-                <Bot className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-white font-bold text-lg leading-tight">
-                EMAD<br />
-                <span className="text-[#3ca2fa] text-sm font-normal">AI Consultant</span>
-              </span>
+              <Image src="/BLUE AI.png" alt="Emad AI" width={80} height={95} className="object-contain" />
             </Link>
             <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
               {t('footer.tagline')}
