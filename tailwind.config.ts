@@ -76,11 +76,15 @@ const config: Config = {
           '0%': { transform: 'rotate(0deg) scale(1)' },
           '100%': { transform: 'rotate(360deg) scale(1)' },
         },
+        'border-beam': {
+          '100%': { 'offset-distance': '100%' },
+        },
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         shimmer: 'shimmer 2.4s linear infinite',
         gradient: 'gradient-shift 8s linear infinite',
+        'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
       },
     },
   },

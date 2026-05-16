@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Code2, Layers, Sparkles, Database } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { BorderBeam } from '@/components/ui/border-beam';
 import { ScrollReveal } from './ScrollReveal';
 
 const GROUPS = [
@@ -58,7 +59,8 @@ export function SkillsGrid() {
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {GROUPS.map(({ key, icon: Icon, skills }, i) => (
           <ScrollReveal key={key} delay={i * 0.05}>
-            <Card className="h-full">
+            <Card className="h-full relative overflow-hidden">
+              <BorderBeam size={120} duration={16} delay={i * 4} colorFrom="#4f46e5" colorTo="#06b6d4" />
               <CardContent className="pt-6 space-y-4">
                 <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/10 text-primary">
                   <Icon className="h-5 w-5" />

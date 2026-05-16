@@ -13,6 +13,7 @@ import {
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { BorderBeam } from '@/components/ui/border-beam';
 import { ScrollReveal } from './ScrollReveal';
 
 const SERVICES = [
@@ -33,7 +34,8 @@ export function ServiceCards() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {SERVICES.map(({ key, icon: Icon }, i) => (
           <ScrollReveal key={key} delay={i * 0.05}>
-            <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/40 group flex flex-col">
+            <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/40 group flex flex-col relative overflow-hidden">
+              <BorderBeam size={180} duration={12} delay={i * 2} colorFrom="#4f46e5" colorTo="#06b6d4" />
               <CardContent className="pt-6 flex-1 flex flex-col">
                 <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                   <Icon className="h-6 w-6" />

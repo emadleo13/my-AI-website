@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Check, Sparkles, Loader2 } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
+import { BorderBeam } from '@/components/ui/border-beam';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -65,11 +66,18 @@ export function Pricing() {
           <ScrollReveal key={plan.key} delay={i * 0.06}>
             <Card
               className={cn(
-                'h-full relative flex flex-col',
+                'h-full relative flex flex-col overflow-hidden',
                 plan.popular &&
                   'border-accent ring-2 ring-accent/30 shadow-xl md:-translate-y-2',
               )}
             >
+              <BorderBeam
+                size={plan.popular ? 200 : 150}
+                duration={plan.popular ? 8 : 14}
+                delay={i * 3}
+                colorFrom={plan.popular ? "#ffaa40" : "#4f46e5"}
+                colorTo={plan.popular ? "#9c40ff" : "#06b6d4"}
+              />
               {plan.popular && (
                 <Badge
                   variant="accent"
