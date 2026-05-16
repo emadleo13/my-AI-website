@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Emad — AI Consultant',
+    name: 'Emad AI',
     short_name: 'Emad AI',
     description:
       'AI consultant and software developer based in Romania. AI strategy, agent design, and tech career consulting.',

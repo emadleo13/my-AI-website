@@ -31,7 +31,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Emad — AI Consultant & Software Developer',
+    default: 'Emad AI',
     template: '%s · Emad',
   },
   description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   ),
-  applicationName: 'Emad — AI Consultant',
+  applicationName: 'Emad AI',
   authors: [{ name: 'Emad' }],
   keywords: [
     'AI consultant',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Emad',
-    title: 'Emad — AI Consultant & Software Developer',
+    title: 'Emad AI',
     description:
       'AI consultant and software developer based in Romania. AI strategy, agent design, and tech career consulting.',
     locale: 'en_US',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emad — AI Consultant & Software Developer',
+    title: 'Emad AI',
     description:
       'AI consultant and software developer based in Romania.',
   },

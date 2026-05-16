@@ -243,14 +243,14 @@
         "free": {
           "name": "Discovery",
           "price": "€0",
-          "period": "30 min",
+          "period": "45 min",
           "desc": "Free intro call to scope your needs.",
           "cta": "Book free call",
           "items": { "1": "30-minute video call", "2": "Tailored next steps", "3": "No commitment" }
         },
         "standard": {
           "name": "Standard",
-          "price": "€200",
+          "price": "€100",
           "period": "per engagement",
           "desc": "A focused engagement for one concrete outcome.",
           "cta": "Get started",
@@ -258,7 +258,7 @@
         },
         "premium": {
           "name": "Premium",
-          "price": "€500",
+          "price": "€300",
           "period": "per month",
           "desc": "Ongoing AI partner for your team.",
           "cta": "Book intro call",
