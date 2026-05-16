@@ -15,17 +15,18 @@ import { Card } from '@/components/ui/card';
 import { ScrollReveal } from './ScrollReveal';
 
 const ITEMS = [
-  { id: '1', seed: 'doc-msc' },
-  { id: '2', seed: 'doc-bsc' },
-  { id: '3', seed: 'doc-deep' },
-  { id: '4', seed: 'doc-permit' },
-  { id: '5', seed: 'doc-ml' },
-  { id: '6', seed: 'doc-ethics' },
+  { id: '1', img: '/guilan state.jpg' },
+  { id: '2', img: '/lahijan.jpg' },
+  { id: '3', img: '/career academy.png' },
+  { id: '4', img: '/romania permit.jpg' },
+  { id: '5', img: '/ML.jpeg' },
+  { id: '6', img: '/python-in-open_ai.jpg' },
 ] as const;
 
 export function DocumentsGallery() {
   const t = useTranslations('about.documents');
   const [active, setActive] = React.useState<(typeof ITEMS)[number] | null>(null);
+
 
   return (
     <section className="container py-16 md:py-20">
@@ -48,7 +49,7 @@ export function DocumentsGallery() {
               <Card className="overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg group">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src={`https://picsum.photos/seed/${doc.seed}/800/600`}
+                    src={doc.img}
                     alt={t(`items.${doc.id}.title`)}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -85,11 +86,11 @@ export function DocumentsGallery() {
               </DialogHeader>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md border border-border">
                 <Image
-                  src={`https://picsum.photos/seed/${active.seed}/1280/960`}
+                  src={active.img}
                   alt={t(`items.${active.id}.title`)}
                   fill
                   sizes="(max-width: 1024px) 100vw, 768px"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </>
