@@ -1,6 +1,10 @@
 'use client';
 
+import { useLocale } from 'next-intl';
+
 export function PresentationPage() {
+  const locale = useLocale();
+
   return (
     <div
       style={{
@@ -13,7 +17,7 @@ export function PresentationPage() {
       }}
     >
       <iframe
-        src="/presentation.html"
+        src={`/presentation.html?lang=${locale}`}
         style={{ width: '100%', height: '100%', border: 'none' }}
         title="Emad AI — Business Presentation"
         allow="autoplay"

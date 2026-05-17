@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emad AI — AI Consultant & Software Developer</title>
+<title>Emad AI — Presentation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-deep: #050816;
@@ -20,14 +20,12 @@
     --text-muted: #94a3b8;
     --accent: #38bdf8;
     --transition-time: 1.2s;
-    --slide-duration: 8s;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     overflow: hidden;
     background: var(--bg-deep);
     font-family: 'Inter', -apple-system, sans-serif;
@@ -37,27 +35,23 @@
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background:
-      radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, rgba(30, 64, 175, 0.08) 0%, transparent 70%);
+      radial-gradient(circle at 20% 30%, rgba(59,130,246,.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(56,189,248,.12) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(30,64,175,.08) 0%, transparent 70%);
     z-index: 0;
     animation: bgShift 20s ease-in-out infinite alternate;
   }
 
   body::after {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image:
-      linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(59,130,246,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,.03) 1px, transparent 1px);
     background-size: 60px 60px;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.5;
+    z-index: 1; pointer-events: none; opacity: .5;
   }
 
   @keyframes bgShift {
@@ -65,643 +59,351 @@
     100% { transform: scale(1.1) rotate(2deg); }
   }
 
+  /* ── Language Switcher ── */
+  .lang-switcher {
+    position: fixed;
+    top: 1.4rem; right: 1.4rem;
+    z-index: 300;
+    display: flex; gap: .25rem;
+    padding: .3rem;
+    background: rgba(10,17,48,.92);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(59,130,246,.25);
+    border-radius: 100px;
+  }
+
+  .lang-btn {
+    background: none; border: none;
+    color: var(--text-muted);
+    font-size: .72rem; font-weight: 600;
+    letter-spacing: .04em;
+    padding: .28rem .65rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .lang-btn.active { background: var(--blue-electric); color: #fff; }
+  .lang-btn:hover:not(.active) { color: var(--text-primary); background: rgba(59,130,246,.15); }
+
+  /* ── RTL overrides (Farsi) ── */
+  [dir="rtl"] body,
+  [dir="rtl"] p,
+  [dir="rtl"] li,
+  [dir="rtl"] .hero-subtitle,
+  [dir="rtl"] .stat-label,
+  [dir="rtl"] .badge-label,
+  [dir="rtl"] .badge-value,
+  [dir="rtl"] .slide-lead,
+  [dir="rtl"] .future-card-content p,
+  [dir="rtl"] .price-period,
+  [dir="rtl"] .price-desc,
+  [dir="rtl"] .cta-subtitle,
+  [dir="rtl"] .start-hint,
+  [dir="rtl"] .start-subtitle { font-family: 'Vazirmatn', sans-serif; }
+
+  [dir="rtl"] .hero-title,
+  [dir="rtl"] .slide-title,
+  [dir="rtl"] .cta-title,
+  [dir="rtl"] .start-title,
+  [dir="rtl"] .stat-number,
+  [dir="rtl"] .price-value,
+  [dir="rtl"] .price-name,
+  [dir="rtl"] .future-closing,
+  [dir="rtl"] .cta-closing,
+  [dir="rtl"] .service-card h3,
+  [dir="rtl"] .slide-eyebrow,
+  [dir="rtl"] .eyebrow,
+  [dir="rtl"] .future-card-content h4,
+  [dir="rtl"] .start-button { font-family: 'Vazirmatn', sans-serif; }
+
+  [dir="rtl"] .hero-title .accent,
+  [dir="rtl"] .slide-title .accent,
+  [dir="rtl"] .cta-title .accent { font-style: normal; }
+
+  [dir="rtl"] .service-card h3 .italic { font-style: normal; }
+
+  [dir="rtl"] .badge-1 { left: auto; right: -8%; }
+  [dir="rtl"] .badge-2 { right: auto; left: -10%; }
+  [dir="rtl"] .service-number { right: auto; left: 1.5rem; }
+  [dir="rtl"] .service-card h3 { padding-right: 0; padding-left: 3rem; }
+  [dir="rtl"] .service-card li { padding-left: 0; padding-right: 1.5rem; }
+  [dir="rtl"] .service-card li::before { left: auto; right: 0; }
+  [dir="rtl"] .hero-text .eyebrow { letter-spacing: .05em; }
+
   /* ── Start Screen ── */
   .start-screen {
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    cursor: pointer;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 100; cursor: pointer;
+    transition: opacity .8s ease, visibility .8s ease;
   }
 
-  .start-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
+  .start-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-  .start-content {
-    text-align: center;
-    padding: 2rem;
-    max-width: 600px;
-  }
+  .start-content { text-align: center; padding: 2rem; max-width: 600px; }
 
   .start-logo {
-    width: 110px;
-    height: 110px;
+    width: 110px; height: 110px;
     margin: 0 auto 2rem;
     border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     animation: logoPulse 3s ease-in-out infinite;
   }
 
   .start-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.7));
+    width: 100%; height: 100%; object-fit: contain;
+    filter: drop-shadow(0 0 24px rgba(56,189,248,.7));
   }
 
   @keyframes logoPulse {
-    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3)); }
-    50% { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.6)); }
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
   }
 
   .start-title {
     font-family: 'Fraunces', serif;
     font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
+    font-weight: 400; letter-spacing: -.02em; margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--blue-bright) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  .start-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-  }
+  .start-subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; font-weight: 300; letter-spacing: .02em; }
 
   .start-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
+    display: inline-flex; align-items: center; gap: .75rem;
     padding: 1.1rem 2.5rem;
     background: linear-gradient(135deg, var(--blue-electric), var(--accent));
-    border: none;
-    border-radius: 100px;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
-    text-transform: uppercase;
+    border: none; border-radius: 100px; color: white;
+    font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600;
+    letter-spacing: .05em; cursor: pointer; transition: all .3s ease;
+    box-shadow: 0 10px 40px rgba(59,130,246,.4); text-transform: uppercase;
   }
 
-  .start-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 50px rgba(59, 130, 246, 0.6);
-  }
-
-  .start-button svg { transition: transform 0.3s ease; }
+  .start-button:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(59,130,246,.6); }
+  .start-button svg { transition: transform .3s ease; }
   .start-button:hover svg { transform: translateX(4px); }
 
-  .start-hint {
-    margin-top: 2rem;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    font-style: italic;
-  }
+  .start-hint { margin-top: 2rem; color: var(--text-muted); font-size: .85rem; font-style: italic; }
 
   /* ── Slideshow ── */
-  .slideshow {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
+  .slideshow { position: relative; width: 100%; height: 100%; z-index: 2; }
 
   .slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
     opacity: 0;
-    transition: opacity var(--transition-time) cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 4rem;
-    z-index: 2;
+    transition: opacity var(--transition-time) cubic-bezier(.4,0,.2,1);
+    padding: 4rem; z-index: 2;
   }
 
-  .slide.active {
-    opacity: 1;
-    z-index: 3;
-  }
+  .slide.active { opacity: 1; z-index: 3; }
 
   .slide-inner {
-    width: 100%;
-    max-width: 1200px;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, opacity 1.5s ease 0.3s;
+    width: 100%; max-width: 1200px;
+    transform: translateY(20px); opacity: 0;
+    transition: transform 1.5s cubic-bezier(.16,1,.3,1) .3s, opacity 1.5s ease .3s;
   }
 
-  .slide.active .slide-inner {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  .slide.active .slide-inner { transform: translateY(0); opacity: 1; }
 
   /* ── Slide 1 — Hero ── */
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-  }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 
   .hero-text .eyebrow {
-    display: inline-block;
-    color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    padding: 0.4rem 1rem;
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    border-radius: 100px;
+    display: inline-block; color: var(--accent);
+    font-size: .85rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+    margin-bottom: 1.5rem; padding: .4rem 1rem;
+    background: rgba(56,189,248,.1); border: 1px solid rgba(56,189,248,.2); border-radius: 100px;
   }
 
   .hero-title {
     font-family: 'Fraunces', serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
+    font-weight: 400; line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.5rem;
   }
 
   .hero-title .accent {
     font-style: italic;
     background: linear-gradient(135deg, var(--blue-bright), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  .hero-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.15rem;
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
+  .hero-subtitle { color: var(--text-secondary); font-size: 1.15rem; line-height: 1.6; margin-bottom: 2.5rem; font-weight: 300; }
 
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
+  .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
 
   .stat-item {
     padding: 1.2rem;
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    border-radius: 16px;
+    background: var(--bg-card); backdrop-filter: blur(10px);
+    border: 1px solid rgba(59,130,246,.15); border-radius: 16px;
   }
 
-  .stat-number {
-    font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--blue-bright);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
+  .stat-number { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; color: var(--blue-bright); line-height: 1; margin-bottom: .3rem; }
+  .stat-label { color: var(--text-muted); font-size: .85rem; }
 
-  .stat-label { color: var(--text-muted); font-size: 0.85rem; }
-
-  .hero-visual {
-    position: relative;
-    aspect-ratio: 1;
-    max-width: 480px;
-    margin: 0 auto;
-  }
+  .hero-visual { position: relative; aspect-ratio: 1; max-width: 480px; margin: 0 auto; }
 
   .hero-portrait {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 32px;
-    overflow: hidden;
-    box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(59, 130, 246, 0.3),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative; width: 100%; height: 100%;
+    border-radius: 32px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(59,130,246,.3), inset 0 0 0 1px rgba(255,255,255,.05);
   }
 
   .hero-portrait::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 40%, rgba(59, 130, 246, 0.2) 100%);
-    z-index: 2;
-    mix-blend-mode: overlay;
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(59,130,246,.2) 100%);
+    z-index: 2; mix-blend-mode: overlay;
   }
 
-  .hero-portrait img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .hero-portrait img { width: 100%; height: 100%; object-fit: cover; }
 
   .floating-badge {
     position: absolute;
-    background: var(--bg-card);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: 16px;
-    padding: 1rem 1.2rem;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    background: var(--bg-card); backdrop-filter: blur(20px);
+    border: 1px solid rgba(59,130,246,.2); border-radius: 16px;
+    padding: 1rem 1.2rem; box-shadow: 0 15px 40px rgba(0,0,0,.3);
     animation: float 6s ease-in-out infinite;
   }
 
   .badge-1 { top: 10%; left: -8%; animation-delay: 0s; }
   .badge-2 { bottom: 15%; right: -10%; animation-delay: 3s; }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-  .badge-label { color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
-  .badge-value { color: var(--text-primary); font-weight: 600; font-size: 0.95rem; }
+  .badge-label { color: var(--text-muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: .2rem; }
+  .badge-value { color: var(--text-primary); font-weight: 600; font-size: .95rem; }
 
-  /* ── Slide 2 — Future of AI ── */
+  /* ── Slide 2 — Future ── */
   .future-layout { text-align: center; }
 
   .slide-eyebrow {
-    display: inline-block;
-    color: var(--accent);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    padding: 0.4rem 1.2rem;
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    border-radius: 100px;
+    display: inline-block; color: var(--accent);
+    font-size: .8rem; font-weight: 500; letter-spacing: .25em; text-transform: uppercase;
+    margin-bottom: 1.5rem; padding: .4rem 1.2rem;
+    background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.2); border-radius: 100px;
   }
 
   .slide-title {
     font-family: 'Fraunces', serif;
     font-size: clamp(2rem, 4.5vw, 3.5rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    font-weight: 400; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1rem;
+    max-width: 900px; margin-left: auto; margin-right: auto;
   }
 
   .slide-title .accent {
     font-style: italic;
     background: linear-gradient(135deg, var(--blue-bright), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
-  .slide-lead {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 720px;
-    margin: 0 auto 2rem;
-    font-weight: 300;
-  }
+  .slide-lead { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 720px; margin: 0 auto 2rem; font-weight: 300; }
 
-  .future-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-    max-width: 1000px;
-    margin: 0 auto 1.5rem;
-  }
+  .future-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; max-width: 1000px; margin: 0 auto 1.5rem; }
 
   .future-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    border-radius: 16px;
-    padding: 1.5rem 1.8rem;
-    text-align: left;
-    display: flex;
-    gap: 1.2rem;
-    align-items: flex-start;
+    background: var(--bg-card); backdrop-filter: blur(10px);
+    border: 1px solid rgba(59,130,246,.15); border-radius: 16px;
+    padding: 1.5rem 1.8rem; text-align: left;
+    display: flex; gap: 1.2rem; align-items: flex-start;
   }
 
   .future-icon {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
     background: linear-gradient(135deg, var(--blue-glow), var(--blue-electric));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600;
   }
 
-  .future-card-content h4 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.4rem;
-    letter-spacing: -0.01em;
-  }
+  .future-card-content h4 { font-size: .95rem; font-weight: 600; color: var(--text-primary); margin-bottom: .4rem; letter-spacing: -.01em; }
+  .future-card-content p { color: var(--text-muted); font-size: .85rem; line-height: 1.5; font-weight: 300; }
+  .future-closing { color: var(--blue-bright); font-family: 'Fraunces', serif; font-style: italic; font-size: 1.1rem; max-width: 720px; margin: 0 auto; line-height: 1.5; }
 
-  .future-card-content p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    line-height: 1.5;
-    font-weight: 300;
-  }
-
-  .future-closing {
-    color: var(--blue-bright);
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    max-width: 720px;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
-
-  /* ── Slides 3 & 4 — Services ── */
+  /* ── Services ── */
   .services-header { text-align: center; margin-bottom: 3rem; }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
 
   .service-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(59, 130, 246, 0.18);
-    border-radius: 20px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
+    background: var(--bg-card); backdrop-filter: blur(12px);
+    border: 1px solid rgba(59,130,246,.18); border-radius: 20px;
+    padding: 2rem; position: relative; overflow: hidden;
   }
 
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--blue-electric), var(--accent));
-  }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--blue-electric), var(--accent)); }
 
-  .service-number {
-    position: absolute;
-    top: 1.2rem;
-    right: 1.5rem;
-    font-family: 'Fraunces', serif;
-    font-size: 3rem;
-    font-weight: 300;
-    color: rgba(59, 130, 246, 0.15);
-    line-height: 1;
-  }
+  .service-number { position: absolute; top: 1.2rem; right: 1.5rem; font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 300; color: rgba(59,130,246,.15); line-height: 1; }
 
-  .service-card h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    padding-right: 3rem;
-  }
-
+  .service-card h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; margin-bottom: 1.2rem; letter-spacing: -.01em; line-height: 1.2; padding-right: 3rem; }
   .service-card h3 .italic { font-style: italic; color: var(--blue-bright); }
 
   .service-card ul { list-style: none; margin-top: 1rem; }
 
-  .service-card li {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.5;
-    padding: 0.4rem 0 0.4rem 1.5rem;
-    position: relative;
-    font-weight: 300;
-  }
+  .service-card li { color: var(--text-secondary); font-size: .92rem; line-height: 1.5; padding: .4rem 0 .4rem 1.5rem; position: relative; font-weight: 300; }
+  .service-card li::before { content: ''; position: absolute; left: 0; top: .85rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(56,189,248,.6); }
 
-  .service-card li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.85rem;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-  }
+  /* ── CTA ── */
+  .cta-layout { text-align: center; max-width: 900px; margin: 0 auto; }
 
-  /* ── Slide 5 — CTA ── */
-  .cta-layout {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  .cta-logo { width: 80px; height: 80px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; }
+  .cta-logo img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(56,189,248,.6)); }
 
-  .cta-logo {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  .cta-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.15; letter-spacing: -.02em; margin-bottom: 1rem; }
+  .cta-title .accent { font-style: italic; background: linear-gradient(135deg, var(--blue-bright), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-  .cta-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.6));
-  }
+  .cta-subtitle { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2.5rem; font-weight: 300; }
 
-  .cta-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1rem;
-  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
 
-  .cta-title .accent {
-    font-style: italic;
-    background: linear-gradient(135deg, var(--blue-bright), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  .price-card { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid rgba(59,130,246,.15); border-radius: 16px; padding: 1.5rem 1.2rem; position: relative; }
 
-  .cta-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
+  .price-card.featured { border-color: rgba(56,189,248,.5); background: linear-gradient(135deg, rgba(59,130,246,.1), rgba(56,189,248,.05)); transform: scale(1.05); }
 
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin: 2rem 0;
-  }
+  .price-card.featured::before { content: 'POPULAR'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--bg-deep); font-size: .65rem; font-weight: 700; letter-spacing: .15em; padding: .25rem .7rem; border-radius: 100px; }
 
-  .price-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(59, 130, 246, 0.15);
-    border-radius: 16px;
-    padding: 1.5rem 1.2rem;
-    position: relative;
-  }
+  .price-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: .3rem; }
+  .price-value { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 500; color: var(--blue-bright); margin-bottom: .3rem; }
+  .price-period { color: var(--text-muted); font-size: .8rem; margin-bottom: 1rem; }
+  .price-desc { color: var(--text-secondary); font-size: .82rem; line-height: 1.5; font-weight: 300; }
 
-  .price-card.featured {
-    border-color: rgba(56, 189, 248, 0.5);
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(56, 189, 248, 0.05));
-    transform: scale(1.05);
-  }
-
-  .price-card.featured::before {
-    content: 'POPULAR';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: var(--bg-deep);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    padding: 0.25rem 0.7rem;
-    border-radius: 100px;
-  }
-
-  .price-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 0.3rem; }
-  .price-value { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 500; color: var(--blue-bright); margin-bottom: 0.3rem; }
-  .price-period { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1rem; }
-  .price-desc { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; font-weight: 300; }
-
-  .contact-row {
-    margin-top: 2.5rem;
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-  }
-
-  .contact-item { display: flex; align-items: center; gap: 0.5rem; }
+  .contact-row { margin-top: 2.5rem; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; color: var(--text-secondary); font-size: .95rem; }
+  .contact-item { display: flex; align-items: center; gap: .5rem; }
   .contact-item svg { color: var(--accent); flex-shrink: 0; }
 
-  .cta-closing {
-    margin-top: 2rem;
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    color: var(--blue-bright);
-    font-size: 1.1rem;
-  }
+  .cta-closing { margin-top: 2rem; font-family: 'Fraunces', serif; font-style: italic; color: var(--blue-bright); font-size: 1.1rem; }
 
   /* ── Controls & Progress ── */
   .controls {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    background: rgba(15, 23, 50, 0.85);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: 100px;
-    z-index: 50;
-    transition: opacity 0.5s ease;
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: .75rem 1.5rem;
+    background: rgba(15,23,50,.85); backdrop-filter: blur(20px);
+    border: 1px solid rgba(59,130,246,.2); border-radius: 100px;
+    z-index: 50; transition: opacity .5s ease;
   }
 
-  .control-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    cursor: pointer;
-    padding: 0.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  .control-btn:hover { color: var(--text-primary); background: rgba(59, 130, 246, 0.15); }
+  .control-btn { background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: .4rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all .3s ease; }
+  .control-btn:hover { color: var(--text-primary); background: rgba(59,130,246,.15); }
   .control-btn svg { width: 18px; height: 18px; }
 
-  .slide-indicator { display: flex; gap: 0.5rem; align-items: center; }
+  .slide-indicator { display: flex; gap: .5rem; align-items: center; }
 
-  .indicator-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(148, 163, 184, 0.3);
-    cursor: pointer;
-    transition: all 0.4s ease;
-  }
+  .indicator-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(148,163,184,.3); cursor: pointer; transition: all .4s ease; }
+  .indicator-dot.active { background: var(--accent); width: 24px; border-radius: 4px; box-shadow: 0 0 12px rgba(56,189,248,.5); }
 
-  .indicator-dot.active {
-    background: var(--accent);
-    width: 24px;
-    border-radius: 4px;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
-  }
-
-  .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--blue-electric), var(--accent));
-    z-index: 60;
-    width: 0;
-    transition: width 0.1s linear;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
-  }
+  .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--blue-electric), var(--accent)); z-index: 60; width: 0; transition: width .1s linear; box-shadow: 0 0 10px rgba(56,189,248,.6); }
 
   /* ── Stagger animations ── */
-  .slide.active .stagger-1 { animation: fadeUp 1s ease 0.5s both; }
-  .slide.active .stagger-2 { animation: fadeUp 1s ease 0.8s both; }
+  .slide.active .stagger-1 { animation: fadeUp 1s ease .5s both; }
+  .slide.active .stagger-2 { animation: fadeUp 1s ease .8s both; }
   .slide.active .stagger-3 { animation: fadeUp 1s ease 1.1s both; }
   .slide.active .stagger-4 { animation: fadeUp 1s ease 1.4s both; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
   /* ── Mobile ── */
   @media (max-width: 900px) {
@@ -709,7 +411,7 @@
     .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
     .hero-visual { max-width: 280px; }
     .future-grid, .services-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+    .pricing-grid { grid-template-columns: 1fr; gap: .8rem; }
     .price-card.featured { transform: scale(1); }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .floating-badge { display: none; }
@@ -718,6 +420,13 @@
 </head>
 <body>
 
+<!-- Language Switcher (always visible) -->
+<div class="lang-switcher">
+  <button class="lang-btn" data-lang="en">EN</button>
+  <button class="lang-btn" data-lang="fa">فا</button>
+  <button class="lang-btn" data-lang="ro">RO</button>
+</div>
+
 <!-- Start Screen -->
 <div class="start-screen" id="startScreen">
   <div class="start-content">
@@ -725,14 +434,14 @@
       <img src="/BLUE%20AI.png" alt="Emad AI">
     </div>
     <h1 class="start-title">Emad AI</h1>
-    <p class="start-subtitle">AI Consultant &amp; Software Developer · Romania</p>
+    <p class="start-subtitle" data-i18n="start.subtitle">AI Consultant &amp; Software Developer · Romania</p>
     <button class="start-button" id="startBtn">
-      Start Presentation
+      <span data-i18n="start.btn">Start Presentation</span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polygon points="5 3 19 12 5 21 5 3"></polygon>
       </svg>
     </button>
-    <p class="start-hint">Click anywhere to begin · includes music</p>
+    <p class="start-hint" data-i18n="start.hint">Click anywhere to begin · includes music</p>
   </div>
 </div>
 
@@ -747,25 +456,25 @@
     <div class="slide-inner">
       <div class="hero-grid">
         <div class="hero-text">
-          <span class="eyebrow stagger-1">Hello, I'm Emad</span>
-          <h1 class="hero-title stagger-2">I help your business win the <span class="accent">AI decade.</span></h1>
-          <p class="hero-subtitle stagger-3">AI Consultant &amp; Software Developer based in Cluj-Napoca, Romania. I help companies adopt AI, ship modern software, and get measurable results.</p>
+          <span class="eyebrow stagger-1" data-i18n="s1.eyebrow">Hello, I'm Emad</span>
+          <h1 class="hero-title stagger-2" data-i18n="s1.title">I help your business win the <span class="accent">AI decade.</span></h1>
+          <p class="hero-subtitle stagger-3" data-i18n="s1.subtitle">AI Consultant &amp; Software Developer based in Cluj-Napoca, Romania. I help companies adopt AI, ship modern software, and get measurable results.</p>
           <div class="hero-stats stagger-4">
             <div class="stat-item">
-              <div class="stat-number">50+</div>
-              <div class="stat-label">Projects delivered</div>
+              <div class="stat-number" data-i18n="s1.stat1.n">50+</div>
+              <div class="stat-label" data-i18n="s1.stat1.l">Projects delivered</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number">10+</div>
-              <div class="stat-label">Years experience</div>
+              <div class="stat-number" data-i18n="s1.stat2.n">10+</div>
+              <div class="stat-label" data-i18n="s1.stat2.l">Years experience</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number">3</div>
-              <div class="stat-label">Countries served</div>
+              <div class="stat-number" data-i18n="s1.stat3.n">3</div>
+              <div class="stat-label" data-i18n="s1.stat3.l">Countries served</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number">40+</div>
-              <div class="stat-label">Happy clients</div>
+              <div class="stat-number" data-i18n="s1.stat4.n">40+</div>
+              <div class="stat-label" data-i18n="s1.stat4.l">Happy clients</div>
             </div>
           </div>
         </div>
@@ -774,12 +483,12 @@
             <img src="/AI%20PIC.png" alt="AI Vision">
           </div>
           <div class="floating-badge badge-1">
-            <div class="badge-label">Based in</div>
-            <div class="badge-value">🇷🇴 Romania</div>
+            <div class="badge-label" data-i18n="s1.badge1.l">Based in</div>
+            <div class="badge-value" data-i18n="s1.badge1.v">🇷🇴 Romania</div>
           </div>
           <div class="floating-badge badge-2">
-            <div class="badge-label">Speciality</div>
-            <div class="badge-value">AI Agents</div>
+            <div class="badge-label" data-i18n="s1.badge2.l">Speciality</div>
+            <div class="badge-value" data-i18n="s1.badge2.v">AI Agents</div>
           </div>
         </div>
       </div>
@@ -790,40 +499,40 @@
   <div class="slide" data-slide="1">
     <div class="slide-inner">
       <div class="future-layout">
-        <span class="slide-eyebrow stagger-1">The Next 5–10 Years</span>
-        <h2 class="slide-title stagger-1">AI is moving from a tool you query to a <span class="accent">collaborator you delegate to.</span></h2>
-        <p class="slide-lead stagger-2">In the next decade, AI won't just assist your business — it will reshape who wins and who falls behind.</p>
+        <span class="slide-eyebrow stagger-1" data-i18n="s2.eyebrow">The Next 5–10 Years</span>
+        <h2 class="slide-title stagger-1" data-i18n="s2.title">AI is moving from a tool you query to a <span class="accent">collaborator you delegate to.</span></h2>
+        <p class="slide-lead stagger-2" data-i18n="s2.lead">In the next decade, AI won't just assist your business — it will reshape who wins and who falls behind.</p>
         <div class="future-grid">
           <div class="future-card stagger-2">
             <div class="future-icon">01</div>
             <div class="future-card-content">
-              <h4>Autonomous agents replace workflows</h4>
-              <p>AI agents will plan and execute multi-step work end-to-end — not just tasks, but entire processes.</p>
+              <h4 data-i18n="s2.c1.h">Autonomous agents replace workflows</h4>
+              <p data-i18n="s2.c1.p">AI agents will plan and execute multi-step work end-to-end — not just tasks, but entire processes.</p>
             </div>
           </div>
           <div class="future-card stagger-3">
             <div class="future-icon">02</div>
             <div class="future-card-content">
-              <h4>Every team gets a copilot</h4>
-              <p>Sales, support, ops, engineering — companies without AI copilots will lose on speed and cost.</p>
+              <h4 data-i18n="s2.c2.h">Every team gets a copilot</h4>
+              <p data-i18n="s2.c2.p">Sales, support, ops, engineering — companies without AI copilots will lose on speed and cost.</p>
             </div>
           </div>
           <div class="future-card stagger-3">
             <div class="future-icon">03</div>
             <div class="future-card-content">
-              <h4>Multi-modal AI reshapes customer experience</h4>
-              <p>Voice agents, visual search, and AI that sees, hears, and reasons will redefine how customers interact.</p>
+              <h4 data-i18n="s2.c3.h">Multi-modal AI reshapes customer experience</h4>
+              <p data-i18n="s2.c3.p">Voice agents, visual search, and AI that sees, hears, and reasons will redefine how customers interact.</p>
             </div>
           </div>
           <div class="future-card stagger-4">
             <div class="future-icon">04</div>
             <div class="future-card-content">
-              <h4>Idea-to-product collapses</h4>
-              <p>What took months will take days. Companies that integrate AI deeply will operate 10x faster.</p>
+              <h4 data-i18n="s2.c4.h">Idea-to-product collapses</h4>
+              <p data-i18n="s2.c4.p">What took months will take days. Companies that integrate AI deeply will operate 10x faster.</p>
             </div>
           </div>
         </div>
-        <p class="future-closing stagger-4">The opportunity is no longer access to AI — it's integrating it well. That's exactly where I help.</p>
+        <p class="future-closing stagger-4" data-i18n="s2.closing">The opportunity is no longer access to AI — it's integrating it well. That's exactly where I help.</p>
       </div>
     </div>
   </div>
@@ -832,28 +541,28 @@
   <div class="slide" data-slide="2">
     <div class="slide-inner">
       <div class="services-header">
-        <span class="slide-eyebrow stagger-1">Core Services</span>
-        <h2 class="slide-title stagger-1">Strategy &amp; <span class="accent">intelligent agents</span></h2>
+        <span class="slide-eyebrow stagger-1" data-i18n="s3.eyebrow">Core Services</span>
+        <h2 class="slide-title stagger-1" data-i18n="s3.title">Strategy &amp; <span class="accent">intelligent agents</span></h2>
       </div>
       <div class="services-grid">
         <div class="service-card stagger-2">
           <div class="service-number">01</div>
-          <h3>AI Consulting <span class="italic">&amp; Strategy</span></h3>
+          <h3 data-i18n="s3.svc1.title">AI Consulting <span class="italic">&amp; Strategy</span></h3>
           <ul>
-            <li>Tailored adoption roadmap built around your business</li>
-            <li>Build vs buy analysis — what to build, what to license</li>
-            <li>ROI-driven plan with projected outcomes before any code</li>
-            <li>Risk &amp; compliance review (EU / Romania context)</li>
+            <li data-i18n="s3.svc1.li1">Tailored adoption roadmap built around your business</li>
+            <li data-i18n="s3.svc1.li2">Build vs buy analysis — what to build, what to license</li>
+            <li data-i18n="s3.svc1.li3">ROI-driven plan with projected outcomes before any code</li>
+            <li data-i18n="s3.svc1.li4">Risk &amp; compliance review (EU / Romania context)</li>
           </ul>
         </div>
         <div class="service-card stagger-3">
           <div class="service-number">02</div>
-          <h3>AI Agent <span class="italic">Design &amp; Implementation</span></h3>
+          <h3 data-i18n="s3.svc2.title">AI Agent <span class="italic">Design &amp; Implementation</span></h3>
           <ul>
-            <li>Production-grade agents on LangChain, CrewAI, AutoGen, Claude</li>
-            <li>Connected to your existing tools (CRM, email, databases)</li>
-            <li>Full evaluations &amp; monitoring — real systems, not toy demos</li>
-            <li>Multi-step task execution with reliable outcomes</li>
+            <li data-i18n="s3.svc2.li1">Production-grade agents on LangChain, CrewAI, AutoGen, Claude</li>
+            <li data-i18n="s3.svc2.li2">Connected to your existing tools (CRM, email, databases)</li>
+            <li data-i18n="s3.svc2.li3">Full evaluations &amp; monitoring — real systems, not toy demos</li>
+            <li data-i18n="s3.svc2.li4">Multi-step task execution with reliable outcomes</li>
           </ul>
         </div>
       </div>
@@ -864,44 +573,44 @@
   <div class="slide" data-slide="3">
     <div class="slide-inner">
       <div class="services-header">
-        <span class="slide-eyebrow stagger-1">Core Services</span>
-        <h2 class="slide-title stagger-1">Automation, software &amp; <span class="accent">machine learning</span></h2>
+        <span class="slide-eyebrow stagger-1" data-i18n="s4.eyebrow">Core Services</span>
+        <h2 class="slide-title stagger-1" data-i18n="s4.title">Automation, software &amp; <span class="accent">machine learning</span></h2>
       </div>
       <div class="services-grid">
         <div class="service-card stagger-2">
           <div class="service-number">03</div>
-          <h3>Workflow <span class="italic">Automation</span></h3>
+          <h3 data-i18n="s4.svc3.title">Workflow <span class="italic">Automation</span></h3>
           <ul>
-            <li>Automate lead intake, follow-ups, CRM updates</li>
-            <li>Internal reporting &amp; notifications on autopilot</li>
-            <li>Your team focuses on relationships — machines handle the rest</li>
+            <li data-i18n="s4.svc3.li1">Automate lead intake, follow-ups, CRM updates</li>
+            <li data-i18n="s4.svc3.li2">Internal reporting &amp; notifications on autopilot</li>
+            <li data-i18n="s4.svc3.li3">Your team focuses on relationships — machines handle the rest</li>
           </ul>
         </div>
         <div class="service-card stagger-3">
           <div class="service-number">04</div>
-          <h3>Custom <span class="italic">Software Development</span></h3>
+          <h3 data-i18n="s4.svc4.title">Custom <span class="italic">Software Development</span></h3>
           <ul>
-            <li>Full-stack web apps, APIs, integrations</li>
-            <li>Stack: Next.js, Node, Python, Postgres, Supabase</li>
-            <li>Deployed on Vercel &amp; AWS with CI/CD</li>
+            <li data-i18n="s4.svc4.li1">Full-stack web apps, APIs, integrations</li>
+            <li data-i18n="s4.svc4.li2">Stack: Next.js, Node, Python, Postgres, Supabase</li>
+            <li data-i18n="s4.svc4.li3">Deployed on Vercel &amp; AWS with CI/CD</li>
           </ul>
         </div>
         <div class="service-card stagger-4">
           <div class="service-number">05</div>
-          <h3>Machine Learning <span class="italic">Solutions</span></h3>
+          <h3 data-i18n="s4.svc5.title">Machine Learning <span class="italic">Solutions</span></h3>
           <ul>
-            <li>Custom model training &amp; fine-tuning</li>
-            <li>Claude and open-source models tailored to your data</li>
-            <li>Production-ready inference deployment</li>
+            <li data-i18n="s4.svc5.li1">Custom model training &amp; fine-tuning</li>
+            <li data-i18n="s4.svc5.li2">Claude and open-source models tailored to your data</li>
+            <li data-i18n="s4.svc5.li3">Production-ready inference deployment</li>
           </ul>
         </div>
         <div class="service-card stagger-4">
           <div class="service-number">06</div>
-          <h3>Tech Consulting <span class="italic">for Romanian SMEs</span></h3>
+          <h3 data-i18n="s4.svc6.title">Tech Consulting <span class="italic">for Romanian SMEs</span></h3>
           <ul>
-            <li>Digital transformation roadmaps</li>
-            <li>AI integration into existing operations</li>
-            <li>Team upskilling &amp; training</li>
+            <li data-i18n="s4.svc6.li1">Digital transformation roadmaps</li>
+            <li data-i18n="s4.svc6.li2">AI integration into existing operations</li>
+            <li data-i18n="s4.svc6.li3">Team upskilling &amp; training</li>
           </ul>
         </div>
       </div>
@@ -915,31 +624,29 @@
         <div class="cta-logo stagger-1">
           <img src="/BLUE%20AI.png" alt="Emad AI">
         </div>
-        <span class="slide-eyebrow stagger-1">Let's Build What's Next</span>
-        <h2 class="cta-title stagger-1">Your free 30-minute discovery call is <span class="accent">one click away.</span></h2>
-        <p class="cta-subtitle stagger-2">Transparent pricing. Clear outcomes. No hype.</p>
-
+        <span class="slide-eyebrow stagger-1" data-i18n="s5.eyebrow">Let's Build What's Next</span>
+        <h2 class="cta-title stagger-1" data-i18n="s5.title">Your free 30-minute discovery call is <span class="accent">one click away.</span></h2>
+        <p class="cta-subtitle stagger-2" data-i18n="s5.subtitle">Transparent pricing. Clear outcomes. No hype.</p>
         <div class="pricing-grid stagger-3">
           <div class="price-card">
-            <div class="price-name">Discovery</div>
+            <div class="price-name" data-i18n="s5.p1.name">Discovery</div>
             <div class="price-value">€0</div>
-            <div class="price-period">45 min · No commitment</div>
-            <div class="price-desc">Free intro call. Tailored next steps for your business.</div>
+            <div class="price-period" data-i18n="s5.p1.period">45 min · No commitment</div>
+            <div class="price-desc" data-i18n="s5.p1.desc">Free intro call. Tailored next steps for your business.</div>
           </div>
           <div class="price-card featured">
-            <div class="price-name">Standard</div>
+            <div class="price-name" data-i18n="s5.p2.name">Standard</div>
             <div class="price-value">€100</div>
-            <div class="price-period">per engagement</div>
-            <div class="price-desc">One concrete outcome. Hands-on implementation. 4 weeks support.</div>
+            <div class="price-period" data-i18n="s5.p2.period">per engagement</div>
+            <div class="price-desc" data-i18n="s5.p2.desc">One concrete outcome. Hands-on implementation. 4 weeks support.</div>
           </div>
           <div class="price-card">
-            <div class="price-name">Premium</div>
+            <div class="price-name" data-i18n="s5.p3.name">Premium</div>
             <div class="price-value">€300</div>
-            <div class="price-period">per month</div>
-            <div class="price-desc">Ongoing AI partner. Weekly sessions. Dedicated Slack.</div>
+            <div class="price-period" data-i18n="s5.p3.period">per month</div>
+            <div class="price-desc" data-i18n="s5.p3.desc">Ongoing AI partner. Weekly sessions. Dedicated Slack.</div>
           </div>
         </div>
-
         <div class="contact-row stagger-4">
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -953,7 +660,7 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            Cluj-Napoca, Romania
+            <span data-i18n="s5.location">Cluj-Napoca, Romania</span>
           </div>
           <div class="contact-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -964,8 +671,7 @@
             emad-ai-consultant.vercel.app
           </div>
         </div>
-
-        <p class="cta-closing stagger-4">No hype. No commitment. Just a clear next step.</p>
+        <p class="cta-closing stagger-4" data-i18n="s5.closing">No hype. No commitment. Just a clear next step.</p>
       </div>
     </div>
   </div>
@@ -973,16 +679,13 @@
 </div>
 
 <!-- Controls -->
-<div class="controls" id="controls" style="opacity: 0; pointer-events: none;">
-  <button class="control-btn" id="prevBtn" aria-label="Previous slide">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="15 18 9 12 15 6"></polyline>
-    </svg>
+<div class="controls" id="controls" style="opacity:0;pointer-events:none;">
+  <button class="control-btn" id="prevBtn" aria-label="Previous">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
   </button>
   <button class="control-btn" id="playPauseBtn" aria-label="Play/Pause">
     <svg id="pauseIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <rect x="6" y="4" width="4" height="16"></rect>
-      <rect x="14" y="4" width="4" height="16"></rect>
+      <rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>
     </svg>
     <svg id="playIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
       <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -996,22 +699,267 @@
     </svg>
     <svg id="soundOffIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-      <line x1="23" y1="9" x2="17" y2="15"></line>
-      <line x1="17" y1="9" x2="23" y2="15"></line>
+      <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
     </svg>
   </button>
-  <button class="control-btn" id="nextBtn" aria-label="Next slide">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
+  <button class="control-btn" id="nextBtn" aria-label="Next">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
   </button>
 </div>
 
 <script>
 // ============================================================
+//  TRANSLATIONS
+// ============================================================
+const T = {
+  en: {
+    'start.subtitle': 'AI Consultant &amp; Software Developer · Romania',
+    'start.btn': 'Start Presentation',
+    'start.hint': 'Click anywhere to begin · includes music',
+    's1.eyebrow': "Hello, I'm Emad",
+    's1.title': 'I help your business win the <span class="accent">AI decade.</span>',
+    's1.subtitle': 'AI Consultant &amp; Software Developer based in Cluj-Napoca, Romania. I help companies adopt AI, ship modern software, and get measurable results.',
+    's1.stat1.n': '50+', 's1.stat1.l': 'Projects delivered',
+    's1.stat2.n': '10+', 's1.stat2.l': 'Years experience',
+    's1.stat3.n': '3',   's1.stat3.l': 'Countries served',
+    's1.stat4.n': '40+', 's1.stat4.l': 'Happy clients',
+    's1.badge1.l': 'Based in',    's1.badge1.v': '🇷🇴 Romania',
+    's1.badge2.l': 'Speciality',  's1.badge2.v': 'AI Agents',
+    's2.eyebrow': 'The Next 5–10 Years',
+    's2.title': 'AI is moving from a tool you query to a <span class="accent">collaborator you delegate to.</span>',
+    's2.lead': "In the next decade, AI won't just assist your business — it will reshape who wins and who falls behind.",
+    's2.c1.h': 'Autonomous agents replace workflows',
+    's2.c1.p': 'AI agents will plan and execute multi-step work end-to-end — not just tasks, but entire processes.',
+    's2.c2.h': 'Every team gets a copilot',
+    's2.c2.p': 'Sales, support, ops, engineering — companies without AI copilots will lose on speed and cost.',
+    's2.c3.h': 'Multi-modal AI reshapes customer experience',
+    's2.c3.p': 'Voice agents, visual search, and AI that sees, hears, and reasons will redefine how customers interact.',
+    's2.c4.h': 'Idea-to-product collapses',
+    's2.c4.p': 'What took months will take days. Companies that integrate AI deeply will operate 10x faster.',
+    's2.closing': "The opportunity is no longer access to AI — it's integrating it well. That's exactly where I help.",
+    's3.eyebrow': 'Core Services',
+    's3.title': 'Strategy &amp; <span class="accent">intelligent agents</span>',
+    's3.svc1.title': 'AI Consulting <span class="italic">&amp; Strategy</span>',
+    's3.svc1.li1': 'Tailored adoption roadmap built around your business',
+    's3.svc1.li2': 'Build vs buy analysis — what to build, what to license',
+    's3.svc1.li3': 'ROI-driven plan with projected outcomes before any code',
+    's3.svc1.li4': 'Risk &amp; compliance review (EU / Romania context)',
+    's3.svc2.title': 'AI Agent <span class="italic">Design &amp; Implementation</span>',
+    's3.svc2.li1': 'Production-grade agents on LangChain, CrewAI, AutoGen, Claude',
+    's3.svc2.li2': 'Connected to your existing tools (CRM, email, databases)',
+    's3.svc2.li3': 'Full evaluations &amp; monitoring — real systems, not toy demos',
+    's3.svc2.li4': 'Multi-step task execution with reliable outcomes',
+    's4.eyebrow': 'Core Services',
+    's4.title': 'Automation, software &amp; <span class="accent">machine learning</span>',
+    's4.svc3.title': 'Workflow <span class="italic">Automation</span>',
+    's4.svc3.li1': 'Automate lead intake, follow-ups, CRM updates',
+    's4.svc3.li2': 'Internal reporting &amp; notifications on autopilot',
+    's4.svc3.li3': 'Your team focuses on relationships — machines handle the rest',
+    's4.svc4.title': 'Custom <span class="italic">Software Development</span>',
+    's4.svc4.li1': 'Full-stack web apps, APIs, integrations',
+    's4.svc4.li2': 'Stack: Next.js, Node, Python, Postgres, Supabase',
+    's4.svc4.li3': 'Deployed on Vercel &amp; AWS with CI/CD',
+    's4.svc5.title': 'Machine Learning <span class="italic">Solutions</span>',
+    's4.svc5.li1': 'Custom model training &amp; fine-tuning',
+    's4.svc5.li2': 'Claude and open-source models tailored to your data',
+    's4.svc5.li3': 'Production-ready inference deployment',
+    's4.svc6.title': 'Tech Consulting <span class="italic">for Romanian SMEs</span>',
+    's4.svc6.li1': 'Digital transformation roadmaps',
+    's4.svc6.li2': 'AI integration into existing operations',
+    's4.svc6.li3': 'Team upskilling &amp; training',
+    's5.eyebrow': "Let's Build What's Next",
+    's5.title': 'Your free 30-minute discovery call is <span class="accent">one click away.</span>',
+    's5.subtitle': 'Transparent pricing. Clear outcomes. No hype.',
+    's5.p1.name': 'Discovery', 's5.p1.period': '45 min · No commitment',
+    's5.p1.desc': 'Free intro call. Tailored next steps for your business.',
+    's5.p2.name': 'Standard', 's5.p2.period': 'per engagement',
+    's5.p2.desc': 'One concrete outcome. Hands-on implementation. 4 weeks support.',
+    's5.p3.name': 'Premium', 's5.p3.period': 'per month',
+    's5.p3.desc': 'Ongoing AI partner. Weekly sessions. Dedicated Slack.',
+    's5.location': 'Cluj-Napoca, Romania',
+    's5.closing': 'No hype. No commitment. Just a clear next step.',
+  },
+
+  fa: {
+    'start.subtitle': 'مشاور هوش مصنوعی و توسعه‌دهنده نرم‌افزار · رومانی',
+    'start.btn': 'شروع ارائه',
+    'start.hint': 'برای شروع کلیک کنید · شامل موسیقی',
+    's1.eyebrow': 'سلام، من عماد هستم',
+    's1.title': 'به کسب‌وکار شما کمک می‌کنم تا <span class="accent">دهه هوش مصنوعی</span> را برنده شوید.',
+    's1.subtitle': 'مشاور هوش مصنوعی و توسعه‌دهنده نرم‌افزار، مستقر در کلوژ-ناپوکا، رومانی. به شرکت‌ها کمک می‌کنم هوش مصنوعی را پیاده‌سازی کنند، نرم‌افزار مدرن بسازند و نتایج قابل‌اندازه‌گیری بگیرند.',
+    's1.stat1.n': '50+', 's1.stat1.l': 'پروژه تحویل‌داده‌شده',
+    's1.stat2.n': '10+', 's1.stat2.l': 'سال تجربه',
+    's1.stat3.n': '3',   's1.stat3.l': 'کشور خدمات‌رسانی',
+    's1.stat4.n': '40+', 's1.stat4.l': 'مشتری راضی',
+    's1.badge1.l': 'مستقر در',      's1.badge1.v': '🇷🇴 رومانی',
+    's1.badge2.l': 'تخصص',          's1.badge2.v': 'عامل‌های هوش مصنوعی',
+    's2.eyebrow': '۵ تا ۱۰ سال آینده',
+    's2.title': 'هوش مصنوعی از ابزاری که از آن می‌پرسید به <span class="accent">همکاری که به آن تفویض می‌کنید</span> تبدیل می‌شود.',
+    's2.lead': 'در دهه آینده، هوش مصنوعی فقط به کسب‌وکار شما کمک نمی‌کند — بلکه مشخص می‌کند چه کسانی برنده و چه کسانی بازنده می‌شوند.',
+    's2.c1.h': 'عامل‌های خودمختار جایگزین گردش‌کار می‌شوند',
+    's2.c1.p': 'عامل‌های هوش مصنوعی کارهای چند مرحله‌ای را از ابتدا تا انتها برنامه‌ریزی و اجرا می‌کنند.',
+    's2.c2.h': 'هر تیمی دستیار هوشمند می‌گیرد',
+    's2.c2.p': 'فروش، پشتیبانی، عملیات، مهندسی — شرکت‌های بدون دستیار هوشمند در سرعت و هزینه شکست می‌خورند.',
+    's2.c3.h': 'هوش مصنوعی چندوجهی تجربه مشتری را متحول می‌کند',
+    's2.c3.p': 'عامل‌های صوتی، جستجوی تصویری و هوش مصنوعی که می‌بیند، می‌شنود و استدلال می‌کند، تعامل مشتریان با کسب‌وکار شما را بازتعریف می‌کنند.',
+    's2.c4.h': 'فاصله از ایده تا محصول کوتاه می‌شود',
+    's2.c4.p': 'آنچه ماه‌ها طول می‌کشید در روزها انجام می‌شود. شرکت‌هایی که هوش مصنوعی را عمیقاً ادغام می‌کنند ۱۰ برابر سریع‌تر عمل می‌کنند.',
+    's2.closing': 'فرصت دیگر دسترسی به هوش مصنوعی نیست — بلکه یکپارچه‌سازی درست آن است. دقیقاً همین‌جاست که من کمک می‌کنم.',
+    's3.eyebrow': 'خدمات اصلی',
+    's3.title': 'استراتژی و <span class="accent">عامل‌های هوشمند</span>',
+    's3.svc1.title': 'مشاوره هوش مصنوعی <span class="italic">و استراتژی</span>',
+    's3.svc1.li1': 'نقشه راه پذیرش متناسب با کسب‌وکار شما',
+    's3.svc1.li2': 'تحلیل ساخت در مقابل خرید — چه چیزی بسازید، چه چیزی مجوز بگیرید',
+    's3.svc1.li3': 'برنامه مبتنی بر ROI با نتایج پیش‌بینی‌شده قبل از هر کدی',
+    's3.svc1.li4': 'بررسی ریسک و انطباق (زمینه اتحادیه اروپا / رومانی)',
+    's3.svc2.title': 'طراحی و <span class="italic">پیاده‌سازی عامل هوش مصنوعی</span>',
+    's3.svc2.li1': 'عامل‌های سطح تولید با LangChain، CrewAI، AutoGen، Claude',
+    's3.svc2.li2': 'متصل به ابزارهای موجود شما (CRM، ایمیل، پایگاه داده)',
+    's3.svc2.li3': 'ارزیابی‌ها و نظارت کامل — سیستم‌های واقعی، نه نمایش‌های آزمایشی',
+    's3.svc2.li4': 'اجرای وظایف چند مرحله‌ای با نتایج قابل‌اعتماد',
+    's4.eyebrow': 'خدمات اصلی',
+    's4.title': 'اتوماسیون، نرم‌افزار و <span class="accent">یادگیری ماشین</span>',
+    's4.svc3.title': 'اتوماسیون <span class="italic">گردش‌کار</span>',
+    's4.svc3.li1': 'خودکارسازی ثبت سرنخ، پیگیری‌ها، به‌روزرسانی‌های CRM',
+    's4.svc3.li2': 'گزارش‌دهی و اطلاع‌رسانی‌های داخلی به صورت خودکار',
+    's4.svc3.li3': 'تیم شما روی روابط تمرکز می‌کند — ماشین‌ها بقیه را انجام می‌دهند',
+    's4.svc4.title': 'توسعه <span class="italic">نرم‌افزار سفارشی</span>',
+    's4.svc4.li1': 'اپ‌های وب full-stack، API‌ها، یکپارچه‌سازی‌ها',
+    's4.svc4.li2': 'پشته: Next.js، Node، Python، Postgres، Supabase',
+    's4.svc4.li3': 'استقرار روی Vercel و AWS با CI/CD',
+    's4.svc5.title': 'راه‌حل‌های <span class="italic">یادگیری ماشین</span>',
+    's4.svc5.li1': 'آموزش و تنظیم‌دقیق مدل سفارشی',
+    's4.svc5.li2': 'مدل‌های Claude و متن‌باز متناسب با داده‌های شما',
+    's4.svc5.li3': 'استقرار استنتاج آماده برای تولید',
+    's4.svc6.title': 'مشاوره فناوری <span class="italic">برای کسب‌وکارهای کوچک</span>',
+    's4.svc6.li1': 'نقشه‌های راه تحول دیجیتال',
+    's4.svc6.li2': 'یکپارچه‌سازی هوش مصنوعی در عملیات موجود',
+    's4.svc6.li3': 'ارتقاء مهارت و آموزش تیم',
+    's5.eyebrow': 'بیایید آینده را بسازیم',
+    's5.title': 'تماس کشف رایگان ۳۰ دقیقه‌ای شما <span class="accent">فقط یک کلیک فاصله دارد.</span>',
+    's5.subtitle': 'قیمت‌گذاری شفاف. نتایج روشن. بدون اغراق.',
+    's5.p1.name': 'کشف', 's5.p1.period': '۴۵ دقیقه · بدون تعهد',
+    's5.p1.desc': 'تماس رایگان مقدماتی. قدم‌های بعدی متناسب با کسب‌وکار شما.',
+    's5.p2.name': 'استاندارد', 's5.p2.period': 'برای هر پروژه',
+    's5.p2.desc': 'یک نتیجه مشخص. پیاده‌سازی عملی. ۴ هفته پشتیبانی.',
+    's5.p3.name': 'پیشرفته', 's5.p3.period': 'در ماه',
+    's5.p3.desc': 'شریک هوش مصنوعی دائم. جلسات هفتگی. Slack اختصاصی.',
+    's5.location': 'کلوژ-ناپوکا، رومانی',
+    's5.closing': 'بدون اغراق. بدون تعهد. فقط یک قدم واضح بعدی.',
+  },
+
+  ro: {
+    'start.subtitle': 'Consultant AI &amp; Developer Software · România',
+    'start.btn': 'Începe Prezentarea',
+    'start.hint': 'Click oriunde pentru a începe · include muzică',
+    's1.eyebrow': 'Bună, sunt Emad',
+    's1.title': 'Ajut afacerea ta să câștige <span class="accent">decada AI.</span>',
+    's1.subtitle': 'Consultant AI &amp; Developer Software cu sediul în Cluj-Napoca, România. Ajut companiile să adopte AI, să livreze software modern și să obțină rezultate măsurabile.',
+    's1.stat1.n': '50+', 's1.stat1.l': 'Proiecte livrate',
+    's1.stat2.n': '10+', 's1.stat2.l': 'Ani experiență',
+    's1.stat3.n': '3',   's1.stat3.l': 'Țări servite',
+    's1.stat4.n': '40+', 's1.stat4.l': 'Clienți mulțumiți',
+    's1.badge1.l': 'Bazat în',    's1.badge1.v': '🇷🇴 România',
+    's1.badge2.l': 'Specialitate','s1.badge2.v': 'Agenți AI',
+    's2.eyebrow': 'Urmărorii 5–10 Ani',
+    's2.title': 'AI trece de la un instrument pe care îl interoghezi la un <span class="accent">colaborator căruia îi delegi.</span>',
+    's2.lead': 'În deceniile viitoare, AI nu va asista doar afacerea ta — va remodela cine câștigă și cine rămâne în urmă.',
+    's2.c1.h': 'Agenții autonomi înlocuiesc fluxurile de lucru',
+    's2.c1.p': 'Agenții AI vor planifica și executa muncă multi-etapă de la capăt la capăt — nu doar sarcini, ci procese întregi.',
+    's2.c2.h': 'Fiecare echipă primește un copilot',
+    's2.c2.p': 'Vânzări, suport, operațiuni, inginerie — companiile fără copilot AI vor pierde la viteză și cost.',
+    's2.c3.h': 'AI multimodal transformă experiența clienților',
+    's2.c3.p': 'Agenți vocali, căutare vizuală și AI care vede, aude și raționează vor redefini interacțiunea clienților cu afacerea ta.',
+    's2.c4.h': 'De la idee la produs în timp record',
+    's2.c4.p': 'Ce dura luni va dura zile. Companiile care integrează profund AI vor opera de 10x mai rapid.',
+    's2.closing': 'Oportunitatea nu mai este accesul la AI — ci integrarea lui eficientă. Exact acolo ajut.',
+    's3.eyebrow': 'Servicii Principale',
+    's3.title': 'Strategie &amp; <span class="accent">agenți inteligenți</span>',
+    's3.svc1.title': 'Consultanță AI <span class="italic">&amp; Strategie</span>',
+    's3.svc1.li1': 'Foaie de parcurs personalizată construită în jurul afacerii tale',
+    's3.svc1.li2': 'Analiză build vs buy — ce să construiești, ce să licențiezi',
+    's3.svc1.li3': 'Plan bazat pe ROI cu rezultate proiectate înainte de orice cod',
+    's3.svc1.li4': 'Revizuire risc și conformitate (context UE / România)',
+    's3.svc2.title': 'Design &amp; <span class="italic">Implementare Agenți AI</span>',
+    's3.svc2.li1': 'Agenți de nivel producție pe LangChain, CrewAI, AutoGen, Claude',
+    's3.svc2.li2': 'Conectați la instrumentele tale existente (CRM, email, baze de date)',
+    's3.svc2.li3': 'Evaluări și monitorizare complete — sisteme reale, nu demo-uri',
+    's3.svc2.li4': 'Execuție multi-etapă cu rezultate fiabile',
+    's4.eyebrow': 'Servicii Principale',
+    's4.title': 'Automatizare, software &amp; <span class="accent">machine learning</span>',
+    's4.svc3.title': 'Automatizare <span class="italic">Fluxuri de Lucru</span>',
+    's4.svc3.li1': 'Automatizează captarea lead-urilor, follow-up-urile, actualizările CRM',
+    's4.svc3.li2': 'Raportare internă &amp; notificări pe pilot automat',
+    's4.svc3.li3': 'Echipa ta se concentrează pe relații — mașinile se ocupă de rest',
+    's4.svc4.title': 'Dezvoltare <span class="italic">Software Personalizat</span>',
+    's4.svc4.li1': 'Aplicații web full-stack, API-uri, integrări',
+    's4.svc4.li2': 'Stack: Next.js, Node, Python, Postgres, Supabase',
+    's4.svc4.li3': 'Deploy pe Vercel &amp; AWS cu CI/CD',
+    's4.svc5.title': 'Soluții <span class="italic">Machine Learning</span>',
+    's4.svc5.li1': 'Antrenare și fine-tuning model personalizat',
+    's4.svc5.li2': 'Claude și modele open-source adaptate la datele tale',
+    's4.svc5.li3': 'Deploy inference gata de producție',
+    's4.svc6.title': 'Consultanță Tech <span class="italic">pentru IMM-uri din România</span>',
+    's4.svc6.li1': 'Foi de parcurs transformare digitală',
+    's4.svc6.li2': 'Integrare AI în operațiunile existente',
+    's4.svc6.li3': 'Upskilling &amp; training echipă',
+    's5.eyebrow': 'Să Construim Ce Urmează',
+    's5.title': 'Apelul tău de descoperire gratuit de 30 min este <span class="accent">la un clic distanță.</span>',
+    's5.subtitle': 'Prețuri transparente. Rezultate clare. Fără hype.',
+    's5.p1.name': 'Descoperire', 's5.p1.period': '45 min · Fără angajament',
+    's5.p1.desc': 'Apel intro gratuit. Pași următori adaptați afacerii tale.',
+    's5.p2.name': 'Standard', 's5.p2.period': 'per angajament',
+    's5.p2.desc': 'Un rezultat concret. Implementare practică. 4 săptămâni suport.',
+    's5.p3.name': 'Premium', 's5.p3.period': 'pe lună',
+    's5.p3.desc': 'Partener AI dedicat. Sesiuni săptămânale. Slack dedicat.',
+    's5.location': 'Cluj-Napoca, România',
+    's5.closing': 'Fără hype. Fără angajament. Doar un pas clar înainte.',
+  },
+};
+
+// ============================================================
+//  LANGUAGE SYSTEM
+// ============================================================
+const LANG = new URLSearchParams(window.location.search).get('lang') || 'en';
+
+function applyTranslations(lang) {
+  const t = T[lang] || T.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const val = t[el.dataset.i18n];
+    if (val !== undefined) el.innerHTML = val;
+  });
+  // RTL for Farsi
+  document.documentElement.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+  // Mark active button
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+}
+
+function switchLang(code) {
+  const isIframe = window.parent !== window;
+  if (isIframe) {
+    try {
+      window.parent.location.href = window.parent.location.origin + '/' + code + '/presentation';
+    } catch (e) {
+      window.location.href = '/presentation.html?lang=' + code;
+    }
+  } else {
+    window.location.href = '/presentation.html?lang=' + code;
+  }
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+});
+
+applyTranslations(LANG);
+
+// ============================================================
 //  SLIDE CONFIG
 // ============================================================
-const SLIDE_DURATION = 8000;
+const SLIDE_DURATION = 12000;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
 let currentSlide = 0;
@@ -1021,7 +969,6 @@ let progressTimer = null;
 let progressStartTime = 0;
 let progressPausedAt = 0;
 
-// Build indicator dots
 const indicator = document.getElementById('indicator');
 for (let i = 0; i < totalSlides; i++) {
   const dot = document.createElement('div');
@@ -1031,29 +978,28 @@ for (let i = 0; i < totalSlides; i++) {
 }
 
 // ============================================================
-//  CORPORATE / UPBEAT MUSIC — Web Audio API
+//  CORPORATE / UPBEAT MUSIC
 // ============================================================
 const BPM = 118;
-const BEAT    = 60 / BPM;   // quarter-note duration (s)
-const EIGHTH  = BEAT / 2;   // 8th-note duration (s)
+const BEAT   = 60 / BPM;
+const EIGHTH = BEAT / 2;
 
-let audioCtx    = null;
-let masterGain  = null;
-let compressor  = null;
-let reverbSend  = null;
-let isMuted     = false;
-let beatStep    = 0;
-let nextBeat    = 0;
-let sched       = null;
+let audioCtx   = null;
+let masterGain = null;
+let compressor = null;
+let reverbSend = null;
+let isMuted    = false;
+let beatStep   = 0;
+let nextBeat   = 0;
+let sched      = null;
 
-// Chord progression: Cmaj7 → Am7 → Fmaj7 → G7 (I vi IV V)
 const CHORDS = [
   [261.63, 329.63, 392.00, 493.88],
   [220.00, 261.63, 329.63, 392.00],
   [174.61, 220.00, 261.63, 329.63],
   [196.00, 246.94, 293.66, 349.23],
 ];
-const BASS = [130.81, 110.00, 87.31, 98.00]; // C3 A2 F2 G2
+const BASS = [130.81, 110.00, 87.31, 98.00];
 
 function makeReverb() {
   const conv = audioCtx.createConvolver();
@@ -1061,131 +1007,96 @@ function makeReverb() {
   const buf  = audioCtx.createBuffer(2, len, rate);
   for (let c = 0; c < 2; c++) {
     const d = buf.getChannelData(c);
-    for (let i = 0; i < len; i++)
-      d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
   }
   conv.buffer = buf;
   return conv;
 }
 
 function kick(t) {
-  const o = audioCtx.createOscillator();
-  const g = audioCtx.createGain();
+  const o = audioCtx.createOscillator(), g = audioCtx.createGain();
   o.type = 'sine';
-  o.frequency.setValueAtTime(150, t);
-  o.frequency.exponentialRampToValueAtTime(40, t + 0.07);
-  g.gain.setValueAtTime(1.0, t);
-  g.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
-  o.connect(g); g.connect(compressor);
-  o.start(t); o.stop(t + 0.45);
+  o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(40, t + .07);
+  g.gain.setValueAtTime(1.0, t); g.gain.exponentialRampToValueAtTime(.001, t + .45);
+  o.connect(g); g.connect(compressor); o.start(t); o.stop(t + .45);
 }
 
 function snare(t) {
-  const len = Math.floor(audioCtx.sampleRate * 0.12);
+  const len = Math.floor(audioCtx.sampleRate * .12);
   const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-  const d   = buf.getChannelData(0);
-  for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
-  const ns  = audioCtx.createBufferSource(); ns.buffer = buf;
-  const fil = audioCtx.createBiquadFilter(); fil.type = 'bandpass'; fil.frequency.value = 1500; fil.Q.value = 0.8;
-  const g   = audioCtx.createGain();
-  g.gain.setValueAtTime(0.38, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-  ns.connect(fil); fil.connect(g); g.connect(compressor);
-  ns.start(t); ns.stop(t + 0.12);
-
+  const d = buf.getChannelData(0); for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  const ns = audioCtx.createBufferSource(); ns.buffer = buf;
+  const fil = audioCtx.createBiquadFilter(); fil.type = 'bandpass'; fil.frequency.value = 1500; fil.Q.value = .8;
+  const g = audioCtx.createGain(); g.gain.setValueAtTime(.38, t); g.gain.exponentialRampToValueAtTime(.001, t + .12);
+  ns.connect(fil); fil.connect(g); g.connect(compressor); ns.start(t); ns.stop(t + .12);
   const o2 = audioCtx.createOscillator(), g2 = audioCtx.createGain();
   o2.type = 'triangle'; o2.frequency.value = 220;
-  g2.gain.setValueAtTime(0.2, t); g2.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
-  o2.connect(g2); g2.connect(compressor);
-  o2.start(t); o2.stop(t + 0.05);
+  g2.gain.setValueAtTime(.2, t); g2.gain.exponentialRampToValueAtTime(.001, t + .05);
+  o2.connect(g2); g2.connect(compressor); o2.start(t); o2.stop(t + .05);
 }
 
 function hihat(t, open) {
-  const dur = open ? 0.22 : 0.04;
+  const dur = open ? .22 : .04;
   const len = Math.floor(audioCtx.sampleRate * dur);
   const buf = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-  const d   = buf.getChannelData(0);
-  for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  const d = buf.getChannelData(0); for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
   const src = audioCtx.createBufferSource(); src.buffer = buf;
   const fil = audioCtx.createBiquadFilter(); fil.type = 'highpass'; fil.frequency.value = 9000;
-  const g   = audioCtx.createGain();
-  g.gain.setValueAtTime(open ? 0.12 : 0.08, t);
-  g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-  src.connect(fil); fil.connect(g); g.connect(compressor);
-  src.start(t); src.stop(t + dur);
+  const g = audioCtx.createGain(); g.gain.setValueAtTime(open ? .12 : .08, t); g.gain.exponentialRampToValueAtTime(.001, t + dur);
+  src.connect(fil); fil.connect(g); g.connect(compressor); src.start(t); src.stop(t + dur);
 }
 
 function bass(t, freq) {
   const o = audioCtx.createOscillator(), g = audioCtx.createGain();
   const f = audioCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 260;
   o.type = 'sine'; o.frequency.value = freq;
-  g.gain.setValueAtTime(0, t);
-  g.gain.linearRampToValueAtTime(0.5, t + 0.01);
-  g.gain.setValueAtTime(0.5, t + BEAT - 0.05);
-  g.gain.linearRampToValueAtTime(0, t + BEAT);
-  o.connect(f); f.connect(g); g.connect(compressor);
-  o.start(t); o.stop(t + BEAT);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.5, t + .01);
+  g.gain.setValueAtTime(.5, t + BEAT - .05); g.gain.linearRampToValueAtTime(0, t + BEAT);
+  o.connect(f); f.connect(g); g.connect(compressor); o.start(t); o.stop(t + BEAT);
 }
 
 function pad(t, ci) {
-  const dur = EIGHTH * 16 * 0.97;
+  const dur = EIGHTH * 16 * .97;
   CHORDS[ci].forEach((freq, i) => {
     const o = audioCtx.createOscillator(), g = audioCtx.createGain();
     o.type = 'triangle'; o.frequency.value = freq;
-    const vol = Math.max(0.002, 0.055 - i * 0.01);
-    g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(vol, t + 0.4);
-    g.gain.setValueAtTime(vol, t + dur - 0.5);
-    g.gain.linearRampToValueAtTime(0, t + dur);
+    const vol = Math.max(.002, .055 - i * .01);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .4);
+    g.gain.setValueAtTime(vol, t + dur - .5); g.gain.linearRampToValueAtTime(0, t + dur);
     o.connect(g); g.connect(compressor);
     if (reverbSend) g.connect(reverbSend);
-    o.start(t); o.stop(t + dur + 0.1);
+    o.start(t); o.stop(t + dur + .1);
   });
 }
 
-// Upbeat melodic line (simple arpeggio over chord tones)
-const MELODY_PATTERNS = [
-  [0, 2, 1, 3, 0, 3, 2, 1],
-  [1, 0, 2, 3, 1, 2, 0, 3],
-  [2, 1, 3, 0, 2, 0, 1, 3],
-  [3, 0, 1, 2, 3, 2, 0, 1],
-];
+const MEL_PAT = [[0,2,1,3,0,3,2,1],[1,0,2,3,1,2,0,3],[2,1,3,0,2,0,1,3],[3,0,1,2,3,2,0,1]];
 
-function melodyNote(t, ci, patStep) {
-  const pattern = MELODY_PATTERNS[ci];
-  const noteIdx = pattern[patStep % 8];
-  const freq    = CHORDS[ci][noteIdx] * 2; // one octave up
+function melody(t, ci, patStep) {
+  const freq = CHORDS[ci][MEL_PAT[ci][patStep % 8]] * 2;
   const o = audioCtx.createOscillator(), g = audioCtx.createGain();
   const f = audioCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 2800;
   o.type = 'sine'; o.frequency.value = freq;
-  g.gain.setValueAtTime(0, t);
-  g.gain.linearRampToValueAtTime(0.045, t + 0.02);
-  g.gain.exponentialRampToValueAtTime(0.001, t + EIGHTH * 0.85);
+  g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.045, t + .02);
+  g.gain.exponentialRampToValueAtTime(.001, t + EIGHTH * .85);
   o.connect(f); f.connect(g); g.connect(compressor);
   if (reverbSend) g.connect(reverbSend);
   o.start(t); o.stop(t + EIGHTH);
 }
 
 function scheduleTick(step, t) {
-  const pos = step % 16;           // position in 2-bar pattern (16 eighth notes)
-  const ci  = Math.floor(step / 16) % 4; // chord index
-
+  const pos = step % 16;
+  const ci  = Math.floor(step / 16) % 4;
   if (pos === 0 || pos === 8) kick(t);
   if (pos === 4 || pos === 12) snare(t);
   hihat(t, pos % 4 === 2);
-
-  if (pos % 2 === 0) bass(t, BASS[ci]);
-  if (pos === 0)     pad(t, ci);
-
-  // Melody every 2 eighth notes (every quarter note)
-  if (pos % 2 === 0) melodyNote(t, ci, Math.floor(pos / 2));
+  if (pos % 2 === 0) { bass(t, BASS[ci]); melody(t, ci, Math.floor(pos / 2)); }
+  if (pos === 0) pad(t, ci);
 }
 
 function runScheduler() {
-  const AHEAD = 0.12;
-  while (nextBeat < audioCtx.currentTime + AHEAD) {
+  while (nextBeat < audioCtx.currentTime + .12) {
     scheduleTick(beatStep, nextBeat);
-    nextBeat += EIGHTH;
-    beatStep++;
+    nextBeat += EIGHTH; beatStep++;
   }
 }
 
@@ -1193,43 +1104,21 @@ function startMusic() {
   if (audioCtx) return;
   audioCtx   = new (window.AudioContext || window.webkitAudioContext)();
   compressor = audioCtx.createDynamicsCompressor();
-  compressor.threshold.value = -16;
-  compressor.knee.value = 6;
-  compressor.ratio.value = 4;
-  compressor.attack.value = 0.003;
-  compressor.release.value = 0.25;
-  masterGain = audioCtx.createGain();
-  masterGain.gain.value = 0;
-  compressor.connect(masterGain);
-  masterGain.connect(audioCtx.destination);
-
-  // Reverb send
-  const conv = makeReverb();
-  const rg   = audioCtx.createGain(); rg.gain.value = 0.28;
-  conv.connect(rg); rg.connect(masterGain);
-  reverbSend = conv;
-
-  masterGain.gain.linearRampToValueAtTime(0.72, audioCtx.currentTime + 2);
-
-  beatStep = 0;
-  nextBeat = audioCtx.currentTime + 0.1;
-  sched    = setInterval(runScheduler, 25);
-}
-
-function stopMusic() {
-  if (!audioCtx) return;
-  clearInterval(sched); sched = null;
-  masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1);
-  setTimeout(() => {
-    try { audioCtx.close(); } catch (e) {}
-    audioCtx = masterGain = compressor = reverbSend = null;
-  }, 1200);
+  compressor.threshold.value = -16; compressor.knee.value = 6;
+  compressor.ratio.value = 4; compressor.attack.value = .003; compressor.release.value = .25;
+  masterGain = audioCtx.createGain(); masterGain.gain.value = 0;
+  compressor.connect(masterGain); masterGain.connect(audioCtx.destination);
+  const conv = makeReverb(), rg = audioCtx.createGain(); rg.gain.value = .28;
+  conv.connect(rg); rg.connect(masterGain); reverbSend = conv;
+  masterGain.gain.linearRampToValueAtTime(.72, audioCtx.currentTime + 2);
+  beatStep = 0; nextBeat = audioCtx.currentTime + .1;
+  sched = setInterval(runScheduler, 25);
 }
 
 function toggleMute() {
   if (!audioCtx || !masterGain) return;
   isMuted = !isMuted;
-  masterGain.gain.linearRampToValueAtTime(isMuted ? 0 : 0.72, audioCtx.currentTime + 0.3);
+  masterGain.gain.linearRampToValueAtTime(isMuted ? 0 : .72, audioCtx.currentTime + .3);
   document.getElementById('soundOnIcon').style.display  = isMuted ? 'none'  : 'block';
   document.getElementById('soundOffIcon').style.display = isMuted ? 'block' : 'none';
 }
@@ -1248,24 +1137,17 @@ function nextSlide() { showSlide((currentSlide + 1) % totalSlides); }
 function prevSlide()  { showSlide((currentSlide - 1 + totalSlides) % totalSlides); }
 function goToSlide(i) { showSlide(i); if (isPlaying) restartTimer(); }
 
-// ============================================================
-//  PROGRESS BAR
-// ============================================================
 function resetProgress() {
   document.getElementById('progressBar').style.width = '0%';
-  progressStartTime = Date.now();
-  progressPausedAt  = 0;
+  progressStartTime = Date.now(); progressPausedAt = 0;
 }
 
 function updateProgress() {
   if (!isPlaying) return;
-  const pct = Math.min(((Date.now() - progressStartTime) / SLIDE_DURATION) * 100, 100);
-  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressBar').style.width =
+    Math.min(((Date.now() - progressStartTime) / SLIDE_DURATION) * 100, 100) + '%';
 }
 
-// ============================================================
-//  TIMER
-// ============================================================
 function startTimer() {
   isPlaying = true;
   document.getElementById('pauseIcon').style.display = 'block';
@@ -1279,15 +1161,13 @@ function pauseTimer() {
   isPlaying = false;
   document.getElementById('pauseIcon').style.display = 'none';
   document.getElementById('playIcon').style.display  = 'block';
-  clearTimeout(slideTimer);
-  clearInterval(progressTimer);
+  clearTimeout(slideTimer); clearInterval(progressTimer);
   progressPausedAt = Date.now() - progressStartTime;
 }
 
 function restartTimer() {
   clearTimeout(slideTimer); clearInterval(progressTimer);
-  progressPausedAt = 0;
-  if (isPlaying) startTimer();
+  progressPausedAt = 0; if (isPlaying) startTimer();
 }
 
 function togglePlayPause() { isPlaying ? pauseTimer() : startTimer(); }
@@ -1302,17 +1182,17 @@ function launch() {
   setTimeout(() => { showSlide(0); startMusic(); startTimer(); }, 400);
 }
 
-document.getElementById('startBtn').addEventListener('click', (e) => { e.stopPropagation(); launch(); });
+document.getElementById('startBtn').addEventListener('click', e => { e.stopPropagation(); launch(); });
 document.getElementById('startScreen').addEventListener('click', launch);
 document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
 document.getElementById('prevBtn').addEventListener('click', () => { prevSlide(); restartTimer(); });
 document.getElementById('nextBtn').addEventListener('click', () => { nextSlide(); restartTimer(); });
 document.getElementById('muteBtn').addEventListener('click', toggleMute);
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', e => {
   if (!document.getElementById('startScreen').classList.contains('hidden')) return;
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); restartTimer(); }
-  if (e.key === 'ArrowLeft')  { prevSlide(); restartTimer(); }
+  if (e.key === 'ArrowLeft') { prevSlide(); restartTimer(); }
   if (e.key === 'p' || e.key === 'P') togglePlayPause();
   if (e.key === 'm' || e.key === 'M') toggleMute();
 });

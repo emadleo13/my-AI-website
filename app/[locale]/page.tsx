@@ -7,6 +7,7 @@ import { Testimonials } from '@/components/sections/Testimonials';
 import { BlogPreview } from '@/components/sections/BlogPreview';
 import { HowItWorks } from '@/components/sections/HowItWorks';
 import { WhatDrivesUs } from '@/components/sections/WhatDrivesUs';
+import { PresentationFloatingButton } from '@/components/home/PresentationFloatingButton';
 import { type Locale } from '@/lib/i18n';
 
 export default async function HomePage({
@@ -27,6 +28,7 @@ export default async function HomePage({
       <WhatDrivesUs />
       <Testimonials />
       <BlogPreview locale={locale as Locale} />
+      <PresentationFloatingButton />
     </>
   );
 }
