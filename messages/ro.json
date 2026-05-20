@@ -59,11 +59,26 @@
       "subtitle": "Strategie, implementare și construcție hands-on.",
       "viewAll": "Vezi toate serviciile",
       "items": {
-        "consult":  { "title": "Consultanță și strategie AI",     "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI." },
-        "agents":   { "title": "Design agenți AI & chatbot",      "desc": "LangChain, CrewAI și chatboți custom care ajung în producție." },
-        "workflow": { "title": "Automatizarea fluxurilor",        "desc": "Automatizează preluarea lead-urilor, follow-up-urile, actualizările CRM și sarcinile repetitive." },
-        "dev":      { "title": "Dezvoltare software",             "desc": "Aplicații web full-stack, API-uri și integrări." },
-        "career":   { "title": "Consultanță de carieră în România","desc": "Revizuire CV, ghidaj de piață și pregătire interviu." }
+        "consult": {
+          "title": "Consultanță și strategie AI",
+          "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI."
+        },
+        "agents": {
+          "title": "Design agenți AI & chatbot",
+          "desc": "LangChain, CrewAI și chatboți custom care ajung în producție."
+        },
+        "workflow": {
+          "title": "Automatizarea fluxurilor",
+          "desc": "Automatizează preluarea lead-urilor, follow-up-urile, actualizările CRM și sarcinile repetitive."
+        },
+        "dev": {
+          "title": "Dezvoltare software",
+          "desc": "Aplicații web full-stack, API-uri și integrări."
+        },
+        "career": {
+          "title": "Consultanță de carieră în România",
+          "desc": "Revizuire CV, ghidaj de piață și pregătire interviu."
+        }
       }
     },
     "howItWorks": {
@@ -117,9 +132,18 @@
     "testimonials": {
       "title": "Ce spun clienții",
       "items": {
-        "1": { "quote": "Emad a transformat un plan de șase luni într-un agent funcțional în trei săptămâni.", "author": "CTO, startup fintech" },
-        "2": { "quote": "Cea mai clară și practică consultanță AI pe care am avut-o.", "author": "Head of Product, SaaS UE" },
-        "3": { "quote": "M-a ajutat să prind un rol senior în București — pregătirea de interviu a fost de aur.", "author": "Inginer software" }
+        "1": {
+          "quote": "Emad a transformat un plan de șase luni într-un agent funcțional în trei săptămâni.",
+          "author": "CTO, startup fintech"
+        },
+        "2": {
+          "quote": "Cea mai clară și practică consultanță AI pe care am avut-o.",
+          "author": "Head of Product, SaaS UE"
+        },
+        "3": {
+          "quote": "M-a ajutat să prind un rol senior în București — pregătirea de interviu a fost de aur.",
+          "author": "Inginer software"
+        }
       }
     }
   },
@@ -150,17 +174,47 @@
     "education": {
       "title": "Educație și certificări",
       "items": {
-        "1": { "degree": "Informatică", "school": "Universitatea Tehnică din Cluj-Napoca", "period": "2024 — 2028", "note": "În curs de studiu." },
-        "2": { "degree": "Specializare Deep Learning", "school": "CareerPreneur Academy · Canada", "period": "2026", "note": "Deep learning aplicat și AI." }
+        "1": {
+          "degree": "Informatică",
+          "school": "Universitatea Tehnică din Cluj-Napoca",
+          "period": "2024 — 2028",
+          "note": "În curs de studiu."
+        },
+        "2": {
+          "degree": "Specializare Deep Learning",
+          "school": "CareerPreneur Academy · Canada",
+          "period": "2026",
+          "note": "Deep learning aplicat și AI."
+        }
       }
     },
     "experience": {
       "title": "Experiență profesională",
       "items": {
-        "1": { "role": "Consultant AI (în colaborare cu Academia CareerPreneur)", "company": "Ai Academy · Canada", "period": "2024 — Prezent", "summary": "Consultanță pentru IMM-uri și startup-uri europene în adopție AI și livrare de agenți de producție." },
-        "2": { "role": "Software Engineer", "company": "Scale-up Fintech · UE", "period": "2019 — 2023", "summary": "Colaborare cu echipă de 6 ingineri pe o platformă de plăți, apoi roadmap AI." },
-        "3": { "role": "Dezvoltator", "company": "SaaS e-commerce", "period": "2015 — 2018", "summary": "Owner pe checkout și integrări Stripe în mai multe regiuni." },
-        "4": { "role": "Dezvoltator Junior", "company": "Agenție web · Tehran", "period": "2015 — 2018", "summary": "Peste 30 de proiecte client în PHP, Node.js și React timpuriu." }
+        "1": {
+          "role": "Consultant AI (în colaborare cu Academia CareerPreneur)",
+          "company": "Ai Academy · Canada",
+          "period": "2024 — Prezent",
+          "summary": "Consultanță pentru IMM-uri și startup-uri europene în adopție AI și livrare de agenți de producție."
+        },
+        "2": {
+          "role": "Software Engineer",
+          "company": "Scale-up Fintech · UE",
+          "period": "2019 — 2023",
+          "summary": "Colaborare cu echipă de 6 ingineri pe o platformă de plăți, apoi roadmap AI."
+        },
+        "3": {
+          "role": "Dezvoltator",
+          "company": "SaaS e-commerce",
+          "period": "2015 — 2018",
+          "summary": "Owner pe checkout și integrări Stripe în mai multe regiuni."
+        },
+        "4": {
+          "role": "Dezvoltator Junior",
+          "company": "Agenție web · Tehran",
+          "period": "2015 — 2018",
+          "summary": "Peste 30 de proiecte client în PHP, Node.js și React timpuriu."
+        }
       }
     },
     "documents": {
@@ -169,12 +223,30 @@
       "viewLabel": "Vezi",
       "closeLabel": "Închide",
       "items": {
-        "1": { "title": "Diplomă Licență", "caption": "Universitatea din Guilan · Iran" },
-        "2": { "title": "Diplomă Licență", "caption": "Universitatea Azad Lahijan" },
-        "3": { "title": "Certificat Informatică", "caption": "CareerPreneur AI" },
-        "4": { "title": "Permis de muncă România", "caption": "Emis 2022" },
-        "5": { "title": "Certificat ML Specialist", "caption": "Coursera" },
-        "6": { "title": "Certificat AI-Python", "caption": "Pytopia.ai" }
+        "1": {
+          "title": "Diplomă Licență",
+          "caption": "Universitatea din Guilan · Iran"
+        },
+        "2": {
+          "title": "Diplomă Licență",
+          "caption": "Universitatea Azad Lahijan"
+        },
+        "3": {
+          "title": "Certificat Informatică",
+          "caption": "CareerPreneur AI"
+        },
+        "4": {
+          "title": "Permis de muncă România",
+          "caption": "Emis 2022"
+        },
+        "5": {
+          "title": "Certificat ML Specialist",
+          "caption": "Coursera"
+        },
+        "6": {
+          "title": "Certificat AI-Python",
+          "caption": "Pytopia.ai"
+        }
       }
     },
     "resume": {
@@ -193,43 +265,71 @@
       "consult": {
         "title": "Consultanță și strategie AI",
         "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI.",
-        "bullets": { "1": "Plan de adopție personalizat", "2": "Analiză build vs buy", "3": "Revizuire risc și conformitate" },
+        "bullets": {
+          "1": "Plan de adopție personalizat",
+          "2": "Analiză build vs buy",
+          "3": "Revizuire risc și conformitate"
+        },
         "cta": "Contactează-mă"
       },
       "agents": {
         "title": "Design și implementare agenți AI",
         "desc": "LangChain, CrewAI, AutoGen și agenți custom în producție.",
-        "bullets": { "1": "Arhitectură agent", "2": "Integrări de unelte", "3": "Evaluare și monitorizare" },
+        "bullets": {
+          "1": "Arhitectură agent",
+          "2": "Integrări de unelte",
+          "3": "Evaluare și monitorizare"
+        },
         "cta": "Contactează-mă"
       },
       "dev": {
         "title": "Dezvoltare software custom",
         "desc": "Aplicații web full-stack, API-uri și integrări.",
-        "bullets": { "1": "Next.js / Node / Python", "2": "Postgres / Supabase", "3": "CI/CD pe Vercel & AWS" },
+        "bullets": {
+          "1": "Next.js / Node / Python",
+          "2": "Postgres / Supabase",
+          "3": "CI/CD pe Vercel & AWS"
+        },
         "cta": "Contactează-mă"
       },
       "ml": {
         "title": "Soluții de machine learning",
         "desc": "Antrenare, fine-tuning și deployment de modele.",
-        "bullets": { "1": "Antrenare modele custom", "2": "Fine-tuning Claude / OSS", "3": "Deployment de inferență" },
+        "bullets": {
+          "1": "Antrenare modele custom",
+          "2": "Fine-tuning Claude / OSS",
+          "3": "Deployment de inferență"
+        },
         "cta": "Contactează-mă"
       },
       "romaniaTech": {
         "title": "Consultanță tech pentru companii românești",
         "desc": "Transformare digitală și integrare AI pentru IMM-uri.",
-        "bullets": { "1": "Digitalizare procese", "2": "Integrare AI", "3": "Upskilling echipă" },
+        "bullets": {
+          "1": "Digitalizare procese",
+          "2": "Integrare AI",
+          "3": "Upskilling echipă"
+        },
         "cta": "Contactează-mă"
       },
       "workflow": {
         "title": "Automatizarea fluxurilor de lucru",
         "desc": "Automatizează procesele repetitive ca echipa ta să se concentreze pe ce contează.",
-        "bullets": { "1": "Preluare lead-uri și actualizări CRM", "2": "Follow-up-uri și notificări automate", "3": "Cartografiere procese și integrare" },
+        "bullets": {
+          "1": "Preluare lead-uri și actualizări CRM",
+          "2": "Follow-up-uri și notificări automate",
+          "3": "Cartografiere procese și integrare"
+        },
         "cta": "Contactează-mă"
       },
       "career": {
         "title": "Job hunting și consultanță de carieră în România",
         "desc": "Revizuire CV, ghidaj de piață și pregătire interviu.",
-        "bullets": { "1": "Revizuire CV / LinkedIn", "2": "Ghidaj piață România", "3": "Pregătire interviu" },
+        "bullets": {
+          "1": "Revizuire CV / LinkedIn",
+          "2": "Ghidaj piață România",
+          "3": "Pregătire interviu"
+        },
         "cta": "Contactează-mă"
       }
     },
@@ -246,7 +346,11 @@
           "period": "30 min",
           "desc": "Apel introductiv gratuit pentru clarificarea nevoilor.",
           "cta": "Rezervă gratuit",
-          "items": { "1": "Apel video 30 minute", "2": "Pași următori personalizați", "3": "Fără angajament" }
+          "items": {
+            "1": "Apel video 30 minute",
+            "2": "Pași următori personalizați",
+            "3": "Fără angajament"
+          }
         },
         "standard": {
           "name": "Standard",
@@ -254,7 +358,12 @@
           "period": "per proiect",
           "desc": "Un angajament focalizat pentru un rezultat concret.",
           "cta": "Începe acum",
-          "items": { "1": "Discovery + scoping", "2": "Implementare hands-on", "3": "Suport asincron 4 săptămâni", "4": "Predare finală" }
+          "items": {
+            "1": "Discovery + scoping",
+            "2": "Implementare hands-on",
+            "3": "Suport asincron 4 săptămâni",
+            "4": "Predare finală"
+          }
         },
         "premium": {
           "name": "Premium",
@@ -262,7 +371,13 @@
           "period": "pe lună",
           "desc": "Partener AI continuu pentru echipa ta.",
           "cta": "Rezervă apel intro",
-          "items": { "1": "Sesiuni săptămânale de lucru", "2": "Review arhitectură și cod", "3": "Canal Slack dedicat", "4": "Răspuns prioritar", "5": "Review trimestrial roadmap" }
+          "items": {
+            "1": "Sesiuni săptămânale de lucru",
+            "2": "Review arhitectură și cod",
+            "3": "Canal Slack dedicat",
+            "4": "Răspuns prioritar",
+            "5": "Review trimestrial roadmap"
+          }
         }
       }
     }
@@ -379,7 +494,8 @@
       "title": "Vrei să sapi mai adânc?",
       "body": "Întreabă consultantul AI despre situația ta specifică — îți va sugera stack-ul, calendarul și pașii următori.",
       "action": "Deschide chatul"
-    }
+    },
+    "status": "Online · Răspunde instant"
   },
   "booking": {
     "title": "Rezervă o consultație",
@@ -391,10 +507,22 @@
       "payment": "Plată"
     },
     "services": {
-      "ai":     { "title": "Strategie AI",                "desc": "Sesiune strategică de 60 min despre adoptarea AI în organizație." },
-      "agent":  { "title": "Implementare agent",          "desc": "Design și prototipare practică de agenți." },
-      "career": { "title": "Consultanță carieră & job",  "desc": "Revizuire CV, pregătire interviu și ghidaj piață România." },
-      "tech":   { "title": "Consultanță tech generală",   "desc": "Revizuire arhitectură, code review sau sparring tehnic." }
+      "ai": {
+        "title": "Strategie AI",
+        "desc": "Sesiune strategică de 60 min despre adoptarea AI în organizație."
+      },
+      "agent": {
+        "title": "Implementare agent",
+        "desc": "Design și prototipare practică de agenți."
+      },
+      "career": {
+        "title": "Consultanță carieră & job",
+        "desc": "Revizuire CV, pregătire interviu și ghidaj piață România."
+      },
+      "tech": {
+        "title": "Consultanță tech generală",
+        "desc": "Revizuire arhitectură, code review sau sparring tehnic."
+      }
     },
     "datetime": {
       "title": "Alege data și ora",

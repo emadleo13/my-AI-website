@@ -2,17 +2,24 @@
 
 ## Who Is Emad?
 
-Emad is an AI consultant and software developer based in Cluj-Napoca, Romania. He has over 10 years of experience shipping software across e-commerce, SaaS, and fintech. For the last three years he has focused entirely on AI: agent design, retrieval-augmented generation (RAG), evaluations, and turning prototypes into reliable production systems.
+Emad (Abdolhamid Bashari / عماد) is an AI consultant, junior web developer, and CNC programmer based in Baia Mare, Maramureș, Romania. He has over 15 years of cross-industry experience including sales management, insurance, and team supervision. Since 2024 he has been building practical skills in AI and web development while working full-time as a CNC operator, running his AI consulting practice in parallel.
+
+He is a Computer Science student at the Technical University of Cluj-Napoca and holds a B.A. in Financial Management. He is trilingual: Persian (native), English (upper-intermediate), Romanian (intermediate).
 
 He works with:
-- Companies adopting AI for the first time
-- Engineering teams building agentic products
-- Individuals navigating the Romanian tech job market
+- Small businesses and individuals seeking practical AI adoption guidance
+- People navigating the Romanian tech job market, especially foreign nationals
+- Clients needing web development with Next.js, TypeScript, and Python
 
-His approach: pragmatic over fashionable — the right model, the right framework, and the smallest possible system that actually solves the problem.
+His approach: pragmatic and hands-on — starting small, measuring results, and scaling only what works.
 
-Contact: hamidleo1984@gmail.com
-Location: Cluj-Napoca, Romania
+Contact: emadleo13@gmail.com
+Phone: +40 791 520 388
+Location: Baia Mare, Maramureș, Romania
+Website: emad-ai-consultant.vercel.app
+GitHub: github.com/emadleo13
+LinkedIn: linkedin.com/in/abdolhamid-bashari
+Romanian work permit: Yes · Driving License: B/B1
 
 ---
 
@@ -102,44 +109,64 @@ You can also reach out directly via the Contact page or email hamidleo1984@gmail
 
 ---
 
+## Projects
+
+**EMAD AI Consultant Website** — Next.js / TypeScript
+Personal bilingual (EN/RO/FA) consulting website deployed on Vercel. Features: AI chatbot with RAG, multilingual i18n, Supabase auth and database, booking system, blog with MDX, admin panel for managing documents and bookings. GitHub: github.com/emadleo13
+
+**Pytopia Dashboard** — Python
+Data dashboard project built as part of the Pytopia AI & Python program.
+
+**Python Level 1 & 2 Projects** — Jupyter / Python
+Coursework projects covering data structures, file handling, and data analysis.
+
+---
+
 ## Skills & Tech Stack
 
-**Programming Languages:** Python, TypeScript, JavaScript, PHP
+**Manufacturing & Technical:** CNC Operation · CNC Programming (G-code) · 3-Axis Machining · Drilling & Milling · Lathe Operation · Machine Setup · Material Handling · Quality Control
 
-**Frameworks:** Next.js, React, Node.js, FastAPI
+**Programming & Web (learning & practicing):** Python · JavaScript · TypeScript · HTML / CSS · Next.js · React · Git & GitHub · Vercel · Claude API · OpenAI API · LangChain
 
-**AI / ML:** LangChain, CrewAI, AutoGen, OpenAI API, Anthropic Claude, RAG pipelines, vector databases, fine-tuning, evals
+**Other Skills:** Adobe Photoshop · CCTV installation & repair · Basic electrical work · Team leadership
 
-**Infrastructure & Data:** Supabase, PostgreSQL, Vercel, AWS, Docker, CI/CD
+**Languages:** Persian (native) · English (upper-intermediate) · Romanian (intermediate)
 
 ---
 
 ## Education & Certifications
 
-- M.Sc. Computer Science — University of Technic Cluj-Napoca (2024–2028), focus: machine learning and distributed systems
-- Deep Learning Specialization — CAREERPRENEUR ACADEMY (2026), sequence models and NLP
-- B.Sc. Diploma — University of Guilan, Iran
-- B.Sc. Diploma — Azad Lahijan University
-- Computer Science Certificate — CAREERPRENEUR-AI
-- ML Specialist Certificate — Coursera
-- AI-Python Certificate — Pytopia.ai
-- Romania Work Permit — Issued 2022
+- **B.Sc. Computer Science (in progress)** — Technical University of Cluj-Napoca
+- **Romanian Language Studies** — Universitatea Babeș-Bolyai, Cluj-Napoca | 2022–2024 (Diploma of Higher Education)
+- **B.A. Financial Management** — Azad Lahijan University, Iran | Apr 2017–Apr 2021
+- **AI & Python Program** — Pytopia.ai
+- **JavaScript, HTML & CSS** — Online courses
+- **Romanian Work Permit** — Issued by IGI Romania
+- **Driving License** — Categories B, B1
 
 ---
 
 ## Work Experience
 
-**AI Consultant** — AI Academy (Canada, in collaboration with CAREERPRENEUR Academy) | 2024–Present
-Advising European SMEs and startups on AI adoption and shipping production AI agents.
+**CNC Machine Operator & Programmer** — COZMIRCOM SA | Dec 2024–Present | Baia Mare, Maramureș, Romania
+- Operates and programs CNC machines for precision manufacturing (3-axis machining, drilling, grinding, milling).
+- Sets up conventional CNC machines and writes/adjusts G-code programs.
+- Handles material loading, quality control, and daily production deadlines.
 
-**Software Engineer** — Fintech Scale-up, EU | 2019–2023
-Part of a 6-engineer team building a payments platform; later drove the company's AI roadmap.
+**AI Consultant & Junior Web Developer (Part-time)** — EMAD AI Consultant | 2024–Present | Freelance, Romania (remote)
+- Provides AI adoption guidance to small businesses and individuals, focusing on practical solutions.
+- Builds web projects with Python, JavaScript, TypeScript, and Next.js — including a bilingual (EN/RO) consulting website deployed on Vercel.
+- Applies modern AI tools: Claude API, OpenAI API, LangChain, and RAG basics.
 
-**Developer** — E-commerce SaaS | 2015–2018
-Owned core checkout and payment integrations across multiple Stripe regions.
+**Insurance Agent & Sales Team Manager** — Insurance Agency | Apr 2016–Apr 2021 | Lahijan, Iran
+- Sold commercial, medical, life, and investment-linked insurance products to a diverse client base.
+- Managed a health & life insurance sales team; trained members and tracked performance targets.
 
-**Junior Developer** — Web Agency, Tehran | 2015–2018
-Shipped 30+ client projects in PHP, Node.js, and early React.
+**Sales Representative** — Biozer Agricultural Company | Jun 2015–Jun 2016 | Rasht, Iran
+- Production support and sales of agricultural and aquaculture products.
+
+**Sales & Warehouse Supervisor** — Sepahan Battery Company | Apr 2008–Apr 2010 | Rasht, Iran
+- Supervised automotive battery sales and managed warehouse stock and customer relations.
 
 ---
 

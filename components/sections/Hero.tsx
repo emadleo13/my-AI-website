@@ -23,12 +23,12 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="container py-24 md:py-32 grid gap-12 md:grid-cols-2 items-center">
+      <div className="container py-16 md:py-32 grid gap-8 md:gap-12 md:grid-cols-2 items-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="space-y-6"
+          className="space-y-6 min-w-0"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
             <MapPin className="h-3.5 w-3.5 text-accent" />
@@ -62,17 +62,17 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
-          className="relative mx-auto"
+          className="relative mx-auto w-full min-w-0"
         >
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full" />
-          <div className="relative aspect-[16/9] w-[420px] md:w-[640px] rounded-3xl overflow-hidden border border-border shadow-2xl">
+          <div className="relative aspect-[16/9] w-full max-w-sm mx-auto md:max-w-none md:w-[640px] rounded-3xl overflow-hidden border border-border shadow-2xl">
             <Image
               src="/AI PIC.png"
               alt="Emad — AI consultant and software developer"
               fill
               priority
               className="object-cover object-center"
-              sizes="(max-width: 768px) 280px, 380px"
+              sizes="(max-width: 768px) 100vw, 640px"
             />
           </div>
         </motion.div>
