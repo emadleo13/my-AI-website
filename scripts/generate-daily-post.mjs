@@ -44,6 +44,56 @@ async function fetchHNStories() {
     .slice(0, 5);
 }
 
+/**
+ * Escape literal newlines/carriage-returns that appear INSIDE JSON string
+ * values (a common LLM mistake). Walks the string character-by-character so
+ * it never corrupts structural newlines outside strings.
+ */
+function fixNewlinesInStrings(str) {
+  let out = '';
+  let inStr = false;
+  let esc = false;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    if (esc) { out += ch; esc = false; continue; }
+    if (ch === '\\' && inStr) { out += ch; esc = true; continue; }
+    if (ch === '"') { out += ch; inStr = !inStr; continue; }
+    if (inStr && ch === '\n') { out += '\\n'; continue; }
+    if (inStr && ch === '\r') { out += '\\r'; continue; }
+    out += ch;
+  }
+  return out;
+}
+
+/**
+ * Extract and parse the first valid JSON object from an LLM response.
+ * Handles: bare JSON, ```json fences, leading prose, literal newlines in strings.
+ */
+function parseJsonFromLlm(raw) {
+  // Strip wrapping markdown code fence only when it wraps the WHOLE response.
+  // Use a non-multiline match so ^ / $ anchor to the full string, not per-line.
+  let text = raw.trim();
+  const fenceWrap = text.match(/^```(?:json)?[ \t]*\n([\s\S]+)\n```[ \t]*$/);
+  if (fenceWrap) text = fenceWrap[1].trim();
+
+  const start = text.indexOf('{');
+  const end   = text.lastIndexOf('}');
+  if (start === -1 || end === -1 || end <= start) {
+    throw new Error(`No JSON object found in response: ${raw.slice(0, 300)}`);
+  }
+
+  const jsonStr = text.slice(start, end + 1);
+
+  // Attempt 1: direct parse (works when Claude returns clean JSON)
+  try { return JSON.parse(jsonStr); } catch (_) { /* fall through */ }
+
+  // Attempt 2: fix literal newlines inside string values, then re-parse
+  const fixed = fixNewlinesInStrings(jsonStr);
+  try { return JSON.parse(fixed); } catch (err) {
+    throw new Error(`JSON parse failed: ${err.message}. Preview: ${jsonStr.slice(0, 300)}`);
+  }
+}
+
 async function generatePost(stories, locale) {
   const storySummaries = stories
     .map((s, i) => `${i + 1}. "${s.title}" (${s.score} points) — ${s.url ?? 'news.ycombinator.com'}`)
@@ -73,25 +123,24 @@ Write a blog post that:
 - Uses clear, professional but not stiff language
 - Is 400-600 words total
 
-Output ONLY a JSON object with this exact shape:
+Output ONLY a raw JSON object — no markdown fences, no explanation, no text before or after.
+All newlines inside string values must be escaped as \\n. The exact shape:
 {
   "title": "...",
   "excerpt": "One sentence summary for the blog index.",
   "readingMinutes": 3,
   "tags": ["AI", "Programming"],
-  "body": "Full markdown body here (no frontmatter, just the content starting after the title)"
+  "body": "Full markdown body here. Use \\n for newlines. No frontmatter."
 }`;
 
   const message = await client.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 1500,
+    max_tokens: 3000,
     messages: [{ role: 'user', content: prompt }],
   });
 
   const raw = message.content[0].text.trim();
-  const jsonMatch = raw.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) throw new Error(`No JSON in Claude response: ${raw.slice(0, 200)}`);
-  return JSON.parse(jsonMatch[0]);
+  return parseJsonFromLlm(raw);
 }
 
 function slugFromDate(date) {
