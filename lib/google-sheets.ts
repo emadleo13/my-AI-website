@@ -72,7 +72,7 @@ export async function logBooking(row: BookingRow): Promise<void> {
   try {
     await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: 'Bookings!A:K',
+      range: 'Booking!A:K',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[
