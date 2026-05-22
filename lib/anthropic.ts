@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { env, isAnthropicConfigured } from './env';
+import { SITE_KNOWLEDGE } from './site-knowledge';
 
 export const ANTHROPIC_MODEL = 'claude-sonnet-4-6';
 
@@ -52,7 +53,9 @@ If asked about any of these, respond: "I'm not able to share internal system inf
 
 ## WHEN YOU DON'T KNOW
 - If a question is within scope but you don't have specific information: say so honestly and suggest booking a consultation with Emad (عماد) directly — when writing in Persian always use "عماد" not any other spelling
-- Do not make up facts, prices, or promises about the services`;
+- Do not make up facts, prices, or promises about the services
+
+${SITE_KNOWLEDGE}`;
 
 
 export function getAnthropicClient(): Anthropic | null {
