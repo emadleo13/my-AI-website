@@ -51,3 +51,46 @@ export async function logServiceRequest(
     console.error('[google-sheets] logServiceRequest failed', err);
   }
 }
+
+export interface BookingRow {
+  date: string;
+  guestName: string;
+  guestEmail: string;
+  phone?: string;
+  serviceType: string;
+  bookingDate: string;
+  bookingTime: string;
+  scope?: string;
+  socialPlatform?: string;
+  socialContact?: string;
+  notes?: string;
+}
+
+export async function logBooking(row: BookingRow): Promise<void> {
+  const sheets = getClient();
+  if (!sheets || !SPREADSHEET_ID) return;
+  try {
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: 'Bookings!A:K',
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [[
+          row.date,
+          row.guestName,
+          row.guestEmail,
+          row.phone ?? '',
+          row.serviceType,
+          row.bookingDate,
+          row.bookingTime,
+          row.scope ?? '',
+          row.socialPlatform ?? '',
+          row.socialContact ?? '',
+          row.notes ?? '',
+        ]],
+      },
+    });
+  } catch (err) {
+    console.error('[google-sheets] logBooking failed', err);
+  }
+}

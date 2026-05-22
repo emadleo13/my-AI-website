@@ -3,6 +3,7 @@ import { bookingSchema } from '@/lib/validators';
 import { getSupabaseServer } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/env';
 import { sendBookingEmails } from '@/lib/email';
+import { logBooking } from '@/lib/google-sheets';
 import { maybeSweepStale, rateLimitOr429 } from '@/lib/rate-limit';
 
 const SERVICE_LABELS: Record<string, string> = {
@@ -76,7 +77,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 
-  // Best-effort email notification — don't block the response on it.
+  // Best-effort notifications — don't block the response on either.
+  void logBooking({
+    date: new Date().toISOString(),
+    guestName: parsed.data.guestName,
+    guestEmail: parsed.data.guestEmail,
+    phone: parsed.data.phone || undefined,
+    serviceType: SERVICE_LABELS[parsed.data.serviceType] ?? parsed.data.serviceType,
+    bookingDate: parsed.data.bookingDate,
+    bookingTime: parsed.data.bookingTime,
+    scope: parsed.data.scope || undefined,
+    socialPlatform: parsed.data.socialPlatform || undefined,
+    socialContact: parsed.data.socialContact || undefined,
+    notes: parsed.data.notes || undefined,
+  });
+
   void sendBookingEmails({
     serviceType: parsed.data.serviceType,
     serviceLabel:
