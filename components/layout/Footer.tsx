@@ -22,7 +22,8 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/BLUE AI.png" alt="Emad AI" width={80} height={95} className="object-contain" />
+              <Image src="/logo.png" alt="EmadAI" width={80} height={80} className="object-contain dark:hidden" />
+              <Image src="/logo-dark.png" alt="EmadAI" width={80} height={80} className="object-contain hidden dark:block" />
             </Link>
             <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
               {t('footer.tagline')}

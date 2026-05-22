@@ -29,7 +29,8 @@ export function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b border-border/40 glass">
       <div className="container flex h-24 items-center justify-between gap-4">
         <Link href="/" className="flex items-center mt-4">
-          <Image src="/BLUE AI.png" alt="Emad AI" width={110} height={130} className="object-contain" />
+          <Image src="/logo.png" alt="EmadAI" width={110} height={110} className="object-contain dark:hidden" />
+          <Image src="/logo-dark.png" alt="EmadAI" width={110} height={110} className="object-contain hidden dark:block" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1 text-sm">
