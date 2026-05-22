@@ -1,28 +1,31 @@
 import { google } from 'googleapis';
 
-const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID ?? '';
-const CLIENT_EMAIL = process.env.GOOGLE_SHEETS_CLIENT_EMAIL ?? '';
-const PRIVATE_KEY = (process.env.GOOGLE_SHEETS_PRIVATE_KEY ?? '').replace(/\\n/g, '\n');
-
 export const isGoogleSheetsConfigured =
-  Boolean(SPREADSHEET_ID) && Boolean(CLIENT_EMAIL) && Boolean(PRIVATE_KEY);
+  Boolean(process.env.GOOGLE_SHEETS_SPREADSHEET_ID) &&
+  Boolean(process.env.GOOGLE_SHEETS_CLIENT_EMAIL) &&
+  Boolean(process.env.GOOGLE_SHEETS_PRIVATE_KEY);
 
 function getClient() {
-  if (!isGoogleSheetsConfigured) return null;
+  const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID ?? '';
+  const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL ?? '';
+  const privateKey = (process.env.GOOGLE_SHEETS_PRIVATE_KEY ?? '').replace(/\\n/g, '\n');
+
+  if (!spreadsheetId || !clientEmail || !privateKey) return null;
+
   const auth = new google.auth.JWT({
-    email: CLIENT_EMAIL,
-    key: PRIVATE_KEY,
+    email: clientEmail,
+    key: privateKey,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
-  return google.sheets({ version: 'v4', auth });
+  return { sheets: google.sheets({ version: 'v4', auth }), spreadsheetId };
 }
 
 export async function logUserSignup(email: string, date: string): Promise<void> {
-  const sheets = getClient();
-  if (!sheets || !SPREADSHEET_ID) return;
+  const client = getClient();
+  if (!client) return;
   try {
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
+    await client.sheets.spreadsheets.values.append({
+      spreadsheetId: client.spreadsheetId,
       range: 'Signups!A:C',
       valueInputOption: 'USER_ENTERED',
       requestBody: { values: [[date, email, 'signup']] },
@@ -38,11 +41,11 @@ export async function logServiceRequest(
   status: string,
   date: string,
 ): Promise<void> {
-  const sheets = getClient();
-  if (!sheets || !SPREADSHEET_ID) return;
+  const client = getClient();
+  if (!client) return;
   try {
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
+    await client.sheets.spreadsheets.values.append({
+      spreadsheetId: client.spreadsheetId,
       range: 'Requests!A:D',
       valueInputOption: 'USER_ENTERED',
       requestBody: { values: [[date, email, serviceType, status]] },
@@ -67,11 +70,11 @@ export interface BookingRow {
 }
 
 export async function logBooking(row: BookingRow): Promise<void> {
-  const sheets = getClient();
-  if (!sheets || !SPREADSHEET_ID) return;
+  const client = getClient();
+  if (!client) return;
   try {
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: SPREADSHEET_ID,
+    await client.sheets.spreadsheets.values.append({
+      spreadsheetId: client.spreadsheetId,
       range: 'Booking!A:K',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
