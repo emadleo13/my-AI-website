@@ -3,7 +3,8 @@ import Anthropic from '@anthropic-ai/sdk';
 import { getSupabaseServer } from '@/lib/supabase/server';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
 import { rateLimitOr429 } from '@/lib/rate-limit';
-import { ANTHROPIC_MODEL } from '@/lib/anthropic';
+// Use Haiku for free demos — 12x cheaper than Sonnet (~€0.0001 per demo)
+const DEMO_MODEL = 'claude-haiku-4-5-20251001';
 
 const HOUR = 60 * 60 * 1000;
 
@@ -114,7 +115,7 @@ export async function POST(
   let result: unknown;
   try {
     const message = await anthropic.messages.create({
-      model: ANTHROPIC_MODEL,
+      model: DEMO_MODEL,
       max_tokens: 1500,
       messages: [{ role: 'user', content: prompt }],
     });
