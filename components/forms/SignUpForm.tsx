@@ -35,6 +35,12 @@ export function SignUpForm() {
       toast.error(error.message || t('errors.generic'));
       return;
     }
+    // Best-effort: notify owner via email + Google Sheets
+    fetch('/api/user/notify-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: data.email }),
+    }).catch(() => {});
     toast.success(t('success.signedUp'));
     reset();
   };

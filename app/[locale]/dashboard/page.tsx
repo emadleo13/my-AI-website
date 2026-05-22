@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { DemoBanner } from '@/components/DemoBanner';
 import { NotSignedIn } from '@/components/dashboard/NotSignedIn';
 import { BookingsList, type BookingRow } from '@/components/dashboard/BookingsList';
+import { ServiceRequestsList, type ServiceRequestRow } from '@/components/dashboard/ServiceRequestsList';
 import { ProfileForm } from '@/components/dashboard/ProfileForm';
 import { LogoutButton } from '@/components/dashboard/LogoutButton';
 import { getSupabaseServer } from '@/lib/supabase/server';
@@ -61,9 +62,9 @@ export default async function DashboardPage({
     );
   }
 
-  // Profile + bookings in parallel.
+  // Profile + bookings + service requests in parallel.
   const today = new Date().toISOString().slice(0, 10);
-  const [{ data: profileRow }, { data: upcomingRows }, { data: pastRows }] =
+  const [{ data: profileRow }, { data: upcomingRows }, { data: pastRows }, { data: serviceRequestRows }] =
     await Promise.all([
       supabase
         .from('profiles')
@@ -83,6 +84,12 @@ export default async function DashboardPage({
         .eq('user_id', user.id)
         .lt('booking_date', today)
         .order('booking_date', { ascending: false })
+        .limit(20),
+      supabase
+        .from('service_requests')
+        .select('id, service_type, status, is_automated, amount, created_at')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
         .limit(20),
     ]);
 
@@ -142,6 +149,15 @@ export default async function DashboardPage({
                 variant="past"
               />
             </section>
+            {(serviceRequestRows ?? []).length > 0 && (
+              <section>
+                <h2 className="text-lg font-semibold mb-3">{t('services.title')}</h2>
+                <ServiceRequestsList
+                  requests={(serviceRequestRows ?? []) as ServiceRequestRow[]}
+                  emptyMessage={t('services.empty')}
+                />
+              </section>
+            )}
           </div>
 
           <aside>

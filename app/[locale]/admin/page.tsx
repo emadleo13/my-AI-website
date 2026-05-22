@@ -14,6 +14,10 @@ import {
   AdminDocuments,
   type DocumentRow,
 } from '@/components/admin/AdminDocuments';
+import {
+  AdminServiceRequests,
+  type AdminServiceRequestRow,
+} from '@/components/admin/AdminServiceRequests';
 import { LogoutButton } from '@/components/dashboard/LogoutButton';
 import { getAdminUser } from '@/lib/auth';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
@@ -73,31 +77,41 @@ export default async function AdminPage({
     );
   }
 
-  const [{ data: bookingsData }, { data: contactsData }, { data: documentsData }] =
-    await Promise.all([
-      supabase
-        .from('bookings')
-        .select(
-          'id, service_type, booking_date, booking_time, status, notes, guest_name, guest_email, user_id, created_at',
-        )
-        .order('booking_date', { ascending: false })
-        .order('booking_time', { ascending: false })
-        .limit(100),
-      supabase
-        .from('contacts')
-        .select('id, name, email, subject, message, created_at')
-        .order('created_at', { ascending: false })
-        .limit(50),
-      supabase
-        .from('documents')
-        .select('id, title, source_type, char_count, chunk_count, created_at')
-        .order('created_at', { ascending: false })
-        .limit(100),
-    ]);
+  const [
+    { data: bookingsData },
+    { data: contactsData },
+    { data: documentsData },
+    { data: serviceRequestsData },
+  ] = await Promise.all([
+    supabase
+      .from('bookings')
+      .select(
+        'id, service_type, booking_date, booking_time, status, notes, guest_name, guest_email, user_id, created_at',
+      )
+      .order('booking_date', { ascending: false })
+      .order('booking_time', { ascending: false })
+      .limit(100),
+    supabase
+      .from('contacts')
+      .select('id, name, email, subject, message, created_at')
+      .order('created_at', { ascending: false })
+      .limit(50),
+    supabase
+      .from('documents')
+      .select('id, title, source_type, char_count, chunk_count, created_at')
+      .order('created_at', { ascending: false })
+      .limit(100),
+    supabase
+      .from('service_requests')
+      .select('id, user_id, service_type, status, is_automated, amount, metadata, created_at')
+      .order('created_at', { ascending: false })
+      .limit(100),
+  ]);
 
   const bookings = (bookingsData ?? []) as AdminBookingRow[];
   const contacts = (contactsData ?? []) as AdminContactRow[];
   const documents = (documentsData ?? []) as DocumentRow[];
+  const serviceRequests = (serviceRequestsData ?? []) as AdminServiceRequestRow[];
 
   return (
     <div className="container py-12 md:py-16">
@@ -137,6 +151,12 @@ export default async function AdminPage({
                 {documents.length}
               </span>
             </TabsTrigger>
+            <TabsTrigger value="services">
+              {t('tabs.services')}{' '}
+              <span className="ml-2 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium">
+                {serviceRequests.length}
+              </span>
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="bookings" className="mt-6">
             <AdminBookings rows={bookings} />
@@ -146,6 +166,9 @@ export default async function AdminPage({
           </TabsContent>
           <TabsContent value="documents" className="mt-6">
             <AdminDocuments initialDocuments={documents} />
+          </TabsContent>
+          <TabsContent value="services" className="mt-6">
+            <AdminServiceRequests rows={serviceRequests} />
           </TabsContent>
         </Tabs>
       </div>

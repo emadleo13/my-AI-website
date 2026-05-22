@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { href: '/', key: 'home' },
   { href: '/about', key: 'about' },
   { href: '/services', key: 'services' },
+  { href: '/marketplace', key: 'marketplace' },
   { href: '/blog', key: 'blog' },
   { href: '/consultant', key: 'consultant' },
   { href: '/contact', key: 'contact' },

@@ -16,6 +16,7 @@
     "blog": "Blog",
     "contact": "Contact",
     "consultant": "Consultant AI",
+    "marketplace": "Piață",
     "dashboard": "Panou",
     "booking": "Rezervă o consultație",
     "auth": "Autentificare",
@@ -593,6 +594,10 @@
       "newBooking": "Rezervare nouă",
       "logout": "Deconectează-te"
     },
+    "services": {
+      "title": "Serviciile Mele",
+      "empty": "Nicio cerere de servicii încă. Explorează piața pentru a începe."
+    },
     "status": {
       "pending": "În așteptare",
       "confirmed": "Confirmată",
@@ -654,7 +659,8 @@
     "tabs": {
       "bookings": "Rezervări",
       "contacts": "Contacte",
-      "documents": "Documente"
+      "documents": "Documente",
+      "services": "Servicii"
     },
     "bookings": {
       "title": "Rezervări",
@@ -709,6 +715,130 @@
       "title": "Doar admin",
       "body": "Această zonă este restricționată. Autentifică-te cu un cont de admin.",
       "cta": "Autentifică-te"
+    }
+  },
+  "marketplace": {
+    "meta": {
+      "title": "Piața de Servicii AI",
+      "description": "Instrumente și servicii AI pentru afacerea ta — chatboți, automatizare călătorii, asistenți vocali și altele."
+    },
+    "hero": {
+      "eyebrow": "Instrumente AI Self-Service",
+      "title": "Instrumente AI pentru Afacerea Ta",
+      "subtitle": "Alege un serviciu, testează gratuit, apoi deblochează versiunea completă. Fără apeluri telefonice.",
+      "step1": "Înregistrare gratuită",
+      "step2": "Demo gratuit",
+      "step3": "Deblochează serviciul"
+    },
+    "cta": {
+      "tryFree": "Încearcă Gratuit"
+    },
+    "back": "Înapoi la Piață",
+    "loading": "Se verifică contul…",
+    "services": {
+      "telegram_bot": {
+        "title": "Constructor Chatbot Telegram",
+        "desc": "Bot Telegram alimentat de AI pentru afacerea ta — configurat instant.",
+        "bullet1": "Mesaj de bun venit și meniu personalizat",
+        "bullet2": "Automatizare FAQ",
+        "bullet3": "Ghid complet de configurare",
+        "freeDemo": "Previzualizare mesaj + 1 FAQ"
+      },
+      "travel_automation": {
+        "title": "Bot Automatizare Călătorii",
+        "desc": "Găsește cele mai bune zboruri și hoteluri — automat.",
+        "bullet1": "Opțiuni selectate de zboruri și hoteluri",
+        "bullet2": "Linkuri directe de rezervare",
+        "bullet3": "Recomandări adaptate bugetului",
+        "freeDemo": "3 opțiuni selectate cu linkuri"
+      },
+      "voice_assistant": {
+        "title": "Asistent Vocal pentru Site",
+        "desc": "Adaugă un asistent vocal pe site-ul tău în câteva minute.",
+        "bullet1": "Scripturi personalizate",
+        "bullet2": "Suport multilingv",
+        "bullet3": "Cod embed simplu",
+        "freeDemo": "Previzualizare cod embed"
+      },
+      "website_design": {
+        "title": "Design Website",
+        "desc": "Design și dezvoltare website profesional pentru afacerea ta.",
+        "bullet1": "Design personalizat și branding",
+        "bullet2": "Mobile-first, pregătit pentru SEO",
+        "bullet3": "CMS și integrări",
+        "freeDemo": "Brief de design gratuit"
+      },
+      "crm_automation": {
+        "title": "Automatizare CRM și Lead-uri",
+        "desc": "Automatizează colectarea lead-urilor, follow-up-urile și actualizările CRM.",
+        "bullet1": "Automatizare captare lead-uri",
+        "bullet2": "Secvențe email automatizate",
+        "bullet3": "Integrare CRM",
+        "freeDemo": "Evaluare gratuită a procesului"
+      },
+      "social_automation": {
+        "title": "Automatizare Social Media",
+        "desc": "Automatizează programarea conținutului pe toate platformele.",
+        "bullet1": "Automatizare calendar conținut",
+        "bullet2": "Publicare multi-platformă",
+        "bullet3": "Rapoarte analytics",
+        "freeDemo": "Plan de conținut gratuit"
+      }
+    },
+    "form": {
+      "title": "Spune-ne despre nevoile tale",
+      "submit": "Trimite și Primește Demo Gratuit",
+      "submitting": "Se trimite…",
+      "businessName": "Numele afacerii",
+      "topics": "Subiecte / Cuvinte cheie",
+      "topicsPlaceholder": "ex. produse, suport, prețuri",
+      "tone": "Ton",
+      "faq": "Întrebări frecvente (opțional)",
+      "origin": "Oraș de origine",
+      "destination": "Oraș destinație",
+      "travelDates": "Date călătorie",
+      "budget": "Buget",
+      "preferences": "Preferințe speciale",
+      "websiteUrl": "URL website",
+      "language": "Limbă",
+      "requirements": "Cerințe",
+      "website_designPlaceholder": "Descrie afacerea, publicul țintă și paginile de care ai nevoie…",
+      "crm_automationPlaceholder": "Descrie procesul actual de colectare lead-uri și ce vrei să automatizezi…",
+      "social_automationPlaceholder": "Ce platforme folosești? Ce tip de conținut postezi?"
+    },
+    "demo": {
+      "title": "Demo-ul tău gratuit",
+      "readyMessage": "Cererea ta a fost trimisă. Apasă mai jos pentru a genera previzualizarea gratuită.",
+      "runDemo": "Generează Previzualizare Gratuită",
+      "generating": "Se generează…",
+      "previewReady": "Previzualizare gata",
+      "welcomeMessage": "Mesaj de bun venit",
+      "sampleFaq": "Exemplu FAQ",
+      "embedCode": "Cod embed",
+      "unlockHint": "Deblochează versiunea completă pentru output complet + ghid de implementare.",
+      "requestReceived": "Cererea ta a fost primită. Evaluarea gratuită va fi pregătită în curând."
+    },
+    "paywall": {
+      "title": "Deblochează serviciul complet",
+      "desc": "Primește output-ul complet, fișierele sursă și ghidul pas cu pas de implementare.",
+      "cta": "Deblochează Serviciul Complet",
+      "processing": "Se procesează…",
+      "secureNote": "Securizat de Stripe — detaliile cardului nu sunt stocate.",
+      "demoSuccess": "Plată demo acceptată.",
+      "paymentInitiated": "Plată inițiată — verifică dashboard-ul."
+    },
+    "paid": {
+      "title": "Totul e pregătit!",
+      "desc": "Serviciul tău este în pregătire. Verifică dashboard-ul pentru actualizări.",
+      "viewDashboard": "Vezi Serviciile Mele"
+    },
+    "auth": {
+      "signInRequired": "Autentifică-te sau creează un cont gratuit pentru a continua.",
+      "signIn": "Autentificare / Creare cont"
+    },
+    "errors": {
+      "generic": "Ceva a mers greșit. Te rugăm să încerci din nou.",
+      "notFound": "Serviciu negăsit."
     }
   },
   "footer": {

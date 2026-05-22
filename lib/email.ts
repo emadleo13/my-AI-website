@@ -56,6 +56,51 @@ export async function sendContactNotification(payload: ContactPayload): Promise<
   }
 }
 
+export async function sendOwnerSignupAlert(email: string): Promise<void> {
+  if (!client || !EMAIL_TO_ADMIN) return;
+  const html = shell(
+    'New user signed up',
+    `<p>A new user registered on emadai.dev:</p>
+     <p><strong>Email:</strong> ${escape(email)}</p>
+     <p><strong>Time:</strong> ${new Date().toISOString()}</p>`,
+  );
+  try {
+    await client.emails.send({
+      from: EMAIL_FROM,
+      to: EMAIL_TO_ADMIN,
+      subject: `[signup] New user: ${email}`,
+      html,
+    });
+  } catch (err) {
+    console.error('[email] sendOwnerSignupAlert failed', err);
+  }
+}
+
+export async function sendServiceRequestAlert(
+  userEmail: string,
+  serviceType: string,
+): Promise<void> {
+  if (!client || !EMAIL_TO_ADMIN) return;
+  const html = shell(
+    `New service request: ${serviceType}`,
+    `<p><strong>User:</strong> ${escape(userEmail)}</p>
+     <p><strong>Service:</strong> ${escape(serviceType)}</p>
+     <p><strong>Time:</strong> ${new Date().toISOString()}</p>
+     <p>Check the <a href="${process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'}/en/admin" style="color:#60A5FA">admin panel</a> to manage this request.</p>`,
+  );
+  try {
+    await client.emails.send({
+      from: EMAIL_FROM,
+      to: EMAIL_TO_ADMIN,
+      replyTo: userEmail,
+      subject: `[marketplace] ${serviceType} — ${userEmail}`,
+      html,
+    });
+  } catch (err) {
+    console.error('[email] sendServiceRequestAlert failed', err);
+  }
+}
+
 export interface BookingPayload {
   serviceType: string;
   serviceLabel: string;

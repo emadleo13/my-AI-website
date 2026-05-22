@@ -16,6 +16,7 @@
     "blog": "Blog",
     "contact": "Contact",
     "consultant": "AI Consultant",
+    "marketplace": "Marketplace",
     "dashboard": "Dashboard",
     "booking": "Book a Consultation",
     "auth": "Sign In",
@@ -593,6 +594,10 @@
       "newBooking": "New booking",
       "logout": "Sign out"
     },
+    "services": {
+      "title": "My Services",
+      "empty": "No service requests yet. Browse the marketplace to get started."
+    },
     "status": {
       "pending": "Pending",
       "confirmed": "Confirmed",
@@ -654,7 +659,8 @@
     "tabs": {
       "bookings": "Bookings",
       "contacts": "Contacts",
-      "documents": "Documents"
+      "documents": "Documents",
+      "services": "Services"
     },
     "bookings": {
       "title": "Bookings",
@@ -709,6 +715,130 @@
       "title": "Admin only",
       "body": "This area is restricted. Sign in with an admin account.",
       "cta": "Sign in"
+    }
+  },
+  "marketplace": {
+    "meta": {
+      "title": "AI Services Marketplace",
+      "description": "Try AI-powered tools and services for your business — chatbots, travel automation, voice assistants, and more."
+    },
+    "hero": {
+      "eyebrow": "Self-Service AI Tools",
+      "title": "AI Tools for Your Business",
+      "subtitle": "Pick a service, try it free, then unlock the full version. No phone calls required.",
+      "step1": "Sign up free",
+      "step2": "Try a demo",
+      "step3": "Unlock full service"
+    },
+    "cta": {
+      "tryFree": "Try Free"
+    },
+    "back": "Back to Marketplace",
+    "loading": "Checking your account…",
+    "services": {
+      "telegram_bot": {
+        "title": "Telegram Chatbot Builder",
+        "desc": "AI-powered Telegram bot for your business — configured instantly.",
+        "bullet1": "Custom welcome message & menu",
+        "bullet2": "FAQ automation",
+        "bullet3": "Full setup guide included",
+        "freeDemo": "Preview welcome message + 1 FAQ"
+      },
+      "travel_automation": {
+        "title": "Travel Automation Bot",
+        "desc": "Find the best flights and hotels for any trip — automatically.",
+        "bullet1": "Curated flight & hotel options",
+        "bullet2": "Direct booking links",
+        "bullet3": "Budget-aware recommendations",
+        "freeDemo": "3 curated options with links"
+      },
+      "voice_assistant": {
+        "title": "Voice Assistant Widget",
+        "desc": "Add a voice assistant to your website in minutes.",
+        "bullet1": "Custom scripts for your business",
+        "bullet2": "Multi-language support",
+        "bullet3": "Easy embed code",
+        "freeDemo": "Embed code snippet preview"
+      },
+      "website_design": {
+        "title": "Website Design",
+        "desc": "Professional website design and development for your business.",
+        "bullet1": "Custom design & branding",
+        "bullet2": "Mobile-first, SEO-ready",
+        "bullet3": "CMS and integrations",
+        "freeDemo": "Free design brief & scope"
+      },
+      "crm_automation": {
+        "title": "CRM & Lead Automation",
+        "desc": "Automate your lead intake, follow-ups, and CRM updates.",
+        "bullet1": "Lead capture automation",
+        "bullet2": "Email follow-up sequences",
+        "bullet3": "CRM integration",
+        "freeDemo": "Free process assessment"
+      },
+      "social_automation": {
+        "title": "Social Media Automation",
+        "desc": "Automate content scheduling and engagement across platforms.",
+        "bullet1": "Content calendar automation",
+        "bullet2": "Multi-platform posting",
+        "bullet3": "Analytics reporting",
+        "freeDemo": "Free content plan outline"
+      }
+    },
+    "form": {
+      "title": "Tell us about your needs",
+      "submit": "Submit & Get Free Demo",
+      "submitting": "Submitting…",
+      "businessName": "Business name",
+      "topics": "Topics / Keywords",
+      "topicsPlaceholder": "e.g. products, support, pricing",
+      "tone": "Tone",
+      "faq": "FAQ entries (optional)",
+      "origin": "From city",
+      "destination": "To city",
+      "travelDates": "Travel dates",
+      "budget": "Budget",
+      "preferences": "Special preferences",
+      "websiteUrl": "Website URL",
+      "language": "Language",
+      "requirements": "Requirements",
+      "website_designPlaceholder": "Describe your business, target audience, and what pages you need…",
+      "crm_automationPlaceholder": "Describe your current lead intake process and what you want to automate…",
+      "social_automationPlaceholder": "Which platforms do you use? What type of content do you post?"
+    },
+    "demo": {
+      "title": "Your free demo",
+      "readyMessage": "Your request is submitted. Click below to generate your free AI preview.",
+      "runDemo": "Generate Free Preview",
+      "generating": "Generating…",
+      "previewReady": "Preview ready",
+      "welcomeMessage": "Welcome message",
+      "sampleFaq": "Sample FAQ",
+      "embedCode": "Embed code",
+      "unlockHint": "Unlock the full version to get the complete output + deployment instructions.",
+      "requestReceived": "Your request has been received. We'll prepare your free assessment shortly."
+    },
+    "paywall": {
+      "title": "Unlock the full service",
+      "desc": "Get the complete output, source files, and step-by-step deployment guide.",
+      "cta": "Unlock Full Service",
+      "processing": "Processing…",
+      "secureNote": "Secured by Stripe — your card details are never stored.",
+      "demoSuccess": "Demo payment accepted.",
+      "paymentInitiated": "Payment initiated — check your dashboard."
+    },
+    "paid": {
+      "title": "You're all set!",
+      "desc": "Your service is being prepared. Check your dashboard for updates.",
+      "viewDashboard": "View My Services"
+    },
+    "auth": {
+      "signInRequired": "Sign in or create a free account to continue.",
+      "signIn": "Sign in / Create account"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again.",
+      "notFound": "Service not found."
     }
   },
   "footer": {

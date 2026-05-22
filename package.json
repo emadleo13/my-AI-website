@@ -31,6 +31,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^11.11.17",
     "fuse.js": "^7.0.0",
+    "googleapis": "^172.0.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.10.0",
     "lucide-react": "^0.460.0",
