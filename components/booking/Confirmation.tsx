@@ -4,17 +4,23 @@ import { useTranslations } from 'next-intl';
 import { Check, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { type ScopeKey } from './ScopeStep';
 
 interface Props {
   serviceLabel: string;
   date: string;
   time: string;
   email: string;
+  scope: ScopeKey;
+  socialPlatform?: string;
   onAnother: () => void;
 }
 
-export function Confirmation({ serviceLabel, date, time, email, onAnother }: Props) {
+export function Confirmation({ serviceLabel, date, time, email, scope, socialPlatform, onAnother }: Props) {
   const t = useTranslations('booking');
+
+  const isFree = scope === 'free';
+  const desc = isFree ? t('confirm.descFree') : t('confirm.descPaid');
 
   return (
     <Card className="border-primary/30 bg-primary/5">
@@ -23,12 +29,18 @@ export function Confirmation({ serviceLabel, date, time, email, onAnother }: Pro
           <Check className="h-7 w-7" />
         </div>
         <h2 className="text-2xl font-bold">{t('confirm.title')}</h2>
-        <p className="text-muted-foreground">{t('confirm.desc')}</p>
+        <p className="text-muted-foreground">{desc}</p>
 
         <div className="mx-auto max-w-sm rounded-lg border border-border bg-card p-4 text-sm space-y-2 text-start">
           <Row label={t('steps.service')} value={serviceLabel} />
           <Row label={t('steps.datetime')} value={`${date} · ${time}`} />
-          <Row label={t('details.email')} value={email} />
+          <Row label={t('steps.scope')} value={t(`scope.${scope}.title`)} />
+          {isFree && socialPlatform && (
+            <Row label={t('scope.social.label')} value={t(`scope.social.platforms.${socialPlatform}`)} />
+          )}
+          {!isFree && (
+            <Row label={t('details.email')} value={email} />
+          )}
         </div>
 
         <Button onClick={onAnother} variant="outline" className="gap-2">

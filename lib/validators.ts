@@ -35,6 +35,9 @@ export const bookingSchema = z.object({
   guestEmail: z.string().email(),
   phone: z.string().max(40).optional().or(z.literal('')),
   notes: z.string().max(2000).optional().or(z.literal('')),
+  scope: z.enum(['free', 'session', 'mini', 'full']).optional(),
+  socialPlatform: z.enum(['whatsapp', 'telegram', 'facebook']).optional(),
+  socialContact: z.string().max(100).optional().or(z.literal('')),
 });
 export type BookingInput = z.infer<typeof bookingSchema>;
 

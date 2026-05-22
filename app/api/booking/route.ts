@@ -87,6 +87,9 @@ export async function POST(req: Request) {
     guestEmail: parsed.data.guestEmail,
     phone: parsed.data.phone || undefined,
     notes: parsed.data.notes || undefined,
+    scope: parsed.data.scope,
+    socialPlatform: parsed.data.socialPlatform,
+    socialContact: parsed.data.socialContact || undefined,
   });
 
   return NextResponse.json({ ok: true });

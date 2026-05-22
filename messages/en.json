@@ -505,7 +505,8 @@
       "service": "Service",
       "datetime": "Date & Time",
       "details": "Your Details",
-      "payment": "Payment"
+      "payment": "Scope",
+      "scope": "Scope"
     },
     "services": {
       "ai": {
@@ -559,12 +560,52 @@
     "confirm": {
       "title": "You're booked",
       "desc": "I'll send you a confirmation email shortly.",
-      "newBooking": "Book another"
+      "newBooking": "Book another",
+      "descFree": "I'll reach out via your preferred platform to confirm the time.",
+      "descPaid": "I'll review your details and send you a custom quote by email."
     },
     "errors": {
       "slotTaken": "That slot was just taken — pick another.",
       "generic": "Booking failed. Please try again.",
       "rateLimited": "Too many booking attempts — wait a moment and try again."
+    },
+    "scope": {
+      "title": "What type of engagement do you need?",
+      "subtitle": "Choose the option that best describes your situation",
+      "free": {
+        "title": "Free Discovery Call",
+        "desc": "30-min free call to explore your needs — no commitment, no payment",
+        "badge": "Free"
+      },
+      "session": {
+        "title": "Single Session",
+        "desc": "1–2 hour focused working session on a specific challenge",
+        "badge": "Custom quote"
+      },
+      "mini": {
+        "title": "Mini Project",
+        "desc": "Scoped project with defined deliverables over 1–2 weeks",
+        "badge": "Custom quote"
+      },
+      "full": {
+        "title": "Full Project",
+        "desc": "Ongoing consulting engagement for larger or longer-term work",
+        "badge": "Custom quote"
+      },
+      "paid": {
+        "badge": "Custom quote"
+      },
+      "social": {
+        "label": "How can I reach you for the free call?",
+        "number": "Your contact number",
+        "numberPlaceholder": "+40 700 000 000",
+        "platforms": {
+          "whatsapp": "WhatsApp",
+          "telegram": "Telegram",
+          "facebook": "Facebook"
+        }
+      },
+      "quoteNote": "I'll review your request and send you a custom quote by email within 1–2 business days."
     }
   },
   "dashboard": {

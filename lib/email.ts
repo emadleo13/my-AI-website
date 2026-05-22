@@ -101,6 +101,13 @@ export async function sendServiceRequestAlert(
   }
 }
 
+const SCOPE_LABELS: Record<string, string> = {
+  free:    'Free Discovery Call',
+  session: 'Single Session',
+  mini:    'Mini Project',
+  full:    'Full Project',
+};
+
 export interface BookingPayload {
   serviceType: string;
   serviceLabel: string;
@@ -110,30 +117,46 @@ export interface BookingPayload {
   guestEmail: string;
   phone?: string;
   notes?: string;
+  scope?: string;
+  socialPlatform?: string;
+  socialContact?: string;
 }
 
 export async function sendBookingEmails(payload: BookingPayload): Promise<void> {
   if (!client) return;
 
+  const scopeLabel = payload.scope ? (SCOPE_LABELS[payload.scope] ?? payload.scope) : null;
+  const isFree = payload.scope === 'free';
+
   const detailRows = `
     <p><strong>Service:</strong> ${escape(payload.serviceLabel)}</p>
     <p><strong>Date:</strong> ${escape(payload.date)} at ${escape(payload.time)} (Europe/Bucharest)</p>
+    ${scopeLabel ? `<p><strong>Engagement type:</strong> ${escape(scopeLabel)}</p>` : ''}
+    ${isFree && payload.socialPlatform ? `<p><strong>Contact via:</strong> ${escape(payload.socialPlatform)} — ${escape(payload.socialContact ?? '')}</p>` : ''}
     ${payload.phone ? `<p><strong>Phone:</strong> ${escape(payload.phone)}</p>` : ''}
     ${payload.notes ? `<p><strong>Notes:</strong></p><p style="white-space:pre-wrap;background:#0B1220;padding:12px;border-radius:8px">${escape(payload.notes)}</p>` : ''}
   `;
 
+  const userFollowUp = isFree
+    ? `I'll reach out to you via ${escape(payload.socialPlatform ?? 'your preferred platform')} to confirm the call.`
+    : `I'll review your request and send you a custom quote by email within 1–2 business days.`;
+
   // Confirmation to the booker.
   const userHtml = shell(
-    `Your consultation is booked`,
+    isFree ? `Your free consultation is reserved` : `Your booking request is received`,
     `<p>Hi ${escape(payload.guestName)},</p>
-     <p>Thanks for booking — I've received your request and will follow up shortly with a calendar invite.</p>
+     <p>Thanks for booking — ${userFollowUp}</p>
      ${detailRows}
      <p style="margin-top:20px">— Emad</p>`,
   );
 
+  const adminSubject = isFree
+    ? `[free call] ${payload.serviceLabel} — ${payload.date} ${payload.time}`
+    : `[quote needed] ${payload.serviceLabel} / ${scopeLabel ?? ''} — ${payload.date} ${payload.time}`;
+
   const adminHtml = EMAIL_TO_ADMIN
     ? shell(
-        `New booking: ${payload.serviceLabel}`,
+        `New booking: ${payload.serviceLabel} (${scopeLabel ?? 'n/a'})`,
         `<p><strong>From:</strong> ${escape(payload.guestName)} &lt;${escape(payload.guestEmail)}&gt;</p>
          ${detailRows}`,
       )
@@ -152,7 +175,7 @@ export async function sendBookingEmails(payload: BookingPayload): Promise<void> 
             from: EMAIL_FROM,
             to: EMAIL_TO_ADMIN,
             replyTo: payload.guestEmail,
-            subject: `[booking] ${payload.serviceLabel} — ${payload.date} ${payload.time}`,
+            subject: adminSubject,
             html: adminHtml,
           })
         : Promise.resolve(),

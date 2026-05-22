@@ -505,7 +505,8 @@
       "service": "Serviciu",
       "datetime": "Dată & Oră",
       "details": "Detaliile tale",
-      "payment": "Plată"
+      "payment": "Tip serviciu",
+      "scope": "Tip serviciu"
     },
     "services": {
       "ai": {
@@ -559,12 +560,52 @@
     "confirm": {
       "title": "Rezervarea ta e confirmată",
       "desc": "Vei primi în scurt timp un email de confirmare.",
-      "newBooking": "Rezervă încă una"
+      "newBooking": "Rezervă încă una",
+      "descFree": "Te voi contacta prin platforma preferată pentru a confirma ora.",
+      "descPaid": "Voi analiza detaliile tale și îți voi trimite o ofertă personalizată pe email."
     },
     "errors": {
       "slotTaken": "Slotul a fost luat — alege altul.",
       "generic": "Rezervare eșuată. Încearcă din nou.",
       "rateLimited": "Prea multe încercări de rezervare — așteaptă un moment și încearcă din nou."
+    },
+    "scope": {
+      "title": "Ce tip de colaborare ai nevoie?",
+      "subtitle": "Alege opțiunea care descrie cel mai bine situația ta",
+      "free": {
+        "title": "Apel gratuit de descoperire",
+        "desc": "Un apel gratuit de 30 min pentru a explora nevoile tale — fără angajament",
+        "badge": "Gratuit"
+      },
+      "session": {
+        "title": "Sesiune unică",
+        "desc": "Sesiune concentrată de 1–2 ore pe o provocare specifică",
+        "badge": "Ofertă personalizată"
+      },
+      "mini": {
+        "title": "Mini proiect",
+        "desc": "Proiect cu livrabile definite pe parcursul a 1–2 săptămâni",
+        "badge": "Ofertă personalizată"
+      },
+      "full": {
+        "title": "Proiect complet",
+        "desc": "Angajament de consultanță continuă pentru lucrări mai mari",
+        "badge": "Ofertă personalizată"
+      },
+      "paid": {
+        "badge": "Ofertă personalizată"
+      },
+      "social": {
+        "label": "Cum te pot contacta pentru apelul gratuit?",
+        "number": "Numărul tău de contact",
+        "numberPlaceholder": "+40 700 000 000",
+        "platforms": {
+          "whatsapp": "WhatsApp",
+          "telegram": "Telegram",
+          "facebook": "Facebook"
+        }
+      },
+      "quoteNote": "Voi analiza cererea ta și îți voi trimite o ofertă personalizată pe email în 1–2 zile lucrătoare."
     }
   },
   "dashboard": {
