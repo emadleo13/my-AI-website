@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import type { LucideIcon } from 'lucide-react';
+import { Compass, Bot, MessageSquare, Code2, Briefcase, type LucideIcon } from 'lucide-react';
 
 export interface AccordionImageItem {
   id: number;
   title: string;
   imageUrl?: string;
-  icon?: LucideIcon;
+  iconIndex?: number;
   gradient?: string;
 }
+
+const DEFAULT_ICONS: LucideIcon[] = [Compass, Bot, MessageSquare, Code2, Briefcase];
 
 const GRADIENTS = [
   'from-indigo-600 via-violet-600 to-purple-700',
@@ -24,15 +26,14 @@ function AccordionItem({
   index,
   isActive,
   onMouseEnter,
-  Icon,
 }: {
   item: AccordionImageItem;
   index: number;
   isActive: boolean;
   onMouseEnter: () => void;
-  Icon?: LucideIcon;
 }) {
   const gradient = item.gradient ?? GRADIENTS[index % GRADIENTS.length];
+  const Icon = DEFAULT_ICONS[item.iconIndex ?? index];
 
   return (
     <div
@@ -46,11 +47,11 @@ function AccordionItem({
     >
       <div className="absolute inset-0 bg-black/20" />
 
-      {isActive && Icon && (
+      {isActive && Icon ? (
         <div className="absolute top-8 left-1/2 -translate-x-1/2 p-4 rounded-2xl bg-white/20 backdrop-blur-sm">
           <Icon className="h-10 w-10 text-white" />
         </div>
-      )}
+      ) : null}
 
       <span
         className={`
@@ -71,10 +72,8 @@ function AccordionItem({
 
 export function InteractiveImageAccordion({
   items,
-  icons,
 }: {
   items: AccordionImageItem[];
-  icons?: LucideIcon[];
 }) {
   const [activeIndex, setActiveIndex] = useState(items.length - 1);
 
@@ -87,7 +86,6 @@ export function InteractiveImageAccordion({
           index={index}
           isActive={index === activeIndex}
           onMouseEnter={() => setActiveIndex(index)}
-          Icon={icons?.[index]}
         />
       ))}
     </div>

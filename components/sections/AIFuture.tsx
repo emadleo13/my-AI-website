@@ -1,16 +1,13 @@
 import { useTranslations } from 'next-intl';
-import { Compass, Bot, MessageSquare, Code2, Briefcase } from 'lucide-react';
 import { InteractiveImageAccordion, type AccordionImageItem } from '@/components/ui/interactive-image-accordion';
 import { ScrollReveal } from './ScrollReveal';
 
-const ICONS = [Compass, Bot, MessageSquare, Code2, Briefcase];
-
-const ACCORDION_ITEMS: Pick<AccordionImageItem, 'id'>[] = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
+const ACCORDION_ITEMS: Pick<AccordionImageItem, 'id' | 'iconIndex'>[] = [
+  { id: 1, iconIndex: 0 },
+  { id: 2, iconIndex: 1 },
+  { id: 3, iconIndex: 2 },
+  { id: 4, iconIndex: 3 },
+  { id: 5, iconIndex: 4 },
 ];
 
 const ITEM_KEYS = ['consulting', 'agents', 'rag', 'dev', 'career'] as const;
@@ -38,7 +35,7 @@ export function AIFuture() {
       </ScrollReveal>
 
       <ScrollReveal className="mt-14">
-        <InteractiveImageAccordion items={items} icons={ICONS} />
+        <InteractiveImageAccordion items={items} />
       </ScrollReveal>
     </section>
   );
