@@ -1,28 +1,16 @@
 import { useTranslations } from 'next-intl';
+import { Compass, Bot, MessageSquare, Code2, Briefcase } from 'lucide-react';
 import { InteractiveImageAccordion, type AccordionImageItem } from '@/components/ui/interactive-image-accordion';
 import { ScrollReveal } from './ScrollReveal';
 
-const ACCORDION_IMAGES: Pick<AccordionImageItem, 'id' | 'imageUrl'>[] = [
-  {
-    id: 1,
-    imageUrl: 'https://picsum.photos/seed/aistrategy/1974/1320',
-  },
-  {
-    id: 2,
-    imageUrl: 'https://picsum.photos/seed/aiagents/1965/1320',
-  },
-  {
-    id: 3,
-    imageUrl: 'https://picsum.photos/seed/ragchat/1974/1320',
-  },
-  {
-    id: 4,
-    imageUrl: 'https://picsum.photos/seed/softwaredev/1974/1320',
-  },
-  {
-    id: 5,
-    imageUrl: 'https://picsum.photos/seed/careerconsult/1984/1320',
-  },
+const ICONS = [Compass, Bot, MessageSquare, Code2, Briefcase];
+
+const ACCORDION_ITEMS: Pick<AccordionImageItem, 'id'>[] = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 },
+  { id: 5 },
 ];
 
 const ITEM_KEYS = ['consulting', 'agents', 'rag', 'dev', 'career'] as const;
@@ -30,8 +18,8 @@ const ITEM_KEYS = ['consulting', 'agents', 'rag', 'dev', 'career'] as const;
 export function AIFuture() {
   const t = useTranslations('home.aiFuture');
 
-  const items: AccordionImageItem[] = ACCORDION_IMAGES.map((img, i) => ({
-    ...img,
+  const items: AccordionImageItem[] = ACCORDION_ITEMS.map((item, i) => ({
+    ...item,
     title: t(`items.${ITEM_KEYS[i]}`),
   }));
 
@@ -50,7 +38,7 @@ export function AIFuture() {
       </ScrollReveal>
 
       <ScrollReveal className="mt-14">
-        <InteractiveImageAccordion items={items} />
+        <InteractiveImageAccordion items={items} icons={ICONS} />
       </ScrollReveal>
     </section>
   );
