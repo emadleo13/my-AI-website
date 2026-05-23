@@ -10,10 +10,17 @@ import { ServiceStep, type ServiceKey } from './ServiceStep';
 import { DateTimeStep } from './DateTimeStep';
 import { DetailsStep, type DetailsState } from './DetailsStep';
 import { ScopeStep, type ScopeState } from './ScopeStep';
+import { PaymentStep } from './PaymentStep';
 import { Confirmation } from './Confirmation';
 import { type BookingTime } from '@/lib/utils';
 
 type Step = 1 | 2 | 3 | 4;
+
+interface PaymentPhase {
+  clientSecret: string;
+  amount: number;
+  demo?: boolean;
+}
 
 const EMPTY_DETAILS: DetailsState = { name: '', email: '', phone: '', notes: '' };
 const EMPTY_SCOPE: ScopeState = { scope: null, socialPlatform: 'whatsapp', socialContact: '' };
@@ -33,6 +40,7 @@ export function BookingWizard() {
   const [scopeErrors, setScopeErrors] = React.useState<{ socialContact?: string }>({});
   const [submitting, setSubmitting] = React.useState(false);
   const [done, setDone] = React.useState(false);
+  const [paymentPhase, setPaymentPhase] = React.useState<PaymentPhase | null>(null);
 
   const stepLabels = [
     t('steps.service'),
@@ -69,11 +77,11 @@ export function BookingWizard() {
     setStep(4);
   };
 
-  const handleScopeConfirm = async () => {
-    if (!validateScope() || !service || !date || !time || !scope.scope) return;
+  // Submits the booking to the database. Called after payment (paid) or directly (free).
+  const submitBooking = async (): Promise<boolean> => {
+    if (!service || !date || !time || !scope.scope) return false;
     setSubmitting(true);
 
-    // Build notes: prepend scope info, append client notes
     const scopeLines = [
       `[Scope: ${scope.scope}]`,
       scope.scope === 'free' && scope.socialPlatform
@@ -112,14 +120,64 @@ export function BookingWizard() {
         } else {
           toast.error(body?.message ?? tErr('generic'));
         }
-        return;
+        return false;
       }
 
       setDone(true);
+      return true;
+    } catch {
+      toast.error(tErr('generic'));
+      return false;
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleScopeConfirm = async () => {
+    if (!validateScope() || !service || !date || !time || !scope.scope) return;
+
+    // Free discovery call: submit directly, no payment
+    if (scope.scope === 'free') {
+      await submitBooking();
+      return;
+    }
+
+    // Paid options: create Stripe payment intent first
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/stripe/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          serviceType: service,
+          guestName: details.name,
+          guestEmail: details.email,
+        }),
+      });
+      const body = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        toast.error(body?.message ?? tErr('generic'));
+        return;
+      }
+
+      setPaymentPhase({
+        clientSecret: body.clientSecret,
+        amount: body.amount ?? 20000,
+        demo: body.demo,
+      });
     } catch {
       toast.error(tErr('generic'));
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    const ok = await submitBooking();
+    if (!ok) {
+      // Booking failed after payment — go back to scope step so user can see the error
+      setPaymentPhase(null);
     }
   };
 
@@ -132,6 +190,7 @@ export function BookingWizard() {
     setDetailErrors({});
     setScope(EMPTY_SCOPE);
     setScopeErrors({});
+    setPaymentPhase(null);
     setDone(false);
   };
 
@@ -146,6 +205,29 @@ export function BookingWizard() {
         socialPlatform={scope.socialPlatform ?? undefined}
         onAnother={reset}
       />
+    );
+  }
+
+  // Payment phase — show Stripe payment form in place of the wizard steps
+  if (paymentPhase) {
+    return (
+      <div className="space-y-6">
+        <Button
+          variant="ghost"
+          onClick={() => setPaymentPhase(null)}
+          disabled={submitting}
+          className="gap-1.5 -ml-2"
+        >
+          <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+          {t('actions.back')}
+        </Button>
+        <PaymentStep
+          clientSecret={paymentPhase.clientSecret}
+          amount={paymentPhase.amount}
+          onSuccess={handlePaymentSuccess}
+          demo={paymentPhase.demo}
+        />
+      </div>
     );
   }
 
@@ -243,7 +325,11 @@ export function BookingWizard() {
             variant="accent"
             className="gap-1.5"
           >
-            {submitting ? t('actions.submitting') : t('actions.confirm')}
+            {submitting
+              ? t('actions.submitting')
+              : scope.scope && scope.scope !== 'free'
+                ? t('actions.proceedToPayment')
+                : t('actions.confirm')}
             <ArrowRight className="h-4 w-4 rtl:rotate-180" />
           </Button>
         )}

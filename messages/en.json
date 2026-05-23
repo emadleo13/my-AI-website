@@ -544,6 +544,7 @@
       "next": "Next",
       "back": "Back",
       "confirm": "Confirm booking",
+      "proceedToPayment": "Proceed to payment",
       "submitting": "Booking…",
       "saveToAccount": "Sign in to save this to your account"
     },
