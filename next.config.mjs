@@ -40,7 +40,7 @@ const securityHeaders = [
       // Fonts
       "font-src 'self' https://fonts.gstatic.com",
       // Images: self + data URIs + external hosts used by the app
-      "img-src 'self' data: blob: https://picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
+      "img-src 'self' data: blob: https://picsum.photos https://fastly.picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
       // Connections: self + Supabase + Stripe + Anthropic
       `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://api.anthropic.com wss://*.supabase.co`,
       // Frames: Stripe only

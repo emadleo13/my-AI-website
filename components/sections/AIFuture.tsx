@@ -5,23 +5,23 @@ import { ScrollReveal } from './ScrollReveal';
 const ACCORDION_IMAGES: Pick<AccordionImageItem, 'id' | 'imageUrl'>[] = [
   {
     id: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1974&auto=format&fit=crop',
+    imageUrl: 'https://picsum.photos/seed/aistrategy/1974/1320',
   },
   {
     id: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop',
+    imageUrl: 'https://picsum.photos/seed/aiagents/1965/1320',
   },
   {
     id: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1974&auto=format&fit=crop',
+    imageUrl: 'https://picsum.photos/seed/ragchat/1974/1320',
   },
   {
     id: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1974&auto=format&fit=crop',
+    imageUrl: 'https://picsum.photos/seed/softwaredev/1974/1320',
   },
   {
     id: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1984&auto=format&fit=crop',
+    imageUrl: 'https://picsum.photos/seed/careerconsult/1984/1320',
   },
 ];
 
