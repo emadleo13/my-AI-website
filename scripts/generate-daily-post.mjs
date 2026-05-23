@@ -45,52 +45,52 @@ async function fetchHNStories() {
 }
 
 /**
- * Escape literal newlines/carriage-returns that appear INSIDE JSON string
- * values (a common LLM mistake). Walks the string character-by-character so
- * it never corrupts structural newlines outside strings.
+ * Parse the delimiter-based response format from the LLM.
+ * Format: <<TAG>>\ncontent\n<<NEXT_TAG>>...
+ * This avoids all JSON escaping issues with markdown content.
  */
-function fixNewlinesInStrings(str) {
-  let out = '';
-  let inStr = false;
-  let esc = false;
-  for (let i = 0; i < str.length; i++) {
-    const ch = str[i];
-    if (esc) { out += ch; esc = false; continue; }
-    if (ch === '\\' && inStr) { out += ch; esc = true; continue; }
-    if (ch === '"') { out += ch; inStr = !inStr; continue; }
-    if (inStr && ch === '\n') { out += '\\n'; continue; }
-    if (inStr && ch === '\r') { out += '\\r'; continue; }
-    out += ch;
+function parseDelimitedResponse(raw) {
+  const extract = (tag) => {
+    const regex = new RegExp(`<<${tag}>>\\s*([\\s\\S]*?)\\s*(?=<<[A-Z]+>>|$)`);
+    const match = raw.match(regex);
+    return match ? match[1].trim() : '';
+  };
+
+  const title = extract('TITLE');
+  const excerpt = extract('EXCERPT');
+  const tagsStr = extract('TAGS');
+  const body = extract('BODY');
+
+  if (!title || !body) {
+    throw new Error(`Missing required fields in response. Preview: ${raw.slice(0, 300)}`);
   }
-  return out;
+
+  return {
+    title,
+    excerpt: excerpt || title,
+    tags: tagsStr ? tagsStr.split(',').map((t) => t.trim()).filter(Boolean) : ['AI', 'Programming'],
+    body,
+    readingMinutes: 3,
+  };
 }
 
-/**
- * Extract and parse the first valid JSON object from an LLM response.
- * Handles: bare JSON, ```json fences, leading prose, literal newlines in strings.
- */
-function parseJsonFromLlm(raw) {
-  // Strip wrapping markdown code fence only when it wraps the WHOLE response.
-  // Use a non-multiline match so ^ / $ anchor to the full string, not per-line.
-  let text = raw.trim();
-  const fenceWrap = text.match(/^```(?:json)?[ \t]*\n([\s\S]+)\n```[ \t]*$/);
-  if (fenceWrap) text = fenceWrap[1].trim();
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
-  const start = text.indexOf('{');
-  const end   = text.lastIndexOf('}');
-  if (start === -1 || end === -1 || end <= start) {
-    throw new Error(`No JSON object found in response: ${raw.slice(0, 300)}`);
-  }
-
-  const jsonStr = text.slice(start, end + 1);
-
-  // Attempt 1: direct parse (works when Claude returns clean JSON)
-  try { return JSON.parse(jsonStr); } catch (_) { /* fall through */ }
-
-  // Attempt 2: fix literal newlines inside string values, then re-parse
-  const fixed = fixNewlinesInStrings(jsonStr);
-  try { return JSON.parse(fixed); } catch (err) {
-    throw new Error(`JSON parse failed: ${err.message}. Preview: ${jsonStr.slice(0, 300)}`);
+async function generatePostWithRetry(stories, locale, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await generatePost(stories, locale);
+    } catch (err) {
+      if (attempt < maxRetries) {
+        const delay = attempt * 10000;
+        console.error(`  [${locale}] Attempt ${attempt} failed: ${err.message}. Retrying in ${delay / 1000}s…`);
+        await sleep(delay);
+      } else {
+        throw err;
+      }
+    }
   }
 }
 
@@ -123,24 +123,26 @@ Write a blog post that:
 - Uses clear, professional but not stiff language
 - Is 400-600 words total
 
-Output ONLY a raw JSON object — no markdown fences, no explanation, no text before or after.
-All newlines inside string values must be escaped as \\n. The exact shape:
-{
-  "title": "...",
-  "excerpt": "One sentence summary for the blog index.",
-  "readingMinutes": 3,
-  "tags": ["AI", "Programming"],
-  "body": "Full markdown body here. Use \\n for newlines. No frontmatter."
-}`;
+Output your response using EXACTLY this delimiter format — nothing before <<TITLE>>, nothing after the body:
+
+<<TITLE>>
+Your engaging, specific title here
+<<EXCERPT>>
+One sentence summary for the blog index.
+<<TAGS>>
+AI, Programming
+<<BODY>>
+Full markdown blog post body here. Use real newlines and any markdown formatting freely.
+No frontmatter. No code fences around this section.`;
 
   const message = await client.messages.create({
     model: 'claude-sonnet-4-6',
-    max_tokens: 3000,
+    max_tokens: 5000,
     messages: [{ role: 'user', content: prompt }],
   });
 
   const raw = message.content[0].text.trim();
-  return parseJsonFromLlm(raw);
+  return parseDelimitedResponse(raw);
 }
 
 function slugFromDate(date) {
@@ -181,7 +183,7 @@ async function main() {
     process.exit(1);
   }
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = process.env.DATE_OVERRIDE ?? new Date().toISOString().split('T')[0];
   const slug = slugFromDate(today);
 
   console.log(`Fetching HackerNews stories for ${today}…`);
@@ -195,21 +197,31 @@ async function main() {
   console.log(`Found ${stories.length} stories:`);
   stories.forEach((s) => console.log(`  - ${s.title} (${s.score} pts)`));
 
+  const locales = ['en', 'fa', 'ro'];
   let successCount = 0;
-  for (const locale of ['en', 'fa', 'ro']) {
+  const failed = [];
+
+  for (const locale of locales) {
+    if (locale !== locales[0]) await sleep(3000);
     console.log(`\nGenerating ${locale} post…`);
     try {
-      const post = await generatePost(stories, locale);
+      const post = await generatePostWithRetry(stories, locale);
       writeMd(locale, slug, post, today);
       successCount++;
     } catch (err) {
-      console.error(`  Failed for ${locale}:`, err.message);
+      console.error(`  [${locale}] All retries failed:`, err.message);
+      failed.push(locale);
     }
   }
 
   if (successCount === 0) {
     console.error('\nAll locales failed — check ANTHROPIC_API_KEY and credit balance.');
     process.exit(1);
+  }
+
+  if (failed.length > 0) {
+    console.error(`\nWARNING: ${successCount}/3 locales generated. Failed: ${failed.join(', ')}`);
+    process.exit(2);
   }
 
   console.log(`\nDone. ${successCount}/3 locales generated.`);

@@ -28,9 +28,11 @@ jobs:
         run: npm ci
 
       - name: Generate daily post
+        id: generate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/generate-daily-post.mjs
+        continue-on-error: true
 
       - name: Commit and push new post
         env:
@@ -46,3 +48,9 @@ jobs:
             git commit -m "blog: daily AI news post for $DATE"
             git push origin main
           fi
+
+      - name: Fail if generation was incomplete
+        if: steps.generate.outcome == 'failure'
+        run: |
+          echo "ERROR: Blog post generation failed for one or more locales. Check logs above."
+          exit 1
