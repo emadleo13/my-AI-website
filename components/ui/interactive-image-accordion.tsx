@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Compass, Bot, MessageSquare, Code2, Briefcase, type LucideIcon } from 'lucide-react';
 
 export interface AccordionImageItem {
@@ -40,12 +41,22 @@ function AccordionItem({
       className={`
         relative h-[420px] rounded-2xl overflow-hidden cursor-pointer
         transition-all duration-700 ease-in-out flex-shrink-0
-        bg-gradient-to-br ${gradient}
+        ${item.imageUrl ? '' : `bg-gradient-to-br ${gradient}`}
         ${isActive ? 'w-[360px]' : 'w-[56px]'}
       `}
       onMouseEnter={onMouseEnter}
     >
-      <div className="absolute inset-0 bg-black/20" />
+      {item.imageUrl ? (
+        <Image
+          src={item.imageUrl}
+          alt={item.title}
+          fill
+          className="object-cover"
+          sizes="360px"
+        />
+      ) : null}
+
+      <div className="absolute inset-0 bg-black/40" />
 
       {isActive && Icon ? (
         <div className="absolute top-8 left-1/2 -translate-x-1/2 p-4 rounded-2xl bg-white/20 backdrop-blur-sm">

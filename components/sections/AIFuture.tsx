@@ -2,12 +2,12 @@ import { useTranslations } from 'next-intl';
 import { InteractiveImageAccordion, type AccordionImageItem } from '@/components/ui/interactive-image-accordion';
 import { ScrollReveal } from './ScrollReveal';
 
-const ACCORDION_ITEMS: Pick<AccordionImageItem, 'id' | 'iconIndex'>[] = [
-  { id: 1, iconIndex: 0 },
-  { id: 2, iconIndex: 1 },
-  { id: 3, iconIndex: 2 },
-  { id: 4, iconIndex: 3 },
-  { id: 5, iconIndex: 4 },
+const ACCORDION_ITEMS: Pick<AccordionImageItem, 'id' | 'iconIndex' | 'imageUrl'>[] = [
+  { id: 1, iconIndex: 0, imageUrl: '/AI-Strategy-Consulting.webp' },
+  { id: 2, iconIndex: 1, imageUrl: '/Autonomous-Agents.jpg' },
+  { id: 3, iconIndex: 2, imageUrl: '/rag and ai chatbot.jpg' },
+  { id: 4, iconIndex: 3, imageUrl: '/software-developer.jpg' },
+  { id: 5, iconIndex: 4, imageUrl: '/career-counseling.jpg' },
 ];
 
 const ITEM_KEYS = ['consulting', 'agents', 'rag', 'dev', 'career'] as const;
