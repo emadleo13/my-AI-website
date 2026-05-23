@@ -72,8 +72,8 @@ export default async function ContactPage({
 
           <div className="overflow-hidden rounded-xl border border-border">
             <iframe
-              title="Cluj-Napoca map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=23.5%2C46.7%2C23.7%2C46.8&amp;layer=mapnik"
+              title="Baia Mare map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=23.52%2C47.63%2C23.62%2C47.69&amp;layer=mapnik&amp;marker=47.6567%2C23.5688"
               className="w-full h-64"
               loading="lazy"
             />

@@ -43,8 +43,8 @@ const securityHeaders = [
       "img-src 'self' data: blob: https://picsum.photos https://fastly.picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
       // Connections: self + Supabase + Stripe + Anthropic
       `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://api.anthropic.com wss://*.supabase.co`,
-      // Frames: Stripe only
-      "frame-src https://js.stripe.com https://hooks.stripe.com",
+      // Frames: Stripe + OpenStreetMap (contact page map)
+      "frame-src https://js.stripe.com https://hooks.stripe.com https://www.openstreetmap.org",
       // No plugins
       "object-src 'none'",
       // Base URI restricted
