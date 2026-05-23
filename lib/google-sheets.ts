@@ -10,7 +10,15 @@ function getClient() {
   const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL ?? '';
   const privateKey = (process.env.GOOGLE_SHEETS_PRIVATE_KEY ?? '').replace(/\\n/g, '\n');
 
-  if (!spreadsheetId || !clientEmail || !privateKey) return null;
+  if (!spreadsheetId || !clientEmail || !privateKey) {
+    const missing = [
+      !spreadsheetId && 'GOOGLE_SHEETS_SPREADSHEET_ID',
+      !clientEmail   && 'GOOGLE_SHEETS_CLIENT_EMAIL',
+      !privateKey    && 'GOOGLE_SHEETS_PRIVATE_KEY',
+    ].filter(Boolean);
+    console.warn('[google-sheets] skipped — missing env vars:', missing.join(', '));
+    return null;
+  }
 
   const auth = new google.auth.JWT({
     email: clientEmail,

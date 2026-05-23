@@ -123,7 +123,13 @@ export interface BookingPayload {
 }
 
 export async function sendBookingEmails(payload: BookingPayload): Promise<void> {
-  if (!client) return;
+  if (!client) {
+    console.warn('[email] sendBookingEmails skipped — RESEND_API_KEY not set');
+    return;
+  }
+  if (!EMAIL_TO_ADMIN) {
+    console.warn('[email] sendBookingEmails — EMAIL_TO_ADMIN not set, admin copy will be skipped');
+  }
 
   const scopeLabel = payload.scope ? (SCOPE_LABELS[payload.scope] ?? payload.scope) : null;
   const isFree = payload.scope === 'free';

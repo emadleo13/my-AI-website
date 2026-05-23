@@ -77,35 +77,39 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 
-  // Best-effort notifications — don't block the response on either.
-  void logBooking({
-    date: new Date().toISOString(),
-    guestName: parsed.data.guestName,
-    guestEmail: parsed.data.guestEmail,
-    phone: parsed.data.phone || undefined,
-    serviceType: SERVICE_LABELS[parsed.data.serviceType] ?? parsed.data.serviceType,
-    bookingDate: parsed.data.bookingDate,
-    bookingTime: parsed.data.bookingTime,
-    scope: parsed.data.scope || undefined,
-    socialPlatform: parsed.data.socialPlatform || undefined,
-    socialContact: parsed.data.socialContact || undefined,
-    notes: parsed.data.notes || undefined,
-  });
-
-  void sendBookingEmails({
-    serviceType: parsed.data.serviceType,
-    serviceLabel:
-      SERVICE_LABELS[parsed.data.serviceType] ?? parsed.data.serviceType,
-    date: parsed.data.bookingDate,
-    time: parsed.data.bookingTime,
-    guestName: parsed.data.guestName,
-    guestEmail: parsed.data.guestEmail,
-    phone: parsed.data.phone || undefined,
-    notes: parsed.data.notes || undefined,
-    scope: parsed.data.scope,
-    socialPlatform: parsed.data.socialPlatform,
-    socialContact: parsed.data.socialContact || undefined,
-  });
+  // Run notifications in parallel and AWAIT both before returning.
+  // Using void/fire-and-forget is wrong on Vercel serverless: the execution
+  // context is terminated as soon as the response is sent, killing any
+  // pending async work before Google Sheets / Resend can complete.
+  await Promise.allSettled([
+    logBooking({
+      date: new Date().toISOString(),
+      guestName: parsed.data.guestName,
+      guestEmail: parsed.data.guestEmail,
+      phone: parsed.data.phone || undefined,
+      serviceType: SERVICE_LABELS[parsed.data.serviceType] ?? parsed.data.serviceType,
+      bookingDate: parsed.data.bookingDate,
+      bookingTime: parsed.data.bookingTime,
+      scope: parsed.data.scope || undefined,
+      socialPlatform: parsed.data.socialPlatform || undefined,
+      socialContact: parsed.data.socialContact || undefined,
+      notes: parsed.data.notes || undefined,
+    }),
+    sendBookingEmails({
+      serviceType: parsed.data.serviceType,
+      serviceLabel:
+        SERVICE_LABELS[parsed.data.serviceType] ?? parsed.data.serviceType,
+      date: parsed.data.bookingDate,
+      time: parsed.data.bookingTime,
+      guestName: parsed.data.guestName,
+      guestEmail: parsed.data.guestEmail,
+      phone: parsed.data.phone || undefined,
+      notes: parsed.data.notes || undefined,
+      scope: parsed.data.scope,
+      socialPlatform: parsed.data.socialPlatform,
+      socialContact: parsed.data.socialContact || undefined,
+    }),
+  ]);
 
   return NextResponse.json({ ok: true });
 }
