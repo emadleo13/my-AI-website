@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import { env } from './env';
-export { SERVICE_PRICES, PACKAGE_PRICES } from './service-prices';
+export { SERVICE_PRICES, SCOPE_PRICES, PACKAGE_PRICES } from './service-prices';
 
 let _stripe: Stripe | null = null;
 

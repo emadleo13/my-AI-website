@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getStripeClient, SERVICE_PRICES } from '@/lib/stripe';
+import { getStripeClient, SERVICE_PRICES, SCOPE_PRICES } from '@/lib/stripe';
 import { isStripeConfigured } from '@/lib/env';
 
 export async function POST(req: Request) {
@@ -12,8 +12,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { serviceType, guestName, guestEmail } = json as Record<string, string>;
-  const amount = SERVICE_PRICES[serviceType] ?? 200_00;
+  const { serviceType, scope, guestName, guestEmail } = json as Record<string, string>;
+  const amount = (scope ? SCOPE_PRICES[scope] : undefined) ?? SERVICE_PRICES[serviceType] ?? 49_00;
 
   try {
     const stripe = getStripeClient();
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       amount,
       currency: 'eur',
       receipt_email: guestEmail || undefined,
-      metadata: { serviceType, guestName: guestName || '' },
+      metadata: { serviceType, scope: scope || '', guestName: guestName || '' },
       automatic_payment_methods: { enabled: true },
     });
 

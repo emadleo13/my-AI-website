@@ -9,12 +9,13 @@ import { cn } from '@/lib/utils';
 import { ServiceStep, type ServiceKey } from './ServiceStep';
 import { DateTimeStep } from './DateTimeStep';
 import { DetailsStep, type DetailsState } from './DetailsStep';
+import { IntakeStep, type IntakeState, type IntakeErrors } from './IntakeStep';
 import { ScopeStep, type ScopeState } from './ScopeStep';
 import { PaymentStep } from './PaymentStep';
 import { Confirmation } from './Confirmation';
 import { type BookingTime } from '@/lib/utils';
 
-type Step = 1 | 2 | 3 | 4;
+type Step = 1 | 2 | 3 | 4 | 5;
 
 interface PaymentPhase {
   clientSecret: string;
@@ -23,6 +24,7 @@ interface PaymentPhase {
 }
 
 const EMPTY_DETAILS: DetailsState = { name: '', email: '', phone: '', notes: '' };
+const EMPTY_INTAKE: IntakeState = { company: '', role: '', teamSize: null, goal: '', aiExperience: null };
 const EMPTY_SCOPE: ScopeState = { scope: null, socialPlatform: 'whatsapp', socialContact: '' };
 
 export function BookingWizard() {
@@ -36,30 +38,36 @@ export function BookingWizard() {
   const [time, setTime] = React.useState<BookingTime | null>(null);
   const [details, setDetails] = React.useState<DetailsState>(EMPTY_DETAILS);
   const [detailErrors, setDetailErrors] = React.useState<Partial<Record<keyof DetailsState, string>>>({});
+  const [intake, setIntake] = React.useState<IntakeState>(EMPTY_INTAKE);
+  const [intakeErrors, setIntakeErrors] = React.useState<IntakeErrors>({});
   const [scope, setScope] = React.useState<ScopeState>(EMPTY_SCOPE);
   const [scopeErrors, setScopeErrors] = React.useState<{ socialContact?: string }>({});
   const [submitting, setSubmitting] = React.useState(false);
   const [done, setDone] = React.useState(false);
   const [paymentPhase, setPaymentPhase] = React.useState<PaymentPhase | null>(null);
 
-  const stepLabels = [
+  const stepLabels: string[] = [
     t('steps.service'),
     t('steps.datetime'),
     t('steps.details'),
+    t('steps.intake'),
     t('steps.scope'),
   ];
-
-  const canNext =
-    (step === 1 && !!service) ||
-    (step === 2 && !!date && !!time) ||
-    step === 3 ||
-    (step === 4 && !!scope.scope);
 
   const validateDetails = () => {
     const e: typeof detailErrors = {};
     if (details.name.trim().length < 2) e.name = 'min 2';
     if (!/^\S+@\S+\.\S+$/.test(details.email)) e.email = 'invalid';
     setDetailErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const validateIntake = () => {
+    const e: IntakeErrors = {};
+    if (intake.company.trim().length < 2) e.company = 'required';
+    if (!intake.role) e.role = 'required';
+    if (intake.goal.trim().length < 10) e.goal = 'required';
+    setIntakeErrors(e);
     return Object.keys(e).length === 0;
   };
 
@@ -72,25 +80,26 @@ export function BookingWizard() {
     return Object.keys(e).length === 0;
   };
 
-  const handleDetailsNext = () => {
-    if (!validateDetails()) return;
-    setStep(4);
+  // Builds the notes string combining intake data + scope info + client notes
+  const buildNotes = () => {
+    const lines: string[] = [];
+    lines.push(`[Company: ${intake.company}]`);
+    if (intake.role) lines.push(`[Role: ${intake.role}]`);
+    if (intake.teamSize) lines.push(`[Team size: ${intake.teamSize}]`);
+    if (intake.aiExperience) lines.push(`[AI experience: ${intake.aiExperience}]`);
+    if (intake.goal) lines.push(`[Goal: ${intake.goal}]`);
+    lines.push(`[Scope: ${scope.scope}]`);
+    if (scope.scope === 'free' && scope.socialPlatform) {
+      lines.push(`[Social: ${scope.socialPlatform} / ${scope.socialContact}]`);
+    }
+    if (details.notes) lines.push(`\nNotes: ${details.notes}`);
+    return lines.join('\n');
   };
 
-  // Submits the booking to the database. Called after payment (paid) or directly (free).
+  // Submits the booking record. Called after payment (paid) or directly (free).
   const submitBooking = async (): Promise<boolean> => {
     if (!service || !date || !time || !scope.scope) return false;
     setSubmitting(true);
-
-    const scopeLines = [
-      `[Scope: ${scope.scope}]`,
-      scope.scope === 'free' && scope.socialPlatform
-        ? `[Social: ${scope.socialPlatform} / ${scope.socialContact}]`
-        : null,
-      details.notes ? `\n${details.notes}` : null,
-    ]
-      .filter(Boolean)
-      .join('\n');
 
     try {
       const res = await fetch('/api/booking', {
@@ -103,7 +112,7 @@ export function BookingWizard() {
           guestName: details.name,
           guestEmail: details.email,
           phone: details.phone,
-          notes: scopeLines,
+          notes: buildNotes(),
           scope: scope.scope,
           socialPlatform: scope.scope === 'free' ? scope.socialPlatform : undefined,
           socialContact: scope.scope === 'free' ? scope.socialContact : undefined,
@@ -136,13 +145,13 @@ export function BookingWizard() {
   const handleScopeConfirm = async () => {
     if (!validateScope() || !service || !date || !time || !scope.scope) return;
 
-    // Free discovery call: submit directly, no payment
+    // Free discovery call → direct booking, no payment
     if (scope.scope === 'free') {
       await submitBooking();
       return;
     }
 
-    // Paid options: create Stripe payment intent first
+    // Paid → create Stripe payment intent first
     setSubmitting(true);
     try {
       const res = await fetch('/api/stripe/create-payment-intent', {
@@ -150,6 +159,7 @@ export function BookingWizard() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           serviceType: service,
+          scope: scope.scope,
           guestName: details.name,
           guestEmail: details.email,
         }),
@@ -163,7 +173,7 @@ export function BookingWizard() {
 
       setPaymentPhase({
         clientSecret: body.clientSecret,
-        amount: body.amount ?? 20000,
+        amount: body.amount ?? 49_00,
         demo: body.demo,
       });
     } catch {
@@ -176,7 +186,6 @@ export function BookingWizard() {
   const handlePaymentSuccess = async () => {
     const ok = await submitBooking();
     if (!ok) {
-      // Booking failed after payment — go back to scope step so user can see the error
       setPaymentPhase(null);
     }
   };
@@ -188,6 +197,8 @@ export function BookingWizard() {
     setTime(null);
     setDetails(EMPTY_DETAILS);
     setDetailErrors({});
+    setIntake(EMPTY_INTAKE);
+    setIntakeErrors({});
     setScope(EMPTY_SCOPE);
     setScopeErrors({});
     setPaymentPhase(null);
@@ -208,7 +219,7 @@ export function BookingWizard() {
     );
   }
 
-  // Payment phase — show Stripe payment form in place of the wizard steps
+  // Payment phase — Stripe form overlays the wizard
   if (paymentPhase) {
     return (
       <div className="space-y-6">
@@ -231,19 +242,32 @@ export function BookingWizard() {
     );
   }
 
+  const goBack = () => setStep((s) => Math.max(1, s - 1) as Step);
+  const goForward = () => setStep((s) => Math.min(5, s + 1) as Step);
+
+  const handleNext = () => {
+    if (step === 3) {
+      if (!validateDetails()) return;
+    }
+    if (step === 4) {
+      if (!validateIntake()) return;
+    }
+    goForward();
+  };
+
   return (
     <div className="space-y-8">
       {/* Step indicator */}
-      <ol className="flex items-center justify-between gap-2">
+      <ol className="flex items-center justify-between gap-1">
         {stepLabels.map((label, i) => {
           const n = (i + 1) as Step;
           const active = step === n;
           const complete = step > n;
           return (
-            <li key={label} className="flex-1 flex items-center gap-2">
+            <li key={label} className="flex-1 flex items-center gap-1.5">
               <span
                 className={cn(
-                  'grid h-8 w-8 place-items-center rounded-full text-xs font-bold flex-shrink-0',
+                  'grid h-7 w-7 place-items-center rounded-full text-xs font-bold flex-shrink-0',
                   complete
                     ? 'bg-primary text-primary-foreground'
                     : active
@@ -255,7 +279,7 @@ export function BookingWizard() {
               </span>
               <span
                 className={cn(
-                  'text-sm hidden sm:inline',
+                  'text-xs hidden sm:inline truncate',
                   active ? 'font-semibold' : 'text-muted-foreground',
                 )}
               >
@@ -284,6 +308,9 @@ export function BookingWizard() {
           <DetailsStep value={details} onChange={setDetails} errors={detailErrors} />
         )}
         {step === 4 && (
+          <IntakeStep value={intake} onChange={setIntake} errors={intakeErrors} />
+        )}
+        {step === 5 && (
           <ScopeStep value={scope} onChange={setScope} errors={scopeErrors} />
         )}
       </div>
@@ -292,7 +319,7 @@ export function BookingWizard() {
       <div className="flex justify-between gap-2">
         <Button
           variant="ghost"
-          onClick={() => setStep((s) => Math.max(1, s - 1) as Step)}
+          onClick={goBack}
           disabled={step === 1 || submitting}
           className="gap-1.5"
         >
@@ -300,25 +327,24 @@ export function BookingWizard() {
           {t('actions.back')}
         </Button>
 
-        {step < 3 && (
+        {step < 5 ? (
           <Button
-            onClick={() => setStep((s) => Math.min(3, s + 1) as Step)}
-            disabled={!canNext}
+            onClick={() => {
+              if (step === 1 && !service) return;
+              if (step === 2 && (!date || !time)) return;
+              handleNext();
+            }}
+            disabled={
+              (step === 1 && !service) ||
+              (step === 2 && (!date || !time)) ||
+              submitting
+            }
             className="gap-1.5"
           >
             {t('actions.next')}
             <ArrowRight className="h-4 w-4 rtl:rotate-180" />
           </Button>
-        )}
-
-        {step === 3 && (
-          <Button onClick={handleDetailsNext} disabled={submitting} className="gap-1.5">
-            {t('actions.next')}
-            <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-          </Button>
-        )}
-
-        {step === 4 && (
+        ) : (
           <Button
             onClick={handleScopeConfirm}
             disabled={submitting || !scope.scope}

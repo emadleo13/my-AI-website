@@ -505,7 +505,7 @@
       "service": "Serviciu",
       "datetime": "Dată & Oră",
       "details": "Detaliile tale",
-      "payment": "Tip serviciu",
+      "intake": "Afacerea ta",
       "scope": "Tip serviciu"
     },
     "services": {
@@ -552,11 +552,46 @@
       "title": "Plată",
       "total": "Total",
       "pay": "Plătește",
+      "loading": "Se încarcă plata…",
       "processing": "Se procesează…",
       "secureNote": "Plată securizată prin Stripe — datele cardului nu sunt stocate.",
       "demoNote": "Stripe nu este configurat. Aceasta este o plată demo.",
       "simulatePay": "Simulează plata",
       "errorGeneric": "Plata a eșuat. Încearcă din nou."
+    },
+    "intake": {
+      "title": "Spune-ne despre afacerea ta",
+      "subtitle": "Aceste informații ne ajută să pregătim o consultanță mai productivă",
+      "company": "Numele companiei sau organizației",
+      "companyPlaceholder": "ex. Acme SRL",
+      "role": "Rolul tău",
+      "rolePlaceholder": "Selectează rolul tău",
+      "roles": {
+        "founder": "Proprietar / Fondator",
+        "executive": "C-level / Director",
+        "manager": "Manager",
+        "developer": "Developer / Tehnic",
+        "consultant": "Consultant / Freelancer",
+        "other": "Altul"
+      },
+      "teamSize": "Mărimea echipei",
+      "sizes": {
+        "solo": "Doar eu",
+        "small": "2–10",
+        "medium": "11–50",
+        "large": "51–200",
+        "enterprise": "200+"
+      },
+      "goal": "Ce dorești să realizezi?",
+      "goalPlaceholder": "Descrie pe scurt provocarea sau obiectivul principal…",
+      "goalHint": "2–3 propoziții sunt suficiente",
+      "aiExperience": "Experiența echipei cu AI",
+      "experience": {
+        "none": "Niciuna — nu am folosit instrumente AI",
+        "basic": "De bază — am folosit ChatGPT sau similar",
+        "intermediate": "Intermediar — AI face parte din unele fluxuri",
+        "advanced": "Avansat — construim sau implementăm sisteme AI"
+      }
     },
     "confirm": {
       "title": "Rezervarea ta e confirmată",

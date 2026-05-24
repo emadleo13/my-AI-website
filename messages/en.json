@@ -505,7 +505,7 @@
       "service": "Service",
       "datetime": "Date & Time",
       "details": "Your Details",
-      "payment": "Scope",
+      "intake": "Your Business",
       "scope": "Scope"
     },
     "services": {
@@ -552,11 +552,46 @@
       "title": "Payment",
       "total": "Total",
       "pay": "Pay",
+      "loading": "Loading payment…",
       "processing": "Processing…",
       "secureNote": "Secured by Stripe — your card details are never stored.",
       "demoNote": "Stripe is not configured. This is a demo payment.",
       "simulatePay": "Simulate Payment",
       "errorGeneric": "Payment failed. Please try again."
+    },
+    "intake": {
+      "title": "Tell us about your business",
+      "subtitle": "This helps us prepare for a more productive consultation",
+      "company": "Company or organization name",
+      "companyPlaceholder": "e.g. Acme Corp",
+      "role": "Your role",
+      "rolePlaceholder": "Select your role",
+      "roles": {
+        "founder": "Owner / Founder",
+        "executive": "C-level / Director",
+        "manager": "Manager",
+        "developer": "Developer / Technical",
+        "consultant": "Consultant / Freelancer",
+        "other": "Other"
+      },
+      "teamSize": "Team size",
+      "sizes": {
+        "solo": "Just me",
+        "small": "2–10",
+        "medium": "11–50",
+        "large": "51–200",
+        "enterprise": "200+"
+      },
+      "goal": "What would you like to achieve?",
+      "goalPlaceholder": "Briefly describe your main challenge or goal…",
+      "goalHint": "2–3 sentences is enough",
+      "aiExperience": "Team's AI experience",
+      "experience": {
+        "none": "None — haven't used AI tools",
+        "basic": "Basic — used ChatGPT or similar",
+        "intermediate": "Intermediate — AI in some workflows",
+        "advanced": "Advanced — building or deploying AI"
+      }
     },
     "confirm": {
       "title": "You're booked",

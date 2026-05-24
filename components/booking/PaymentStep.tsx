@@ -12,10 +12,9 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Loader2, ShieldCheck } from 'lucide-react';
 
-const stripePromise =
-  typeof window !== 'undefined' && process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-    ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-    : null;
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : null;
 
 interface PaymentFormProps {
   onSuccess: () => void;
@@ -28,6 +27,7 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
   const t = useTranslations('booking.payment');
   const [error, setError] = React.useState<string | null>(null);
   const [processing, setProcessing] = React.useState(false);
+  const [ready, setReady] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +38,11 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
     const { error: stripeError } = await stripe.confirmPayment({
       elements,
       redirect: 'if_required',
+      confirmParams: {
+        return_url: typeof window !== 'undefined'
+          ? `${window.location.origin}${window.location.pathname}`
+          : '',
+      },
     });
 
     if (stripeError) {
@@ -48,6 +53,8 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
     }
   };
 
+  const isLoading = !stripe || !ready;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="rounded-xl border border-border bg-card p-5">
@@ -55,7 +62,7 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
           <span className="text-sm font-medium text-muted-foreground">{t('total')}</span>
           <span className="text-2xl font-extrabold">€{(amount / 100).toFixed(0)}</span>
         </div>
-        <PaymentElement />
+        <PaymentElement onReady={() => setReady(true)} />
       </div>
 
       {error && (
@@ -64,12 +71,14 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
 
       <Button
         type="submit"
-        disabled={!stripe || processing}
+        disabled={isLoading || processing}
         variant="accent"
         size="lg"
         className="w-full gap-2"
       >
-        {processing ? (
+        {isLoading ? (
+          <><Loader2 className="h-4 w-4 animate-spin" />{t('loading')}</>
+        ) : processing ? (
           <><Loader2 className="h-4 w-4 animate-spin" />{t('processing')}</>
         ) : (
           <><ShieldCheck className="h-4 w-4" />{t('pay')} €{(amount / 100).toFixed(0)}</>
