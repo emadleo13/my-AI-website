@@ -53,7 +53,7 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
     }
   };
 
-  const isLoading = !stripe || !ready;
+  const isLoading = !stripe;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -62,7 +62,20 @@ function PaymentForm({ onSuccess, amount }: PaymentFormProps) {
           <span className="text-sm font-medium text-muted-foreground">{t('total')}</span>
           <span className="text-2xl font-extrabold">€{(amount / 100).toFixed(0)}</span>
         </div>
-        <PaymentElement onReady={() => setReady(true)} />
+        <div className="min-h-[280px]">
+          {!ready && (
+            <div className="flex items-center justify-center py-12 text-sm text-muted-foreground gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              {t('loading')}
+            </div>
+          )}
+          <PaymentElement
+            onReady={() => setReady(true)}
+            onLoadError={(event) => {
+              setError(event.error?.message ?? t('errorGeneric'));
+            }}
+          />
+        </div>
       </div>
 
       {error && (
