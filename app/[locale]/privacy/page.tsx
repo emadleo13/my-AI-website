@@ -23,7 +23,7 @@ export default async function PrivacyPage({
         <h2>1. Who we are</h2>
         <p>
           This website is operated by <strong>Emad Leodari</strong>, an independent AI consultant
-          and software developer based in Cluj-Napoca, Romania (<strong>emadai.dev</strong>).
+          and software developer based in Baia Mare, Maramureș, Romania (<strong>emadai.dev</strong>).
           Contact: <a href="mailto:hamidleo1984@gmail.com">hamidleo1984@gmail.com</a>
         </p>
 

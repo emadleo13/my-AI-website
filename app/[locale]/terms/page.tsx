@@ -76,7 +76,7 @@ export default async function TermsPage({
         <h2>8. Governing law</h2>
         <p>
           These Terms are governed by the laws of Romania. Any disputes shall be resolved in the
-          courts of Cluj-Napoca, Romania, unless mandatory consumer protection laws in your country
+          courts of Baia Mare, Romania, unless mandatory consumer protection laws in your country
           provide otherwise.
         </p>
 

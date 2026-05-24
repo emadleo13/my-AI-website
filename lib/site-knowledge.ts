@@ -74,5 +74,5 @@ This chat interface — an AI-powered assistant answering questions about servic
 Published articles in English, Farsi (فارسی), and Romanian covering AI, tech, and the Romanian job market.
 
 ### About (/about)
-Emad is an AI consultant and software developer based in Cluj-Napoca, Romania. Over a decade of experience in e-commerce, SaaS, fintech, and AI consulting.
+Emad is an AI consultant and software developer based in Baia Mare, Maramureș, Romania. Over a decade of experience in e-commerce, SaaS, fintech, and AI consulting.
 `;
