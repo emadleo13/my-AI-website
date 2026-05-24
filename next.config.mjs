@@ -34,17 +34,17 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // Scripts: self + Next.js inline + Stripe
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://www.google-analytics.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://m.stripe.network https://www.google-analytics.com",
       // Styles: self + inline (Tailwind)
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       // Fonts
       "font-src 'self' https://fonts.gstatic.com",
       // Images: self + data URIs + external hosts used by the app
-      "img-src 'self' data: blob: https://picsum.photos https://fastly.picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
+      "img-src 'self' data: blob: https://*.stripe.com https://picsum.photos https://fastly.picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
       // Connections: self + Supabase + Stripe + Anthropic
-      `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://api.anthropic.com wss://*.supabase.co`,
+      `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://m.stripe.com https://m.stripe.network https://q.stripe.com https://api.anthropic.com wss://*.supabase.co`,
       // Frames: Stripe + OpenStreetMap (contact page map)
-      "frame-src https://js.stripe.com https://hooks.stripe.com https://www.openstreetmap.org",
+      "frame-src https://js.stripe.com https://hooks.stripe.com https://m.stripe.com https://m.stripe.network https://www.openstreetmap.org",
       // No plugins
       "object-src 'none'",
       // Base URI restricted
