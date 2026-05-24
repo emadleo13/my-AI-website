@@ -1,26 +1,28 @@
 'use client';
 
 import * as React from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { toast } from 'sonner';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { ServiceStep, type ServiceKey } from './ServiceStep';
 import { DateTimeStep } from './DateTimeStep';
 import { DetailsStep, type DetailsState } from './DetailsStep';
 import { IntakeStep, type IntakeState, type IntakeErrors } from './IntakeStep';
-import { ScopeStep, type ScopeState } from './ScopeStep';
-import { PaymentStep } from './PaymentStep';
+import { ScopeStep, type ScopeState, type ScopeKey, type SocialPlatform } from './ScopeStep';
 import { Confirmation } from './Confirmation';
 import { type BookingTime } from '@/lib/utils';
 
 type Step = 1 | 2 | 3 | 4 | 5;
 
-interface PaymentPhase {
-  clientSecret: string;
-  amount: number;
-  demo?: boolean;
+interface ConfirmedBooking {
+  serviceType: ServiceKey;
+  bookingDate: string;
+  bookingTime: BookingTime;
+  guestEmail: string;
+  scope: ScopeKey;
+  socialPlatform?: SocialPlatform;
 }
 
 const EMPTY_DETAILS: DetailsState = { name: '', email: '', phone: '', notes: '' };
@@ -31,6 +33,7 @@ export function BookingWizard() {
   const t = useTranslations('booking');
   const tErr = useTranslations('booking.errors');
   const tServices = useTranslations('booking.services');
+  const locale = useLocale();
 
   const [step, setStep] = React.useState<Step>(1);
   const [service, setService] = React.useState<ServiceKey | null>(null);
@@ -44,7 +47,8 @@ export function BookingWizard() {
   const [scopeErrors, setScopeErrors] = React.useState<{ socialContact?: string }>({});
   const [submitting, setSubmitting] = React.useState(false);
   const [done, setDone] = React.useState(false);
-  const [paymentPhase, setPaymentPhase] = React.useState<PaymentPhase | null>(null);
+  const [finalizing, setFinalizing] = React.useState(false);
+  const [confirmedBooking, setConfirmedBooking] = React.useState<ConfirmedBooking | null>(null);
 
   const stepLabels: string[] = [
     t('steps.service'),
@@ -151,31 +155,35 @@ export function BookingWizard() {
       return;
     }
 
-    // Paid → create Stripe payment intent first
+    // Paid → redirect to Stripe Checkout (hosted page).
+    // Hosted Checkout bypasses CSP/adblocker issues that plagued the embedded
+    // PaymentElement: it runs entirely on checkout.stripe.com and only needs
+    // a redirect from our site.
     setSubmitting(true);
     try {
-      const res = await fetch('/api/stripe/create-payment-intent', {
+      const res = await fetch('/api/stripe/booking-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           serviceType: service,
           scope: scope.scope,
+          bookingDate: date,
+          bookingTime: time,
           guestName: details.name,
           guestEmail: details.email,
+          phone: details.phone,
+          notes: buildNotes(),
+          locale,
         }),
       });
       const body = await res.json().catch(() => ({}));
 
-      if (!res.ok) {
+      if (!res.ok || !body.url) {
         toast.error(body?.message ?? tErr('generic'));
         return;
       }
 
-      setPaymentPhase({
-        clientSecret: body.clientSecret,
-        amount: body.amount ?? 49_00,
-        demo: body.demo,
-      });
+      window.location.href = body.url as string;
     } catch {
       toast.error(tErr('generic'));
     } finally {
@@ -183,12 +191,54 @@ export function BookingWizard() {
     }
   };
 
-  const handlePaymentSuccess = async () => {
-    const ok = await submitBooking();
-    if (!ok) {
-      setPaymentPhase(null);
+  // Handle return from Stripe Checkout via success_url (?session_id=…) or
+  // cancel_url (?payment=cancelled). Runs once on mount.
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    const payment = params.get('payment');
+
+    const clearQuery = () => {
+      window.history.replaceState({}, '', window.location.pathname);
+    };
+
+    if (payment === 'cancelled') {
+      toast.error(tErr('paymentCancelled'));
+      clearQuery();
+      return;
     }
-  };
+
+    if (!sessionId) return;
+
+    setFinalizing(true);
+    fetch('/api/booking/finalize', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId }),
+    })
+      .then(async (res) => {
+        const body = await res.json().catch(() => ({}));
+        if (res.ok && body.booking) {
+          setConfirmedBooking({
+            serviceType: body.booking.serviceType as ServiceKey,
+            bookingDate: body.booking.bookingDate as string,
+            bookingTime: body.booking.bookingTime as BookingTime,
+            guestEmail: body.booking.guestEmail as string,
+            scope: body.booking.scope as ScopeKey,
+          });
+          setDone(true);
+        } else {
+          toast.error(body?.message ?? tErr('generic'));
+        }
+      })
+      .catch(() => toast.error(tErr('generic')))
+      .finally(() => {
+        setFinalizing(false);
+        clearQuery();
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const reset = () => {
     setStep(1);
@@ -201,10 +251,28 @@ export function BookingWizard() {
     setIntakeErrors({});
     setScope(EMPTY_SCOPE);
     setScopeErrors({});
-    setPaymentPhase(null);
+    setConfirmedBooking(null);
     setDone(false);
   };
 
+  // Confirmation after a paid checkout that came back via success_url.
+  // Wizard state is empty in this case (page reload from Stripe), so we use
+  // confirmedBooking populated from the finalize API response.
+  if (done && confirmedBooking) {
+    return (
+      <Confirmation
+        serviceLabel={tServices(`${confirmedBooking.serviceType}.title`)}
+        date={confirmedBooking.bookingDate}
+        time={confirmedBooking.bookingTime}
+        email={confirmedBooking.guestEmail}
+        scope={confirmedBooking.scope}
+        socialPlatform={confirmedBooking.socialPlatform}
+        onAnother={reset}
+      />
+    );
+  }
+
+  // Confirmation after the free flow that completed in the same wizard session.
   if (done && service && date && time && scope.scope) {
     return (
       <Confirmation
@@ -219,25 +287,13 @@ export function BookingWizard() {
     );
   }
 
-  // Payment phase — Stripe form overlays the wizard
-  if (paymentPhase) {
+  // Finalizing a paid checkout — show a lightweight spinner while we verify the
+  // Stripe session and create the booking.
+  if (finalizing) {
     return (
-      <div className="space-y-6">
-        <Button
-          variant="ghost"
-          onClick={() => setPaymentPhase(null)}
-          disabled={submitting}
-          className="gap-1.5 -ml-2"
-        >
-          <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
-          {t('actions.back')}
-        </Button>
-        <PaymentStep
-          clientSecret={paymentPhase.clientSecret}
-          amount={paymentPhase.amount}
-          onSuccess={handlePaymentSuccess}
-          demo={paymentPhase.demo}
-        />
+      <div className="flex flex-col items-center justify-center gap-3 py-16 text-center">
+        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        <p className="text-sm text-muted-foreground">{t('actions.submitting')}</p>
       </div>
     );
   }

@@ -603,7 +603,8 @@
     "errors": {
       "slotTaken": "That slot was just taken — pick another.",
       "generic": "Booking failed. Please try again.",
-      "rateLimited": "Too many booking attempts — wait a moment and try again."
+      "rateLimited": "Too many booking attempts — wait a moment and try again.",
+      "paymentCancelled": "Payment was cancelled. Your slot wasn't booked."
     },
     "scope": {
       "title": "What type of engagement do you need?",

@@ -603,7 +603,8 @@
     "errors": {
       "slotTaken": "Slotul a fost luat — alege altul.",
       "generic": "Rezervare eșuată. Încearcă din nou.",
-      "rateLimited": "Prea multe încercări de rezervare — așteaptă un moment și încearcă din nou."
+      "rateLimited": "Prea multe încercări de rezervare — așteaptă un moment și încearcă din nou.",
+      "paymentCancelled": "Plata a fost anulată. Rezervarea nu a fost făcută."
     },
     "scope": {
       "title": "Ce tip de colaborare ai nevoie?",
