@@ -334,6 +334,83 @@
         "cta": "Get in touch"
       }
     },
+    "catalog": {
+      "eyebrow": "Ready-to-buy packages",
+      "title": "Productized AI Automations",
+      "subtitle": "Fixed scope, fixed timeline, fixed price. Built and deployed for your business, not just designed.",
+      "setupLabel": "Setup",
+      "monthlyLabel": "Monthly",
+      "timelineLabel": "Live in",
+      "forLabel": "Best for",
+      "cta": "Book scoping call",
+      "items": {
+        "leadResponse": {
+          "title": "5-Minute Lead Response Bot",
+          "desc": "AI replies to every inbound lead in under 5 minutes — personalized, on-brand, CRM-synced.",
+          "setup": "€1,500",
+          "monthly": "€150/mo",
+          "timeline": "10 days",
+          "for": "Real estate, dental, B2B services",
+          "bullets": {
+            "1": "Form-to-reply automation flow",
+            "2": "Personalized message generation",
+            "3": "CRM update + team notification"
+          }
+        },
+        "reviewReplies": {
+          "title": "Review Response Generator",
+          "desc": "Drafts contextual replies for every Google / TripAdvisor review. One-click approve in WhatsApp or email.",
+          "setup": "€800",
+          "monthly": "€99/mo",
+          "timeline": "7 days",
+          "for": "Restaurants, hotels, clinics, salons",
+          "bullets": {
+            "1": "Google + TripAdvisor monitoring",
+            "2": "Voice-matched draft replies",
+            "3": "Mobile approval workflow"
+          }
+        },
+        "docDrafter": {
+          "title": "AI Document Drafter",
+          "desc": "Generate standard contracts, NDAs, engagement letters, and proposals from intake forms using your templates.",
+          "setup": "€3,000",
+          "monthly": "€299/mo",
+          "timeline": "21 days",
+          "for": "Law, accounting, real estate, architecture",
+          "bullets": {
+            "1": "Custom template ingestion",
+            "2": "Variable-driven generation",
+            "3": "Senior review workflow"
+          }
+        },
+        "multilangTriage": {
+          "title": "Multi-Language Support Triage",
+          "desc": "Detects language, translates, classifies urgency, and routes inbound messages. Reply in the customer's language.",
+          "setup": "€1,200",
+          "monthly": "€120/mo",
+          "timeline": "10 days",
+          "for": "Hospitality, e-commerce, Schengen-region SMEs",
+          "bullets": {
+            "1": "Email + WhatsApp + Instagram DM",
+            "2": "Language detection & translation",
+            "3": "Urgency-based routing"
+          }
+        },
+        "ownerBriefing": {
+          "title": "Owner's Weekly Briefing",
+          "desc": "Pulls data from 5–8 of your dashboards every Monday and delivers a one-page narrative summary by email.",
+          "setup": "€2,000",
+          "monthly": "€199/mo",
+          "timeline": "14 days",
+          "for": "Small business owners, founders, agency leads",
+          "bullets": {
+            "1": "Revenue + ads + reviews + bank",
+            "2": "Anomaly detection with context",
+            "3": "Plain-English narrative summary"
+          }
+        }
+      }
+    },
     "pricing": {
       "title": "Packages",
       "subtitle": "Transparent pricing — start free.",

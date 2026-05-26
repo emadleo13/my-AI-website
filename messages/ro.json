@@ -334,6 +334,83 @@
         "cta": "Contactează-mă"
       }
     },
+    "catalog": {
+      "eyebrow": "Pachete gata de cumpărat",
+      "title": "Automatizări AI Productized",
+      "subtitle": "Scope fix, timeline fix, preț fix. Construite și deploiate pentru afacerea ta, nu doar proiectate.",
+      "setupLabel": "Setup",
+      "monthlyLabel": "Lunar",
+      "timelineLabel": "Live în",
+      "forLabel": "Recomandat pentru",
+      "cta": "Rezervă apel de scoping",
+      "items": {
+        "leadResponse": {
+          "title": "Bot de răspuns la lead în 5 minute",
+          "desc": "AI răspunde fiecărui lead în mai puțin de 5 minute — personalizat, cu vocea brandului, sincronizat cu CRM-ul.",
+          "setup": "€1.500",
+          "monthly": "€150/lună",
+          "timeline": "10 zile",
+          "for": "Imobiliare, dentar, servicii B2B",
+          "bullets": {
+            "1": "Flux automat formular-la-răspuns",
+            "2": "Generare de mesaj personalizat",
+            "3": "Actualizare CRM + notificare echipă"
+          }
+        },
+        "reviewReplies": {
+          "title": "Generator de răspunsuri la recenzii",
+          "desc": "Drafts răspunsuri contextuale pentru fiecare recenzie Google / TripAdvisor. Aprobare cu un click în WhatsApp sau email.",
+          "setup": "€800",
+          "monthly": "€99/lună",
+          "timeline": "7 zile",
+          "for": "Restaurante, hoteluri, clinici, saloane",
+          "bullets": {
+            "1": "Monitorizare Google + TripAdvisor",
+            "2": "Drafts cu vocea brandului",
+            "3": "Workflow de aprobare mobil"
+          }
+        },
+        "docDrafter": {
+          "title": "AI Document Drafter",
+          "desc": "Generează contracte standard, NDA-uri, scrisori de angajament și propuneri din formulare folosind template-urile tale.",
+          "setup": "€3.000",
+          "monthly": "€299/lună",
+          "timeline": "21 zile",
+          "for": "Juridic, contabilitate, imobiliare, arhitectură",
+          "bullets": {
+            "1": "Ingerare template-uri customizate",
+            "2": "Generare bazată pe variabile",
+            "3": "Workflow de review senior"
+          }
+        },
+        "multilangTriage": {
+          "title": "Triaj multilingv pentru support",
+          "desc": "Detectează limba, traduce, clasifică urgența și rutează mesajele. Răspunde în limba originală a clientului.",
+          "setup": "€1.200",
+          "monthly": "€120/lună",
+          "timeline": "10 zile",
+          "for": "HoReCa, e-commerce, IMM-uri în zona Schengen",
+          "bullets": {
+            "1": "Email + WhatsApp + Instagram DM",
+            "2": "Detecție de limbă & traducere",
+            "3": "Rutare în funcție de urgență"
+          }
+        },
+        "ownerBriefing": {
+          "title": "Briefingul săptămânal al patronului",
+          "desc": "Trage date din 5–8 dashboard-uri în fiecare luni și livrează un rezumat narativ de o pagină prin email.",
+          "setup": "€2.000",
+          "monthly": "€199/lună",
+          "timeline": "14 zile",
+          "for": "Patroni de IMM-uri, fondatori, manageri de agenții",
+          "bullets": {
+            "1": "Venituri + ads + recenzii + bancă",
+            "2": "Detecție anomalii cu context",
+            "3": "Rezumat narativ în limbaj simplu"
+          }
+        }
+      }
+    },
     "pricing": {
       "title": "Pachete",
       "subtitle": "Preț transparent — începe gratuit.",

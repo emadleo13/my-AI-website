@@ -1,6 +1,7 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ServicesHero } from '@/components/sections/ServicesHero';
 import { ServiceCards } from '@/components/sections/ServiceCards';
+import { ServiceCatalog } from '@/components/sections/ServiceCatalog';
 import { Pricing } from '@/components/sections/Pricing';
 
 export async function generateMetadata({
@@ -28,6 +29,7 @@ export default async function ServicesPage({
     <>
       <ServicesHero />
       <ServiceCards />
+      <ServiceCatalog />
       <Pricing />
     </>
   );
