@@ -1016,5 +1016,9 @@
     "fullChat": "Chat complet",
     "placeholder": "Întreabă-mă orice…",
     "continueInFullChat": "Continuă în chat complet"
+  },
+  "chatbot": {
+    "skip": "Sari peste intro",
+    "name": "Asistent AI Emad"
   }
 }

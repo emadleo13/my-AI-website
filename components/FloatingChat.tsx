@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, ArrowRight, Loader2 } from 'lucide-react';
+import { X, Send, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { useTranslations } from 'next-intl';
 
@@ -14,6 +14,28 @@ const WELCOME: Message = {
   role: 'assistant',
   content: "Hi! I'm Emad's AI assistant. Ask me anything about AI consulting, services, or how I can help your business.",
 };
+
+function RobotFace({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 36 36" fill="none" className={className} aria-hidden>
+      {/* Head */}
+      <rect x="6" y="8" width="24" height="22" rx="6" fill="#10b981" />
+      {/* Antenna */}
+      <line x1="18" y1="8" x2="18" y2="3" stroke="#34d399" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="18" cy="2" r="2" fill="#34d399" />
+      {/* Eyes */}
+      <circle cx="13" cy="17" r="3" fill="#030d0a" />
+      <circle cx="23" cy="17" r="3" fill="#030d0a" />
+      <circle cx="14" cy="16" r="1" fill="white" />
+      <circle cx="24" cy="16" r="1" fill="white" />
+      {/* Smile */}
+      <path d="M12 23 Q18 28 24 23" stroke="#030d0a" strokeWidth="2" strokeLinecap="round" fill="none" />
+      {/* Cheeks */}
+      <circle cx="9" cy="21" r="2" fill="#059669" opacity="0.5" />
+      <circle cx="27" cy="21" r="2" fill="#059669" opacity="0.5" />
+    </svg>
+  );
+}
 
 export function FloatingChat() {
   const t = useTranslations('floatingChat');
@@ -90,7 +112,7 @@ export function FloatingChat() {
           {/* Header */}
           <div className="flex items-center justify-between gap-2 bg-primary px-4 py-3">
             <div className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4 text-primary-foreground" />
+              <RobotFace className="h-5 w-5" />
               <span className="text-sm font-semibold text-primary-foreground">
                 {t('popupTitle')}
               </span>
@@ -187,14 +209,14 @@ export function FloatingChat() {
       >
         {/* Ping ring — only when closed */}
         {!open && (
-          <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-40 animate-ping" />
+          <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-40 animate-ping" />
         )}
         {/* Button */}
-        <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-xl transition-all group-hover:scale-110 active:scale-95">
+        <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg hover:bg-emerald-500 hover:shadow-xl transition-all group-hover:scale-110 active:scale-95">
           {open ? (
             <X className="h-6 w-6" />
           ) : (
-            <MessageCircle className="h-6 w-6" />
+            <RobotFace className="h-8 w-8" />
           )}
         </span>
       </button>

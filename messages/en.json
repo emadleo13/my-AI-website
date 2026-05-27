@@ -1016,5 +1016,9 @@
     "fullChat": "Full chat",
     "placeholder": "Ask me anything…",
     "continueInFullChat": "Continue in full chat"
+  },
+  "chatbot": {
+    "skip": "Skip intro",
+    "name": "Emad AI Assistant"
   }
 }

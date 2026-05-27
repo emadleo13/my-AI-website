@@ -1016,5 +1016,9 @@
     "fullChat": "چت کامل",
     "placeholder": "سوال بپرسید…",
     "continueInFullChat": "ادامه در چت کامل"
+  },
+  "chatbot": {
+    "skip": "رد کردن",
+    "name": "دستیار هوش مصنوعی عماد"
   }
 }

@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { ChatWindow } from '@/components/chat/ChatWindow';
+import { ChatBotV2 } from '@/components/chat/ChatBotV2';
 import { DemoBanner } from '@/components/DemoBanner';
 import { isAnthropicConfigured } from '@/lib/env';
 
@@ -33,7 +33,7 @@ export default async function ConsultantPage({
 
         <div className="mt-8">
           {!isAnthropicConfigured && <DemoBanner message={tDemo('anthropic')} />}
-          <ChatWindow />
+          <ChatBotV2 />
         </div>
       </div>
     </div>
