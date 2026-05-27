@@ -39,6 +39,9 @@ begin
   values (new.id, coalesce(new.raw_user_meta_data->>'full_name', ''))
   on conflict (id) do nothing;
   return new;
+exception when others then
+  raise warning 'handle_new_user failed for %: %', new.id, sqlerrm;
+  return new;
 end;
 $$;
 
