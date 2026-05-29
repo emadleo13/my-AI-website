@@ -20,7 +20,7 @@ export function ResumeCTA() {
               <p className="mt-1 text-sm text-muted-foreground">{t('body')}</p>
             </div>
             <Button asChild variant="accent" size="lg" className="gap-2">
-              <a href="/api/resume" download>
+              <a href="/Abdolhamid_Bashari_CV_EN.pdf" download>
                 <Download className="h-4 w-4" />
                 {t('download')}
               </a>

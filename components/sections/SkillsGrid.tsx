@@ -1,11 +1,25 @@
 import { useTranslations } from 'next-intl';
-import { Code2, Layers, Sparkles, Database } from 'lucide-react';
+import { Code2, Layers, Sparkles, Database, Cog } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { ScrollReveal } from './ScrollReveal';
 
 const GROUPS = [
+  {
+    key: 'manufacturing',
+    icon: Cog,
+    skills: [
+      'CNC Operation',
+      'CNC Programming (G-code)',
+      '3-Axis Machining',
+      'Drilling & Milling',
+      'Lathe Operation',
+      'Machine Setup',
+      'Material Handling',
+      'Quality Control',
+    ],
+  },
   {
     key: 'languages',
     icon: Code2,

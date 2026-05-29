@@ -51,7 +51,7 @@ export function AboutHero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="accent" className="gap-2">
-              <a href="/api/resume" download>
+              <a href="/Abdolhamid_Bashari_CV_EN.pdf" download>
                 <Download className="h-4 w-4" />
                 {t('downloadResume')}
               </a>

@@ -166,6 +166,7 @@
       "title": "Skills & Stack",
       "subtitle": "What I reach for, day to day.",
       "groups": {
+        "manufacturing": "Manufacturing & Technical",
         "languages": "Languages",
         "frameworks": "Frameworks",
         "ai": "AI / ML",
@@ -176,16 +177,28 @@
       "title": "Education & Certifications",
       "items": {
         "1": {
-          "degree": "M.Sc. Computer Science",
-          "school": "University of Technic Cluj Napoca",
-          "period": "2024 — 2028",
-          "note": "Focus: machine learning, distributed systems."
+          "degree": "B.A. Computer Science (in progress)",
+          "school": "Technical University of Cluj-Napoca",
+          "period": "In progress",
+          "note": "Building practical skills in Python, JavaScript, and TypeScript."
         },
         "2": {
-          "degree": "Deep Learning Specialization",
-          "school": "CAREERPRENEUR ACADEMY",
+          "degree": "Romanian Language Studies",
+          "school": "Universitatea Babeș-Bolyai (UBB) · Cluj-Napoca",
+          "period": "2022 — 2024",
+          "note": "Diploma of Higher Education."
+        },
+        "3": {
+          "degree": "B.A. Financial Management",
+          "school": "Azad Lahijan University · Iran",
+          "period": "2017 — 2021",
+          "note": "Bachelor's degree in financial management."
+        },
+        "4": {
+          "degree": "Deep Learning Specialization & AI Consultant",
+          "school": "CareerPreneur Academy",
           "period": "2026",
-          "note": "Sequence models and NLP."
+          "note": "Sequence models, NLP, and applied AI."
         }
       }
     },
@@ -193,22 +206,22 @@
       "title": "Work Experience",
       "items": {
         "1": {
-          "role": "AI Consultant (in collaboration with the Academy CAREERPRENEUR)",
-          "company": "Ai Academy - Canada",
-          "period": "2024 — Present",
-          "summary": "Advising European SMEs and startups on AI adoption and shipping production agents."
+          "role": "CNC Machine Operator & Programmer",
+          "company": "COZMIRCOM SA · Baia Mare, Romania",
+          "period": "Dec 2024 — Present",
+          "summary": "Operate and program CNC machines for precision manufacturing — 3-axis machining, drilling, grinding, and milling. Set up machines, write and adjust G-code, and handle material loading, quality control, and daily production deadlines."
         },
         "2": {
-          "role": "Software Engineer",
-          "company": "Fintech Scale-up · EU",
-          "period": "2019 — 2023",
-          "summary": "Collaboration with 6-engineer team building a payments platform, then drove the AI roadmap."
+          "role": "AI Consultant & Junior Web Developer",
+          "company": "EMAD AI Consultant · Freelance · Romania (remote)",
+          "period": "2024 — Present",
+          "summary": "Advise small businesses and individuals on practical AI adoption. Build projects with Python, JavaScript, TypeScript, and Next.js, applying Claude API, OpenAI API, LangChain, and RAG basics."
         },
         "3": {
-          "role": "Developer",
-          "company": "E-commerce SaaS",
-          "period": "2015 — 2018",
-          "summary": "Owned core checkout and integrations across multiple Stripe regions."
+          "role": "Insurance Agent & Sales Team Manager",
+          "company": "Insurance Agency · Lahijan, Iran",
+          "period": "2016 — 2021",
+          "summary": "Sold commercial, medical, life, and investment-linked insurance to a diverse client base. Managed and trained a health & life insurance sales team and tracked performance targets."
         },
         "4": {
           "role": "Junior Developer",
@@ -225,11 +238,11 @@
       "closeLabel": "Close",
       "items": {
         "1": {
-          "title": "B.Sc. Diploma",
+          "title": "B.A. Diploma",
           "caption": "University of Guilan-Iran"
         },
         "2": {
-          "title": "B.Sc. Diploma",
+          "title": "B.A. Diploma",
           "caption": "Azad Lahijan University"
         },
         "3": {

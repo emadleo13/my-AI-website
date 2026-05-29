@@ -166,6 +166,7 @@
       "title": "Competențe & Stack",
       "subtitle": "Cu ce lucrez zi de zi.",
       "groups": {
+        "manufacturing": "Fabricație & Tehnic (CNC)",
         "languages": "Limbaje",
         "frameworks": "Framework-uri",
         "ai": "AI / ML",
@@ -176,16 +177,28 @@
       "title": "Educație și certificări",
       "items": {
         "1": {
-          "degree": "Informatică",
+          "degree": "Licență Informatică (în curs)",
           "school": "Universitatea Tehnică din Cluj-Napoca",
-          "period": "2024 — 2028",
-          "note": "În curs de studiu."
+          "period": "În curs",
+          "note": "Dezvolt abilități practice în Python, JavaScript și TypeScript."
         },
         "2": {
-          "degree": "Specializare Deep Learning",
-          "school": "CareerPreneur Academy · Canada",
+          "degree": "Studii de Limba Română",
+          "school": "Universitatea Babeș-Bolyai (UBB) · Cluj-Napoca",
+          "period": "2022 — 2024",
+          "note": "Diplomă de studii superioare."
+        },
+        "3": {
+          "degree": "Licență Management Financiar",
+          "school": "Universitatea Azad Lahijan · Iran",
+          "period": "2017 — 2021",
+          "note": "Diplomă de licență în management financiar."
+        },
+        "4": {
+          "degree": "Specializare Deep Learning & Consultant AI",
+          "school": "CareerPreneur Academy",
           "period": "2026",
-          "note": "Deep learning aplicat și AI."
+          "note": "Modele secvențiale, NLP și AI aplicat."
         }
       }
     },
@@ -193,22 +206,22 @@
       "title": "Experiență profesională",
       "items": {
         "1": {
-          "role": "Consultant AI (în colaborare cu Academia CareerPreneur)",
-          "company": "Ai Academy · Canada",
-          "period": "2024 — Prezent",
-          "summary": "Consultanță pentru IMM-uri și startup-uri europene în adopție AI și livrare de agenți de producție."
+          "role": "Operator și Programator CNC",
+          "company": "COZMIRCOM SA · Baia Mare, România",
+          "period": "Dec. 2024 — Prezent",
+          "summary": "Operez și programez mașini CNC pentru fabricație de precizie — prelucrare pe 3 axe, găurire, rectificare și frezare. Configurez mașinile, scriu și ajustez cod G și gestionez încărcarea materialelor, controlul calității și termenele zilnice de producție."
         },
         "2": {
-          "role": "Software Engineer",
-          "company": "Scale-up Fintech · UE",
-          "period": "2019 — 2023",
-          "summary": "Colaborare cu echipă de 6 ingineri pe o platformă de plăți, apoi roadmap AI."
+          "role": "Consultant AI & Dezvoltator Web Junior",
+          "company": "EMAD AI Consultant · Freelance · România (remote)",
+          "period": "2024 — Prezent",
+          "summary": "Consiliez companii mici și persoane în adoptarea practică a AI. Construiesc proiecte cu Python, JavaScript, TypeScript și Next.js, folosind Claude API, OpenAI API, LangChain și noțiuni de RAG."
         },
         "3": {
-          "role": "Dezvoltator",
-          "company": "SaaS e-commerce",
-          "period": "2015 — 2018",
-          "summary": "Owner pe checkout și integrări Stripe în mai multe regiuni."
+          "role": "Agent de Asigurări & Manager Echipă Vânzări",
+          "company": "Agenție de asigurări · Lahijan, Iran",
+          "period": "2016 — 2021",
+          "summary": "Am vândut asigurări comerciale, medicale, de viață și de tip investiție către clienți diverși. Am coordonat și instruit o echipă de vânzări de asigurări de viață și sănătate și am urmărit țintele de performanță."
         },
         "4": {
           "role": "Dezvoltator Junior",

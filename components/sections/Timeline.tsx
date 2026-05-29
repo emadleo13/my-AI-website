@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ENTRIES: Record<Props['variant'], { ids: string[]; icon: React.ComponentType<{ className?: string }> }> = {
-  education: { ids: ['1', '2'], icon: GraduationCap },
+  education: { ids: ['1', '2', '3', '4'], icon: GraduationCap },
   experience: { ids: ['1', '2', '3', '4'], icon: Briefcase },
 };
 
