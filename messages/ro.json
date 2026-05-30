@@ -7,7 +7,8 @@
     "errorGeneric": "Ceva nu a mers. Te rog încearcă din nou.",
     "rateLimited": "Prea multe cereri — așteaptă câteva minute și încearcă din nou.",
     "comingSoon": "În curând",
-    "getInTouch": "Contactează-mă"
+    "getInTouch": "Contactează-mă",
+    "bookFreeCall": "Programează un apel gratuit"
   },
   "nav": {
     "home": "Acasă",
@@ -272,8 +273,8 @@
   "services": {
     "hero": {
       "eyebrow": "Servicii",
-      "title": "Strategie, agenți, software și ghidaj de carieră",
-      "subtitle": "Alege drumul potrivit. Toate pachetele încep cu un apel gratuit de descoperire de 30 de minute."
+      "title": "Un singur loc pentru AI, automatizare și creștere",
+      "subtitle": "Alege ce se potrivește obiectivului tău. Fiecare serviciu începe cu o discuție gratuită — fără pachete, fără presiune."
     },
     "items": {
       "consult": {
@@ -471,37 +472,143 @@
           }
         }
       }
+    },
+    "categories": {
+      "chatbot": {
+        "title": "Dezvoltare Chatbot",
+        "desc": "Chatbot-uri și asistenți AI personalizați care vorbesc cu clienții tăi pe orice canal.",
+        "sub": {
+          "telegram": {
+            "title": "Chatbot Telegram",
+            "desc": "Boți automatizați de suport și vânzări pentru Telegram."
+          },
+          "whatsapp": {
+            "title": "Chatbot WhatsApp",
+            "desc": "Chat cu clienții 24/7 și captare de lead-uri pe WhatsApp."
+          },
+          "voice": {
+            "title": "Asistent vocal",
+            "desc": "Asistenți vocali naturali pentru apeluri și aplicații."
+          },
+          "travel": {
+            "title": "Bot automatizare călătorii",
+            "desc": "Boți care planifică călătorii, rezervări și itinerarii."
+          },
+          "social": {
+            "title": "Bot conținut social media",
+            "desc": "Creează și publică automat conținut pentru Instagram, LinkedIn și TikTok."
+          }
+        }
+      },
+      "workflow": {
+        "title": "Automatizare fluxuri",
+        "desc": "Automatizează munca repetitivă pentru ca echipa să se concentreze pe ce contează.",
+        "sub": {
+          "crm": {
+            "title": "Automatizare CRM",
+            "desc": "Conectează, actualizează și automatizează CRM-ul complet."
+          },
+          "leadsite": {
+            "title": "Lead-uri & pagini web",
+            "desc": "Landing page-uri și fluxuri de captare care convertesc."
+          }
+        }
+      },
+      "techConsulting": {
+        "title": "Consultanță tehnologică",
+        "desc": "Îndrumare strategică AI și tehnologică pentru companii românești și internaționale.",
+        "sub": {
+          "roadmap": {
+            "title": "Foaie de parcurs AI pentru compania ta",
+            "desc": "Un plan clar și prioritizat pentru adoptarea AI."
+          },
+          "audit": {
+            "title": "Analiză probleme & riscuri",
+            "desc": "Analizăm blocajele și evaluăm riscurile din compania ta."
+          }
+        }
+      },
+      "software": {
+        "title": "Dezvoltare software",
+        "desc": "Software web și mobil robust și scalabil, construit de la cap la coadă.",
+        "sub": {
+          "web": {
+            "title": "Dezvoltare aplicații web",
+            "desc": "Aplicații Next.js și React."
+          },
+          "mobile": {
+            "title": "Aplicații mobile",
+            "desc": "Aplicații iOS și Android."
+          },
+          "api": {
+            "title": "API & Backend",
+            "desc": "Proiectare API și sisteme backend."
+          },
+          "cloud": {
+            "title": "Cloud & DevOps",
+            "desc": "Implementare cloud și CI/CD."
+          }
+        }
+      },
+      "resume": {
+        "title": "Analiză CV & optimizare LinkedIn",
+        "desc": "Ieși în evidență în fața recrutorilor cu un CV și un profil LinkedIn mai bune.",
+        "sub": {
+          "analysis": {
+            "title": "Analiză CV",
+            "desc": "Revizuire detaliată și rescriere a CV-ului tău."
+          },
+          "linkedin": {
+            "title": "Optimizare LinkedIn",
+            "desc": "Optimizează-ți profilul pentru a atrage oportunități."
+          }
+        }
+      }
+    },
+    "cta": {
+      "viewAll": "Vezi toate serviciile"
     }
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Spune-mi despre proiect, rol sau provocare — răspund de obicei în 24 de ore.",
+    "title": "Hai să vorbim",
+    "subtitle": "Spune-ne despre tine și compania ta. Stabilim o discuție gratuită pe Telegram sau Google Meet.",
     "form": {
       "name": "Numele tău",
       "namePlaceholder": "Ion Popescu",
+      "company": "Companie",
+      "companyPlaceholder": "Compania ta (opțional)",
       "email": "Email",
-      "emailPlaceholder": "tu@exemplu.com",
-      "subject": "Subiect",
-      "subjectPlaceholder": "Alege un subiect",
-      "subjectOptions": {
-        "general": "Întrebare generală",
-        "ai": "Consultanță AI",
-        "dev": "Dezvoltare software",
-        "job": "Consultanță carieră",
-        "other": "Altul"
-      },
-      "message": "Mesaj",
-      "messagePlaceholder": "Cu ce te pot ajuta?",
-      "submit": "Trimite mesaj",
+      "emailPlaceholder": "tu@companie.com",
+      "service": "Serviciul care te interesează",
+      "serviceGeneral": "Întrebare generală",
+      "channel": "Canalul preferat pentru întâlnire",
+      "channelTelegram": "Telegram",
+      "channelGoogleMeet": "Google Meet",
+      "message": "Cum te putem ajuta?",
+      "messagePlaceholder": "Descrie pe scurt de ce ai nevoie…",
+      "submit": "Trimite & alege ora",
       "submitting": "Se trimite…",
-      "success": "Mulțumesc! Mesajul tău e pe drum.",
-      "error": "Nu am putut trimite mesajul. Încearcă din nou."
+      "success": "Mulțumim! Verifică emailul și alege o oră mai jos.",
+      "error": "A apărut o eroare. Încearcă din nou."
     },
     "info": {
       "email": "Email",
       "linkedin": "LinkedIn",
       "location": "Locație",
       "locationValue": "Baia Mare, România"
+    },
+    "schedule": {
+      "title": "Alege o oră pentru discuția gratuită",
+      "subtitle": "Alege un interval care ți se potrivește. Vei primi un link Google Meet pe email.",
+      "openCalendar": "Deschide calendarul",
+      "embedFallback": "Apasă mai jos pentru a deschide calendarul meu și a alege un interval liber. Vei primi un link Google Meet pe email."
+    },
+    "chat": {
+      "title": "Preferi să discuți întâi?",
+      "subtitle": "Întreabă asistentul nostru AI orice despre serviciile noastre."
+    },
+    "telegram": {
+      "hint": "Sau scrie-ne direct pe Telegram:"
     }
   },
   "auth": {

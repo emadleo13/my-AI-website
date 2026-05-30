@@ -63,6 +63,80 @@ export async function logServiceRequest(
   }
 }
 
+type SheetsClient = NonNullable<ReturnType<typeof getClient>>;
+
+/**
+ * Ensures a tab with the given title exists, creating it (with a header row)
+ * if it doesn't. This makes logging resilient: a freshly provisioned
+ * spreadsheet — or one missing the tab — gets it on first write rather than
+ * silently failing the append.
+ */
+async function ensureSheet(
+  client: SheetsClient,
+  title: string,
+  header: string[],
+): Promise<void> {
+  const meta = await client.sheets.spreadsheets.get({
+    spreadsheetId: client.spreadsheetId,
+    fields: 'sheets.properties.title',
+  });
+  const exists = meta.data.sheets?.some(
+    (s) => s.properties?.title === title,
+  );
+  if (exists) return;
+
+  await client.sheets.spreadsheets.batchUpdate({
+    spreadsheetId: client.spreadsheetId,
+    requestBody: {
+      requests: [{ addSheet: { properties: { title } } }],
+    },
+  });
+  await client.sheets.spreadsheets.values.append({
+    spreadsheetId: client.spreadsheetId,
+    range: `${title}!A:Z`,
+    valueInputOption: 'USER_ENTERED',
+    requestBody: { values: [header] },
+  });
+}
+
+export interface LeadRow {
+  date: string;
+  name: string;
+  email: string;
+  company?: string;
+  channel: string;
+  service?: string;
+  message?: string;
+}
+
+export async function logLead(row: LeadRow): Promise<void> {
+  const client = getClient();
+  if (!client) return;
+  try {
+    await ensureSheet(client, 'Leads', [
+      'Date', 'Name', 'Email', 'Company', 'Channel', 'Service', 'Message',
+    ]);
+    await client.sheets.spreadsheets.values.append({
+      spreadsheetId: client.spreadsheetId,
+      range: 'Leads!A:G',
+      valueInputOption: 'USER_ENTERED',
+      requestBody: {
+        values: [[
+          row.date,
+          row.name,
+          row.email,
+          row.company ?? '',
+          row.channel,
+          row.service ?? '',
+          row.message ?? '',
+        ]],
+      },
+    });
+  } catch (err) {
+    console.error('[google-sheets] logLead failed', err);
+  }
+}
+
 export interface BookingRow {
   date: string;
   guestName: string;

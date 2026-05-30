@@ -9,8 +9,6 @@ const STATIC_ROUTES = [
   '/services',
   '/blog',
   '/contact',
-  '/consultant',
-  '/booking',
   '/auth',
 ] as const;
 

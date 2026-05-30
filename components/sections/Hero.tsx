@@ -47,7 +47,7 @@ export function Hero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Button asChild size="lg" variant="accent">
-              <Link href="/booking">
+              <Link href="/contact">
                 {t('ctaPrimary')}
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>

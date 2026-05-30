@@ -108,6 +108,117 @@ const SCOPE_LABELS: Record<string, string> = {
   full:    'Full Project',
 };
 
+const CHANNEL_LABELS: Record<string, string> = {
+  'telegram': 'Telegram',
+  'google-meet': 'Google Meet',
+};
+
+const APPOINTMENT_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_APPOINTMENT_URL ??
+  'https://calendar.app.google/DZ7mqpaqh99pordF8';
+
+const TELEGRAM_USERNAME = process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? '@your_handle';
+const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME.replace(/^@/, '')}`;
+
+export interface DiscoveryPayload {
+  name: string;
+  email: string;
+  company?: string;
+  channel: string;
+  service?: string;
+  message: string;
+}
+
+/**
+ * Sends the client a welcome / next-steps email and notifies the owner of a new
+ * discovery-call request. Best-effort: silently no-ops when Resend isn't set.
+ */
+export async function sendDiscoveryEmails(payload: DiscoveryPayload): Promise<void> {
+  if (!client) {
+    console.warn('[email] sendDiscoveryEmails skipped — RESEND_API_KEY not set');
+    return;
+  }
+
+  const channelLabel = CHANNEL_LABELS[payload.channel] ?? payload.channel;
+  const detailRows = `
+    ${payload.company ? `<p><strong>Company:</strong> ${escape(payload.company)}</p>` : ''}
+    ${payload.service ? `<p><strong>Service:</strong> ${escape(payload.service)}</p>` : ''}
+    <p><strong>Preferred channel:</strong> ${escape(channelLabel)}</p>
+    <p><strong>Message:</strong></p>
+    <p style="white-space:pre-wrap;background:#0B1220;padding:12px;border-radius:8px">${escape(payload.message)}</p>
+  `;
+
+  // The call-to-action depends on the channel the client chose:
+  //  - Telegram   → open a direct chat with me on Telegram.
+  //  - Google Meet → open my Google Calendar to pick a day/time (Google then
+  //                  notifies me and adds the event + Meet link to my calendar).
+  const isTelegram = payload.channel === 'telegram';
+  const ctaUrl = isTelegram ? TELEGRAM_URL : APPOINTMENT_URL;
+  const ctaLabel = isTelegram ? 'Chat with me on Telegram' : 'Pick a time';
+  const ctaIntro = isTelegram
+    ? `The last step is to message me on <strong>Telegram</strong> so we can arrange your call. Tap the button below to open a chat with me.`
+    : `The last step is to pick a time that suits you — I'll meet you on <strong>Google Meet</strong>.`;
+
+  // Welcome / next-steps to the client.
+  const userHtml = shell(
+    'Your free discovery call',
+    `<p>Hi ${escape(payload.name)},</p>
+     <p>Thanks for reaching out! ${ctaIntro}</p>
+     <p style="margin:18px 0">
+       <a href="${ctaUrl}" style="background:#1E3A8A;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">${ctaLabel}</a>
+     </p>
+     <p style="font-size:13px;color:#9CA3AF">Or open this link: ${escape(ctaUrl)}</p>
+     <p style="margin-top:18px"><strong>Your request</strong></p>
+     ${detailRows}
+     <p style="margin-top:20px">— Emad</p>`,
+  );
+
+  const adminHtml = EMAIL_TO_ADMIN
+    ? shell(
+        `New discovery request: ${payload.service || 'General'}`,
+        `<p><strong>From:</strong> ${escape(payload.name)} &lt;${escape(payload.email)}&gt;</p>
+         ${detailRows}`,
+      )
+    : null;
+
+  // Send the client welcome email. Surface Resend's per-message error instead
+  // of letting it vanish — a 403 here almost always means EMAIL_FROM is still
+  // on the unverified onboarding@resend.dev sender (Resend then only delivers
+  // to the account owner, so the real client never receives anything).
+  try {
+    const { error } = await client.emails.send({
+      from: EMAIL_FROM,
+      to: payload.email,
+      replyTo: EMAIL_TO_ADMIN || undefined,
+      subject: 'Your free discovery call — next step',
+      html: userHtml,
+    });
+    if (error) {
+      console.error('[email] client welcome email rejected by Resend:', error);
+    }
+  } catch (err) {
+    console.error('[email] client welcome email failed', err);
+  }
+
+  // Notify the owner.
+  if (adminHtml && EMAIL_TO_ADMIN) {
+    try {
+      const { error } = await client.emails.send({
+        from: EMAIL_FROM,
+        to: EMAIL_TO_ADMIN,
+        replyTo: payload.email,
+        subject: `[discovery] ${payload.service || 'General'} — ${payload.name}`,
+        html: adminHtml,
+      });
+      if (error) {
+        console.error('[email] admin notification rejected by Resend:', error);
+      }
+    } catch (err) {
+      console.error('[email] admin notification failed', err);
+    }
+  }
+}
+
 export interface BookingPayload {
   serviceType: string;
   serviceLabel: string;

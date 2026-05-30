@@ -43,8 +43,8 @@ const securityHeaders = [
       "img-src 'self' data: blob: https://*.supabase.co https://*.stripe.com https://picsum.photos https://fastly.picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
       // Connections: self + Supabase + Stripe + Anthropic
       `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://m.stripe.com https://m.stripe.network https://q.stripe.com https://api.anthropic.com wss://*.supabase.co`,
-      // Frames: self (presentation) + Stripe + OpenStreetMap (contact page map)
-      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://m.stripe.com https://m.stripe.network https://www.openstreetmap.org",
+      // Frames: self (presentation) + Stripe + OpenStreetMap (contact map) + Google Calendar appointment embed
+      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://m.stripe.com https://m.stripe.network https://www.openstreetmap.org https://calendar.google.com",
       // No plugins
       "object-src 'none'",
       // Base URI restricted

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
 
-const NAV_LINKS = ['home', 'about', 'services', 'blog', 'consultant', 'booking', 'contact'] as const;
+const NAV_LINKS = ['home', 'about', 'services', 'blog', 'contact'] as const;
 
 export function Footer() {
   const t = useTranslations();

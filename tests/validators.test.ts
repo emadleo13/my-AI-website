@@ -13,8 +13,21 @@ describe('contactSchema', () => {
       contactSchema.safeParse({
         name: 'Ada Lovelace',
         email: 'ada@example.com',
-        subject: 'ai',
+        company: 'Analytical Engines',
+        channel: 'telegram',
+        service: 'chatbot',
         message: 'I would like to discuss an agent project.',
+      }).success,
+    ).toBe(true);
+  });
+
+  it('accepts when optional company/service are omitted', () => {
+    expect(
+      contactSchema.safeParse({
+        name: 'Ada',
+        email: 'ada@example.com',
+        channel: 'google-meet',
+        message: 'Long enough message here.',
       }).success,
     ).toBe(true);
   });
@@ -23,7 +36,7 @@ describe('contactSchema', () => {
     const result = contactSchema.safeParse({
       name: 'Ada',
       email: 'not-an-email',
-      subject: 'ai',
+      channel: 'telegram',
       message: 'Long enough message here.',
     });
     expect(result.success).toBe(false);
@@ -34,18 +47,18 @@ describe('contactSchema', () => {
       contactSchema.safeParse({
         name: 'Ada',
         email: 'ada@example.com',
-        subject: 'ai',
+        channel: 'telegram',
         message: 'short',
       }).success,
     ).toBe(false);
   });
 
-  it('rejects unknown subject values', () => {
+  it('rejects unknown channel values', () => {
     expect(
       contactSchema.safeParse({
         name: 'Ada',
         email: 'ada@example.com',
-        subject: 'spam',
+        channel: 'whatsapp',
         message: 'Long enough message here.',
       }).success,
     ).toBe(false);

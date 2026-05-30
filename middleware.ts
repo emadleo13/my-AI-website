@@ -9,7 +9,7 @@ const PROTECTED_RE = /^\/[^/]+\/(dashboard|admin)(\/|$)/;
 
 // Prevent open-redirect phishing: the ?next= param must be a relative path
 // matching an allowed page — blocks links like ?next=//evil.com or ?next=https://attacker.com
-const SAFE_NEXT_RE = /^\/[a-z]{2}\/(dashboard|marketplace|booking|consultant|services|about|contact|blog)(\/|$)/;
+const SAFE_NEXT_RE = /^\/[a-z]{2}\/(dashboard|services|about|contact|blog)(\/|$)/;
 
 function sanitizeNextParam(next: string | null): string | null {
   if (!next) return null;

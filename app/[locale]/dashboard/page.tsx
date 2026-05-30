@@ -116,13 +116,13 @@ export default async function DashboardPage({
           </div>
           <div className="flex items-center gap-2">
             <Button asChild variant="outline" size="sm" className="gap-1.5">
-              <Link href="/consultant">
+              <Link href="/contact">
                 <MessageSquare className="h-3.5 w-3.5" />
                 {tActions('openChat')}
               </Link>
             </Button>
             <Button asChild variant="accent" size="sm" className="gap-1.5">
-              <Link href="/booking">
+              <Link href="/contact">
                 <CalendarPlus className="h-3.5 w-3.5" />
                 {tActions('newBooking')}
               </Link>

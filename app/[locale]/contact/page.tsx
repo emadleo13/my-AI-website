@@ -1,9 +1,25 @@
+import { Suspense } from 'react';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Mail, Linkedin, MapPin } from 'lucide-react';
+import { Send, CalendarClock, MessageCircle } from 'lucide-react';
 import { ContactForm } from '@/components/forms/ContactForm';
+import { ChatBotV2 } from '@/components/chat/ChatBotV2';
 import { DemoBanner } from '@/components/DemoBanner';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { isSupabaseConfigured } from '@/lib/env';
+
+const APPOINTMENT_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_APPOINTMENT_URL ??
+  'https://calendar.app.google/DZ7mqpaqh99pordF8';
+
+const TELEGRAM_USERNAME = process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? '@your_handle';
+
+// Only Google Calendar's full appointment-schedule URL (with ?gv=true) can be
+// embedded in an iframe. Share links (calendar.app.google/…) send
+// X-Frame-Options: DENY and render as a broken-document icon, so for those we
+// show a prominent "open in new tab" card instead.
+const isEmbeddableSchedule =
+  /calendar\.google\.com\/calendar\/appointments\/schedules\//.test(APPOINTMENT_URL);
 
 export async function generateMetadata({
   params,
@@ -25,84 +41,91 @@ export default async function ContactPage({
   const t = await getTranslations('contact');
   const tDemo = await getTranslations('demo');
 
+  const telegramHandle = TELEGRAM_USERNAME.replace(/^@/, '');
+
   return (
     <div className="container py-16 md:py-24">
       <div className="max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-          {t('title')}
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{t('title')}</h1>
         <p className="mt-3 text-muted-foreground text-lg">{t('subtitle')}</p>
       </div>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_360px]">
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_420px]">
+        {/* Lead form */}
         <div>
           {!isSupabaseConfigured && <DemoBanner message={tDemo('supabase')} />}
-          <ContactForm />
+          <Suspense fallback={null}>
+            <ContactForm />
+          </Suspense>
         </div>
 
-        <aside className="space-y-4">
-          <Card>
-            <CardContent className="pt-6 space-y-4 text-sm">
-              <InfoRow icon={<Mail className="h-4 w-4" />} label={t('info.email')}>
-                <a className="hover:text-foreground" href="mailto:hello@example.com">
-                  hello@example.com
+        {/* Scheduling */}
+        <aside id="schedule" className="space-y-4">
+          <Card className="border-primary/30">
+            <CardContent className="pt-6 space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <CalendarClock className="h-5 w-5" />
+                </span>
+                <div>
+                  <h2 className="font-semibold leading-tight">{t('schedule.title')}</h2>
+                  <p className="text-xs text-muted-foreground">{t('schedule.subtitle')}</p>
+                </div>
+              </div>
+
+              {isEmbeddableSchedule ? (
+                <div className="overflow-hidden rounded-xl border border-border">
+                  <iframe
+                    title="Schedule a call"
+                    src={APPOINTMENT_URL}
+                    className="w-full h-[480px]"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div className="rounded-xl border border-dashed border-border bg-muted/30 p-6 text-center">
+                  <CalendarClock className="mx-auto h-8 w-8 text-primary" />
+                  <p className="mt-3 text-sm text-muted-foreground">
+                    {t('schedule.embedFallback')}
+                  </p>
+                </div>
+              )}
+
+              <Button asChild variant={isEmbeddableSchedule ? 'outline' : 'accent'} className="w-full gap-2">
+                <a href={APPOINTMENT_URL} target="_blank" rel="noreferrer">
+                  <Send className="h-4 w-4 rtl:rotate-180" />
+                  {t('schedule.openCalendar')}
                 </a>
-              </InfoRow>
-              <InfoRow
-                icon={<Linkedin className="h-4 w-4" />}
-                label={t('info.linkedin')}
-              >
+              </Button>
+
+              <p className="text-sm text-muted-foreground">
+                {t('telegram.hint')}{' '}
                 <a
-                  className="hover:text-foreground"
-                  href="https://linkedin.com"
+                  href={`https://t.me/${telegramHandle}`}
                   target="_blank"
                   rel="noreferrer"
+                  className="font-medium text-primary hover:underline"
                 >
-                  linkedin.com/in/emad
+                  {TELEGRAM_USERNAME}
                 </a>
-              </InfoRow>
-              <InfoRow
-                icon={<MapPin className="h-4 w-4" />}
-                label={t('info.location')}
-              >
-                {t('info.locationValue')}
-              </InfoRow>
+              </p>
             </CardContent>
           </Card>
-
-          <div className="overflow-hidden rounded-xl border border-border">
-            <iframe
-              title="Baia Mare map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=23.52%2C47.63%2C23.62%2C47.69&amp;layer=mapnik&amp;marker=47.6567%2C23.5688"
-              className="w-full h-64"
-              loading="lazy"
-            />
-          </div>
         </aside>
       </div>
-    </div>
-  );
-}
 
-function InfoRow({
-  icon,
-  label,
-  children,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex items-start gap-3">
-      <span className="grid h-8 w-8 place-items-center rounded-md bg-primary/10 text-primary mt-0.5">
-        {icon}
-      </span>
-      <div>
-        <p className="text-xs uppercase tracking-wider text-muted-foreground">
-          {label}
-        </p>
-        <p className="mt-0.5 text-foreground">{children}</p>
+      {/* Inline chatbot */}
+      <div className="mt-16 max-w-3xl">
+        <div className="mb-4 flex items-center gap-2">
+          <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent/10 text-accent">
+            <MessageCircle className="h-5 w-5" />
+          </span>
+          <div>
+            <h2 className="text-xl font-bold leading-tight">{t('chat.title')}</h2>
+            <p className="text-sm text-muted-foreground">{t('chat.subtitle')}</p>
+          </div>
+        </div>
+        <ChatBotV2 />
       </div>
     </div>
   );

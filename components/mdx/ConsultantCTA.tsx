@@ -26,7 +26,7 @@ export function ConsultantCTA({ title, body }: Props) {
             {body ?? t('body')}
           </p>
           <Link
-            href="/consultant"
+            href="/contact"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
           >
             {t('action')}

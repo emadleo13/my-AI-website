@@ -119,7 +119,7 @@ export function FloatingChat() {
             </div>
             <div className="flex items-center gap-2">
               <Link
-                href="/consultant"
+                href="/contact"
                 className="flex items-center gap-1 rounded-full bg-primary-foreground/15 px-2.5 py-1 text-[11px] font-medium text-primary-foreground hover:bg-primary-foreground/25 transition-colors"
               >
                 {t('fullChat')}
@@ -163,7 +163,7 @@ export function FloatingChat() {
             {suggestFullChat && (
               <div className="text-center pt-1">
                 <Link
-                  href="/consultant"
+                  href="/contact"
                   className="inline-flex items-center gap-1 text-xs text-primary hover:underline font-medium"
                 >
                   {t('continueInFullChat')}

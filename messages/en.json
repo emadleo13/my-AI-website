@@ -7,7 +7,8 @@
     "errorGeneric": "Something went wrong. Please try again.",
     "rateLimited": "Too many requests — please wait a few minutes and try again.",
     "comingSoon": "Coming soon",
-    "getInTouch": "Get in touch"
+    "getInTouch": "Get in touch",
+    "bookFreeCall": "Book a free call"
   },
   "nav": {
     "home": "Home",
@@ -272,8 +273,8 @@
   "services": {
     "hero": {
       "eyebrow": "Services",
-      "title": "Strategy, agents, software, and career help",
-      "subtitle": "Pick the track that fits where you are. All packages start with a free 30-minute discovery call."
+      "title": "One place for AI, automation, and growth",
+      "subtitle": "Pick what fits your goal. Every service starts with a free discovery call — no packages, no pressure."
     },
     "items": {
       "consult": {
@@ -471,37 +472,143 @@
           }
         }
       }
+    },
+    "categories": {
+      "chatbot": {
+        "title": "Chatbot Development",
+        "desc": "Custom AI chatbots and assistants that talk to your customers across every channel.",
+        "sub": {
+          "telegram": {
+            "title": "Telegram Chatbot",
+            "desc": "Automated support and sales bots for Telegram."
+          },
+          "whatsapp": {
+            "title": "WhatsApp Chatbot",
+            "desc": "24/7 customer chat and lead capture on WhatsApp."
+          },
+          "voice": {
+            "title": "Voice Assistant",
+            "desc": "Natural voice assistants for calls and apps."
+          },
+          "travel": {
+            "title": "Travel Automation Bot",
+            "desc": "Bots that plan trips, bookings and itineraries."
+          },
+          "social": {
+            "title": "Social Media Content Bot",
+            "desc": "Auto-create and publish content for Instagram, LinkedIn and TikTok."
+          }
+        }
+      },
+      "workflow": {
+        "title": "Workflow Automation",
+        "desc": "Automate repetitive work so your team focuses on what matters.",
+        "sub": {
+          "crm": {
+            "title": "CRM Automation",
+            "desc": "Connect, update and automate your CRM end to end."
+          },
+          "leadsite": {
+            "title": "Leads & Website Funnels",
+            "desc": "Landing pages and lead-capture flows that convert."
+          }
+        }
+      },
+      "techConsulting": {
+        "title": "Technology Consulting",
+        "desc": "Strategic AI and tech guidance for Romanian and international companies.",
+        "sub": {
+          "roadmap": {
+            "title": "AI Roadmap for Your Company",
+            "desc": "A clear, prioritized plan to adopt AI."
+          },
+          "audit": {
+            "title": "Problem & Risk Assessment",
+            "desc": "Analyze bottlenecks and assess the risks in your company."
+          }
+        }
+      },
+      "software": {
+        "title": "Software Development",
+        "desc": "Robust, scalable web and mobile software built end to end.",
+        "sub": {
+          "web": {
+            "title": "Web App Development",
+            "desc": "Next.js and React applications."
+          },
+          "mobile": {
+            "title": "Mobile Apps",
+            "desc": "iOS and Android apps."
+          },
+          "api": {
+            "title": "APIs & Backend",
+            "desc": "API design and backend systems."
+          },
+          "cloud": {
+            "title": "Cloud & DevOps",
+            "desc": "Cloud deployment and CI/CD."
+          }
+        }
+      },
+      "resume": {
+        "title": "Resume Analysis & LinkedIn Optimization",
+        "desc": "Stand out to recruiters with a sharper resume and LinkedIn profile.",
+        "sub": {
+          "analysis": {
+            "title": "Resume Analysis",
+            "desc": "Detailed review and rewrite of your resume."
+          },
+          "linkedin": {
+            "title": "LinkedIn Optimization",
+            "desc": "Optimize your profile to attract opportunities."
+          }
+        }
+      }
+    },
+    "cta": {
+      "viewAll": "See all services"
     }
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Tell me about your project, role, or challenge — I usually reply within 24 hours.",
+    "title": "Let's talk",
+    "subtitle": "Tell us about you and your company. We'll set up a free discovery call on Telegram or Google Meet.",
     "form": {
       "name": "Your name",
       "namePlaceholder": "Jane Doe",
+      "company": "Company",
+      "companyPlaceholder": "Your company (optional)",
       "email": "Email",
-      "emailPlaceholder": "you@example.com",
-      "subject": "Subject",
-      "subjectPlaceholder": "Pick a topic",
-      "subjectOptions": {
-        "general": "General Inquiry",
-        "ai": "AI Consulting",
-        "dev": "Software Development",
-        "job": "Job / Career Consulting",
-        "other": "Other"
-      },
-      "message": "Message",
-      "messagePlaceholder": "What can I help with?",
-      "submit": "Send message",
+      "emailPlaceholder": "you@company.com",
+      "service": "Service you're interested in",
+      "serviceGeneral": "General inquiry",
+      "channel": "Preferred meeting channel",
+      "channelTelegram": "Telegram",
+      "channelGoogleMeet": "Google Meet",
+      "message": "How can we help?",
+      "messagePlaceholder": "Briefly describe what you need…",
+      "submit": "Send & pick a time",
       "submitting": "Sending…",
-      "success": "Thanks! Your message is on its way.",
-      "error": "We couldn't send your message. Please try again."
+      "success": "Thanks! Check your email and pick a time below.",
+      "error": "Something went wrong. Please try again."
     },
     "info": {
       "email": "hamidleo1984@gmail.com",
       "linkedin": "LinkedIn",
       "location": "Location",
       "locationValue": "BAIA MARE, Romania"
+    },
+    "schedule": {
+      "title": "Pick a time for your free call",
+      "subtitle": "Choose a slot that works for you. You'll get a Google Meet link by email.",
+      "openCalendar": "Open the calendar",
+      "embedFallback": "Click below to open my live calendar and pick a free slot. You'll get a Google Meet link by email."
+    },
+    "chat": {
+      "title": "Prefer to chat first?",
+      "subtitle": "Ask our AI assistant anything about our services."
+    },
+    "telegram": {
+      "hint": "Or message us directly on Telegram:"
     }
   },
   "auth": {

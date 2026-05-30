@@ -3,7 +3,9 @@ import { z } from 'zod';
 export const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(120),
   email: z.string().email('Enter a valid email'),
-  subject: z.enum(['general', 'ai', 'dev', 'job', 'other']),
+  company: z.string().max(160).optional().or(z.literal('')),
+  channel: z.enum(['telegram', 'google-meet']),
+  service: z.string().max(60).optional().or(z.literal('')),
   message: z.string().min(10, 'Message must be at least 10 characters').max(4000),
 });
 export type ContactInput = z.infer<typeof contactSchema>;
