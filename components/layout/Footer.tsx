@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Github, Linkedin, Twitter, Mail, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
@@ -62,17 +62,10 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer"
+                <a href="https://www.linkedin.com/in/emadleo13-b42882236" target="_blank" rel="noreferrer"
                   className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors">
                   <Linkedin className="h-4 w-4" />
                   {t('footer.social.linkedin')}
-                </a>
-              </li>
-              <li>
-                <a href="https://x.com" target="_blank" rel="noreferrer"
-                  className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors">
-                  <Twitter className="h-4 w-4" />
-                  {t('footer.social.twitter')}
                 </a>
               </li>
             </ul>
@@ -108,13 +101,9 @@ export function Footer() {
               aria-label="GitHub" className="hover:text-[#3ca2fa] transition-colors">
               <Github className="h-5 w-5" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer"
+            <a href="https://www.linkedin.com/in/emadleo13-b42882236" target="_blank" rel="noreferrer"
               aria-label="LinkedIn" className="hover:text-[#3ca2fa] transition-colors">
               <Linkedin className="h-5 w-5" />
-            </a>
-            <a href="https://x.com" target="_blank" rel="noreferrer"
-              aria-label="Twitter" className="hover:text-[#3ca2fa] transition-colors">
-              <Twitter className="h-5 w-5" />
             </a>
           </div>
           <p className="text-xs text-gray-500 text-center">
