@@ -858,6 +858,9 @@
       "saving": "Se salvează…",
       "delete": "Șterge",
       "deleting": "Se șterge…",
+      "view": "Vezi conținutul",
+      "viewing": "Se încarcă conținutul…",
+      "chunkN": "Bucata {n}",
       "confirmDelete": "Ștergi acest document? Acțiunea nu poate fi anulată.",
       "confirm": "Confirmă",
       "cancel": "Anulează",
@@ -875,6 +878,7 @@
         "tooLarge": "Fișierul trebuie să fie mai mic de 10 MB.",
         "uploadFailed": "Încărcarea a eșuat. Încearcă din nou.",
         "deleteFailed": "Ștergerea a eșuat. Încearcă din nou.",
+        "viewFailed": "Conținutul nu a putut fi încărcat. Încearcă din nou.",
         "emptyContent": "Titlul și conținutul nu pot fi goale."
       },
       "hint": "PDF, DOCX, TXT, MD · până la 10 MB."

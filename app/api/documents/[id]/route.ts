@@ -5,6 +5,29 @@ import { getSupabaseAdmin } from '@/lib/supabase/admin';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+export async function GET(
+  _req: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const admin = await getAdminUser();
+  if (!admin) return NextResponse.json({ message: 'Forbidden' }, { status: 403 });
+
+  const supabase = getSupabaseAdmin();
+  if (!supabase) return NextResponse.json({ message: 'Not configured' }, { status: 503 });
+
+  const { id } = await params;
+  if (!id) return NextResponse.json({ message: 'Missing id' }, { status: 400 });
+
+  const { data, error } = await supabase
+    .from('document_chunks')
+    .select('chunk_index, content')
+    .eq('document_id', id)
+    .order('chunk_index', { ascending: true });
+
+  if (error) return NextResponse.json({ message: error.message }, { status: 500 });
+  return NextResponse.json(data ?? []);
+}
+
 export async function DELETE(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },

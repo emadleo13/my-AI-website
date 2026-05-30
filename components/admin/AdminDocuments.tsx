@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Trash2, Upload, FileText, Plus } from 'lucide-react';
+import { Trash2, Upload, FileText, Plus, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -43,7 +43,33 @@ export function AdminDocuments({ initialDocuments }: { initialDocuments: Documen
   const [webSaving, setWebSaving] = useState(false);
   const [webError, setWebError] = useState<string | null>(null);
 
+  const [viewDoc, setViewDoc] = useState<DocumentRow | null>(null);
+  const [viewChunks, setViewChunks] = useState<{ chunk_index: number; content: string }[]>([]);
+  const [viewLoading, setViewLoading] = useState(false);
+  const [viewError, setViewError] = useState<string | null>(null);
+
   const documents = initialDocuments;
+
+  async function handleView(doc: DocumentRow) {
+    setViewDoc(doc);
+    setViewChunks([]);
+    setViewError(null);
+    setViewLoading(true);
+
+    try {
+      const res = await fetch(`/api/documents/${doc.id}`);
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        setViewError((body as { message?: string }).message ?? t('errors.viewFailed'));
+      } else {
+        setViewChunks(await res.json());
+      }
+    } catch {
+      setViewError(t('errors.viewFailed'));
+    } finally {
+      setViewLoading(false);
+    }
+  }
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -200,16 +226,26 @@ export function AdminDocuments({ initialDocuments }: { initialDocuments: Documen
                       </div>
                     </div>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-destructive hover:text-destructive shrink-0"
-                    disabled={deletingId === doc.id}
-                    onClick={() => setConfirmDeleteId(doc.id)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                    <span className="sr-only">{t('delete')}</span>
-                  </Button>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleView(doc)}
+                    >
+                      <Eye className="h-4 w-4" />
+                      <span className="sr-only">{t('view')}</span>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-destructive hover:text-destructive"
+                      disabled={deletingId === doc.id}
+                      onClick={() => setConfirmDeleteId(doc.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      <span className="sr-only">{t('delete')}</span>
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -274,6 +310,40 @@ export function AdminDocuments({ initialDocuments }: { initialDocuments: Documen
             </Button>
             <Button size="sm" disabled={webSaving} onClick={handleWebSave}>
               {webSaving ? t('saving') : t('save')}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* View content dialog */}
+      <Dialog open={!!viewDoc} onOpenChange={(o) => { if (!o) setViewDoc(null); }}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="truncate">{viewDoc?.title}</DialogTitle>
+          </DialogHeader>
+          {viewLoading ? (
+            <p className="text-sm text-muted-foreground py-6 text-center">{t('viewing')}</p>
+          ) : viewError ? (
+            <p className="text-sm text-destructive py-6 text-center">{viewError}</p>
+          ) : viewChunks.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-6 text-center">{t('empty')}</p>
+          ) : (
+            <div className="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+              {viewChunks.map((c) => (
+                <div key={c.chunk_index} className="rounded-md border p-3">
+                  <Badge variant="secondary" className="text-[10px] mb-2">
+                    {t('chunkN', { n: c.chunk_index + 1 })}
+                  </Badge>
+                  <p className="text-sm whitespace-pre-wrap break-words text-muted-foreground">
+                    {c.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+          <DialogFooter>
+            <Button variant="outline" size="sm" onClick={() => setViewDoc(null)}>
+              {t('cancel')}
             </Button>
           </DialogFooter>
         </DialogContent>

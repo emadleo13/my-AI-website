@@ -858,6 +858,9 @@
       "saving": "Saving…",
       "delete": "Delete",
       "deleting": "Deleting…",
+      "view": "View content",
+      "viewing": "Loading content…",
+      "chunkN": "Chunk {n}",
       "confirmDelete": "Delete this document? This cannot be undone.",
       "confirm": "Confirm",
       "cancel": "Cancel",
@@ -875,6 +878,7 @@
         "tooLarge": "File must be 10 MB or smaller.",
         "uploadFailed": "Upload failed. Please try again.",
         "deleteFailed": "Delete failed. Please try again.",
+        "viewFailed": "Could not load content. Please try again.",
         "emptyContent": "Title and content cannot be empty."
       },
       "hint": "PDF, DOCX, TXT, MD · up to 10 MB."
