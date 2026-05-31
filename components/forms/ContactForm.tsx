@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { Send } from 'lucide-react';
+import { Send, Info } from 'lucide-react';
 import { contactSchema, type ContactInput } from '@/lib/validators';
 import { SERVICE_CATEGORIES } from '@/lib/services';
 import { Button } from '@/components/ui/button';
@@ -145,7 +145,12 @@ export function ContactForm() {
         {!isSubmitting && <Send className="h-4 w-4 rtl:rotate-180" />}
       </Button>
 
-      <p className="text-xs text-muted-foreground">{t('spamNote')}</p>
+      <div className="flex items-start gap-2.5 rounded-lg border border-amber-300/60 bg-amber-50 px-3.5 py-3 text-sm text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+        <Info className="mt-0.5 h-4 w-4 flex-shrink-0" />
+        <p className="font-medium leading-relaxed">
+          {t.rich('spamNote', { b: (chunks) => <span className="font-bold underline">{chunks}</span> })}
+        </p>
+      </div>
     </form>
   );
 }
