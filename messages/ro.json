@@ -588,8 +588,9 @@
       "messagePlaceholder": "Descrie pe scurt de ce ai nevoie…",
       "submit": "Trimite & alege ora",
       "submitting": "Se trimite…",
-      "success": "Mulțumim! Verifică emailul și alege o oră mai jos.",
-      "error": "A apărut o eroare. Încearcă din nou."
+      "success": "Mulțumim! Verifică emailul (inclusiv folderul Spam) și alege o oră mai jos.",
+      "error": "A apărut o eroare. Încearcă din nou.",
+      "spamNote": "După trimitere, îți vom trimite pe email un link pentru programare. Dacă nu îl vezi în câteva minute, verifică folderul Spam/Junk."
     },
     "info": {
       "email": "Email",

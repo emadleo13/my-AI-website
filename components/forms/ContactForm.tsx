@@ -144,6 +144,8 @@ export function ContactForm() {
         {isSubmitting ? t('submitting') : t('submit')}
         {!isSubmitting && <Send className="h-4 w-4 rtl:rotate-180" />}
       </Button>
+
+      <p className="text-xs text-muted-foreground">{t('spamNote')}</p>
     </form>
   );
 }

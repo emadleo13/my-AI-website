@@ -588,8 +588,9 @@
       "messagePlaceholder": "Briefly describe what you need…",
       "submit": "Send & pick a time",
       "submitting": "Sending…",
-      "success": "Thanks! Check your email and pick a time below.",
-      "error": "Something went wrong. Please try again."
+      "success": "Thanks! Check your email (including the Spam folder) and pick a time below.",
+      "error": "Something went wrong. Please try again.",
+      "spamNote": "After you submit, we'll email you a link to book your call. If you don't see it within a few minutes, please check your Spam/Junk folder."
     },
     "info": {
       "email": "hamidleo1984@gmail.com",

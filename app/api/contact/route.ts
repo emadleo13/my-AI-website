@@ -1,4 +1,4 @@
-import { NextResponse, after } from 'next/server';
+import { NextResponse } from 'next/server';
 import { contactSchema } from '@/lib/validators';
 import { getSupabaseServer } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/env';
@@ -64,24 +64,26 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 
-  // Run the email + Google Sheets notifications AFTER the response is sent.
-  // `after()` keeps the serverless execution context alive for this work, so a
-  // slow/hanging Resend or Sheets call can never leave the client stuck on
-  // "Sending…". The lead is already persisted above.
-  after(async () => {
-    await Promise.allSettled([
-      sendDiscoveryEmails({ name, email, company, channel, service, message }),
-      logLead({
-        date: new Date().toISOString(),
-        name,
-        email,
-        company: company || undefined,
-        channel,
-        service: service || undefined,
-        message,
-      }),
-    ]);
-  });
+  // Await the email + Google Sheets notifications so they reliably complete in
+  // the serverless execution context (after() proved unreliable — the context
+  // could be frozen before the Sheets write finished, so leads weren't logged).
+  // A timeout cap guarantees the client is never left stuck on "Sending…": the
+  // lead is already persisted above, so returning success after the cap is safe
+  // even if a slow notification is still finishing.
+  const notifications = Promise.allSettled([
+    sendDiscoveryEmails({ name, email, company, channel, service, message }),
+    logLead({
+      date: new Date().toISOString(),
+      name,
+      email,
+      company: company || undefined,
+      channel,
+      service: service || undefined,
+      message,
+    }),
+  ]);
+  const cap = new Promise<void>((resolve) => setTimeout(resolve, 9000));
+  await Promise.race([notifications, cap]);
 
   return NextResponse.json({ ok: true });
 }
