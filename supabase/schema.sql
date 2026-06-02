@@ -70,6 +70,41 @@ create policy "contacts public insert" on public.contacts
 -- (No select policy — only the service role / dashboard can read submissions.)
 
 -- =============================================================
+-- discovery_requests  (detailed project-intake form submissions)
+-- =============================================================
+create table if not exists public.discovery_requests (
+  id                   uuid primary key default gen_random_uuid(),
+  full_name            text not null,
+  email                text not null,
+  company              text,
+  website              text,
+  industry             text,
+  business_description text,
+  service_type         text not null,
+  project_goal         text not null,
+  target_audience      text,
+  platform             text[] not null default '{}',
+  current_tools        text,
+  integrations         text,
+  has_content          text,
+  language             text,
+  tone                 text,
+  timeline             text,
+  budget               text,
+  maintenance          text,
+  extra_notes          text,
+  locale               text,
+  created_at           timestamptz not null default now()
+);
+
+alter table public.discovery_requests enable row level security;
+
+drop policy if exists "discovery public insert" on public.discovery_requests;
+create policy "discovery public insert" on public.discovery_requests
+  for insert with check (true);
+-- (No select policy — only the service role / Supabase dashboard can read them.)
+
+-- =============================================================
 -- bookings  (consultation bookings, anonymous + authenticated)
 -- =============================================================
 create table if not exists public.bookings (

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Send, CalendarClock, MessageCircle } from 'lucide-react';
-import { ContactForm } from '@/components/forms/ContactForm';
+import { DiscoveryForm } from '@/components/forms/DiscoveryForm';
 import { ChatBotV2 } from '@/components/chat/ChatBotV2';
 import { DemoBanner } from '@/components/DemoBanner';
 import { Card, CardContent } from '@/components/ui/card';
@@ -55,7 +55,7 @@ export default async function ContactPage({
         <div>
           {!isSupabaseConfigured && <DemoBanner message={tDemo('supabase')} />}
           <Suspense fallback={null}>
-            <ContactForm />
+            <DiscoveryForm />
           </Suspense>
         </div>
 

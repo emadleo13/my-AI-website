@@ -936,7 +936,8 @@
       "bookings": "Rezervări",
       "contacts": "Contacte",
       "documents": "Documente",
-      "services": "Servicii"
+      "services": "Servicii",
+      "discovery": "Discovery"
     },
     "bookings": {
       "title": "Rezervări",
@@ -995,6 +996,10 @@
       "title": "Doar admin",
       "body": "Această zonă este restricționată. Autentifică-te cu un cont de admin.",
       "cta": "Autentifică-te"
+    },
+    "discovery": {
+      "title": "Cereri de descoperire proiect",
+      "empty": "Nicio cerere încă."
     }
   },
   "marketplace": {
@@ -1145,5 +1150,160 @@
   "chatbot": {
     "skip": "Sari peste intro",
     "name": "Asistent AI Emad"
+  },
+  "discovery": {
+    "title": "Formular de Descoperire a Proiectului",
+    "subtitle": "Ajută-mă să înțeleg proiectul tău înainte de apelul de consultanță",
+    "step": "Pasul",
+    "of": "din",
+    "next": "Următor →",
+    "back": "← Înapoi",
+    "submit": "Trimite Formularul",
+    "submitting": "Se trimite…",
+    "sections": {
+      "business": "Prezentare Generală",
+      "project": "Detalii Proiect",
+      "technical": "Detalii Tehnice",
+      "timeline": "Timp și Buget"
+    },
+    "success": {
+      "title": "Mulțumesc! Am primit detaliile proiectului.",
+      "message": "Voi analiza totul înainte să discutăm. Alege mai jos o oră pentru apel — vei primi și un email de confirmare."
+    },
+    "errors": {
+      "fullName": "Te rog introdu numele tău",
+      "email": "Introdu un email valid",
+      "serviceType": "Te rog selectează un serviciu",
+      "projectGoal": "Spune-mi pe scurt care e scopul",
+      "submit": "Ceva nu a funcționat. Încearcă din nou.",
+      "rateLimited": "Prea multe trimiteri. Încearcă mai târziu."
+    },
+    "fields": {
+      "fullName": {
+        "label": "Nume Complet",
+        "placeholder": "Numele tău complet"
+      },
+      "email": {
+        "label": "Adresă de Email",
+        "placeholder": "emailul@tau.com"
+      },
+      "company": {
+        "label": "Companie / Nume Brand",
+        "placeholder": "Compania sau brandul tău"
+      },
+      "website": {
+        "label": "Website (dacă există)",
+        "placeholder": "https://situltau.ro"
+      },
+      "industry": {
+        "label": "Industrie / Domeniu",
+        "placeholder": "ex. Comerț electronic, Sănătate, Imobiliare..."
+      },
+      "businessDescription": {
+        "label": "Descrie afacerea ta",
+        "placeholder": "Ce vinzi sau oferi? Cine sunt clienții tăi?"
+      },
+      "serviceType": {
+        "label": "Ce serviciu soliciți?",
+        "placeholder": "— Selectează un serviciu —",
+        "options": {
+          "chatbot": "🤖 Dezvoltare Chatbot AI",
+          "workflow": "⚙️ Automatizare Fluxuri",
+          "both": "🔗 Ambele: Chatbot + Automatizare",
+          "consulting": "💡 Consultanță AI"
+        }
+      },
+      "projectGoal": {
+        "label": "Care este scopul principal?",
+        "placeholder": "ex. Reducerea suportului, automatizarea follow-up..."
+      },
+      "targetAudience": {
+        "label": "Cine va folosi soluția?",
+        "placeholder": "— Selectează —",
+        "options": {
+          "customers": "Clienți finali (B2C)",
+          "business": "Alte companii (B2B)",
+          "internal": "Echipă internă",
+          "mixed": "Audiență mixtă"
+        }
+      },
+      "platform": {
+        "label": "Platforme preferate pentru chatbot",
+        "note": "(Selectează toate aplicabile)",
+        "options": {
+          "telegram": "Telegram",
+          "whatsapp": "WhatsApp",
+          "website": "Widget Website",
+          "voice": "Asistent Vocal",
+          "instagram": "Instagram / Social Media",
+          "other": "Altele"
+        }
+      },
+      "currentTools": {
+        "label": "Ce instrumente folosești?",
+        "placeholder": "ex. HubSpot, Google Sheets, Notion, Gmail..."
+      },
+      "integrations": {
+        "label": "La ce trebuie să se conecteze?",
+        "placeholder": "ex. CRM, email, calendar, bază de date..."
+      },
+      "hasContent": {
+        "label": "Ai conținut sau bază de cunoștințe?",
+        "placeholder": "— Selectează —",
+        "options": {
+          "yes_ready": "Da — gata de partajat",
+          "yes_partial": "Da — necesită organizare",
+          "no": "Nu — de creat de la zero"
+        }
+      },
+      "language": {
+        "label": "Limba(ile) botului",
+        "placeholder": "ex. Română, Engleză, Franceză..."
+      },
+      "tone": {
+        "label": "Ton preferat",
+        "placeholder": "— Selectează —",
+        "options": {
+          "professional": "Profesional & Formal",
+          "friendly": "Prietenos",
+          "technical": "Tehnic & Precis",
+          "sales": "Persuasiv"
+        }
+      },
+      "timeline": {
+        "label": "Termen dorit",
+        "placeholder": "— Selectează —",
+        "options": {
+          "asap": "Cât mai curând — 2 săptămâni",
+          "1month": "În 1 lună",
+          "flexible": "Flexibil",
+          "discuss": "Discutăm"
+        }
+      },
+      "budget": {
+        "label": "Buget aproximativ",
+        "placeholder": "— Selectează —",
+        "options": {
+          "under500": "Sub €500",
+          "500_1500": "€500 – €1.500",
+          "1500_3000": "€1.500 – €3.000",
+          "over3000": "Peste €3.000",
+          "discuss": "Prefer să discutăm"
+        }
+      },
+      "maintenance": {
+        "label": "Ești interesat de mentenanță?",
+        "placeholder": "— Selectează —",
+        "options": {
+          "yes": "Da — plan lunar",
+          "no": "Nu — proiect unic",
+          "maybe": "Posibil"
+        }
+      },
+      "extraNotes": {
+        "label": "Altceva de adăugat?",
+        "placeholder": "Context suplimentar, cerințe specifice..."
+      }
+    }
   }
 }

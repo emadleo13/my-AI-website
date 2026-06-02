@@ -936,7 +936,8 @@
       "bookings": "Bookings",
       "contacts": "Contacts",
       "documents": "Documents",
-      "services": "Services"
+      "services": "Services",
+      "discovery": "Discovery"
     },
     "bookings": {
       "title": "Bookings",
@@ -995,6 +996,10 @@
       "title": "Admin only",
       "body": "This area is restricted. Sign in with an admin account.",
       "cta": "Sign in"
+    },
+    "discovery": {
+      "title": "Project discovery requests",
+      "empty": "No discovery requests yet."
     }
   },
   "marketplace": {
@@ -1145,5 +1150,160 @@
   "chatbot": {
     "skip": "Skip intro",
     "name": "Emad AI Assistant"
+  },
+  "discovery": {
+    "title": "Project Discovery Form",
+    "subtitle": "Help me understand your project before our consultation call",
+    "step": "Step",
+    "of": "of",
+    "next": "Next →",
+    "back": "← Back",
+    "submit": "Submit Discovery Form",
+    "submitting": "Submitting…",
+    "sections": {
+      "business": "Business Overview",
+      "project": "Project Details",
+      "technical": "Technical Details",
+      "timeline": "Timeline & Budget"
+    },
+    "success": {
+      "title": "Thank you! Your project details are in.",
+      "message": "I've received your submission and will review it before we talk. Pick a time for our call below — you'll also get a confirmation email."
+    },
+    "errors": {
+      "fullName": "Please enter your name",
+      "email": "Enter a valid email",
+      "serviceType": "Please select a service",
+      "projectGoal": "Tell me a little about your goal",
+      "submit": "Something went wrong. Please try again.",
+      "rateLimited": "Too many submissions. Please try again later."
+    },
+    "fields": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "your@email.com"
+      },
+      "company": {
+        "label": "Company / Brand Name",
+        "placeholder": "Your company or brand"
+      },
+      "website": {
+        "label": "Website (if any)",
+        "placeholder": "https://yoursite.com"
+      },
+      "industry": {
+        "label": "Industry / Field",
+        "placeholder": "e.g. E-commerce, Healthcare, Real Estate..."
+      },
+      "businessDescription": {
+        "label": "Describe your business",
+        "placeholder": "What do you sell or offer? Who are your customers?"
+      },
+      "serviceType": {
+        "label": "What service are you requesting?",
+        "placeholder": "— Select a service —",
+        "options": {
+          "chatbot": "🤖 AI Chatbot Development",
+          "workflow": "⚙️ Workflow Automation",
+          "both": "🔗 Both Chatbot + Automation",
+          "consulting": "💡 AI Strategy Consulting"
+        }
+      },
+      "projectGoal": {
+        "label": "What is the main goal of this project?",
+        "placeholder": "e.g. Reduce support workload, automate lead follow-up, answer customer questions 24/7..."
+      },
+      "targetAudience": {
+        "label": "Who will use this solution?",
+        "placeholder": "— Select —",
+        "options": {
+          "customers": "End customers (B2C)",
+          "business": "Other businesses (B2B)",
+          "internal": "Internal team / employees",
+          "mixed": "Mixed audience"
+        }
+      },
+      "platform": {
+        "label": "Preferred platform(s) for chatbot",
+        "note": "(Select all that apply)",
+        "options": {
+          "telegram": "Telegram",
+          "whatsapp": "WhatsApp",
+          "website": "Website Widget",
+          "voice": "Voice Assistant",
+          "instagram": "Instagram / Social Media",
+          "other": "Other"
+        }
+      },
+      "currentTools": {
+        "label": "What tools do you currently use?",
+        "placeholder": "e.g. HubSpot, Google Sheets, Notion, Gmail, Slack..."
+      },
+      "integrations": {
+        "label": "What should the system connect to?",
+        "placeholder": "e.g. Your CRM, email system, calendar, database..."
+      },
+      "hasContent": {
+        "label": "Do you have existing content or knowledge base?",
+        "placeholder": "— Select —",
+        "options": {
+          "yes_ready": "Yes — ready to share (FAQ, docs, PDFs)",
+          "yes_partial": "Yes — but needs organizing",
+          "no": "No — needs to be created from scratch"
+        }
+      },
+      "language": {
+        "label": "Bot response language(s)",
+        "placeholder": "e.g. English, Romanian, Persian..."
+      },
+      "tone": {
+        "label": "Preferred tone / communication style",
+        "placeholder": "— Select —",
+        "options": {
+          "professional": "Professional & Formal",
+          "friendly": "Friendly & Conversational",
+          "technical": "Technical & Precise",
+          "sales": "Persuasive & Sales-oriented"
+        }
+      },
+      "timeline": {
+        "label": "Desired timeline",
+        "placeholder": "— Select —",
+        "options": {
+          "asap": "ASAP — within 2 weeks",
+          "1month": "Within 1 month",
+          "flexible": "Flexible — quality over speed",
+          "discuss": "Let's discuss"
+        }
+      },
+      "budget": {
+        "label": "Approximate budget range",
+        "placeholder": "— Select —",
+        "options": {
+          "under500": "Under €500",
+          "500_1500": "€500 – €1,500",
+          "1500_3000": "€1,500 – €3,000",
+          "over3000": "€3,000+",
+          "discuss": "Prefer to discuss"
+        }
+      },
+      "maintenance": {
+        "label": "Are you interested in ongoing maintenance?",
+        "placeholder": "— Select —",
+        "options": {
+          "yes": "Yes — monthly support plan",
+          "no": "No — one-time project",
+          "maybe": "Possibly — let's discuss"
+        }
+      },
+      "extraNotes": {
+        "label": "Anything else you'd like to share?",
+        "placeholder": "Additional context, specific requirements, questions..."
+      }
+    }
   }
 }

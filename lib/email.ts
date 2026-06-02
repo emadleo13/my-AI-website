@@ -219,6 +219,183 @@ export async function sendDiscoveryEmails(payload: DiscoveryPayload): Promise<vo
   }
 }
 
+// Human-readable labels for the discovery form's coded select values, so the
+// notification email reads naturally instead of showing raw keys like "yes_ready".
+const DISCOVERY_LABELS: Record<string, Record<string, string>> = {
+  serviceType: {
+    chatbot: 'AI Chatbot Development',
+    workflow: 'Workflow Automation',
+    both: 'Chatbot + Automation',
+    consulting: 'AI Strategy Consulting',
+  },
+  targetAudience: {
+    customers: 'End customers (B2C)',
+    business: 'Other businesses (B2B)',
+    internal: 'Internal team / employees',
+    mixed: 'Mixed audience',
+  },
+  hasContent: {
+    yes_ready: 'Yes — ready to share',
+    yes_partial: 'Yes — needs organizing',
+    no: 'No — create from scratch',
+  },
+  tone: {
+    professional: 'Professional & Formal',
+    friendly: 'Friendly & Conversational',
+    technical: 'Technical & Precise',
+    sales: 'Persuasive & Sales-oriented',
+  },
+  timeline: {
+    asap: 'ASAP — within 2 weeks',
+    '1month': 'Within 1 month',
+    flexible: 'Flexible — quality over speed',
+    discuss: "Let's discuss",
+  },
+  budget: {
+    under500: 'Under €500',
+    '500_1500': '€500 – €1,500',
+    '1500_3000': '€1,500 – €3,000',
+    over3000: '€3,000+',
+    discuss: 'Prefer to discuss',
+  },
+  maintenance: {
+    yes: 'Yes — monthly support plan',
+    no: 'No — one-time project',
+    maybe: 'Possibly — discuss',
+  },
+  platform: {
+    telegram: 'Telegram',
+    whatsapp: 'WhatsApp',
+    website: 'Website Widget',
+    voice: 'Voice Assistant',
+    instagram: 'Instagram / Social Media',
+    other: 'Other',
+  },
+};
+
+const discoveryLabel = (group: string, value?: string): string =>
+  (value && DISCOVERY_LABELS[group]?.[value]) || value || '';
+
+export interface DiscoveryRequestPayload {
+  fullName: string;
+  email: string;
+  company?: string;
+  website?: string;
+  industry?: string;
+  businessDescription?: string;
+  serviceType: string;
+  projectGoal: string;
+  targetAudience?: string;
+  platform?: string[];
+  currentTools?: string;
+  integrations?: string;
+  hasContent?: string;
+  language?: string;
+  tone?: string;
+  timeline?: string;
+  budget?: string;
+  maintenance?: string;
+  extraNotes?: string;
+}
+
+/**
+ * Notifies the owner of a new project-discovery submission and sends the client
+ * a thank-you / next-steps email. Best-effort: silently no-ops without Resend.
+ */
+export async function sendDiscoveryRequestEmail(payload: DiscoveryRequestPayload): Promise<void> {
+  if (!client) {
+    console.warn('[email] sendDiscoveryRequestEmail skipped — RESEND_API_KEY not set');
+    return;
+  }
+
+  const row = (label: string, value?: string) =>
+    value ? `<p style="margin:6px 0"><strong>${escape(label)}:</strong> ${escape(value)}</p>` : '';
+  const block = (label: string, value?: string) =>
+    value
+      ? `<p style="margin:12px 0 4px"><strong>${escape(label)}</strong></p>
+         <p style="white-space:pre-wrap;background:#0B1220;padding:12px;border-radius:8px;margin:0">${escape(value)}</p>`
+      : '';
+
+  const platformList = (payload.platform ?? [])
+    .map((p) => discoveryLabel('platform', p))
+    .filter(Boolean)
+    .join(', ');
+
+  const details = `
+    <p style="margin:12px 0 4px;color:#9CA3AF;font-size:13px;text-transform:uppercase;letter-spacing:.05em">Business</p>
+    ${row('Company', payload.company)}
+    ${row('Website', payload.website)}
+    ${row('Industry', payload.industry)}
+    ${block('Business description', payload.businessDescription)}
+    <p style="margin:18px 0 4px;color:#9CA3AF;font-size:13px;text-transform:uppercase;letter-spacing:.05em">Project</p>
+    ${row('Service', discoveryLabel('serviceType', payload.serviceType))}
+    ${block('Main goal', payload.projectGoal)}
+    ${row('Audience', discoveryLabel('targetAudience', payload.targetAudience))}
+    <p style="margin:18px 0 4px;color:#9CA3AF;font-size:13px;text-transform:uppercase;letter-spacing:.05em">Technical</p>
+    ${row('Platforms', platformList)}
+    ${row('Current tools', payload.currentTools)}
+    ${row('Integrations', payload.integrations)}
+    ${row('Existing content', discoveryLabel('hasContent', payload.hasContent))}
+    ${row('Bot language(s)', payload.language)}
+    ${row('Tone', discoveryLabel('tone', payload.tone))}
+    <p style="margin:18px 0 4px;color:#9CA3AF;font-size:13px;text-transform:uppercase;letter-spacing:.05em">Timeline & budget</p>
+    ${row('Timeline', discoveryLabel('timeline', payload.timeline))}
+    ${row('Budget', discoveryLabel('budget', payload.budget))}
+    ${row('Maintenance', discoveryLabel('maintenance', payload.maintenance))}
+    ${block('Additional notes', payload.extraNotes)}
+  `;
+
+  const serviceLabel = discoveryLabel('serviceType', payload.serviceType);
+
+  // Notify the owner with the full submission.
+  if (EMAIL_TO_ADMIN) {
+    const adminHtml = shell(
+      `New project discovery: ${serviceLabel}`,
+      `<p><strong>From:</strong> ${escape(payload.fullName)} &lt;${escape(payload.email)}&gt;</p>${details}`,
+    );
+    try {
+      const { error } = await client.emails.send({
+        from: EMAIL_FROM,
+        to: EMAIL_TO_ADMIN,
+        replyTo: payload.email,
+        subject: `[discovery] ${serviceLabel} — ${payload.fullName}`,
+        html: adminHtml,
+      });
+      if (error) console.error('[email] discovery admin notification rejected by Resend:', error);
+    } catch (err) {
+      console.error('[email] discovery admin notification failed', err);
+    }
+  }
+
+  // Thank-you to the client. The discovery form has no channel field, so we
+  // point them at both the calendar and Telegram and let them choose.
+  const userHtml = shell(
+    'Thanks — I received your project details',
+    `<p>Hi ${escape(payload.fullName)},</p>
+     <p>Thank you for sharing the details of your project. I'll review everything and get back to you shortly with the next steps.</p>
+     <p>In the meantime, you can book a free discovery call directly:</p>
+     <p style="margin:18px 0">
+       <a href="${APPOINTMENT_URL}" style="background:#1E3A8A;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">Pick a time</a>
+     </p>
+     <p style="font-size:13px;color:#9CA3AF">Or message me on Telegram: ${escape(TELEGRAM_URL)}</p>
+     <p style="margin-top:18px"><strong>A copy of what you submitted</strong></p>
+     ${details}
+     <p style="margin-top:20px">— Emad</p>`,
+  );
+  try {
+    const { error } = await client.emails.send({
+      from: EMAIL_FROM,
+      to: payload.email,
+      replyTo: EMAIL_TO_ADMIN || undefined,
+      subject: 'Thanks — I received your project details',
+      html: userHtml,
+    });
+    if (error) console.error('[email] discovery client email rejected by Resend:', error);
+  } catch (err) {
+    console.error('[email] discovery client email failed', err);
+  }
+}
+
 export interface BookingPayload {
   serviceType: string;
   serviceLabel: string;

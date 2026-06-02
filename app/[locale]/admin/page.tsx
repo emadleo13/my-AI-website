@@ -11,6 +11,10 @@ import {
   type AdminContactRow,
 } from '@/components/admin/AdminContacts';
 import {
+  AdminDiscovery,
+  type AdminDiscoveryRow,
+} from '@/components/admin/AdminDiscovery';
+import {
   AdminDocuments,
   type DocumentRow,
 } from '@/components/admin/AdminDocuments';
@@ -80,6 +84,7 @@ export default async function AdminPage({
   const [
     { data: bookingsData },
     { data: contactsData },
+    { data: discoveryData },
     { data: documentsData },
     { data: serviceRequestsData },
   ] = await Promise.all([
@@ -97,6 +102,13 @@ export default async function AdminPage({
       .order('created_at', { ascending: false })
       .limit(50),
     supabase
+      .from('discovery_requests')
+      .select(
+        'id, full_name, email, company, website, industry, business_description, service_type, project_goal, target_audience, platform, current_tools, integrations, has_content, language, tone, timeline, budget, maintenance, extra_notes, locale, created_at',
+      )
+      .order('created_at', { ascending: false })
+      .limit(100),
+    supabase
       .from('documents')
       .select('id, title, source_type, char_count, chunk_count, created_at')
       .order('created_at', { ascending: false })
@@ -110,6 +122,7 @@ export default async function AdminPage({
 
   const bookings = (bookingsData ?? []) as AdminBookingRow[];
   const contacts = (contactsData ?? []) as AdminContactRow[];
+  const discovery = (discoveryData ?? []) as AdminDiscoveryRow[];
   const documents = (documentsData ?? []) as DocumentRow[];
   const serviceRequests = (serviceRequestsData ?? []) as AdminServiceRequestRow[];
 
@@ -145,6 +158,12 @@ export default async function AdminPage({
                 {contacts.length}
               </span>
             </TabsTrigger>
+            <TabsTrigger value="discovery">
+              {t('tabs.discovery')}{' '}
+              <span className="ml-2 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium">
+                {discovery.length}
+              </span>
+            </TabsTrigger>
             <TabsTrigger value="documents">
               {t('tabs.documents')}{' '}
               <span className="ml-2 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium">
@@ -163,6 +182,9 @@ export default async function AdminPage({
           </TabsContent>
           <TabsContent value="contacts" className="mt-6">
             <AdminContacts rows={contacts} />
+          </TabsContent>
+          <TabsContent value="discovery" className="mt-6">
+            <AdminDiscovery rows={discovery} />
           </TabsContent>
           <TabsContent value="documents" className="mt-6">
             <AdminDocuments initialDocuments={documents} />
