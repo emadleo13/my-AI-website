@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, ShieldCheck, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -169,6 +169,14 @@ export function DiscoveryForm() {
         <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
         <h2 className="mt-4 text-2xl font-bold tracking-tight">{t('success.title')}</h2>
         <p className="mt-2 text-muted-foreground">{t('success.message')}</p>
+        <div className="mt-6 flex items-start gap-2.5 rounded-lg border border-amber-300/60 bg-amber-50 px-3.5 py-3 text-start text-sm text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200">
+          <Info className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <p className="font-medium leading-relaxed">
+            {t.rich('success.spamNote', {
+              b: (chunks) => <span className="font-bold underline">{chunks}</span>,
+            })}
+          </p>
+        </div>
       </div>
     );
   }
@@ -259,6 +267,22 @@ export function DiscoveryForm() {
 
   return (
     <div className="space-y-8">
+      {/* Reassuring intro — shown on the first step so the client reads it before
+          committing to fill the form. */}
+      {step === 0 && (
+        <div className="space-y-2.5 rounded-xl border border-primary/20 bg-primary/5 p-4">
+          <p className="text-sm leading-relaxed text-foreground/90">{t('intro')}</p>
+          <p className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
+            <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+            <span>
+              {t.rich('privacy', {
+                b: (chunks) => <span className="font-semibold text-foreground">{chunks}</span>,
+              })}
+            </span>
+          </p>
+        </div>
+      )}
+
       {/* Progress */}
       <div>
         <div className="flex items-center justify-between text-sm">

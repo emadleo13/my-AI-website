@@ -1168,7 +1168,8 @@
     },
     "success": {
       "title": "Mulțumesc! Am primit detaliile proiectului.",
-      "message": "Voi analiza totul înainte să discutăm. Alege mai jos o oră pentru apel — vei primi și un email de confirmare."
+      "message": "Voi analiza totul înainte să discutăm. Alege mai jos o oră pentru apel — vei primi și un email de confirmare.",
+      "spamNote": "Ți-am trimis un email de confirmare. <b>Dacă nu îl vezi, verifică folderul Spam/Junk</b> — uneori ajunge acolo."
     },
     "errors": {
       "fullName": "Te rog introdu numele tău",
@@ -1304,6 +1305,8 @@
         "label": "Altceva de adăugat?",
         "placeholder": "Context suplimentar, cerințe specifice..."
       }
-    }
+    },
+    "intro": "Completarea acestui formular îți ia doar 1–2 minute din timpul tău prețios — dar face o diferență de 100% pentru a-ți livra servicii cu rezultate excelente.",
+    "privacy": "Toate informațiile tale sunt stocate în siguranță și <b>nimeni altcineva nu va avea acces la ele.</b>"
   }
 }

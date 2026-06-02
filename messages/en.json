@@ -1168,7 +1168,8 @@
     },
     "success": {
       "title": "Thank you! Your project details are in.",
-      "message": "I've received your submission and will review it before we talk. Pick a time for our call below — you'll also get a confirmation email."
+      "message": "I've received your submission and will review it before we talk. Pick a time for our call below — you'll also get a confirmation email.",
+      "spamNote": "We've emailed you a confirmation. <b>If you don't see it, please check your Spam/Junk folder</b> — it sometimes ends up there."
     },
     "errors": {
       "fullName": "Please enter your name",
@@ -1304,6 +1305,8 @@
         "label": "Anything else you'd like to share?",
         "placeholder": "Additional context, specific requirements, questions..."
       }
-    }
+    },
+    "intro": "This form takes just 1–2 minutes of your valuable time — but it makes a 100% difference in getting your project done right.",
+    "privacy": "All your information is stored securely and <b>no one else will have access to it.</b>"
   }
 }
