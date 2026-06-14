@@ -17,7 +17,7 @@ interface ChatMsg {
 const STORAGE_KEY = 'emad.consultant.chat.v1';
 const COUNTER_KEY = 'emad.consultant.count.v1';
 const INTRO_KEY = 'emad.consultant.introSeen.v1';
-const MESSAGE_LIMIT = 10;
+const MESSAGE_LIMIT = 30;
 
 function uid() {
   return Math.random().toString(36).slice(2, 10);

@@ -1,78 +1,30 @@
-import { MARKETPLACE_SERVICES, formatPrice } from './marketplace-services';
-
-const MARKETPLACE_NAMES: Record<string, { name: string; desc: string }> = {
-  telegram_bot: {
-    name: 'Telegram Chatbot Builder',
-    desc: 'AI-powered Telegram bot for your business — configured instantly.',
-  },
-  travel_automation: {
-    name: 'Travel Automation Bot',
-    desc: 'Find the best flights and hotels for any trip — automatically.',
-  },
-  voice_assistant: {
-    name: 'Voice Assistant Widget',
-    desc: 'Add a voice assistant to your website in minutes.',
-  },
-  website_design: {
-    name: 'Website Design',
-    desc: 'Professional website design and development for your business.',
-  },
-  crm_automation: {
-    name: 'CRM & Lead Automation',
-    desc: 'Automate your lead intake, follow-ups, and CRM updates.',
-  },
-  social_automation: {
-    name: 'Social Media Automation',
-    desc: 'Automate content scheduling and engagement across platforms.',
-  },
-};
-
-const marketplaceList = MARKETPLACE_SERVICES.map((s) => {
-  const info = MARKETPLACE_NAMES[s.key] ?? { name: s.key, desc: '' };
-  const type = s.isAutomated ? 'instant/automated' : 'custom/manual';
-  return `  - ${info.name} — ${formatPrice(s.priceEurCents)} (${type}): ${info.desc} Free demo: ${s.freeDemo}.`;
-}).join('\n');
-
 export const SITE_KNOWLEDGE = `
-## WEBSITE SECTIONS & CURRENT FEATURES
+## SITE KNOWLEDGE — emadai.dev (use this for anything about Emad's (عماد) business)
 
-### Marketplace (/marketplace) — AI Services Marketplace
-A self-service page where visitors pick an AI service, try a FREE demo instantly, then pay to unlock the full version. No phone call required.
-Current services on the marketplace:
-${marketplaceList}
+### About Emad (/about)
+Emad (عماد) is an AI consultant and software developer based in Baia Mare, Maramureș, Romania. A software developer turned AI consultant: ~a decade shipping products across e-commerce, SaaS, and fintech, and the last ~3 years focused almost entirely on AI — agent design, retrieval (RAG), evals, and turning prototypes into reliable production systems. Style: pragmatic over fashionable — the smallest system that actually solves the problem. Works with companies adopting AI for the first time, engineering teams building agentic products, and individuals navigating the Romanian tech market. Currently studying B.A. Computer Science at the Technical University of Cluj-Napoca (in progress).
 
-How it works: 1) Sign up free  2) Fill in a short form and try the free demo  3) Pay to unlock full output + deployment guide.
+### Services (/services)
+Five areas:
+1. Chatbot Development — custom AI chatbots & assistants across every channel: Telegram bots, WhatsApp bots, voice assistants, travel-automation bots, and social-media content bots (auto-create/publish for Instagram, LinkedIn, TikTok).
+2. Workflow Automation — automate repetitive work: CRM automation (connect, update and automate end to end) and leads & website funnels (landing pages and lead-capture flows that convert).
+3. Technology Consulting — strategic AI & tech guidance for Romanian and international companies: a clear, prioritized AI roadmap for your company, and problem & risk assessment of bottlenecks.
+4. Software Development — robust, scalable software built end to end: web apps (Next.js / React), mobile apps (iOS & Android), APIs & backends, and cloud & DevOps (deployment, CI/CD).
+5. Resume Analysis & LinkedIn Optimization — detailed resume review/rewrite and LinkedIn profile optimization to attract recruiters and opportunities.
 
-### Services (/services) — Consulting Services
-Professional consulting services offered by Emad:
-- AI Consulting & Strategy: Tailored adoption roadmap, build vs buy analysis, risk and compliance review.
-- AI Agent Design & Implementation: LangChain, CrewAI, AutoGen, and custom agents shipped to production. Includes agent architecture, tool integrations, evals & monitoring.
-- Custom Software Development: Full-stack web apps, APIs, and integrations. Tech stack: Next.js / Node / Python, Postgres / Supabase, CI/CD on Vercel & AWS.
-- Machine Learning Solutions: Custom model training, fine-tuning (Claude / OSS), inference deployment.
-- Tech Consulting for Romanian Companies: Process digitization, AI integration, team upskilling.
-- Workflow Automation: Lead intake & CRM updates, automated follow-ups & notifications, process mapping & integration.
-- Job Hunting & Career Consulting in Romania: CV / LinkedIn review, Romanian market insights, interview prep.
+### Booking a consultation (/booking)
+Pick a service, pick a date & time (Mon–Fri, Europe/Bucharest timezone, a few slots per day), and add your details. Four session types:
+- AI Strategy — 60-min strategic session on adopting AI in your organization.
+- Agent Implementation — hands-on agent design and prototyping.
+- Career & Job Consulting — CV review, interview prep, and Romanian-market guidance.
+- General Tech Consulting — architecture review, code review, or technical sparring.
 
-### Pricing Packages (/services#pricing)
-Three transparent packages:
-- Discovery: €0 (45 min) — Free intro call to scope your needs. No commitment needed.
-- Standard: €100 per engagement — Discovery + scoping, hands-on implementation, 4 weeks async support, final handover.
-- Premium: €300 per month — Weekly working sessions, architecture & code reviews, dedicated Slack channel, priority response, quarterly roadmap review.
+### Contact (/contact)
+The fastest way to start is a FREE discovery call. Fill in the short contact form (name, company, email, the service you're interested in, preferred meeting channel) and you'll get an email to pick a time. Calls happen on Telegram or Google Meet; you receive a Google Meet link by email. Tip to share with visitors: after submitting, check the Spam/Junk folder for the booking email. Based in Baia Mare, Romania. Contact email: hamidleo1984@gmail.com.
 
-### Booking (/booking)
-Book a consultation by choosing a service, a date & time, and your details. Four service types:
-- AI Strategy (60-min strategic session on adopting AI)
-- Agent Implementation (hands-on agent design and prototyping)
-- Career & Job Consulting (CV review, interview prep, Romania market guidance)
-- General Tech Consulting (architecture review, code review, technical sparring)
-Engagement types: Free Discovery Call (30 min, free), Single Session (1–2 hours, custom quote), Mini Project (1–2 weeks, custom quote), Full Project (ongoing, custom quote).
-
-### AI Consultant (/consultant)
-This chat interface — an AI-powered assistant answering questions about services, careers, Romania tech market, and software development.
+### Pricing
+The discovery call is free, with no commitment. Beyond that, pricing depends on scope — there is no fixed public price list, so for anything specific, suggest booking the free discovery call to get a tailored quote. Never quote a specific price you are not certain about.
 
 ### Blog (/blog)
-Published articles in English, Farsi (فارسی), and Romanian covering AI, tech, and the Romanian job market.
-
-### About (/about)
-Emad is an AI consultant and software developer based in Baia Mare, Maramureș, Romania. Over a decade of experience in e-commerce, SaaS, fintech, and AI consulting.
+Articles in English, Persian (فارسی), and Romanian on AI, tech, automation, and the Romanian job market.
 `;
