@@ -7,6 +7,11 @@ export const env = {
   supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
   supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY ?? '',
   anthropicKey: process.env.ANTHROPIC_API_KEY ?? '',
+  // OpenRouter (OpenAI-compatible). Lets the chat run on a free model when the
+  // Anthropic balance is exhausted. Override the model with OPENROUTER_MODEL.
+  openrouterKey: process.env.OPENROUTER_API_KEY ?? '',
+  openrouterModel:
+    process.env.OPENROUTER_MODEL ?? 'qwen/qwen3-next-80b-a3b-instruct:free',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   adminEmails: (process.env.ADMIN_EMAILS ?? '')
     .split(',')
@@ -29,6 +34,7 @@ function isValidHttpUrl(value: string): boolean {
 export const isSupabaseConfigured =
   isValidHttpUrl(env.supabaseUrl) && Boolean(env.supabaseAnonKey);
 export const isAnthropicConfigured = Boolean(env.anthropicKey);
+export const isOpenRouterConfigured = Boolean(env.openrouterKey);
 export const isAdminConfigured =
   isSupabaseConfigured &&
   Boolean(env.supabaseServiceKey) &&

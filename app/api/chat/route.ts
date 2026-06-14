@@ -4,6 +4,7 @@ import {
   ASSISTANT_SYSTEM_PROMPT,
   getAnthropicClient,
 } from '@/lib/anthropic';
+import { isOpenRouterConfigured, streamOpenRouter } from '@/lib/openrouter';
 import { chatRequestSchema } from '@/lib/validators';
 import { maybeSweepStale, rateLimitOr429 } from '@/lib/rate-limit';
 import { retrieveRelevantChunks } from '@/lib/rag/retrieve';
@@ -34,14 +35,14 @@ export async function POST(req: Request) {
     );
   }
 
-  const client = getAnthropicClient();
+  const anthropic = getAnthropicClient();
 
-  // Demo mode — return a static reply when no API key is configured.
-  if (!client) {
+  // Demo mode — only when no provider is configured at all.
+  if (!isOpenRouterConfigured && !anthropic) {
     const lastUser =
       [...parsed.data.messages].reverse().find((m) => m.role === 'user')?.content ??
       '';
-    const demo = `(Demo response — set ANTHROPIC_API_KEY to enable real answers.)\n\nIn production I'd answer about: "${lastUser.slice(0, 200)}". Topics I cover: jobs in Romania, AI consulting, programming help, and AI agents.`;
+    const demo = `(Demo response — set OPENROUTER_API_KEY or ANTHROPIC_API_KEY to enable real answers.)\n\nIn production I'd answer about: "${lastUser.slice(0, 200)}". Topics I cover: jobs in Romania, AI consulting, programming help, and AI agents.`;
     return new Response(demo, {
       status: 200,
       headers: { 'Content-Type': 'text/plain; charset=utf-8' },
@@ -58,31 +59,40 @@ export async function POST(req: Request) {
       ? buildRagSystemPrompt(ASSISTANT_SYSTEM_PROMPT, ragChunks)
       : ASSISTANT_SYSTEM_PROMPT;
 
+  const messages = parsed.data.messages.map((m) => ({
+    role: m.role,
+    content: m.content,
+  }));
+
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const encoder = new TextEncoder();
       try {
-        const response = client.messages.stream({
-          model: ANTHROPIC_MODEL,
-          max_tokens: 1024,
-          system: systemPrompt,
-          messages: parsed.data.messages.map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        });
+        if (isOpenRouterConfigured) {
+          // Preferred path: free/cheap model via OpenRouter.
+          for await (const delta of streamOpenRouter(systemPrompt, messages)) {
+            controller.enqueue(encoder.encode(delta));
+          }
+        } else {
+          // Fallback: Anthropic (used only when no OpenRouter key is set).
+          const response = anthropic!.messages.stream({
+            model: ANTHROPIC_MODEL,
+            max_tokens: 1024,
+            system: systemPrompt,
+            messages,
+          });
 
-        for await (const event of response) {
-          if (
-            event.type === 'content_block_delta' &&
-            event.delta.type === 'text_delta'
-          ) {
-            controller.enqueue(encoder.encode(event.delta.text));
+          for await (const event of response) {
+            if (
+              event.type === 'content_block_delta' &&
+              event.delta.type === 'text_delta'
+            ) {
+              controller.enqueue(encoder.encode(event.delta.text));
+            }
           }
         }
       } catch (err) {
-        const message =
-          err instanceof Error ? err.message : 'Anthropic API error';
+        const message = err instanceof Error ? err.message : 'Chat provider error';
         controller.enqueue(new TextEncoder().encode(`\n\n[error] ${message}`));
       } finally {
         controller.close();
