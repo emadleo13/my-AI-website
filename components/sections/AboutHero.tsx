@@ -20,8 +20,8 @@ export function AboutHero() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="relative mx-auto md:mx-0"
         >
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full" />
-          <div className="relative aspect-square w-[220px] md:w-[260px] rounded-3xl overflow-hidden border border-border shadow-xl">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full animate-pulse [animation-duration:6s]" />
+          <div className="animate-float-slow motion-reduce:animate-none relative aspect-square w-[220px] md:w-[260px] rounded-3xl overflow-hidden border border-border ring-1 ring-primary/20 shadow-xl shadow-primary/10">
             <Image
               src="/emadaidev.png"
               alt="Emad portrait"
@@ -44,7 +44,7 @@ export function AboutHero() {
             {t('eyebrow')}
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            {t('title')}
+            <span className="text-gradient">{t('title')}</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
             {t('subtitle')}

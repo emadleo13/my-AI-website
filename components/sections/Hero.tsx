@@ -64,8 +64,8 @@ export function Hero() {
           transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
           className="relative mx-auto w-full min-w-0"
         >
-          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full" />
-          <div className="relative aspect-[16/9] w-full max-w-sm mx-auto md:max-w-none md:w-[640px] rounded-3xl overflow-hidden border border-border shadow-2xl">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/40 to-accent/30 blur-2xl rounded-full animate-pulse [animation-duration:6s]" />
+          <div className="animate-float-slow motion-reduce:animate-none relative aspect-[16/9] w-full max-w-sm mx-auto md:max-w-none md:w-[640px] rounded-3xl overflow-hidden border border-border ring-1 ring-primary/20 shadow-2xl shadow-primary/10">
             <Image
               src="/AI PIC.png"
               alt="Emad — AI consultant and software developer"

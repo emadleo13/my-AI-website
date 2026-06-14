@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Vazirmatn } from 'next/font/google';
+import { Inter, Vazirmatn, Poppins } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -22,6 +22,14 @@ const inter = Inter({
 const vazirmatn = Vazirmatn({
   subsets: ['arabic', 'latin'],
   variable: '--font-vazirmatn',
+  display: 'swap',
+});
+
+// Display font for headings (Latin). Persian headings keep Vazirmatn.
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-poppins',
   display: 'swap',
 });
 
@@ -113,6 +121,7 @@ export default async function LocaleLayout({
         className={cn(
           inter.variable,
           vazirmatn.variable,
+          poppins.variable,
           'min-h-screen bg-background text-foreground',
           dir === 'rtl' ? 'font-persian' : 'font-sans',
         )}

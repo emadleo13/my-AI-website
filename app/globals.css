@@ -80,6 +80,29 @@
   html[dir='rtl'] body {
     @apply font-persian;
   }
+
+  /* Display font for headings (Latin); Persian keeps Vazirmatn. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  html[dir='rtl'] :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-vazirmatn), ui-sans-serif, sans-serif;
+    letter-spacing: normal;
+  }
+
+  /* Branded text selection. */
+  ::selection {
+    background-color: hsl(var(--primary) / 0.28);
+    color: hsl(var(--foreground));
+  }
+
+  /* Consistent, visible keyboard focus across the whole site. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer utilities {
@@ -94,6 +117,26 @@
     transform-origin: center;
     transform-box: fill-box;
   }
+  /* Brand gradient text (blue → amber). Avoids the cliché AI purple/pink. */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent;
+  }
+  /* Lift + glow on hover — opt-in for cards and tiles. */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1 border-primary/40 shadow-xl shadow-primary/10;
+  }
+  /* Slow vertical float for hero imagery / decorative elements. */
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes gradient-shift {
@@ -120,6 +163,39 @@
 }
 .chat-scrollbar::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Subtle brand-tinted page scrollbar (desktop, WebKit). */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.35);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.55);
+    background-clip: padding-box;
+  }
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ─── ChatBot V2 ─── */

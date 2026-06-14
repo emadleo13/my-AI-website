@@ -52,7 +52,7 @@ export default async function BlogIndexPage({
       <header className="max-w-2xl mb-10">
         <div className="flex items-start justify-between gap-4">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-            {t('title')}
+            <span className="text-gradient">{t('title')}</span>
           </h1>
           <a
             href={`/${locale}/blog/feed.xml`}

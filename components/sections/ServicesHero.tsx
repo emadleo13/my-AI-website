@@ -13,7 +13,7 @@ export function ServicesHero() {
           {t('eyebrow')}
         </span>
         <h1 className="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight">
-          {t('title')}
+          <span className="text-gradient">{t('title')}</span>
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">{t('subtitle')}</p>
       </div>

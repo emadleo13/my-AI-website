@@ -46,7 +46,7 @@ export default async function ContactPage({
   return (
     <div className="container py-16 md:py-24">
       <div className="max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{t('title')}</h1>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight"><span className="text-gradient">{t('title')}</span></h1>
         <p className="mt-3 text-muted-foreground text-lg">{t('subtitle')}</p>
       </div>
 
