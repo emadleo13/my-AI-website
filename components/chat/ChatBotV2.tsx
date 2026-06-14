@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
-import { Send, Trash2, SkipForward, LogIn, ArrowUp } from 'lucide-react';
+import { Trash2, LogIn, ArrowUp } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Button } from '@/components/ui/button';
 import { BinarySphere } from './BinarySphere';
@@ -16,131 +16,10 @@ interface ChatMsg {
 
 const STORAGE_KEY = 'emad.consultant.chat.v1';
 const COUNTER_KEY = 'emad.consultant.count.v1';
-const INTRO_KEY = 'emad.consultant.introSeen.v1';
 const MESSAGE_LIMIT = 30;
 
 function uid() {
   return Math.random().toString(36).slice(2, 10);
-}
-
-const INTRO_LINES: Record<string, string[]> = {
-  en: [
-    "Hello! I have a little secret...",
-    "I'm not a real human.",
-    "I'm an AI assistant powered by advanced technology.",
-    "But here's the good news —",
-    "I can help you with web development, AI solutions, and business automation.",
-    "Tell me, what can I build for you?",
-  ],
-  fa: [
-    "سلام! یک راز کوچک دارم...",
-    "من یک انسان واقعی نیستم.",
-    "من یک دستیار هوش مصنوعی هستم.",
-    "اما خبر خوب اینه که —",
-    "میتونم در توسعه وب، هوش مصنوعی و اتوماسیون کسب‌وکار بهتون کمک کنم.",
-    "بگید، چی میتونم براتون بسازم؟",
-  ],
-  ro: [
-    "Salut! Am un mic secret...",
-    "Nu sunt o persoană reală.",
-    "Sunt un asistent AI bazat pe tehnologie avansată.",
-    "Dar vestea bună e că —",
-    "Te pot ajuta cu dezvoltare web, soluții AI și automatizare.",
-    "Spune-mi, ce pot construi pentru tine?",
-  ],
-};
-
-function speakText(text: string, lang: string) {
-  if (typeof window === 'undefined' || !window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(text);
-  const langMap: Record<string, string> = { en: 'en-US', fa: 'fa-IR', ro: 'ro-RO' };
-  utter.lang = langMap[lang] || 'en-US';
-  utter.rate = 0.95;
-  utter.pitch = 0.9;
-  window.speechSynthesis.speak(utter);
-}
-
-/* ─── Intro screen ─── */
-function IntroScreen({ onDone }: { onDone: () => void }) {
-  const locale = useLocale();
-  const t = useTranslations('chatbot');
-  const lines = INTRO_LINES[locale] || INTRO_LINES.en;
-  const [lineIdx, setLineIdx] = React.useState(0);
-  const [charIdx, setCharIdx] = React.useState(0);
-  const [displayedLines, setDisplayedLines] = React.useState<string[]>([]);
-  const [speaking, setSpeaking] = React.useState(false);
-  const doneRef = React.useRef(false);
-
-  React.useEffect(() => {
-    if (doneRef.current) return;
-    if (lineIdx >= lines.length) {
-      const timer = setTimeout(() => {
-        doneRef.current = true;
-        if (typeof window !== 'undefined') window.speechSynthesis?.cancel();
-        onDone();
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-
-    const currentLine = lines[lineIdx];
-    if (charIdx === 0) {
-      setSpeaking(true);
-      speakText(currentLine, locale);
-    }
-
-    if (charIdx < currentLine.length) {
-      const timer = setTimeout(() => setCharIdx(charIdx + 1), 40);
-      return () => clearTimeout(timer);
-    }
-
-    setSpeaking(false);
-    const timer = setTimeout(() => {
-      setDisplayedLines(prev => [...prev, currentLine]);
-      setLineIdx(lineIdx + 1);
-      setCharIdx(0);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [lineIdx, charIdx, lines, locale, onDone]);
-
-  const currentTyping = lineIdx < lines.length ? lines[lineIdx].slice(0, charIdx) : '';
-
-  const handleSkip = () => {
-    doneRef.current = true;
-    if (typeof window !== 'undefined') window.speechSynthesis?.cancel();
-    onDone();
-  };
-
-  return (
-    <div className="chatbot-v2-intro">
-      <div className="chatbot-v2-grid-bg" />
-      <button onClick={handleSkip} className="chatbot-v2-skip">
-        <SkipForward className="h-4 w-4" />
-        {t('skip')}
-      </button>
-
-      <div className="chatbot-v2-intro-content">
-        <div className="chatbot-v2-sphere-wrapper">
-          <BinarySphere size={260} speaking={speaking} />
-          <div className="chatbot-v2-sphere-glow" />
-        </div>
-
-        <div className="chatbot-v2-subtitle-area">
-          {displayedLines.map((line, i) => (
-            <p key={i} className="chatbot-v2-subtitle chatbot-v2-subtitle-done">
-              {line}
-            </p>
-          ))}
-          {currentTyping && (
-            <p className="chatbot-v2-subtitle chatbot-v2-subtitle-active">
-              {currentTyping}
-              <span className="chatbot-v2-cursor" />
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
 }
 
 /* ─── Chat screen ─── */
@@ -275,7 +154,7 @@ function ChatScreen() {
         {!hasMessages && (
           <div className="flex flex-col items-center justify-center flex-1 text-center py-10">
             <BinarySphere size={80} />
-            <p className="text-sm leading-relaxed max-w-xs mt-3 text-emerald-300/70">
+            <p className="text-sm leading-relaxed max-w-xs mt-3 text-slate-400">
               {t('subtitle')}
             </p>
           </div>
@@ -294,9 +173,9 @@ function ChatScreen() {
               >
                 {msg.content || (
                   <span className="inline-flex gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0ms]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:150ms]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:300ms]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:0ms]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:150ms]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:300ms]" />
                   </span>
                 )}
               </div>
@@ -326,8 +205,8 @@ function ChatScreen() {
       {limitReached && (
         <div className="chatbot-v2-limit">
           <p className="font-semibold text-sm text-white mb-1">{t('limit.title')}</p>
-          <p className="text-sm mb-3 text-emerald-400/70">{t('limit.desc')}</p>
-          <Button asChild size="sm" className="bg-emerald-600 hover:bg-emerald-500 gap-1.5">
+          <p className="text-sm mb-3 text-slate-400">{t('limit.desc')}</p>
+          <Button asChild size="sm" className="bg-indigo-600 hover:bg-indigo-500 gap-1.5">
             <Link href="/auth">
               <LogIn className="h-3.5 w-3.5" />
               {t('limit.cta')}
@@ -369,7 +248,7 @@ function ChatScreen() {
 
       {/* Counter */}
       {!limitReached && (
-        <p className="text-end text-[10px] text-emerald-500/30 px-5 pb-2">
+        <p className="text-end text-[10px] text-slate-500/40 px-5 pb-2">
           {count}/{MESSAGE_LIMIT}
         </p>
       )}
@@ -379,39 +258,9 @@ function ChatScreen() {
 
 /* ─── Main wrapper ─── */
 export function ChatBotV2() {
-  const [phase, setPhase] = React.useState<'loading' | 'intro' | 'chat'>('loading');
-
-  React.useEffect(() => {
-    try {
-      const seen = localStorage.getItem(INTRO_KEY);
-      setPhase(seen ? 'chat' : 'intro');
-    } catch {
-      setPhase('intro');
-    }
-  }, []);
-
-  const handleIntroDone = React.useCallback(() => {
-    try { localStorage.setItem(INTRO_KEY, '1'); } catch {}
-    setPhase('chat');
-  }, []);
-
-  if (phase === 'loading') {
-    return (
-      <div className="chatbot-v2-wrapper">
-        <div className="flex items-center justify-center h-96">
-          <BinarySphere size={120} />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="chatbot-v2-wrapper">
-      {phase === 'intro' ? (
-        <IntroScreen onDone={handleIntroDone} />
-      ) : (
-        <ChatScreen />
-      )}
+      <ChatScreen />
     </div>
   );
 }

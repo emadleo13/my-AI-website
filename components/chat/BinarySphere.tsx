@@ -80,17 +80,17 @@ export function BinarySphere({ size = 300, className, speaking }: Props) {
 
     for (const p of projected) {
       const alpha = 0.08 + p.depth * 0.92;
-      const g = Math.round(180 + p.depth * 75);
       ctx.font = `bold ${p.fs}px monospace`;
-      ctx.fillStyle = `rgba(${Math.round(30 + p.depth * 30)}, ${g}, ${Math.round(80 + p.depth * 50)}, ${alpha})`;
+      // Blue (#3B82F6) in the back fading to violet (#8B5CF6) toward the front.
+      ctx.fillStyle = `rgba(${Math.round(70 + p.depth * 120)}, ${Math.round(90 + p.depth * 70)}, ${Math.round(230 + p.depth * 25)}, ${alpha})`;
       ctx.fillText(p.char, p.x, p.y);
     }
 
     if (speaking) {
       const glowRadius = radius * 1.2;
       const grad = ctx.createRadialGradient(cx, cy, radius * 0.3, cx, cy, glowRadius);
-      grad.addColorStop(0, 'rgba(34, 197, 94, 0.06)');
-      grad.addColorStop(1, 'rgba(34, 197, 94, 0)');
+      grad.addColorStop(0, 'rgba(99, 102, 241, 0.08)');
+      grad.addColorStop(1, 'rgba(99, 102, 241, 0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
     }
