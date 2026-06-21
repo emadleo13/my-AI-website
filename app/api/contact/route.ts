@@ -30,38 +30,35 @@ export async function POST(req: Request) {
 
   const { name, email, company, channel, service, message } = parsed.data;
 
-  if (!isSupabaseConfigured) {
-    return NextResponse.json(
-      {
-        message:
-          'Supabase is not configured — set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to enable persistence.',
-        demo: true,
-      },
-      { status: 503 },
-    );
-  }
+  // Persistence strategy: leads are always logged to Google Sheets (free, see
+  // logLead below). Supabase is an OPTIONAL extra store — when it's configured
+  // we also insert into the `contacts` table, but the form must keep working
+  // when Supabase is paused/unavailable, so a Supabase failure never blocks the
+  // submission. (Free-tier constraint: a dedicated Supabase project for this
+  // site isn't available right now.)
+  if (isSupabaseConfigured) {
+    const supabase = await getSupabaseServer();
+    if (supabase) {
+      // Fold the structured fields into the existing contacts table (name,
+      // email, subject, message) so no schema migration is required.
+      const composedMessage =
+        `${company ? `Company: ${company}\n` : ''}` +
+        `Channel: ${channel}\n\n` +
+        message;
 
-  const supabase = await getSupabaseServer();
-  if (!supabase) {
-    return NextResponse.json({ message: 'Supabase unavailable' }, { status: 503 });
-  }
+      const { error } = await supabase.from('contacts').insert({
+        name,
+        email,
+        subject: service || 'discovery',
+        message: composedMessage,
+      });
 
-  // Fold the structured fields into the existing contacts table (name, email,
-  // subject, message) so no schema migration is required.
-  const composedMessage =
-    `${company ? `Company: ${company}\n` : ''}` +
-    `Channel: ${channel}\n\n` +
-    message;
-
-  const { error } = await supabase.from('contacts').insert({
-    name,
-    email,
-    subject: service || 'discovery',
-    message: composedMessage,
-  });
-
-  if (error) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+      if (error) {
+        // Don't fail the request — the lead is still captured via Google Sheets
+        // + email below. Just record the issue for debugging.
+        console.warn('[contact] Supabase insert failed, falling back to Sheets:', error.message);
+      }
+    }
   }
 
   // Await the email + Google Sheets notifications so they reliably complete in

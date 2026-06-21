@@ -40,7 +40,10 @@ function ChatScreen() {
       const c = Number(localStorage.getItem(COUNTER_KEY) ?? '0');
       if (Number.isFinite(c)) setCount(c);
     } catch {}
-    setTimeout(() => inputRef.current?.focus(), 300);
+    // NOTE: do NOT auto-focus the input on mount. On the /contact page this
+    // chatbot is rendered far below the lead form, and focusing it would scroll
+    // the page down to the chat as soon as it loads. Users land on the form and
+    // scroll to the chat themselves.
   }, []);
 
   React.useEffect(() => {

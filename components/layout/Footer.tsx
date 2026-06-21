@@ -1,10 +1,11 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
+import { SERVICE_CATEGORIES } from '@/lib/services';
 
 const NAV_LINKS = ['home', 'about', 'services', 'blog', 'contact'] as const;
 
@@ -17,7 +18,7 @@ export function Footer() {
       <FooterBackgroundGradient />
 
       <div className="max-w-7xl mx-auto px-8 pt-14 pb-6 z-40 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 md:gap-8 pb-10">
 
           {/* Brand */}
           <div className="flex flex-col space-y-4">
@@ -43,6 +44,42 @@ export function Footer() {
                   >
                     {t(`nav.${key}`)}
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services — hover to reveal the full catalogue */}
+          <div className="group">
+            <Link
+              href="/services"
+              className="mb-5 flex items-center gap-1.5 text-white text-sm font-semibold uppercase tracking-widest hover:text-[#3ca2fa] transition-colors"
+            >
+              {t('nav.services')}
+              <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+            </Link>
+            {/* Collapsed on desktop, expands on hover; always open on mobile/touch. */}
+            <ul className="space-y-2.5 overflow-hidden transition-all duration-300 max-h-[40rem] lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-[40rem] lg:group-hover:opacity-100">
+              {SERVICE_CATEGORIES.map((cat) => (
+                <li key={cat.key}>
+                  <Link
+                    href={`/contact?service=${cat.key}`}
+                    className="text-sm font-medium text-gray-300 hover:text-[#3ca2fa] transition-colors"
+                  >
+                    {t(`services.categories.${cat.key}.title`)}
+                  </Link>
+                  <ul className="mt-1.5 ms-3 space-y-1 border-s border-white/10 ps-3">
+                    {cat.sub.map((s) => (
+                      <li key={s}>
+                        <Link
+                          href={`/contact?service=${cat.key}`}
+                          className="text-xs text-gray-500 hover:text-[#3ca2fa] transition-colors"
+                        >
+                          {t(`services.categories.${cat.key}.sub.${s}.title`)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
