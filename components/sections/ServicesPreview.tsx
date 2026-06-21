@@ -5,7 +5,7 @@ import { ArrowRight, Check } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { BorderBeam } from '@/components/ui/border-beam';
-import { SERVICE_CATEGORIES } from '@/lib/services';
+import { FOCUS_CATEGORIES, FOCUS_HIDDEN_SUBS } from '@/lib/services';
 import { ScrollReveal } from './ScrollReveal';
 
 /**
@@ -15,22 +15,13 @@ import { ScrollReveal } from './ScrollReveal';
  * Software (web, mobile, front-end & back-end APIs). The other categories
  * (workflow automation, technology consulting, resume/LinkedIn) plus Cloud &
  * DevOps live in the footer Services menu, not here, so the home page stays
- * pointed at what we want to win work on.
+ * pointed at what we want to win work on. See FOCUS_* in lib/services.ts.
  */
-const FOCUS_KEYS = ['chatbot', 'software'] as const;
-
-/** Sub-items intentionally hidden from the home focus cards. */
-const HIDDEN_SUBS: Record<string, string[]> = {
-  software: ['cloud'], // Cloud & DevOps lives in the footer Services menu.
-};
-
 export function ServicesPreview() {
   const t = useTranslations('home.servicesPreview');
   const tCat = useTranslations('services.categories');
 
-  const focus = FOCUS_KEYS.map(
-    (key) => SERVICE_CATEGORIES.find((c) => c.key === key)!,
-  );
+  const focus = FOCUS_CATEGORIES;
 
   return (
     <section className="container py-20 md:py-28">
@@ -43,7 +34,7 @@ export function ServicesPreview() {
 
       <div className="mt-12 grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
         {focus.map(({ key, icon: Icon, sub }, i) => {
-          const subs = sub.filter((s) => !HIDDEN_SUBS[key]?.includes(s));
+          const subs = sub.filter((s) => !FOCUS_HIDDEN_SUBS[key]?.includes(s));
           return (
             <ScrollReveal key={key} delay={i * 0.08}>
               <Link href={`/contact?service=${key}`} className="block h-full">

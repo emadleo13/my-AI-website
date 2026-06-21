@@ -24,3 +24,19 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
 ];
 
 export const SERVICE_KEYS = SERVICE_CATEGORIES.map((c) => c.key);
+
+/**
+ * The two offerings we actively want to win work on. Both the home "What I do"
+ * section and the /services page render only these (the rest of the catalogue
+ * stays reachable from the footer Services menu and direct /contact links).
+ */
+export const FOCUS_KEYS = ['chatbot', 'software'] as const;
+
+/** Sub-items intentionally hidden from the focus cards. */
+export const FOCUS_HIDDEN_SUBS: Record<string, string[]> = {
+  software: ['cloud'], // Cloud & DevOps lives in the footer Services menu.
+};
+
+export const FOCUS_CATEGORIES = FOCUS_KEYS.map(
+  (key) => SERVICE_CATEGORIES.find((c) => c.key === key)!,
+);

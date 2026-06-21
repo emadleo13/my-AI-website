@@ -7,7 +7,9 @@ import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
 import { SERVICE_CATEGORIES } from '@/lib/services';
 
-const NAV_LINKS = ['home', 'about', 'services', 'blog', 'contact'] as const;
+// 'services' is intentionally omitted here — it has its own dedicated column
+// (the hover flyout) below, so listing it under Navigation too would duplicate it.
+const NAV_LINKS = ['home', 'about', 'blog', 'contact'] as const;
 
 export function Footer() {
   const t = useTranslations();
@@ -49,17 +51,48 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services — hover to reveal the full catalogue */}
-          <div className="group">
+          {/* Services — hover the heading to reveal a flyout panel that opens to
+              the side (absolutely positioned, so it overlays instead of pushing
+              the footer taller). On mobile/touch (no hover) it renders inline. */}
+          <div className="group relative">
             <Link
               href="/services"
               className="mb-5 flex items-center gap-1.5 text-white text-sm font-semibold uppercase tracking-widest hover:text-[#3ca2fa] transition-colors"
             >
               {t('nav.services')}
-              <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+              <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:-rotate-90 rtl:group-hover:rotate-90" />
             </Link>
-            {/* Collapsed on desktop, expands on hover; always open on mobile/touch. */}
-            <ul className="space-y-2.5 overflow-hidden transition-all duration-300 max-h-[40rem] lg:max-h-0 lg:opacity-0 lg:group-hover:max-h-[40rem] lg:group-hover:opacity-100">
+
+            {/* Desktop: side flyout overlay (opens to the right via left-full). */}
+            <div className="hidden lg:block pointer-events-none invisible opacity-0 translate-x-1 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 group-hover:pointer-events-auto absolute top-0 left-full ml-4 z-50 w-[30rem] rounded-2xl border border-white/10 bg-[#0d0f1a]/95 backdrop-blur-md p-5 shadow-2xl">
+              <div className="grid grid-cols-2 gap-x-6 gap-y-4">
+                {SERVICE_CATEGORIES.map((cat) => (
+                  <div key={cat.key}>
+                    <Link
+                      href={`/contact?service=${cat.key}`}
+                      className="text-sm font-semibold text-white hover:text-[#3ca2fa] transition-colors"
+                    >
+                      {t(`services.categories.${cat.key}.title`)}
+                    </Link>
+                    <ul className="mt-1.5 space-y-1">
+                      {cat.sub.map((s) => (
+                        <li key={s}>
+                          <Link
+                            href={`/contact?service=${cat.key}`}
+                            className="text-xs text-gray-400 hover:text-[#3ca2fa] transition-colors"
+                          >
+                            {t(`services.categories.${cat.key}.sub.${s}.title`)}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile/touch: inline list (no hover available). */}
+            <ul className="space-y-2.5 lg:hidden">
               {SERVICE_CATEGORIES.map((cat) => (
                 <li key={cat.key}>
                   <Link
@@ -68,18 +101,6 @@ export function Footer() {
                   >
                     {t(`services.categories.${cat.key}.title`)}
                   </Link>
-                  <ul className="mt-1.5 ms-3 space-y-1 border-s border-white/10 ps-3">
-                    {cat.sub.map((s) => (
-                      <li key={s}>
-                        <Link
-                          href={`/contact?service=${cat.key}`}
-                          className="text-xs text-gray-500 hover:text-[#3ca2fa] transition-colors"
-                        >
-                          {t(`services.categories.${cat.key}.sub.${s}.title`)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
                 </li>
               ))}
             </ul>
