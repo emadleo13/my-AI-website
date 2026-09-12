@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Hero } from '@/components/sections/Hero';
 import { AIFuture } from '@/components/sections/AIFuture';
 import { ServicesPreview } from '@/components/sections/ServicesPreview';
+import { Products } from '@/components/sections/Products';
 import { Stats } from '@/components/sections/Stats';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { BlogPreview } from '@/components/sections/BlogPreview';
@@ -25,6 +26,7 @@ export default async function HomePage({
       <AIFuture />
       <HowItWorks />
       <ServicesPreview />
+      <Products />
       <WhatDrivesUs />
       <Testimonials />
       <BlogPreview locale={locale as Locale} />

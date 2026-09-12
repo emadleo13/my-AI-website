@@ -83,6 +83,22 @@
         }
       }
     },
+    "products": {
+      "title": "Ce construiesc",
+      "subtitle": "Nu doar consultanță — produse pe care le construiesc, le operez și le susțin eu.",
+      "paznic": {
+        "name": "Paznic",
+        "tagline": "Monitorizare de securitate pentru site-urile firmelor mici",
+        "desc": "Paznic verifică un site din exterior — exact cum îl vede browserul oricărui vizitator — și explică pe înțelesul tuturor ce nu este în regulă și cum se rezolvă. Fără acces, fără parole, fără nimic de instalat.",
+        "why": "L-am construit pentru că uneltele de securitate sunt fie scumpe, fie scrise într-un limbaj pe care nu-l înțelege nimeni.",
+        "features": {
+          "passive": "Verificare din exterior — fără acces la site-ul dumneavoastră",
+          "plain": "Explicații în română, pe înțelesul tuturor",
+          "alerts": "Email imediat ce apare o problemă"
+        },
+        "cta": "Verifică-ți site-ul — gratuit"
+      }
+    },
     "howItWorks": {
       "eyebrow": "Procesul",
       "title": "Cum funcționează",
@@ -1131,7 +1147,8 @@
     "rights": "Toate drepturile rezervate.",
     "links": {
       "navigation": "Navigare",
-      "social": "Social"
+      "social": "Social",
+      "products": "Produse"
     },
     "social": {
       "github": "GitHub",

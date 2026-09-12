@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { ChevronDown, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
@@ -30,6 +30,27 @@ export function Footer() {
             <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
               {t('footer.tagline')}
             </p>
+
+            {/* Products — the visible link between this domain and Paznic.
+                Outreach mail for Paznic is sent from here; a recipient who
+                checks the sender has to find it. See sections/Products.tsx. */}
+            <div className="pt-1">
+              <h4 className="text-white text-xs font-semibold mb-2 uppercase tracking-widest">
+                {t('footer.links.products')}
+              </h4>
+              <a
+                href="https://paznic.eu"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors"
+              >
+                {t('home.products.paznic.name')}
+                <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
+              </a>
+              <p className="mt-1 text-xs text-gray-500 max-w-xs leading-relaxed">
+                {t('home.products.paznic.tagline')}
+              </p>
+            </div>
           </div>
 
           {/* Navigation */}

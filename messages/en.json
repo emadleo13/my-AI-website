@@ -83,6 +83,22 @@
         }
       }
     },
+    "products": {
+      "title": "What I build",
+      "subtitle": "Not only advice — products I build, run and support myself.",
+      "paznic": {
+        "name": "Paznic",
+        "tagline": "Security monitoring for small-business websites",
+        "desc": "Paznic checks a website from the outside — exactly the way a visitor’s browser sees it — and explains in plain language what is wrong and how to fix it. No access, no passwords, nothing installed.",
+        "why": "I built it because security tools are either expensive or written in a language nobody understands.",
+        "features": {
+          "passive": "Checked from the outside — no access to your site",
+          "plain": "Findings explained in plain Romanian, not jargon",
+          "alerts": "An email the moment something changes"
+        },
+        "cta": "Check your website — free"
+      }
+    },
     "howItWorks": {
       "eyebrow": "The process",
       "title": "How it works",
@@ -1131,7 +1147,8 @@
     "rights": "All rights reserved.",
     "links": {
       "navigation": "Navigation",
-      "social": "Social"
+      "social": "Social",
+      "products": "Products"
     },
     "social": {
       "github": "GitHub",
