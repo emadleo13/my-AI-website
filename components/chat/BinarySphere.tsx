@@ -2,14 +2,6 @@
 
 import { useRef, useEffect, useCallback } from 'react';
 
-interface Particle {
-  theta: number;
-  phi: number;
-  char: string;
-  speed: number;
-  fontSize: number;
-}
-
 interface Props {
   size?: number;
   className?: string;

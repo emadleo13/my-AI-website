@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev          # start dev server (http://localhost:3000 → redirects to /en)
 npm run build        # production build (also runs tsc)
 npm run typecheck    # tsc --noEmit only
-npm run lint         # next lint
+npm run lint         # eslint . (flat config: eslint.config.mjs)
 npm test             # vitest run (all tests in tests/)
 npm run test:watch   # vitest in watch mode
 ```
@@ -27,6 +27,8 @@ npx vitest run tests/validators.test.ts
 `middleware.ts` chains two concerns: Supabase session refresh (`lib/supabase/middleware.ts`) then `next-intl` locale routing. The `[locale]` segment supports `en`, `fa` (RTL), `ro`. All UI strings live in `messages/{en,fa,ro}.json` and are accessed via `next-intl`'s `useTranslations` / `getTranslations`.
 
 ### Auth & protection
+
+Sign in / sign up / password reset call Supabase Auth from the browser and send a Cloudflare Turnstile token (`components/forms/Turnstile.tsx`) when `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is set; Supabase verifies it once CAPTCHA protection is enabled in the dashboard.
 
 `lib/auth.ts` exposes `getCurrentUser()` (server, anon-safe) and `getAdminUser()` (throws if not in `ADMIN_EMAILS`). Middleware guards `/dashboard` and `/admin` at the route level; admin page enforces the email allowlist a second time server-side using the service-role Supabase client (`lib/supabase/admin.ts` — never imported client-side).
 
@@ -87,4 +89,5 @@ Vitest in Node environment (`vitest.config.mts` — `.mts` so the ESM-only `vite
 | `SUPABASE_SERVICE_ROLE_KEY` + `ADMIN_EMAILS` | `/admin` page inaccessible |
 | `RESEND_API_KEY` | Emails silently skipped |
 | `NEXT_PUBLIC_SITE_URL` | OAuth redirects + sitemap use `http://localhost:3000` |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | No CAPTCHA widget on auth forms (Supabase CAPTCHA protection must stay off) |
 | `RATE_LIMIT_DISABLED=true` | Bypasses all rate limits |

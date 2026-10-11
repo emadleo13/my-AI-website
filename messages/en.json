@@ -149,23 +149,6 @@
       "experience": "Years of work experience",
       "languages": "Languages I work in",
       "downloads": "CNC Assist downloads"
-    },
-    "testimonials": {
-      "title": "What clients say",
-      "items": {
-        "1": {
-          "quote": "Emad designed a beautiful, fast website for my photography and videography business — it looks exactly how I imagined and my clients love it.",
-          "author": "Amin Beigi"
-        },
-        "2": {
-          "quote": "The Telegram chatbot Emad built answers my customers automatically, day and night. Setup was effortless and it just works.",
-          "author": "Pop Dragoș, Romania"
-        },
-        "3": {
-          "quote": "Emad's resume analysis and LinkedIn optimization completely transformed my profile — I started getting interview calls within weeks.",
-          "author": "John Madelson"
-        }
-      }
     }
   },
   "about": {
@@ -595,7 +578,8 @@
       "passwordMin": "Password must be at least 8 characters.",
       "passwordMatch": "Passwords don't match.",
       "generic": "Authentication failed. Please try again.",
-      "demo": "Sign-up requires Supabase to be configured."
+      "demo": "Sign-up requires Supabase to be configured.",
+      "captcha": "Please complete the security check."
     },
     "success": {
       "signedIn": "Signed in successfully.",

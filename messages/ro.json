@@ -149,23 +149,6 @@
       "experience": "Ani de experiență profesională",
       "languages": "Limbi de lucru",
       "downloads": "Descărcări CNC Assist"
-    },
-    "testimonials": {
-      "title": "Ce spun clienții",
-      "items": {
-        "1": {
-          "quote": "Emad mi-a creat un site frumos și rapid pentru afacerea mea de fotografie și videografie — arată exact cum mi-am imaginat, iar clienții îl adoră.",
-          "author": "Amin Beigi"
-        },
-        "2": {
-          "quote": "Chatbotul de Telegram creat de Emad răspunde automat clienților mei, zi și noapte. Configurarea a fost simplă și funcționează impecabil.",
-          "author": "Pop Dragoș, România"
-        },
-        "3": {
-          "quote": "Analiza CV-ului și optimizarea LinkedIn făcute de Emad mi-au transformat complet profilul — am început să primesc invitații la interviu în câteva săptămâni.",
-          "author": "John Madelson"
-        }
-      }
     }
   },
   "about": {
@@ -595,7 +578,8 @@
       "passwordMin": "Parola trebuie să aibă cel puțin 8 caractere.",
       "passwordMatch": "Parolele nu se potrivesc.",
       "generic": "Autentificare eșuată. Încearcă din nou.",
-      "demo": "Înregistrarea necesită Supabase configurat."
+      "demo": "Înregistrarea necesită Supabase configurat.",
+      "captcha": "Te rugăm să finalizezi verificarea de securitate."
     },
     "success": {
       "signedIn": "Autentificare reușită.",

@@ -8,7 +8,7 @@ Every page from the original spec is implemented end-to-end, plus a markdown-dri
 
 ### Pages
 
-- **Home** — hero, AI-future section with 4 image cards, services preview, stats, testimonials, blog preview pulling 3 latest posts, scroll animations
+- **Home** — hero, AI-future section with 4 image cards, services preview, stats, products, blog preview pulling 3 latest posts, scroll animations
 - **About** — hero with photo, 3-paragraph bio, skills grid (4 groups, 25+ tech badges), experience timeline (4 entries), education timeline (3 entries), documents gallery with modal viewer, resume download CTA
 - **Services** — 6 service cards (hover effects, 3 bullets each, CTA), 3-tier pricing with "Most popular" badge
 - **Blog** — index + post detail + per-tag pages reading markdown / MDX from `content/blog/{en,fa,ro}/*.{md,mdx}`. 3 seed posts × 3 locales, prose-styled rendering, tag chips, locale-aware tag URLs (Persian / Romanian preserved as Unicode slugs), client-side search + tag filter (Fuse.js)
@@ -105,7 +105,7 @@ The `/auth` page already wires the "Continue with Google" button to `signInWithO
 app/
   [locale]/
     layout.tsx           ← <html lang dir>, theme provider, NextIntl provider, navbar, footer, toaster
-    page.tsx             ← Home (hero + AI-future + services preview + stats + testimonials + blog)
+    page.tsx             ← Home (hero + AI-future + services preview + stats + products + blog)
     auth/                ← tabbed sign-in/up + Google OAuth button + reset-password + callback
     booking/             ← 3-step wizard
     consultant/          ← AI chat

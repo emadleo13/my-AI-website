@@ -9,9 +9,11 @@ import { getSupabaseBrowser } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Turnstile, useCaptcha } from './Turnstile';
 
 export function SignUpForm() {
   const t = useTranslations('auth');
+  const captcha = useCaptcha();
 
   const {
     register,
@@ -26,11 +28,16 @@ export function SignUpForm() {
       toast.error(t('errors.demo'));
       return;
     }
+    if (captcha.pending) {
+      toast.error(t('errors.captcha'));
+      return;
+    }
     const { error } = await supa.auth.signUp({
       email: data.email,
       password: data.password,
-      options: { data: { full_name: data.fullName } },
+      options: { data: { full_name: data.fullName }, captchaToken: captcha.captchaToken },
     });
+    captcha.reset();
     if (error) {
       toast.error(error.message || t('errors.generic'));
       return;
@@ -92,7 +99,8 @@ export function SignUpForm() {
           <p className="text-xs text-destructive">{t('errors.passwordMatch')}</p>
         )}
       </div>
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
+      <Turnstile ref={captcha.ref} onToken={captcha.setToken} />
+      <Button type="submit" className="w-full" disabled={isSubmitting || captcha.pending}>
         {isSubmitting ? t('signup.submitting') : t('signup.submit')}
       </Button>
     </form>

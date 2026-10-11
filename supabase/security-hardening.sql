@@ -86,8 +86,16 @@ end
 $$;
 
 -- 3. Knowledge-base search: server (service role) only ---------
-revoke execute on function public.search_chunks(text, integer) from public, anon, authenticated;
-grant execute on function public.search_chunks(text, integer) to service_role;
+do $$
+begin
+  if to_regprocedure('public.search_chunks(text, integer)') is null then
+    raise notice 'search_chunks() does not exist — skipping';
+    return;
+  end if;
+  revoke execute on function public.search_chunks(text, integer) from public, anon, authenticated;
+  grant execute on function public.search_chunks(text, integer) to service_role;
+end
+$$;
 
 -- 4. avatars: owners can list their own folder; files stay public by URL
 drop policy if exists "avatars public read" on storage.objects;
@@ -104,42 +112,55 @@ create policy "profiles self update" on public.profiles
   for update using (auth.uid() = id) with check (auth.uid() = id);
 
 -- 6. Length limits on public insert tables (NOT VALID = existing rows untouched)
-alter table public.contacts drop constraint if exists contacts_field_lengths;
-alter table public.contacts add constraint contacts_field_lengths check (
-  char_length(name) <= 120
-  and char_length(email) <= 254
-  and char_length(coalesce(subject, '')) <= 200
-  and char_length(message) <= 5000
-) not valid;
-
-alter table public.discovery_requests drop constraint if exists discovery_field_lengths;
-alter table public.discovery_requests add constraint discovery_field_lengths check (
-  char_length(full_name) <= 120
-  and char_length(email) <= 254
-  and char_length(coalesce(company, '')) <= 160
-  and char_length(coalesce(website, '')) <= 200
-  and char_length(coalesce(industry, '')) <= 160
-  and char_length(coalesce(business_description, '')) <= 2000
-  and char_length(service_type) <= 40
-  and char_length(project_goal) <= 2000
-  and char_length(coalesce(target_audience, '')) <= 40
-  and cardinality(platform) <= 10
-  and char_length(coalesce(current_tools, '')) <= 1000
-  and char_length(coalesce(integrations, '')) <= 1000
-  and char_length(coalesce(has_content, '')) <= 40
-  and char_length(coalesce(language, '')) <= 160
-  and char_length(coalesce(tone, '')) <= 40
-  and char_length(coalesce(timeline, '')) <= 40
-  and char_length(coalesce(budget, '')) <= 40
-  and char_length(coalesce(maintenance, '')) <= 40
-  and char_length(coalesce(extra_notes, '')) <= 2000
-  and char_length(coalesce(locale, '')) <= 5
-) not valid;
+do $$
+begin
+  if to_regclass('public.contacts') is not null then
+    execute $q$alter table public.contacts drop constraint if exists contacts_field_lengths;
+    alter table public.contacts add constraint contacts_field_lengths check (
+      char_length(name) <= 120
+      and char_length(email) <= 254
+      and char_length(coalesce(subject, '')) <= 200
+      and char_length(message) <= 5000
+    ) not valid$q$;
+  end if;
+  if to_regclass('public.discovery_requests') is not null then
+    execute $q$alter table public.discovery_requests drop constraint if exists discovery_field_lengths;
+    alter table public.discovery_requests add constraint discovery_field_lengths check (
+      char_length(full_name) <= 120
+      and char_length(email) <= 254
+      and char_length(coalesce(company, '')) <= 160
+      and char_length(coalesce(website, '')) <= 200
+      and char_length(coalesce(industry, '')) <= 160
+      and char_length(coalesce(business_description, '')) <= 2000
+      and char_length(service_type) <= 40
+      and char_length(project_goal) <= 2000
+      and char_length(coalesce(target_audience, '')) <= 40
+      and cardinality(platform) <= 10
+      and char_length(coalesce(current_tools, '')) <= 1000
+      and char_length(coalesce(integrations, '')) <= 1000
+      and char_length(coalesce(has_content, '')) <= 40
+      and char_length(coalesce(language, '')) <= 160
+      and char_length(coalesce(tone, '')) <= 40
+      and char_length(coalesce(timeline, '')) <= 40
+      and char_length(coalesce(budget, '')) <= 40
+      and char_length(coalesce(maintenance, '')) <= 40
+      and char_length(coalesce(extra_notes, '')) <= 2000
+      and char_length(coalesce(locale, '')) <= 5
+    ) not valid$q$;
+  end if;
+end
+$$;
 
 -- 7. Indexes for dashboard / admin queries -----------------------
 create index if not exists bookings_user_id_idx
   on public.bookings (user_id, booking_date);
-create index if not exists contacts_created_at_idx
-  on public.contacts (created_at desc);
-create index if not exists discovery_requests_created_at_idx
-  on public.discovery_requests (created_at desc);
+do $$
+begin
+  if to_regclass('public.contacts') is not null then
+    create index if not exists contacts_created_at_idx on public.contacts (created_at desc);
+  end if;
+  if to_regclass('public.discovery_requests') is not null then
+    create index if not exists discovery_requests_created_at_idx on public.discovery_requests (created_at desc);
+  end if;
+end
+$$;

@@ -1,6 +1,5 @@
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { formatPrice, SERVICE_MAP } from '@/lib/marketplace-services';
 

@@ -22,7 +22,7 @@ export default async function OG() {
         }}
       >
         <div style={{ fontSize: 28, opacity: 0.85, letterSpacing: 2, textTransform: 'uppercase' }}>
-          Hello, I'm Emad
+          Hello, I&apos;m Emad
         </div>
         <div
           style={{

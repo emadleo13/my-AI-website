@@ -12,12 +12,14 @@ import { stripLocalePrefix } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Turnstile, useCaptcha } from './Turnstile';
 
 export function SignInForm() {
   const t = useTranslations('auth');
   const router = useRouter();
   const params = useSearchParams();
   const next = params.get('next');
+  const captcha = useCaptcha();
 
   const {
     register,
@@ -31,7 +33,15 @@ export function SignInForm() {
       toast.error(t('errors.demo'));
       return;
     }
-    const { error } = await supa.auth.signInWithPassword(data);
+    if (captcha.pending) {
+      toast.error(t('errors.captcha'));
+      return;
+    }
+    const { error } = await supa.auth.signInWithPassword({
+      ...data,
+      options: { captchaToken: captcha.captchaToken },
+    });
+    captcha.reset();
     if (error) {
       toast.error(error.message || t('errors.invalid'));
       return;
@@ -71,7 +81,8 @@ export function SignInForm() {
           aria-invalid={!!errors.password}
         />
       </div>
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
+      <Turnstile ref={captcha.ref} onToken={captcha.setToken} />
+      <Button type="submit" className="w-full" disabled={isSubmitting || captcha.pending}>
         {isSubmitting ? t('signin.submitting') : t('signin.submit')}
       </Button>
     </form>

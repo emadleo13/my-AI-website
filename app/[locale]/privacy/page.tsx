@@ -67,7 +67,7 @@ export default async function PrivacyPage({
         <ul>
           <li><strong>Access</strong> the personal data we hold about you.</li>
           <li><strong>Correct</strong> inaccurate data.</li>
-          <li><strong>Erase</strong> your data ("right to be forgotten").</li>
+          <li><strong>Erase</strong> your data (&ldquo;right to be forgotten&rdquo;).</li>
           <li><strong>Restrict</strong> processing.</li>
           <li><strong>Data portability</strong> — receive your data in a machine-readable format.</li>
           <li><strong>Object</strong> to processing based on legitimate interest.</li>
@@ -94,7 +94,7 @@ export default async function PrivacyPage({
 
         <h2>9. Changes to this policy</h2>
         <p>
-          We may update this policy. The "last updated" date at the top will reflect any changes.
+          We may update this policy. The &ldquo;last updated&rdquo; date at the top will reflect any changes.
           Continued use of the service after changes constitutes acceptance.
         </p>
       </div>

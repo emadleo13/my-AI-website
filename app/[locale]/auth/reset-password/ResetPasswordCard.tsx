@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { getSupabaseBrowser } from '@/lib/supabase/client';
+import { Turnstile, useCaptcha } from '@/components/forms/Turnstile';
 
 export function ResetPasswordCard() {
   const t = useTranslations('auth');
@@ -23,6 +24,7 @@ export function ResetPasswordCard() {
   const [email, setEmail] = React.useState('');
   const [busy, setBusy] = React.useState(false);
   const [sent, setSent] = React.useState(false);
+  const captcha = useCaptcha();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,11 +34,17 @@ export function ResetPasswordCard() {
       toast.error(t('errors.demo'));
       return;
     }
+    if (captcha.pending) {
+      toast.error(t('errors.captcha'));
+      return;
+    }
     setBusy(true);
     try {
       const { error } = await supa.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/${locale}/auth`,
+        captchaToken: captcha.captchaToken,
       });
+      captcha.reset();
       if (error) {
         toast.error(error.message);
         return;
@@ -72,7 +80,8 @@ export function ResetPasswordCard() {
                 autoComplete="email"
               />
             </div>
-            <Button type="submit" className="w-full" disabled={busy || !email}>
+            <Turnstile ref={captcha.ref} onToken={captcha.setToken} />
+            <Button type="submit" className="w-full" disabled={busy || !email || captcha.pending}>
               {busy ? t('reset.submitting') : t('reset.submit')}
             </Button>
           </form>

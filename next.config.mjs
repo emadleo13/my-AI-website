@@ -35,9 +35,9 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      // Scripts: self + Next.js inline + Stripe. 'unsafe-eval' is only needed by
-      // the dev server's hot reload — never in production.
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://js.stripe.com https://m.stripe.network https://www.google-analytics.com`,
+      // Scripts: self + Next.js inline + Stripe + Cloudflare Turnstile (auth
+      // CAPTCHA). 'unsafe-eval' is only needed by the dev server's hot reload.
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://js.stripe.com https://m.stripe.network https://www.google-analytics.com https://challenges.cloudflare.com`,
       // Styles: self + inline (Tailwind)
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       // Fonts
@@ -47,8 +47,8 @@ const securityHeaders = [
       // Connections: self + Supabase + Stripe. AI providers are called from the
       // server only, so the browser never needs to reach them.
       `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://m.stripe.com https://m.stripe.network https://q.stripe.com wss://*.supabase.co`,
-      // Frames: self (presentation) + Stripe + OpenStreetMap (contact map) + Google Calendar appointment embed
-      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://m.stripe.com https://m.stripe.network https://www.openstreetmap.org https://calendar.google.com",
+      // Frames: self (presentation) + Stripe + OpenStreetMap (contact map) + Google Calendar appointment embed + Turnstile
+      "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://m.stripe.com https://m.stripe.network https://www.openstreetmap.org https://calendar.google.com https://challenges.cloudflare.com",
       // No plugins
       "object-src 'none'",
       // Base URI restricted
