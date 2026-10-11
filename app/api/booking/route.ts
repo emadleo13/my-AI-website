@@ -37,11 +37,7 @@ export async function POST(req: Request) {
 
   if (!isSupabaseConfigured) {
     return NextResponse.json(
-      {
-        message:
-          'Supabase is not configured — set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to enable persistence.',
-        demo: true,
-      },
+      { message: 'Saving is not configured on this deployment.', demo: true },
       { status: 503 },
     );
   }
@@ -74,7 +70,8 @@ export async function POST(req: Request) {
         { status: 409 },
       );
     }
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    console.error('[booking] insert failed:', error.message);
+    return NextResponse.json({ message: 'Booking failed.' }, { status: 500 });
   }
 
   // Run notifications in parallel and AWAIT both before returning.

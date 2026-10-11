@@ -3,17 +3,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { X, Send, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
-
-const WELCOME: Message = {
-  role: 'assistant',
-  content: "Hi! I'm Emad's AI assistant. Ask me anything about AI consulting, services, or how I can help your business.",
-};
 
 function RobotFace({ className }: { className?: string }) {
   return (
@@ -39,8 +34,13 @@ function RobotFace({ className }: { className?: string }) {
 
 export function FloatingChat() {
   const t = useTranslations('floatingChat');
+  const tCommon = useTranslations('common');
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([WELCOME]);
+  // The welcome bubble is rendered separately and never sent to the API —
+  // conversations must start with a user turn.
+  const welcome: Message = { role: 'assistant', content: t('welcome') };
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -69,9 +69,13 @@ export function FloatingChat() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: nextMessages }),
+        body: JSON.stringify({ messages: nextMessages, locale }),
       });
 
+      if (res.status === 429) {
+        setMessages((prev) => [...prev, { role: 'assistant', content: tCommon('rateLimited') }]);
+        return;
+      }
       if (!res.ok || !res.body) throw new Error('Request failed');
 
       const reader = res.body.getReader();
@@ -93,7 +97,7 @@ export function FloatingChat() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Sorry, something went wrong. Please try again.' },
+        { role: 'assistant', content: tCommon('errorGeneric') },
       ]);
     } finally {
       setLoading(false);
@@ -137,7 +141,7 @@ export function FloatingChat() {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-3 space-y-3 max-h-64 min-h-32">
-            {messages.map((msg, i) => (
+            {[welcome, ...messages].map((msg, i) => (
               <div
                 key={i}
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}

@@ -1,134 +1,75 @@
-# Emad AI Consultant — Knowledge Base
+# Emad — Knowledge Base
+
+> Source for the website chatbot's retrieval (RAG). Business facts here must match
+> lib/site-knowledge.ts and the CV. After editing, re-seed with
+> `node scripts/seed-knowledge-base.mjs`.
 
 ## Who Is Emad?
 
-Emad (Abdolhamid Bashari / عماد) is an AI consultant, junior web developer, and CNC programmer based in Baia Mare, Maramureș, Romania. He has over 15 years of cross-industry experience including sales management, insurance, and team supervision. Since 2024 he has been building practical skills in AI and web development while working full-time as a CNC operator, running his AI consulting practice in parallel.
+Emad (Abdolhamid Bashari / عماد) is a self-taught AI engineer and software developer based in Baia Mare, Maramureș, Romania. He designs, builds and ships his own products — Paznic, UNIREAL, CNC Assist and a multi-agent website-monitoring system — and builds AI chatbots, websites, web apps and Android apps for small and medium businesses.
 
-He is a Computer Science student at the Technical University of Cluj-Napoca and holds a B.A. in Financial Management. He is trilingual: Persian (native), English (upper-intermediate), Romanian (intermediate).
+He also works full-time as a CNC machine operator and programmer, is studying Computer Science at the Technical University of Cluj-Napoca, and has over 15 years of cross-industry work experience (sales management, insurance, team leadership). Languages: Persian (native), English (upper-intermediate), Romanian (intermediate).
 
-He works with:
-- Small businesses and individuals seeking practical AI adoption guidance
-- People navigating the Romanian tech job market, especially foreign nationals
-- Clients needing web development with Next.js, TypeScript, and Python
-
-His approach: pragmatic and hands-on — starting small, measuring results, and scaling only what works.
-
-Contact: emadleo13@gmail.com
-Phone: +40 791 520 388
-Location: Baia Mare, Maramureș, Romania
-Website: emad-ai-consultant.vercel.app
-GitHub: github.com/emadleo13
-LinkedIn: linkedin.com/in/abdolhamid-bashari
-Romanian work permit: Yes · Driving License: B/B1
+Public contact: the form on the Contact page · Telegram @EMADLEO1984 · hamidleo1984@gmail.com
+Website: emadai.dev · GitHub: github.com/emadleo13 · LinkedIn: linkedin.com/in/emadleo13-b42882236
 
 ---
 
 ## Services
 
-### 1. AI Consulting & Strategy
-Help companies define and execute their AI adoption roadmap.
-- Tailored AI adoption roadmap
-- Build vs buy analysis
-- Vendor selection
-- Risk and compliance review
-- ROI-driven AI plans
+### 1. AI Chatbot Development
+Custom AI chatbots and assistants: Telegram bots, WhatsApp bots, voice assistants, travel-automation bots, and social-media content bots (Instagram, LinkedIn, TikTok).
 
-### 2. AI Agent Design & Implementation
-Design and ship autonomous agents to production using modern frameworks.
-- Agent architecture design
-- LangChain, CrewAI, AutoGen, and custom frameworks
-- Tool integrations and external API connections
-- Evaluations (evals) and monitoring
-- Hands-on prototyping and deployment
+### 2. Website Design
+Business & company websites (multilingual, SEO-ready), landing pages, online stores (e-commerce), and portfolio & personal websites.
 
-### 3. Custom Software Development
-Full-stack web applications, APIs, and integrations.
-- Next.js, Node.js, Python
-- PostgreSQL, Supabase
-- CI/CD pipelines on Vercel and AWS
-- REST and GraphQL APIs
+### 3. Web & Android Apps
+SaaS & web platforms (accounts, subscriptions, payments), dashboards & business tools (admin panels, CRMs, booking systems, internal tools), progressive web apps (PWA), Android apps built with Flutter and published on Google Play, and APIs & backends.
 
-### 4. Machine Learning Solutions
-Custom model training, fine-tuning, and deployment.
-- Custom model training
-- Fine-tuning Claude and open-source models
-- Inference deployment and optimization
+### 4. Resume Analysis & LinkedIn Optimization
+Resume review and rewrite, and LinkedIn profile optimization.
 
-### 5. Tech Consulting for Romanian Companies
-Digital transformation and AI integration for Romanian SMEs.
-- Process digitization
-- AI integration into existing workflows
-- Team upskilling and training
-
-### 6. Job Hunting & Career Consulting in Romania
-Help professionals find tech jobs and advance their careers in Romania.
-- CV and LinkedIn profile review
-- Romanian tech market insights
-- Interview preparation
-- Salary negotiation guidance
-- Understanding work permits and legal requirements for foreigners
+Emad no longer offers workflow-automation or technology/strategy-consulting packages.
 
 ---
 
 ## Pricing
 
-### Discovery Call — Free
-- 30-minute video call
-- Tailored next steps and recommendations
-- No commitment required
-- Best for: first-time clients who want to explore options
-
-### Standard Package — €200 per engagement
-- Discovery and scoping session
-- Hands-on implementation
-- Async support for 4 weeks after delivery
-- Final handover with documentation
-- Best for: one-time projects with a concrete, defined outcome
-
-### Premium Package — €500 per month
-- Weekly working sessions
-- Architecture and code reviews
-- Dedicated Slack channel for quick questions
-- Priority response time
-- Quarterly roadmap review
-- Best for: ongoing AI partnership, teams building agentic products
-
-All packages begin with a free 30-minute discovery call.
+There is no public price list. Every project starts with a free discovery call (Telegram or Google Meet, no commitment), after which Emad sends a quote based on the scope.
 
 ---
 
-## How to Book a Consultation
+## How to Start a Project
 
-1. Visit the Booking page on the website
-2. Choose a service type: AI Strategy, Agent Implementation, Career Consulting, or General Tech Consulting
-3. Pick a date and time (Monday to Friday, Europe/Bucharest timezone)
-4. Fill in your name, email, and any relevant notes
-5. Submit — a confirmation email will follow shortly
-
-You can also reach out directly via the Contact page or email hamidleo1984@gmail.com.
+1. Open the Contact page and fill in the short project form (about 1–2 minutes).
+2. Pick a time in the calendar — a Google Meet link arrives by email (check the Spam/Junk folder if you don't see it).
+3. Or message Emad directly on Telegram: @EMADLEO1984.
 
 ---
 
-## Projects
+## Products
 
-**EMAD AI Consultant Website** — Next.js / TypeScript
-Personal bilingual (EN/RO/FA) consulting website deployed on Vercel. Features: AI chatbot with RAG, multilingual i18n, Supabase auth and database, booking system, blog with MDX, admin panel for managing documents and bookings. GitHub: github.com/emadleo13
+**Paznic** — paznic.eu
+Security monitoring for small-business websites. Checks a site from the outside, the way a visitor's browser sees it — no access, passwords or installation — explains findings in plain language and emails an alert when something changes.
 
-**Pytopia Dashboard** — Python
-Data dashboard project built as part of the Pytopia AI & Python program.
+**UNIREAL** — unireal.study
+Real reviews and answers about universities worldwide. Compare thousands of universities in 200+ countries — tuition, admission deadlines, English-taught programs and the 0–100 UNIREAL Score — with reviews and answers verified by university email, a match quiz, a compare tool and scholarships. In English, Romanian and Persian.
 
-**Python Level 1 & 2 Projects** — Jupyter / Python
-Coursework projects covering data structures, file handling, and data analysis.
+**CNC Assist** — Android app on Google Play
+Speeds & feeds calculator, G-code analyzer (Haas, Siemens Sinumerik, ISO), 270+ CNC alarm codes (Haas, Fanuc, Sinumerik), 250+ G/M-codes explained, and an AI machining assistant. Free, works offline, no ads; some advanced AI features may require a subscription. English, Romanian, Persian and Arabic.
+
+**Emad Agent Team**
+Six specialized AI agents (Sentinel, Diagnostician, Medic, Herald, Foreman, Coordinator) that monitor websites 24/7 and send daily, weekly and monthly reports via Telegram and email.
+
+**emadai.dev** — this website: Next.js / TypeScript, trilingual (EN/RO/FA), deployed on Vercel.
 
 ---
 
 ## Skills & Tech Stack
 
-**Manufacturing & Technical:** CNC Operation · CNC Programming (G-code) · 3-Axis Machining · Drilling & Milling · Lathe Operation · Machine Setup · Material Handling · Quality Control
+**AI & Development:** Next.js · TypeScript · React · Python · Flutter / Dart · Node.js · PostgreSQL · Supabase · Claude API · OpenAI API · LangChain · RAG · Multi-Agent Systems · Vercel · Git & GitHub
 
-**Programming & Web (learning & practicing):** Python · JavaScript · TypeScript · HTML / CSS · Next.js · React · Git & GitHub · Vercel · Claude API · OpenAI API · LangChain
-
-**Other Skills:** Adobe Photoshop · CCTV installation & repair · Basic electrical work · Team leadership
+**Manufacturing & Technical:** CNC Operation · CNC Programming (G-code) · 3-Axis Machining · Drilling & Milling · Lathe Operation · Machine Setup · Quality Control
 
 **Languages:** Persian (native) · English (upper-intermediate) · Romanian (intermediate)
 
@@ -138,75 +79,44 @@ Coursework projects covering data structures, file handling, and data analysis.
 
 - **B.Sc. Computer Science (in progress)** — Technical University of Cluj-Napoca
 - **Romanian Language Studies** — Universitatea Babeș-Bolyai, Cluj-Napoca | 2022–2024 (Diploma of Higher Education)
-- **B.A. Financial Management** — Azad Lahijan University, Iran | Apr 2017–Apr 2021
+- **B.A. Financial Management** — Azad Lahijan University, Iran | 2017–2021
 - **AI & Python Program** — Pytopia.ai
-- **JavaScript, HTML & CSS** — Online courses
-- **Romanian Work Permit** — Issued by IGI Romania
-- **Driving License** — Categories B, B1
+- **JavaScript, HTML & CSS** — online courses
 
 ---
 
 ## Work Experience
 
-**CNC Machine Operator & Programmer** — COZMIRCOM SA | Dec 2024–Present | Baia Mare, Maramureș, Romania
-- Operates and programs CNC machines for precision manufacturing (3-axis machining, drilling, grinding, milling).
-- Sets up conventional CNC machines and writes/adjusts G-code programs.
-- Handles material loading, quality control, and daily production deadlines.
-
 **AI Consultant & Junior Web Developer (Part-time)** — EMAD AI Consultant | 2024–Present | Freelance, Romania (remote)
-- Provides AI adoption guidance to small businesses and individuals, focusing on practical solutions.
-- Builds web projects with Python, JavaScript, TypeScript, and Next.js — including a bilingual (EN/RO) consulting website deployed on Vercel.
-- Applies modern AI tools: Claude API, OpenAI API, LangChain, and RAG basics.
+- Designs and builds full-stack AI products for European SMEs, including AI security scanners and multi-agent monitoring systems.
+- Works with Next.js, TypeScript, Flutter, Python, PostgreSQL, Supabase, Claude API and OpenAI API.
+- Gives small businesses practical, cost-effective AI adoption guidance.
 
-**Insurance Agent & Sales Team Manager** — Insurance Agency | Apr 2016–Apr 2021 | Lahijan, Iran
-- Sold commercial, medical, life, and investment-linked insurance products to a diverse client base.
-- Managed a health & life insurance sales team; trained members and tracked performance targets.
+**CNC Machine Operator & Programmer** — COZMIRCOM SA | Dec 2024–Present | Baia Mare, Romania
+- Operates and programs CNC machines for precision manufacturing (3-axis machining, drilling, grinding, milling).
 
-**Sales Representative** — Biozer Agricultural Company | Jun 2015–Jun 2016 | Rasht, Iran
-- Production support and sales of agricultural and aquaculture products.
-
-**Sales & Warehouse Supervisor** — Sepahan Battery Company | Apr 2008–Apr 2010 | Rasht, Iran
-- Supervised automotive battery sales and managed warehouse stock and customer relations.
-
----
-
-## Working in Romania — Key Facts for Job Seekers
-
-- Romania is a member of the EU with a growing tech scene, especially in Cluj-Napoca, Bucharest, Timișoara, and Iași
-- Major tech employers include Bosch, Continental, Emerson, Adobe, UiPath, and many EU-based SaaS companies
-- Average software developer salary: €1,500–€4,000/month net depending on seniority
-- Foreigners from non-EU countries need a work permit; the process takes 30–60 days
-- Romania has a flat income tax of 10% — attractive compared to Western Europe
-- Romanian tech companies often look for: English proficiency, practical project experience, and specific stack knowledge
-- Remote-first companies hiring in Romania include both local startups and international firms
+**Insurance Agent & Sales Team Manager** — Insurance Agency | 2016–2021 | Lahijan, Iran
+- Sold commercial, medical, life and investment-linked insurance; managed and trained a sales team.
 
 ---
 
 ## Frequently Asked Questions
 
-**Q: How do I start if I want to adopt AI in my company?**
-A: Start with a free 30-minute discovery call. Emad will assess your current processes, identify the highest-ROI AI opportunities, and propose a concrete roadmap. No jargon, no hype — just actionable next steps.
+**Q: How do I start a project?**
+A: Fill in the short form on the Contact page and pick a time for a free discovery call, or message Emad on Telegram (@EMADLEO1984).
 
-**Q: Can you help me build an AI agent from scratch?**
-A: Yes. The AI Agent Design & Implementation service covers architecture design, framework selection (LangChain, CrewAI, AutoGen, or custom), tool integrations, and production deployment including evals and monitoring.
+**Q: How much does a chatbot, website or app cost?**
+A: It depends on the scope. There is no public price list — the discovery call is free and you get a tailored quote afterwards.
 
-**Q: I'm looking for a tech job in Romania as a foreigner. Where do I start?**
-A: Book a Career Consulting session. Emad will review your CV, explain the Romanian job market for your profile, help you target the right companies, and prepare you for interviews. He also has direct experience navigating work permits in Romania.
-
-**Q: What makes this consulting different from a typical agency?**
-A: You work directly with Emad — not a project manager or junior consultant. The focus is on practical outcomes: working code, shipped agents, and measurable improvements — not slide decks.
+**Q: Can you build an Android app?**
+A: Yes — Emad builds Android apps with Flutter and publishes them on Google Play; his own CNC Assist app is an example.
 
 **Q: Do you work with companies outside Romania?**
-A: Yes. Emad works with EU-based companies and international clients remotely. The Romania-specific expertise is a bonus, not a requirement.
+A: Yes, remotely, in English, Romanian or Persian.
 
 **Q: What is RAG and do I need it?**
-A: RAG (Retrieval-Augmented Generation) lets AI models answer questions using your own documents and data instead of relying purely on their training. If you have internal knowledge bases, PDFs, or proprietary data you want your chatbot to use — you need RAG.
+A: RAG (Retrieval-Augmented Generation) lets a chatbot answer from your own documents and data instead of only its training. If you want a chatbot that knows your FAQ, PDFs or product catalogue, you need RAG.
 
-**Q: How long does a typical engagement take?**
-A: Discovery calls are 30 minutes. Standard engagements (one concrete outcome) typically take 2–4 weeks plus 4 weeks of async support. Premium (monthly) is ongoing. Timelines depend on scope and are agreed upfront.
-
-**Q: What if I just have a quick technical question?**
-A: Use the AI chat assistant on the website for quick questions. For anything requiring a deeper dive, book a discovery call — it's free.
 ---
 
 ## Section 1: AI Consulting
@@ -456,16 +366,7 @@ Virtually any business using AI benefits, but the greatest impact is seen in:
 
 **16. How much do prompt engineering services cost?**
 
-Costs vary by service type:
-
-| Service | Price Range |
-|---|---|
-| Hourly consulting | $50 – $150/hour |
-| Single custom prompt design | $100 – $500 |
-| Full prompt package for one department | $500 – $2,000 |
-| Complete business prompt system | $2,000 – $10,000 |
-
-Key factors: number of prompts, complexity, team training needs, and ongoing maintenance.
+Costs depend on the number of prompts, their complexity, team training needs and ongoing maintenance. Emad does not publish prices — book the free discovery call for a quote.
 
 ---
 

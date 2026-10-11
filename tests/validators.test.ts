@@ -5,6 +5,7 @@ import {
   signUpSchema,
   bookingSchema,
   chatRequestSchema,
+  discoverySchema,
 } from '@/lib/validators';
 
 describe('contactSchema', () => {
@@ -154,23 +155,51 @@ describe('bookingSchema', () => {
 });
 
 describe('chatRequestSchema', () => {
-  it('accepts up to 40 messages', () => {
-    const messages = Array.from({ length: 40 }, (_, i) => ({
-      role: i % 2 === 0 ? 'user' : ('assistant' as const),
+  const turns = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      role: (i % 2 === 0 ? 'user' : 'assistant') as 'user' | 'assistant',
       content: `m${i}`,
     }));
-    expect(chatRequestSchema.safeParse({ messages }).success).toBe(true);
+
+  it('accepts a long conversation that ends with a user turn', () => {
+    expect(chatRequestSchema.safeParse({ messages: turns(59) }).success).toBe(true);
   });
 
   it('rejects empty message arrays', () => {
     expect(chatRequestSchema.safeParse({ messages: [] }).success).toBe(false);
   });
 
-  it('rejects message arrays over 40', () => {
-    const messages = Array.from({ length: 41 }, () => ({
-      role: 'user' as const,
-      content: 'hi',
-    }));
-    expect(chatRequestSchema.safeParse({ messages }).success).toBe(false);
+  it('rejects more than 60 messages', () => {
+    expect(chatRequestSchema.safeParse({ messages: turns(61) }).success).toBe(false);
+  });
+
+  it('rejects a conversation whose last turn is not from the user', () => {
+    expect(chatRequestSchema.safeParse({ messages: turns(2) }).success).toBe(false);
+  });
+
+  it('rejects oversized payloads', () => {
+    const big = Array.from({ length: 21 }, () => ({ role: 'user' as const, content: 'x'.repeat(3000) }));
+    expect(chatRequestSchema.safeParse({ messages: big }).success).toBe(false);
+  });
+
+  it('accepts a known locale and rejects others', () => {
+    expect(chatRequestSchema.safeParse({ messages: turns(1), locale: 'fa' }).success).toBe(true);
+    expect(chatRequestSchema.safeParse({ messages: turns(1), locale: 'xx' }).success).toBe(false);
+  });
+});
+
+describe('discoverySchema', () => {
+  const base = { fullName: 'Ada', email: 'ada@example.com', projectGoal: 'A company website' };
+
+  it('accepts the current service types', () => {
+    for (const serviceType of ['chatbot', 'website', 'webapp', 'android', 'other']) {
+      expect(discoverySchema.safeParse({ ...base, serviceType }).success).toBe(true);
+    }
+  });
+
+  it('rejects retired service types', () => {
+    for (const serviceType of ['workflow', 'consulting', 'both']) {
+      expect(discoverySchema.safeParse({ ...base, serviceType }).success).toBe(false);
+    }
   });
 });

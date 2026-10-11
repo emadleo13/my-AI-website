@@ -2,13 +2,15 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { cvPathFor } from '@/lib/site-config';
 import { Download, Mail, MapPin } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Button } from '@/components/ui/button';
 
 export function AboutHero() {
   const t = useTranslations('about.hero');
+  const locale = useLocale();
 
   return (
     <section className="relative overflow-hidden border-b border-border/50">
@@ -51,7 +53,7 @@ export function AboutHero() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Button asChild variant="accent" className="gap-2">
-              <a href="/Abdolhamid_Bashari_CV_EN.pdf" download>
+              <a href={cvPathFor(locale)} download>
                 <Download className="h-4 w-4" />
                 {t('downloadResume')}
               </a>

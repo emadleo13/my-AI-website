@@ -7,12 +7,11 @@ import { DemoBanner } from '@/components/DemoBanner';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { isSupabaseConfigured } from '@/lib/env';
+import { TELEGRAM_HANDLE, TELEGRAM_URL } from '@/lib/site-config';
 
 const APPOINTMENT_URL =
   process.env.NEXT_PUBLIC_GOOGLE_APPOINTMENT_URL ??
   'https://calendar.app.google/DZ7mqpaqh99pordF8';
-
-const TELEGRAM_USERNAME = process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? '@your_handle';
 
 // Only Google Calendar's full appointment-schedule URL (with ?gv=true) can be
 // embedded in an iframe. Share links (calendar.app.google/…) send
@@ -40,8 +39,6 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations('contact');
   const tDemo = await getTranslations('demo');
-
-  const telegramHandle = TELEGRAM_USERNAME.replace(/^@/, '');
 
   return (
     <div className="container py-16 md:py-24">
@@ -101,12 +98,13 @@ export default async function ContactPage({
               <p className="text-sm text-muted-foreground">
                 {t('telegram.hint')}{' '}
                 <a
-                  href={`https://t.me/${telegramHandle}`}
+                  href={TELEGRAM_URL}
                   target="_blank"
                   rel="noreferrer"
                   className="font-medium text-primary hover:underline"
+                  dir="ltr"
                 >
-                  {TELEGRAM_USERNAME}
+                  {TELEGRAM_HANDLE}
                 </a>
               </p>
             </CardContent>

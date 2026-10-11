@@ -41,7 +41,11 @@ export async function updateProfileAction(
     updated_at: new Date().toISOString(),
   });
 
-  if (error) return { error: error.message };
+  // Database messages can name tables and policies — log them, return a code.
+  if (error) {
+    console.error('[actions] profile update failed:', error.message);
+    return { error: 'failed' };
+  }
 
   revalidatePath('/[locale]/dashboard', 'page');
   return { ok: true };
@@ -80,7 +84,10 @@ export async function cancelBookingAction(
     .eq('id', parsed.data.id)
     .eq('user_id', user.id);
 
-  if (error) return { error: error.message };
+  if (error) {
+    console.error('[actions] booking cancel failed:', error.message);
+    return { error: 'failed' };
+  }
 
   revalidatePath('/[locale]/dashboard', 'page');
   return { ok: true };
@@ -112,7 +119,10 @@ export async function updateBookingStatusAction(
     .update({ status: parsed.data.status })
     .eq('id', parsed.data.id);
 
-  if (error) return { error: error.message };
+  if (error) {
+    console.error('[actions] booking status update failed:', error.message);
+    return { error: 'failed' };
+  }
 
   revalidatePath('/[locale]/admin', 'page');
   return { ok: true };

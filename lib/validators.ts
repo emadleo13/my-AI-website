@@ -10,6 +10,9 @@ export const contactSchema = z.object({
 });
 export type ContactInput = z.infer<typeof contactSchema>;
 
+/** Service options on the discovery form (labels live in messages/*.json). */
+export const DISCOVERY_SERVICE_TYPES = ['chatbot', 'website', 'webapp', 'android', 'other'] as const;
+
 /**
  * Project Discovery form — a richer, multi-step intake clients fill in when
  * they request a service. Only the essentials are required (name, email,
@@ -24,7 +27,7 @@ export const discoverySchema = z.object({
   website: z.string().max(200).optional().or(z.literal('')),
   industry: z.string().max(160).optional().or(z.literal('')),
   businessDescription: z.string().max(2000).optional().or(z.literal('')),
-  serviceType: z.enum(['chatbot', 'workflow', 'both', 'consulting']),
+  serviceType: z.enum(DISCOVERY_SERVICE_TYPES),
   projectGoal: z.string().min(5, 'Tell me a little about your goal').max(2000),
   targetAudience: z.string().max(40).optional().or(z.literal('')),
   platform: z.array(z.string().max(30)).max(10).optional().default([]),
@@ -74,12 +77,28 @@ export const bookingSchema = z.object({
 });
 export type BookingInput = z.infer<typeof bookingSchema>;
 
+// Hard caps on what the chat endpoint will even parse. The route additionally
+// trims the history to a much smaller budget before calling the model (see
+// lib/chat-history.ts), so these only bound abuse, not normal long chats.
+export const CHAT_MAX_MESSAGES = 60;
+export const CHAT_MAX_MESSAGE_CHARS = 4000;
+export const CHAT_MAX_TOTAL_CHARS = 60000;
+
 export const chatMessageSchema = z.object({
   role: z.enum(['user', 'assistant']),
-  content: z.string().min(1).max(8000),
+  content: z.string().min(1).max(CHAT_MAX_MESSAGE_CHARS),
 });
 export const chatRequestSchema = z.object({
-  messages: z.array(chatMessageSchema).min(1).max(40),
+  messages: z
+    .array(chatMessageSchema)
+    .min(1)
+    .max(CHAT_MAX_MESSAGES)
+    .refine((m) => m[m.length - 1]?.role === 'user', 'Last message must be from the user')
+    .refine(
+      (m) => m.reduce((n, x) => n + x.content.length, 0) <= CHAT_MAX_TOTAL_CHARS,
+      'Conversation too long',
+    ),
+  locale: z.enum(['en', 'fa', 'ro']).optional(),
 });
 export type ChatRequest = z.infer<typeof chatRequestSchema>;
 

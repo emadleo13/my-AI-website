@@ -29,10 +29,15 @@ export interface AdminDiscoveryRow {
 // Readable labels for the coded select values (owner-facing panel, English).
 const LABELS: Record<string, Record<string, string>> = {
   service_type: {
-    chatbot: 'AI Chatbot Development',
-    workflow: 'Workflow Automation',
-    both: 'Chatbot + Automation',
-    consulting: 'AI Strategy Consulting',
+    chatbot: 'AI Chatbot',
+    website: 'Website Design',
+    webapp: 'Web App',
+    android: 'Android App',
+    other: 'Something else',
+    // Retired options — kept so older submissions still read naturally.
+    workflow: 'Workflow Automation (retired)',
+    both: 'Chatbot + Automation (retired)',
+    consulting: 'AI Strategy Consulting (retired)',
   },
   target_audience: {
     customers: 'End customers (B2C)',

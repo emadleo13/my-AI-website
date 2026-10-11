@@ -1,7 +1,7 @@
 {
   "common": {
     "brand": "Emad AI",
-    "tagline": "AI Consultant & Software Developer · Romania",
+    "tagline": "AI Engineer / Software Developer · Romania",
     "bookNow": "Book Now",
     "loading": "Loading…",
     "errorGeneric": "Something went wrong. Please try again.",
@@ -38,9 +38,9 @@
   "home": {
     "hero": {
       "eyebrow": "Hello, I'm Emad",
-      "title": "AI Consultant & Software Developer",
+      "title": "AI Engineer / Software Developer",
       "subtitle": "Romania",
-      "tagline": "I help companies and individuals adopt AI, ship modern software, and navigate Romania's tech landscape.",
+      "tagline": "I build AI chatbots, websites, web apps and Android apps — and I ship and run my own products.",
       "ctaPrimary": "Book a Consultation",
       "ctaSecondary": "View Services"
     },
@@ -49,39 +49,17 @@
       "title": "AI is rewriting how we build, work, and learn",
       "body": "From GPT-class assistants and Claude-powered agents to multi-modal models that see, hear, and reason, AI is moving from a tool you query to a collaborator you delegate to. In the next five years, autonomous agents will plan and execute multi-step work, every team will have a copilot, and the gap between idea and product will collapse. The opportunity is no longer access to AI — it is integrating it well, safely, and with measurable outcomes. That is exactly where I help.",
       "items": {
-        "consulting": "AI Consulting & Strategy",
+        "consulting": "AI Integration",
         "agents": "Autonomous Agents",
         "rag": "RAG & AI Chatbots",
-        "dev": "Software Development",
+        "dev": "Websites & Apps",
         "career": "Career Consulting"
       }
     },
     "servicesPreview": {
       "title": "What I do",
-      "subtitle": "Strategy, implementation, and hands-on building.",
-      "viewAll": "Explore all services",
-      "items": {
-        "consult": {
-          "title": "AI Consulting & Strategy",
-          "desc": "Adoption roadmaps, vendor selection, and ROI-driven AI plans."
-        },
-        "agents": {
-          "title": "AI Agent & Chatbot Design",
-          "desc": "LangChain, CrewAI, and custom chatbots that ship to production."
-        },
-        "workflow": {
-          "title": "Workflow Automation",
-          "desc": "Automate lead intake, follow-ups, CRM updates, and repetitive tasks."
-        },
-        "dev": {
-          "title": "Software Development",
-          "desc": "Full-stack web apps, APIs, and integrations."
-        },
-        "career": {
-          "title": "Career Consulting in Romania",
-          "desc": "CV review, market insights, and interview prep for the Romanian tech market."
-        }
-      }
+      "subtitle": "AI chatbots, websites, and web & Android apps — designed, built and launched.",
+      "viewAll": "Explore all services"
     },
     "products": {
       "title": "What I build",
@@ -97,6 +75,31 @@
           "alerts": "An email the moment something changes"
         },
         "cta": "Check your website — free"
+      },
+      "unireal": {
+        "name": "UNIREAL",
+        "tagline": "Real reviews and answers about universities worldwide",
+        "desc": "A trilingual platform where students and applicants compare thousands of universities in 200+ countries — tuition, admission deadlines, English-taught programs and the 0–100 UNIREAL Score — and read reviews verified through university email.",
+        "features": {
+          "profiles": "Thousands of university profiles across 200+ countries",
+          "verified": "Reviews and answers verified by university email",
+          "tools": "Match quiz, compare tool and scholarships — in English, Romanian and Persian"
+        },
+        "cta": "Explore universities"
+      },
+      "cnc": {
+        "name": "CNC Assist",
+        "tagline": "Speeds & feeds calculator, G-code analyzer and CNC alarm codes",
+        "desc": "A practical toolkit for CNC operators, programmers, setters and machining students: calculate cutting parameters, check a G-code program before you run it, look up an alarm, and get clear answers from the AI machining assistant. Free, works offline, no ads.",
+        "why": "Built on the shop floor — I run and program CNC machines every day, so I made the tool I wanted.",
+        "features": {
+          "calc": "Speeds & feeds for milling, turning and drilling",
+          "gcode": "G-code analyzer (Haas, Sinumerik, ISO) + 270+ alarm codes",
+          "ai": "AI assistant that explains parts, drawings and alarm screens"
+        },
+        "cta": "Get it on Google Play",
+        "facebook": "Follow on Facebook",
+        "meta": "Android · 4 languages · No ads"
       }
     },
     "howItWorks": {
@@ -142,10 +145,10 @@
       }
     },
     "stats": {
-      "projects": "Projects delivered",
-      "experience": "Years of experience",
-      "countries": "Countries served",
-      "clients": "Happy clients"
+      "products": "Products built & live",
+      "experience": "Years of work experience",
+      "languages": "Languages I work in",
+      "downloads": "CNC Assist downloads"
     },
     "testimonials": {
       "title": "What clients say",
@@ -169,14 +172,14 @@
     "hero": {
       "eyebrow": "About me",
       "title": "About Emad",
-      "subtitle": "AI consultant, software developer, and tech advisor based in Romania.",
+      "subtitle": "AI engineer and software developer based in Baia Mare, Romania — building AI chatbots, websites, web apps and Android apps.",
       "downloadResume": "Download CV",
       "contactMe": "Contact me"
     },
     "bio": {
       "title": "A short story",
-      "p1": "I'm Emad — a software developer turned AI consultant. Over the last decade I've shipped products across e-commerce, SaaS, and fintech, and over the last three years I've focused almost entirely on AI: agent design, retrieval, evals, and turning prototypes into reliable production systems.",
-      "p2": "I'm based in Baia Mare. I work with companies adopting AI for the first time, with engineering teams building agentic products, and with individuals navigating the Romanian tech market.",
+      "p1": "I'm Emad — a self-taught AI engineer and software developer. I design, build and ship my own products: Paznic, an AI-powered website security scanner; UNIREAL, a university-review platform; CNC Assist, a Flutter app on Google Play; and a team of six AI agents that monitor websites around the clock.",
+      "p2": "I'm based in Baia Mare, Romania, where I also work full-time as a CNC machine operator and programmer, and I'm studying Computer Science at the Technical University of Cluj-Napoca. Before tech I spent years in sales management and insurance — 15+ years of work that taught me to start from the customer's problem, not the technology.",
       "p3": "I prefer pragmatic over fashionable: the right model, the right framework, and the smallest possible system that actually solves the problem."
     },
     "skills": {
@@ -194,7 +197,7 @@
       "title": "Education & Certifications",
       "items": {
         "1": {
-          "degree": "B.A. Computer Science (in progress)",
+          "degree": "B.Sc. Computer Science (in progress)",
           "school": "Technical University of Cluj-Napoca",
           "period": "In progress",
           "note": "Building practical skills in Python, JavaScript, and TypeScript."
@@ -229,22 +232,16 @@
           "summary": "Operate and program CNC machines for precision manufacturing — 3-axis machining, drilling, grinding, and milling. Set up machines, write and adjust G-code, and handle material loading, quality control, and daily production deadlines."
         },
         "2": {
-          "role": "AI Consultant & Junior Web Developer",
+          "role": "AI Consultant & Junior Web Developer (Part-time)",
           "company": "EMAD AI Consultant · Freelance · Romania (remote)",
           "period": "2024 — Present",
-          "summary": "Advise small businesses and individuals on practical AI adoption. Build projects with Python, JavaScript, TypeScript, and Next.js, applying Claude API, OpenAI API, LangChain, and RAG basics."
+          "summary": "Design and build full-stack AI products for European SMEs, including AI security scanners and multi-agent monitoring systems. Work with Next.js, TypeScript, Flutter, Python, PostgreSQL, Supabase, Claude API and OpenAI API, and give small businesses practical, cost-effective AI adoption guidance."
         },
         "3": {
           "role": "Insurance Agent & Sales Team Manager",
           "company": "Insurance Agency · Lahijan, Iran",
           "period": "2016 — 2021",
           "summary": "Sold commercial, medical, life, and investment-linked insurance to a diverse client base. Managed and trained a health & life insurance sales team and tracked performance targets."
-        },
-        "4": {
-          "role": "Junior Developer",
-          "company": "Web agency · Tehran",
-          "period": "2015 — 2018",
-          "summary": "Shipped 30+ client projects in PHP, Node.js, and early React."
         }
       }
     },
@@ -289,80 +286,8 @@
   "services": {
     "hero": {
       "eyebrow": "Services",
-      "title": "One place for AI, automation, and growth",
+      "title": "Chatbots, websites and apps — built end to end",
       "subtitle": "Pick what fits your goal. Every service starts with a free discovery call — no packages, no pressure."
-    },
-    "items": {
-      "consult": {
-        "title": "AI Consulting & Strategy",
-        "desc": "Adoption roadmaps, vendor selection, and ROI-driven AI plans.",
-        "bullets": {
-          "1": "Tailored adoption roadmap",
-          "2": "Build vs buy analysis",
-          "3": "Risk and compliance review"
-        },
-        "cta": "Get in touch"
-      },
-      "agents": {
-        "title": "AI Agent Design & Implementation",
-        "desc": "LangChain, CrewAI, AutoGen, and custom agents shipped to production.",
-        "bullets": {
-          "1": "Agent architecture",
-          "2": "Tool integrations",
-          "3": "Evals & monitoring"
-        },
-        "cta": "Get in touch"
-      },
-      "dev": {
-        "title": "Custom Software Development",
-        "desc": "Full-stack web apps, APIs, and integrations.",
-        "bullets": {
-          "1": "Next.js / Node / Python",
-          "2": "Postgres / Supabase",
-          "3": "CI/CD on Vercel & AWS"
-        },
-        "cta": "Get in touch"
-      },
-      "ml": {
-        "title": "Machine Learning Solutions",
-        "desc": "Model training, fine-tuning, and deployment.",
-        "bullets": {
-          "1": "Custom model training",
-          "2": "Fine-tuning Claude / OSS",
-          "3": "Inference deployment"
-        },
-        "cta": "Get in touch"
-      },
-      "romaniaTech": {
-        "title": "Tech Consulting for Romanian Companies",
-        "desc": "Digital transformation and AI integration for SMEs.",
-        "bullets": {
-          "1": "Process digitization",
-          "2": "AI integration",
-          "3": "Team upskilling"
-        },
-        "cta": "Get in touch"
-      },
-      "workflow": {
-        "title": "Workflow Automation",
-        "desc": "Automate repetitive processes so your team focuses on what matters.",
-        "bullets": {
-          "1": "Lead intake & CRM updates",
-          "2": "Automated follow-ups & notifications",
-          "3": "Process mapping & integration"
-        },
-        "cta": "Get in touch"
-      },
-      "career": {
-        "title": "Job Hunting & Career Consulting in Romania",
-        "desc": "CV review, market insights, and interview prep.",
-        "bullets": {
-          "1": "CV / LinkedIn review",
-          "2": "Romanian market insights",
-          "3": "Interview prep"
-        },
-        "cta": "Get in touch"
-      }
     },
     "catalog": {
       "eyebrow": "Ready-to-buy packages",
@@ -516,53 +441,51 @@
           }
         }
       },
-      "workflow": {
-        "title": "Workflow Automation",
-        "desc": "Automate repetitive work so your team focuses on what matters.",
+      "website": {
+        "title": "Website Design",
+        "desc": "Fast, modern, mobile-first websites that look great and turn visitors into customers.",
         "sub": {
-          "crm": {
-            "title": "CRM Automation",
-            "desc": "Connect, update and automate your CRM end to end."
+          "business": {
+            "title": "Business & Company Websites",
+            "desc": "A professional online presence — multilingual and SEO-ready."
           },
-          "leadsite": {
-            "title": "Leads & Website Funnels",
-            "desc": "Landing pages and lead-capture flows that convert."
-          }
-        }
-      },
-      "techConsulting": {
-        "title": "Technology Consulting",
-        "desc": "Strategic AI and tech guidance for Romanian and international companies.",
-        "sub": {
-          "roadmap": {
-            "title": "AI Roadmap for Your Company",
-            "desc": "A clear, prioritized plan to adopt AI."
+          "landing": {
+            "title": "Landing Pages",
+            "desc": "High-converting pages for a product, campaign or launch."
           },
-          "audit": {
-            "title": "Problem & Risk Assessment",
-            "desc": "Analyze bottlenecks and assess the risks in your company."
+          "ecommerce": {
+            "title": "Online Stores (E-commerce)",
+            "desc": "Sell online with secure payments and easy product management."
+          },
+          "portfolio": {
+            "title": "Portfolio & Personal Websites",
+            "desc": "Showcase your work, services or personal brand."
           }
         }
       },
       "software": {
-        "title": "Software Development",
-        "desc": "Robust, scalable web and mobile software built end to end.",
+        "title": "Web & Android Apps",
+        "desc": "Custom web applications and Android apps — from idea to launch on the web and Google Play.",
         "sub": {
-          "web": {
-            "title": "Web App Development",
-            "desc": "Next.js and React applications."
+          "saas": {
+            "title": "SaaS & Web Platforms",
+            "desc": "Multi-user web apps with accounts, subscriptions and payments."
           },
-          "mobile": {
-            "title": "Mobile Apps",
-            "desc": "iOS and Android apps."
+          "dashboard": {
+            "title": "Dashboards & Business Tools",
+            "desc": "Admin panels, CRMs, booking systems and internal tools."
+          },
+          "pwa": {
+            "title": "Progressive Web Apps (PWA)",
+            "desc": "Installable web apps that work offline on any device."
+          },
+          "android": {
+            "title": "Android Apps",
+            "desc": "Native-quality Flutter apps, published on Google Play."
           },
           "api": {
             "title": "APIs & Backend",
-            "desc": "API design and backend systems."
-          },
-          "cloud": {
-            "title": "Cloud & DevOps",
-            "desc": "Cloud deployment and CI/CD."
+            "desc": "APIs, databases and integrations that power your apps."
           }
         }
       },
@@ -681,18 +604,18 @@
   },
   "consultant": {
     "title": "AI Consultant",
-    "subtitle": "Ask me about jobs in Romania, AI strategy, software help, or building agents.",
+    "subtitle": "Ask me about AI chatbots, websites, web & Android apps, or Emad's products.",
     "chips": {
       "job": "Find a Job in Romania",
-      "ai": "AI Consulting",
-      "dev": "Programming Help",
-      "agents": "AI Agents in Romania"
+      "ai": "AI chatbot for my business",
+      "dev": "Website or app",
+      "agents": "Emad's products"
     },
     "starters": {
       "job": "I'm looking for a tech job in Romania. Where should I start?",
-      "ai": "How should my company start adopting AI in 2026?",
-      "dev": "Can you help me debug a Next.js project?",
-      "agents": "What's the best stack to deploy an AI agent for a Romanian SME?"
+      "ai": "I want an AI chatbot for my business (Telegram, WhatsApp or website). How does it work and how do we start?",
+      "dev": "I need a website or an Android app for my company. What do you offer and what is the process?",
+      "agents": "What products has Emad built?"
     },
     "placeholder": "Type your question…",
     "send": "Send",
@@ -1143,7 +1066,7 @@
     }
   },
   "footer": {
-    "tagline": "AI Consultant & Software Developer  Romania",
+    "tagline": "AI Engineer / Software Developer · Romania",
     "rights": "All rights reserved.",
     "links": {
       "navigation": "Navigation",
@@ -1153,7 +1076,9 @@
     "social": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "twitter": "Twitter / X"
+      "twitter": "Twitter / X",
+      "telegram": "Telegram",
+      "facebook": "Facebook · CNC Assist"
     }
   },
   "floatingChat": {
@@ -1161,8 +1086,9 @@
     "ariaLabel": "Open AI chat assistant",
     "popupTitle": "AI Assistant",
     "fullChat": "Full chat",
-    "placeholder": "Ask me anything…",
-    "continueInFullChat": "Continue in full chat"
+    "placeholder": "Ask about services or products…",
+    "continueInFullChat": "Continue in full chat",
+    "welcome": "Hi! I'm emi, Emad's AI assistant. Ask me about AI chatbots, websites, web & Android apps, or Emad's products — Paznic, UNIREAL and CNC Assist."
   },
   "chatbot": {
     "skip": "Skip intro",
@@ -1225,15 +1151,16 @@
         "label": "What service are you requesting?",
         "placeholder": "— Select a service —",
         "options": {
-          "chatbot": "🤖 AI Chatbot Development",
-          "workflow": "⚙️ Workflow Automation",
-          "both": "🔗 Both Chatbot + Automation",
-          "consulting": "💡 AI Strategy Consulting"
+          "chatbot": "🤖 AI Chatbot",
+          "website": "🌐 Website Design",
+          "webapp": "💻 Web App",
+          "android": "📱 Android App",
+          "other": "✨ Something else"
         }
       },
       "projectGoal": {
         "label": "What is the main goal of this project?",
-        "placeholder": "e.g. Reduce support workload, automate lead follow-up, answer customer questions 24/7..."
+        "placeholder": "e.g. Answer customer questions 24/7, launch a company website, build a booking app..."
       },
       "targetAudience": {
         "label": "Who will use this solution?",

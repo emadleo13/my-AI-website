@@ -8,7 +8,7 @@ interface Props {
 
 const ENTRIES: Record<Props['variant'], { ids: string[]; icon: React.ComponentType<{ className?: string }> }> = {
   education: { ids: ['1', '2', '3', '4'], icon: GraduationCap },
-  experience: { ids: ['1', '2', '3', '4'], icon: Briefcase },
+  experience: { ids: ['1', '2', '3'], icon: Briefcase },
 };
 
 export function Timeline({ variant }: Props) {

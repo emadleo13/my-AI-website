@@ -5,26 +5,30 @@ export { isOpenRouterConfigured };
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
 /**
- * Reliable free fallbacks tried (in order) when the primary model is
- * temporarily rate-limited upstream — common for free models under load.
+ * Give up on a model that hasn't produced its first token within this time
+ * (queued free models can hang). Cleared as soon as text starts flowing, so
+ * long answers are never cut off.
  */
-const FALLBACK_MODELS = [
-  'meta-llama/llama-3.3-70b-instruct:free',
-  'openai/gpt-oss-120b:free',
-  'google/gemma-4-31b-it:free',
-];
-
-/** HTTP statuses worth retrying on the next model (vs. failing outright). */
-const RETRYABLE = new Set([404, 408, 429, 500, 502, 503, 504, 524]);
+const FIRST_TOKEN_TIMEOUT_MS = 20_000;
 
 export interface LlmMessage {
   role: 'user' | 'assistant';
   content: string;
 }
 
-/** Primary model (env override) followed by de-duplicated fallbacks. */
-function modelChain(): string[] {
-  return [...new Set([env.openrouterModel, ...FALLBACK_MODELS])];
+/** Thrown when every model in the chain failed. Carries a log-only detail. */
+export class OpenRouterError extends Error {}
+
+/**
+ * Model order: explicit override → free models → one cheap paid model.
+ * De-duplicated, empty entries dropped.
+ */
+export function modelChain(): string[] {
+  return [
+    ...new Set(
+      [env.openrouterModel, ...env.openrouterFreeModels, env.openrouterPaidModel].filter(Boolean),
+    ),
+  ];
 }
 
 /** Parse an OpenAI-style SSE body and yield text deltas. */
@@ -58,50 +62,76 @@ async function* readSse(body: ReadableStream<Uint8Array>): AsyncGenerator<string
 }
 
 /**
- * Stream a chat completion from OpenRouter (OpenAI-compatible), yielding text
- * deltas. Tries the primary free model first; on an upstream rate-limit or
- * transient error it falls through to the next model in the chain. Throws only
- * if every model fails (or the key/credit is rejected).
+ * Stream a chat completion from OpenRouter, yielding text deltas.
+ *
+ * Walks the model chain: a model that errors (rate-limited, removed from the
+ * catalogue, out of credit, timed out) or streams back nothing is skipped and
+ * the next one is tried. Once a model has produced text we commit to it.
+ * Throws OpenRouterError only if every model failed — the message is for
+ * server logs and must never be shown to visitors.
  */
 export async function* streamOpenRouter(
   systemPrompt: string,
   messages: LlmMessage[],
 ): AsyncGenerator<string> {
-  const models = modelChain();
-  let lastErr = '';
+  const failures: string[] = [];
 
-  for (let i = 0; i < models.length; i++) {
-    const model = models[i];
-    const res = await fetch(OPENROUTER_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${env.openrouterKey}`,
-        'Content-Type': 'application/json',
-        // Optional attribution headers OpenRouter uses for app rankings.
-        'HTTP-Referer': env.siteUrl,
-        'X-Title': 'emadai.dev',
-      },
-      body: JSON.stringify({
-        model,
-        max_tokens: 1024,
-        stream: true,
-        messages: [{ role: 'system', content: systemPrompt }, ...messages],
-      }),
-    });
-
-    if (!res.ok || !res.body) {
-      const detail = (await res.text().catch(() => '')).slice(0, 300);
-      lastErr = `OpenRouter ${res.status} (${model}): ${detail}`;
-      // Try the next free model on transient/availability errors.
-      if (res.body == null || (RETRYABLE.has(res.status) && i < models.length - 1)) {
-        continue;
-      }
-      throw new Error(lastErr);
+  for (const model of modelChain()) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FIRST_TOKEN_TIMEOUT_MS);
+    let res: Response;
+    try {
+      res = await fetch(OPENROUTER_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${env.openrouterKey}`,
+          'Content-Type': 'application/json',
+          // Optional attribution headers OpenRouter uses for app rankings.
+          'HTTP-Referer': env.siteUrl,
+          'X-Title': 'emadai.dev',
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: 1024,
+          stream: true,
+          messages: [{ role: 'system', content: systemPrompt }, ...messages],
+        }),
+        signal: controller.signal,
+      });
+    } catch (err) {
+      clearTimeout(timer);
+      failures.push(`${model}: ${err instanceof Error ? err.name : 'fetch failed'}`);
+      continue;
     }
 
-    yield* readSse(res.body);
-    return;
+    if (!res.ok || !res.body) {
+      clearTimeout(timer);
+      const detail = (await res.text().catch(() => '')).slice(0, 200);
+      failures.push(`${model}: HTTP ${res.status} ${detail}`);
+      // A rejected key will fail for every model — stop early.
+      if (res.status === 401) break;
+      continue;
+    }
+
+    let produced = false;
+    try {
+      for await (const delta of readSse(res.body)) {
+        if (!produced) clearTimeout(timer);
+        produced = true;
+        yield delta;
+      }
+    } catch (err) {
+      clearTimeout(timer);
+      // Mid-stream failure after text was sent: nothing sensible to retry.
+      if (produced) throw new OpenRouterError(`${model}: stream aborted (${String(err)})`);
+      failures.push(`${model}: stream error`);
+      continue;
+    }
+
+    clearTimeout(timer);
+    if (produced) return;
+    failures.push(`${model}: empty response`);
   }
 
-  throw new Error(lastErr || 'OpenRouter: all models failed');
+  throw new OpenRouterError(`all models failed — ${failures.join(' | ')}`);
 }

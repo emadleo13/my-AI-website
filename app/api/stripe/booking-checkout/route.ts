@@ -1,6 +1,13 @@
+import { createHash } from 'node:crypto';
 import { NextResponse } from 'next/server';
-import { getStripeClient, SCOPE_PRICES, SERVICE_PRICES } from '@/lib/stripe';
+import { z } from 'zod';
+import { getStripeClient, SCOPE_PRICES } from '@/lib/stripe';
 import { isStripeConfigured, env } from '@/lib/env';
+import { rateLimitOr429 } from '@/lib/rate-limit';
+import { bookingSchema } from '@/lib/validators';
+import { locales } from '@/lib/i18n';
+
+const HOUR = 60 * 60 * 1000;
 
 const SCOPE_NAMES: Record<string, string> = {
   session: 'Single Session (1-2 hours)',
@@ -15,106 +22,107 @@ const SERVICE_LABELS: Record<string, string> = {
   tech: 'General Tech Consulting',
 };
 
-interface CheckoutBody {
-  serviceType?: string;
-  scope?: string;
-  bookingDate?: string;
-  bookingTime?: string;
-  guestName?: string;
-  guestEmail?: string;
-  phone?: string;
-  notes?: string;
-  locale?: string;
-}
+// Same field rules as a free booking, but a paid scope and a known locale are
+// required (the locale ends up in the Stripe redirect URLs).
+const checkoutSchema = bookingSchema
+  .pick({
+    serviceType: true,
+    bookingDate: true,
+    bookingTime: true,
+    guestName: true,
+    guestEmail: true,
+    phone: true,
+    notes: true,
+  })
+  .extend({
+    scope: z.enum(['session', 'mini', 'full']),
+    locale: z.enum(locales),
+  });
 
 export async function POST(req: Request) {
+  const limited = rateLimitOr429(req, 'booking-checkout', 10, HOUR);
+  if (limited) return limited;
+
   if (!isStripeConfigured) {
     return NextResponse.json({ demo: true, url: '/booking?payment=demo' }, { status: 200 });
   }
 
-  let body: CheckoutBody;
+  let json: unknown;
   try {
-    body = (await req.json()) as CheckoutBody;
+    json = await req.json();
   } catch {
     return NextResponse.json({ message: 'Invalid JSON' }, { status: 400 });
   }
 
-  const {
-    serviceType,
-    scope,
-    bookingDate,
-    bookingTime,
-    guestName,
-    guestEmail,
-    phone,
-    notes,
-    locale,
-  } = body;
-
-  if (
-    !serviceType ||
-    !scope ||
-    !bookingDate ||
-    !bookingTime ||
-    !guestName ||
-    !guestEmail ||
-    !locale
-  ) {
-    return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
+  const parsed = checkoutSchema.safeParse(json);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { message: 'Validation failed', issues: parsed.error.flatten() },
+      { status: 400 },
+    );
   }
 
-  if (scope === 'free') {
-    return NextResponse.json({ message: 'Free scope does not need Stripe' }, { status: 400 });
-  }
+  const { serviceType, scope, bookingDate, bookingTime, guestName, guestEmail, phone, notes, locale } =
+    parsed.data;
 
-  const amount = SCOPE_PRICES[scope] ?? SERVICE_PRICES[serviceType] ?? 4900;
-  const productName = SCOPE_NAMES[scope] ?? 'Consultation';
-  const productDesc = `${SERVICE_LABELS[serviceType] ?? serviceType} · ${bookingDate} @ ${bookingTime}`;
+  // Price is decided server-side from the scope — never from the client.
+  const amount = SCOPE_PRICES[scope];
+  const productName = SCOPE_NAMES[scope];
+  const productDesc = `${SERVICE_LABELS[serviceType]} · ${bookingDate} @ ${bookingTime}`;
 
   // Stripe metadata: each value max 500 chars. Notes can be long → split.
-  const notesStr = String(notes ?? '');
+  const notesStr = notes ?? '';
   const notesChunks: Record<string, string> = {};
   const CHUNK = 450;
   for (let i = 0; i * CHUNK < notesStr.length && i < 30; i++) {
     notesChunks[`notes_${i}`] = notesStr.slice(i * CHUNK, (i + 1) * CHUNK);
   }
 
+  // A double-click or retry with identical details returns the same Checkout
+  // session instead of opening a second one that could also be paid.
+  const idempotencyKey =
+    'booking-checkout-' +
+    createHash('sha256').update(JSON.stringify(parsed.data)).digest('hex').slice(0, 40);
+
   const baseUrl = env.siteUrl;
 
   try {
     const stripe = getStripeClient();
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          quantity: 1,
-          price_data: {
-            currency: 'eur',
-            unit_amount: amount,
-            product_data: { name: productName, description: productDesc },
+    const session = await stripe.checkout.sessions.create(
+      {
+        mode: 'payment',
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            quantity: 1,
+            price_data: {
+              currency: 'eur',
+              unit_amount: amount,
+              product_data: { name: productName, description: productDesc },
+            },
           },
+        ],
+        customer_email: guestEmail,
+        metadata: {
+          flow: 'booking',
+          serviceType,
+          scope,
+          bookingDate,
+          bookingTime,
+          guestName,
+          guestEmail,
+          phone: phone ?? '',
+          ...notesChunks,
         },
-      ],
-      customer_email: guestEmail,
-      metadata: {
-        flow: 'booking',
-        serviceType: String(serviceType).slice(0, 100),
-        scope: String(scope).slice(0, 100),
-        bookingDate: String(bookingDate).slice(0, 20),
-        bookingTime: String(bookingTime).slice(0, 10),
-        guestName: String(guestName).slice(0, 200),
-        guestEmail: String(guestEmail).slice(0, 200),
-        phone: String(phone ?? '').slice(0, 50),
-        ...notesChunks,
+        success_url: `${baseUrl}/${locale}/booking?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${baseUrl}/${locale}/booking?payment=cancelled`,
       },
-      success_url: `${baseUrl}/${locale}/booking?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/${locale}/booking?payment=cancelled`,
-    });
+      { idempotencyKey },
+    );
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Stripe error';
-    return NextResponse.json({ message }, { status: 500 });
+    console.error('[stripe/booking-checkout] failed:', err instanceof Error ? err.message : err);
+    return NextResponse.json({ message: 'Payment could not be started.' }, { status: 500 });
   }
 }

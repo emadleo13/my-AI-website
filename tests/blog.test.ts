@@ -20,6 +20,7 @@ describe('tagToSlug', () => {
 
   it('preserves Persian script', () => {
     expect(tagToSlug('هوش مصنوعی')).toBe('هوش-مصنوعی');
+    expect(tagToSlug('آینده')).toBe('آینده');
   });
 
   it('collapses repeated separators and trims', () => {
@@ -34,11 +35,9 @@ describe('tagToSlug', () => {
 describe('blog content reader', () => {
   it('lists the seed posts in English', async () => {
     const slugs = await listSlugs('en');
-    expect(slugs.sort()).toEqual([
-      'agent-frameworks',
-      'bucharest-tech-job',
-      'reliable-ai-products',
-    ]);
+    expect(slugs).toEqual(
+      expect.arrayContaining(['agent-frameworks', 'bucharest-tech-job', 'reliable-ai-products']),
+    );
   });
 
   it('parses frontmatter into typed metadata', async () => {

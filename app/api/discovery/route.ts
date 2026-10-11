@@ -31,11 +31,7 @@ export async function POST(req: Request) {
 
   if (!isSupabaseConfigured) {
     return NextResponse.json(
-      {
-        message:
-          'Supabase is not configured — set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to enable persistence.',
-        demo: true,
-      },
+      { message: 'Saving is not configured on this deployment.', demo: true },
       { status: 503 },
     );
   }
@@ -69,7 +65,8 @@ export async function POST(req: Request) {
   });
 
   if (error) {
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    console.error('[discovery] insert failed:', error.message);
+    return NextResponse.json({ message: 'Could not save your request.' }, { status: 500 });
   }
 
   // Await the email so it reliably completes in the serverless context, capped

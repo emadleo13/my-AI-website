@@ -54,6 +54,14 @@ async function main() {
   const chunks = chunkText(text);
   const docId = randomUUID();
 
+  // Replace, don't duplicate: remove the previous copy of this document
+  // (chunks cascade) so outdated facts don't linger in retrieval.
+  const del = await fetch(
+    `${SUPABASE_URL}/rest/v1/documents?title=eq.${encodeURIComponent(title)}`,
+    { method: 'DELETE', headers },
+  );
+  if (!del.ok) throw new Error(`Removing the old copy failed (${del.status}): ${await del.text()}`);
+
   console.log(`Inserting document: "${title}"`);
   console.log(`  Characters: ${text.length}`);
   console.log(`  Chunks: ${chunks.length}`);

@@ -1,5 +1,8 @@
 -- Emad portfolio — Supabase schema
 -- Run this in the Supabase SQL editor (or via `supabase db push` if you wire up the CLI).
+-- Then run service_requests.sql and security-hardening.sql. The hardening file
+-- is safe to re-run; for databases created before 2026-10 it applies the policy
+-- fixes that are now part of this file, and it adds DB-level length limits.
 
 -- =============================================================
 -- profiles  (extends auth.users)
@@ -25,7 +28,7 @@ create policy "profiles self read"   on public.profiles
 create policy "profiles self insert" on public.profiles
   for insert with check (auth.uid() = id);
 create policy "profiles self update" on public.profiles
-  for update using (auth.uid() = id);
+  for update using (auth.uid() = id) with check (auth.uid() = id);
 
 -- Auto-create a profile row when a new auth user signs up.
 create or replace function public.handle_new_user()
@@ -135,17 +138,27 @@ drop policy if exists "bookings public availability read" on public.bookings;
 drop policy if exists "bookings owner read"      on public.bookings;
 drop policy if exists "bookings owner update"    on public.bookings;
 
--- Anyone (incl. anon) may book a slot.
+-- Anyone (incl. anon) may request a slot — but only as 'pending' and only for
+-- themselves. Confirmed (paid) bookings are written by the server.
 create policy "bookings public insert" on public.bookings
-  for insert with check (true);
+  for insert with check (
+    status = 'pending'
+    and (user_id is null or user_id = auth.uid())
+  );
 
 -- Authenticated users see their own bookings.
 create policy "bookings owner read" on public.bookings
   for select using (user_id = auth.uid());
 
--- Authenticated users can cancel/edit their own bookings.
+-- Authenticated users can cancel their own bookings — and change nothing else.
 create policy "bookings owner update" on public.bookings
-  for update using (user_id = auth.uid());
+  for update using (user_id = auth.uid())
+  with check (user_id = auth.uid() and status = 'cancelled');
+revoke update on public.bookings from anon, authenticated;
+grant update (status) on public.bookings to authenticated;
+
+create index if not exists bookings_user_id_idx
+  on public.bookings (user_id, booking_date);
 
 -- =============================================================
 -- avatars storage bucket
@@ -157,12 +170,18 @@ values ('avatars', 'avatars', true)
 on conflict (id) do nothing;
 
 drop policy if exists "avatars public read"   on storage.objects;
+drop policy if exists "avatars owner read"    on storage.objects;
 drop policy if exists "avatars owner insert"  on storage.objects;
 drop policy if exists "avatars owner update"  on storage.objects;
 drop policy if exists "avatars owner delete"  on storage.objects;
 
-create policy "avatars public read" on storage.objects
-  for select using (bucket_id = 'avatars');
+-- The bucket is public, so files load by URL without any SELECT policy. This
+-- policy only controls listing: users see their own folder, not everyone's.
+create policy "avatars owner read" on storage.objects
+  for select using (
+    bucket_id = 'avatars'
+    and auth.uid()::text = (storage.foldername(name))[1]
+  );
 
 create policy "avatars owner insert" on storage.objects
   for insert with check (
@@ -240,3 +259,8 @@ as $$
   order by rank desc
   limit top_k;
 $$;
+
+-- Server-only: the chat route calls this with the service role. Exposing it to
+-- anon would let anyone dump the knowledge base through the REST API.
+revoke execute on function public.search_chunks(text, integer) from public, anon, authenticated;
+grant execute on function public.search_chunks(text, integer) to service_role;

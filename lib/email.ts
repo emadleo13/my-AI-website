@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { TELEGRAM_URL } from './site-config';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY ?? '';
 const EMAIL_FROM = process.env.EMAIL_FROM ?? 'Emad <onboarding@resend.dev>';
@@ -117,9 +118,6 @@ const APPOINTMENT_URL =
   process.env.NEXT_PUBLIC_GOOGLE_APPOINTMENT_URL ??
   'https://calendar.app.google/DZ7mqpaqh99pordF8';
 
-const TELEGRAM_USERNAME = process.env.NEXT_PUBLIC_TELEGRAM_USERNAME ?? '@your_handle';
-const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME.replace(/^@/, '')}`;
-
 export interface DiscoveryPayload {
   name: string;
   email: string;
@@ -223,10 +221,11 @@ export async function sendDiscoveryEmails(payload: DiscoveryPayload): Promise<vo
 // notification email reads naturally instead of showing raw keys like "yes_ready".
 const DISCOVERY_LABELS: Record<string, Record<string, string>> = {
   serviceType: {
-    chatbot: 'AI Chatbot Development',
-    workflow: 'Workflow Automation',
-    both: 'Chatbot + Automation',
-    consulting: 'AI Strategy Consulting',
+    chatbot: 'AI Chatbot',
+    website: 'Website Design',
+    webapp: 'Web App',
+    android: 'Android App',
+    other: 'Something else',
   },
   targetAudience: {
     customers: 'End customers (B2C)',

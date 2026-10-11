@@ -44,3 +44,6 @@ public/sw.js
 public/sw.js.map
 public/workbox-*.js
 public/workbox-*.js.map
+
+# supabase CLI local state (project ref, pooler host)
+supabase/.temp/

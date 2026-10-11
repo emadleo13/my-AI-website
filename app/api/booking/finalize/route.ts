@@ -4,6 +4,11 @@ import { getSupabaseAdmin } from '@/lib/supabase/admin';
 import { isStripeConfigured } from '@/lib/env';
 import { sendBookingEmails } from '@/lib/email';
 import { logBooking } from '@/lib/google-sheets';
+import { rateLimitOr429 } from '@/lib/rate-limit';
+
+const HOUR = 60 * 60 * 1000;
+// Stripe Checkout session ids look like cs_test_… / cs_live_….
+const SESSION_ID_RE = /^cs_(test|live)_[A-Za-z0-9]{10,250}$/;
 
 const SERVICE_LABELS: Record<string, string> = {
   ai: 'AI Strategy',
@@ -13,6 +18,9 @@ const SERVICE_LABELS: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
+  const limited = rateLimitOr429(req, 'booking-finalize', 20, HOUR);
+  if (limited) return limited;
+
   if (!isStripeConfigured) {
     return NextResponse.json({ message: 'Stripe not configured' }, { status: 503 });
   }
@@ -25,8 +33,8 @@ export async function POST(req: Request) {
   }
 
   const { sessionId } = body;
-  if (!sessionId) {
-    return NextResponse.json({ message: 'Missing sessionId' }, { status: 400 });
+  if (typeof sessionId !== 'string' || !SESSION_ID_RE.test(sessionId)) {
+    return NextResponse.json({ message: 'Invalid session' }, { status: 400 });
   }
 
   const stripe = getStripeClient();
@@ -105,7 +113,8 @@ export async function POST(req: Request) {
         { ok: true, alreadyCreated: true, booking: { serviceType, bookingDate, bookingTime, guestEmail, scope } },
       );
     }
-    return NextResponse.json({ message: error.message }, { status: 500 });
+    console.error('[booking/finalize] insert failed:', error.message);
+    return NextResponse.json({ message: 'Booking failed.' }, { status: 500 });
   }
 
   // Fire notifications (best effort, awaited because serverless terminates fast)

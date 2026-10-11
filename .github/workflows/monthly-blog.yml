@@ -1,9 +1,9 @@
-name: Daily AI News Blog Post
+name: Monthly AI News Blog Post
 
 on:
   schedule:
-    # Runs at 07:00 UTC every day (09:00 Romania time / 10:30 Tehran time)
-    - cron: '0 7 * * *'
+    # 07:00 UTC on the 1st of every month (10:00 Romania time) — covers the previous month.
+    - cron: '0 7 1 * *'
   workflow_dispatch: # allow manual trigger from GitHub UI
 
 jobs:
@@ -27,11 +27,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate daily post
+      - name: Generate monthly post
         id: generate
         env:
+          # OpenRouter is used when its key is set (free models first, then the
+          # paid fallback); otherwise the Anthropic key is used.
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: node scripts/generate-daily-post.mjs
+        run: node scripts/generate-monthly-post.mjs
         continue-on-error: true
 
       - name: Commit and push new post
@@ -42,10 +45,10 @@ jobs:
           git config user.email "hamidleo1984@gmail.com"
           git add content/blog/
           if git diff --cached --quiet; then
-            echo "No new post generated today."
+            echo "No new post generated this month."
           else
-            DATE=$(date +%Y-%m-%d)
-            git commit -m "blog: daily AI news post for $DATE"
+            MONTH=$(date -u -d "$(date -u +%Y-%m-01) -1 day" +%Y-%m)
+            git commit -m "blog: monthly AI news roundup for $MONTH"
             git push origin main
           fi
 

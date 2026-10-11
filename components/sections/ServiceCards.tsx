@@ -6,21 +6,20 @@ import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BorderBeam } from '@/components/ui/border-beam';
-import { FOCUS_CATEGORIES, FOCUS_HIDDEN_SUBS } from '@/lib/services';
+import { FOCUS_CATEGORIES } from '@/lib/services';
 import { ScrollReveal } from './ScrollReveal';
 
-// Mirrors the home "What I do" section: only the two focus offerings are shown
-// here, with Cloud & DevOps hidden. The rest of the catalogue lives in the
-// footer Services menu. See FOCUS_* in lib/services.ts.
+// Mirrors the home "What I do" section: only the focus offerings are shown
+// here. The rest of the catalogue lives in the nav and footer Services menus.
+// See FOCUS_* in lib/services.ts.
 export function ServiceCards() {
   const t = useTranslations('services.categories');
   const tCommon = useTranslations('common');
 
   return (
     <section className="container py-16 md:py-20">
-      <div className="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
         {FOCUS_CATEGORIES.map(({ key, icon: Icon, sub }, i) => {
-          const subs = sub.filter((s) => !FOCUS_HIDDEN_SUBS[key]?.includes(s));
           return (
           <ScrollReveal key={key} delay={i * 0.05}>
             <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/40 group flex flex-col relative overflow-hidden">
@@ -33,7 +32,7 @@ export function ServiceCards() {
                 <p className="mt-2 text-sm text-muted-foreground">{t(`${key}.desc`)}</p>
 
                 <ul className="mt-4 space-y-2 text-sm flex-1">
-                  {subs.map((s) => (
+                  {sub.map((s) => (
                     <li key={s} className="flex items-start gap-2">
                       <Check className="h-4 w-4 mt-0.5 text-accent flex-shrink-0" />
                       <span className="font-semibold">{t(`${key}.sub.${s}.title`)}</span>

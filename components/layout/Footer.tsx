@@ -1,15 +1,29 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { ArrowUpRight, ChevronDown, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Facebook, Github, Linkedin, Mail, MapPin, Send } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n-routing';
 import { TextHoverEffect, FooterBackgroundGradient } from '@/components/ui/hover-footer';
 import { SERVICE_CATEGORIES } from '@/lib/services';
+import { CONTACT_EMAIL, PRODUCT_URLS, SOCIAL, TELEGRAM_HANDLE } from '@/lib/site-config';
 
 // 'services' is intentionally omitted here — it has its own dedicated column
 // (the hover flyout) below, so listing it under Navigation too would duplicate it.
 const NAV_LINKS = ['home', 'about', 'blog', 'contact'] as const;
+
+const PRODUCTS = [
+  { key: 'paznic', href: PRODUCT_URLS.paznic },
+  { key: 'unireal', href: PRODUCT_URLS.unireal },
+  { key: 'cnc', href: PRODUCT_URLS.cncAssist },
+] as const;
+
+const SOCIAL_LINKS = [
+  { key: 'github', href: SOCIAL.github, icon: Github, label: 'GitHub' },
+  { key: 'linkedin', href: SOCIAL.linkedin, icon: Linkedin, label: 'LinkedIn' },
+  { key: 'telegram', href: SOCIAL.telegram, icon: Send, label: 'Telegram' },
+  { key: 'facebook', href: SOCIAL.facebookCnc, icon: Facebook, label: 'Facebook — CNC Assist' },
+] as const;
 
 export function Footer() {
   const t = useTranslations();
@@ -31,25 +45,32 @@ export function Footer() {
               {t('footer.tagline')}
             </p>
 
-            {/* Products — the visible link between this domain and Paznic.
-                Outreach mail for Paznic is sent from here; a recipient who
-                checks the sender has to find it. See sections/Products.tsx. */}
+            {/* Products — the visible link between this domain and Paznic
+                (outreach mail for Paznic is sent from here; a recipient who
+                checks the sender has to find it) plus the other products.
+                See sections/Products.tsx. */}
             <div className="pt-1">
               <h4 className="text-white text-xs font-semibold mb-2 uppercase tracking-widest">
                 {t('footer.links.products')}
               </h4>
-              <a
-                href="https://paznic.eu"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors"
-              >
-                {t('home.products.paznic.name')}
-                <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
-              </a>
-              <p className="mt-1 text-xs text-gray-500 max-w-xs leading-relaxed">
-                {t('home.products.paznic.tagline')}
-              </p>
+              <ul className="space-y-2">
+                {PRODUCTS.map(({ key, href }) => (
+                  <li key={key}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors"
+                    >
+                      {t(`home.products.${key}.name`)}
+                      <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
+                    </a>
+                    <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
+                      {t(`home.products.${key}.tagline`)}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -133,20 +154,15 @@ export function Footer() {
               {t('footer.links.social')}
             </h4>
             <ul className="space-y-3">
-              <li>
-                <a href="https://github.com/emadleo13" target="_blank" rel="noreferrer"
-                  className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors">
-                  <Github className="h-4 w-4" />
-                  {t('footer.social.github')}
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/emadleo13-b42882236" target="_blank" rel="noreferrer"
-                  className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors">
-                  <Linkedin className="h-4 w-4" />
-                  {t('footer.social.linkedin')}
-                </a>
-              </li>
+              {SOCIAL_LINKS.map(({ key, href, icon: Icon }) => (
+                <li key={key}>
+                  <a href={href} target="_blank" rel="noreferrer"
+                    className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors">
+                    <Icon className="h-4 w-4 flex-shrink-0" />
+                    {t(`footer.social.${key}`)}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -158,9 +174,16 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 text-[#3ca2fa] flex-shrink-0" />
-                <a href="mailto:hamidleo1984@gmail.com"
+                <a href={`mailto:${CONTACT_EMAIL}`}
                   className="text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors break-all">
-                  hamidleo1984@gmail.com
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Send className="h-4 w-4 text-[#3ca2fa] flex-shrink-0" />
+                <a href={SOCIAL.telegram} target="_blank" rel="noreferrer"
+                  className="text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors" dir="ltr">
+                  {TELEGRAM_HANDLE}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
@@ -176,14 +199,12 @@ export function Footer() {
         {/* Bottom bar — social + copyright above the text effect */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 pb-4">
           <div className="flex gap-5 text-gray-500">
-            <a href="https://github.com/emadleo13" target="_blank" rel="noreferrer"
-              aria-label="GitHub" className="hover:text-[#3ca2fa] transition-colors">
-              <Github className="h-5 w-5" />
-            </a>
-            <a href="https://www.linkedin.com/in/emadleo13-b42882236" target="_blank" rel="noreferrer"
-              aria-label="LinkedIn" className="hover:text-[#3ca2fa] transition-colors">
-              <Linkedin className="h-5 w-5" />
-            </a>
+            {SOCIAL_LINKS.map(({ key, href, icon: Icon, label }) => (
+              <a key={key} href={href} target="_blank" rel="noreferrer"
+                aria-label={label} title={label} className="hover:text-[#3ca2fa] transition-colors">
+                <Icon className="h-5 w-5" />
+              </a>
+            ))}
           </div>
           <p className="text-xs text-gray-500 text-center">
             © {year} EMAD AI Consultant. {t('footer.rights')}

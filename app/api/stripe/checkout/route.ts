@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server';
 import { getStripeClient, PACKAGE_PRICES } from '@/lib/stripe';
 import { isStripeConfigured, env } from '@/lib/env';
+import { rateLimitOr429 } from '@/lib/rate-limit';
+import { locales } from '@/lib/i18n';
+
+const HOUR = 60 * 60 * 1000;
 
 export async function POST(req: Request) {
+  const limited = rateLimitOr429(req, 'package-checkout', 10, HOUR);
+  if (limited) return limited;
+
   if (!isStripeConfigured) {
     return NextResponse.json({ demo: true, url: '/services' }, { status: 200 });
   }
@@ -12,10 +19,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { plan, locale } = json as { plan: string; locale: string };
-  const pkg = PACKAGE_PRICES[plan];
+  const { plan, locale } = (json ?? {}) as { plan?: unknown; locale?: unknown };
+  // Own-property check so values like "__proto__" can't resolve to Object.prototype.
+  const pkg =
+    typeof plan === 'string' && Object.hasOwn(PACKAGE_PRICES, plan) ? PACKAGE_PRICES[plan] : null;
   if (!pkg) {
     return NextResponse.json({ message: 'Invalid plan' }, { status: 400 });
+  }
+  if (typeof locale !== 'string' || !(locales as readonly string[]).includes(locale)) {
+    return NextResponse.json({ message: 'Invalid locale' }, { status: 400 });
   }
 
   const baseUrl = env.siteUrl;
@@ -40,7 +52,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Stripe error';
-    return NextResponse.json({ message }, { status: 500 });
+    console.error('[stripe/checkout] failed:', err instanceof Error ? err.message : err);
+    return NextResponse.json({ message: 'Payment could not be started.' }, { status: 500 });
   }
 }

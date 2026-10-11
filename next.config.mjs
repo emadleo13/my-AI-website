@@ -8,6 +8,7 @@ const withPWA = withPWAInit({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://emadai.dev';
+const isDev = process.env.NODE_ENV === 'development';
 
 const securityHeaders = [
   // Prevent clickjacking (SAMEORIGIN allows our own presentation iframe)
@@ -26,23 +27,26 @@ const securityHeaders = [
     key: 'Strict-Transport-Security',
     value: 'max-age=63072000; includeSubDomains; preload',
   },
-  // XSS protection (legacy browsers)
-  { key: 'X-XSS-Protection', value: '1; mode=block' },
+  // Legacy XSS auditor — disabled per current OWASP guidance (the auditor itself
+  // could be abused); the CSP below is the real protection.
+  { key: 'X-XSS-Protection', value: '0' },
   // Content Security Policy
   {
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      // Scripts: self + Next.js inline + Stripe
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com https://m.stripe.network https://www.google-analytics.com",
+      // Scripts: self + Next.js inline + Stripe. 'unsafe-eval' is only needed by
+      // the dev server's hot reload — never in production.
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://js.stripe.com https://m.stripe.network https://www.google-analytics.com`,
       // Styles: self + inline (Tailwind)
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       // Fonts
       "font-src 'self' https://fonts.gstatic.com",
       // Images: self + data URIs + external hosts used by the app
       "img-src 'self' data: blob: https://*.supabase.co https://*.stripe.com https://picsum.photos https://fastly.picsum.photos https://placehold.co https://images.unsplash.com https://lh3.googleusercontent.com",
-      // Connections: self + Supabase + Stripe + Anthropic
-      `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://m.stripe.com https://m.stripe.network https://q.stripe.com https://api.anthropic.com wss://*.supabase.co`,
+      // Connections: self + Supabase + Stripe. AI providers are called from the
+      // server only, so the browser never needs to reach them.
+      `connect-src 'self' ${SITE_URL} https://*.supabase.co https://api.stripe.com https://m.stripe.com https://m.stripe.network https://q.stripe.com wss://*.supabase.co`,
       // Frames: self (presentation) + Stripe + OpenStreetMap (contact map) + Google Calendar appointment embed
       "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://m.stripe.com https://m.stripe.network https://www.openstreetmap.org https://calendar.google.com",
       // No plugins

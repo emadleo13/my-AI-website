@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getSupabaseServer } from '@/lib/supabase/server';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
 import { sendServiceRequestAlert } from '@/lib/email';
@@ -10,6 +11,20 @@ import { SERVICE_MAP, type ServiceKey } from '@/lib/marketplace-services';
 const HOUR = 60 * 60 * 1000;
 
 const VALID_TYPES = Object.keys(SERVICE_MAP) as ServiceKey[];
+
+// Metadata is the client's form answers. It is stored and later interpolated
+// into an LLM prompt, so keep it flat, small and string-ish.
+const metadataSchema = z
+  .record(
+    z.string().max(60),
+    z.union([
+      z.string().max(1000),
+      z.number(),
+      z.boolean(),
+      z.array(z.string().max(300)).max(20),
+    ]),
+  )
+  .refine((m) => Object.keys(m).length <= 20, 'Too many fields');
 
 export async function GET() {
   const supabase = await getSupabaseServer();
@@ -48,9 +63,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'invalid_service' }, { status: 400 });
     }
     serviceType = body.serviceType as ServiceKey;
-    metadata = typeof body.metadata === 'object' && body.metadata !== null
-      ? body.metadata
-      : {};
+    const parsedMeta = metadataSchema.safeParse(body.metadata ?? {});
+    if (!parsedMeta.success) {
+      return NextResponse.json({ error: 'invalid_metadata' }, { status: 400 });
+    }
+    metadata = parsedMeta.data;
   } catch {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   }
@@ -85,6 +102,19 @@ export async function POST(req: Request) {
     .single();
 
   if (error || !inserted) {
+    // Unique index (one open request per service) lost a race with a parallel
+    // submission — return the row that won instead of an error.
+    if (error?.code === '23505') {
+      const { data: winner } = await supabase
+        .from('service_requests')
+        .select('id, status')
+        .eq('user_id', user.id)
+        .eq('service_type', serviceType)
+        .not('status', 'eq', 'delivered')
+        .maybeSingle();
+      if (winner) return NextResponse.json({ request: winner, duplicate: true });
+    }
+    if (error) console.error('[service-request] insert failed:', error.message);
     return NextResponse.json({ error: 'db_error' }, { status: 500 });
   }
 

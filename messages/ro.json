@@ -1,7 +1,7 @@
 {
   "common": {
     "brand": "Emad AI",
-    "tagline": "Consultant AI și Dezvoltator Software · România",
+    "tagline": "Inginer AI / Dezvoltator Software · România",
     "bookNow": "Rezervă acum",
     "loading": "Se încarcă…",
     "errorGeneric": "Ceva nu a mers. Te rog încearcă din nou.",
@@ -38,9 +38,9 @@
   "home": {
     "hero": {
       "eyebrow": "Salut, sunt Emad",
-      "title": "Consultant AI și Dezvoltator Software",
+      "title": "Inginer AI / Dezvoltator Software",
       "subtitle": "România",
-      "tagline": "Ajut companii și persoane să adopte AI, să livreze software modern și să navigheze peisajul tech din România.",
+      "tagline": "Construiesc chatboți AI, site-uri web, aplicații web și aplicații Android — și lansez și administrez propriile mele produse.",
       "ctaPrimary": "Rezervă o consultație",
       "ctaSecondary": "Vezi serviciile"
     },
@@ -49,39 +49,17 @@
       "title": "AI rescrie modul în care construim, muncim și învățăm",
       "body": "De la asistenți de tip GPT și agenți pe Claude la modele multi-modale care văd, aud și raționează, AI trece de la o unealtă la un colaborator. În următorii cinci ani, agenți autonomi vor planifica și executa muncă de la cap la coadă, fiecare echipă va avea un copilot, iar distanța dintre idee și produs se va prăbuși. Oportunitatea nu mai este accesul la AI — este integrarea bună, sigură și măsurabilă a acestuia. Exact aici intervin eu.",
       "items": {
-        "consulting": "Consultanță & Strategie AI",
+        "consulting": "Integrare AI",
         "agents": "Agenți Autonomi",
         "rag": "Chatbot & RAG Inteligent",
-        "dev": "Dezvoltare Software",
+        "dev": "Site-uri & aplicații",
         "career": "Consultanță de Carieră"
       }
     },
     "servicesPreview": {
       "title": "Ce fac",
-      "subtitle": "Strategie, implementare și construcție hands-on.",
-      "viewAll": "Vezi toate serviciile",
-      "items": {
-        "consult": {
-          "title": "Consultanță și strategie AI",
-          "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI."
-        },
-        "agents": {
-          "title": "Design agenți AI & chatbot",
-          "desc": "LangChain, CrewAI și chatboți custom care ajung în producție."
-        },
-        "workflow": {
-          "title": "Automatizarea fluxurilor",
-          "desc": "Automatizează preluarea lead-urilor, follow-up-urile, actualizările CRM și sarcinile repetitive."
-        },
-        "dev": {
-          "title": "Dezvoltare software",
-          "desc": "Aplicații web full-stack, API-uri și integrări."
-        },
-        "career": {
-          "title": "Consultanță de carieră în România",
-          "desc": "Revizuire CV, ghidaj de piață și pregătire interviu."
-        }
-      }
+      "subtitle": "Chatboți AI, site-uri web și aplicații web & Android — proiectate, construite și lansate.",
+      "viewAll": "Vezi toate serviciile"
     },
     "products": {
       "title": "Ce construiesc",
@@ -97,6 +75,31 @@
           "alerts": "Email imediat ce apare o problemă"
         },
         "cta": "Verifică-ți site-ul — gratuit"
+      },
+      "unireal": {
+        "name": "UNIREAL",
+        "tagline": "Recenzii și răspunsuri reale despre universități din întreaga lume",
+        "desc": "O platformă trilingvă unde studenții și candidații compară mii de universități din peste 200 de țări — taxe, termene de admitere, programe în engleză și Scorul UNIREAL de la 0 la 100 — și citesc recenzii verificate prin emailul universitar.",
+        "features": {
+          "profiles": "Mii de profiluri de universități din peste 200 de țări",
+          "verified": "Recenzii și răspunsuri verificate prin email universitar",
+          "tools": "Quiz de potrivire, comparator și burse — în română, engleză și persană"
+        },
+        "cta": "Explorează universitățile"
+      },
+      "cnc": {
+        "name": "CNC Assist",
+        "tagline": "Calculator avans și turații, analizor G-code și coduri de alarmă CNC",
+        "desc": "Un set practic de unelte pentru operatori, programatori, reglori și studenți CNC: calculează parametrii de așchiere, verifică un program G-code înainte de rulare, caută o alarmă și primește răspunsuri clare de la asistentul AI. Gratuit, funcționează offline, fără reclame.",
+        "why": "Construit în atelier — operez și programez zilnic mașini CNC, așa că am făcut unealta pe care mi-o doream.",
+        "features": {
+          "calc": "Avans și turații pentru frezare, strunjire și găurire",
+          "gcode": "Analizor G-code (Haas, Sinumerik, ISO) + peste 270 de coduri de alarmă",
+          "ai": "Asistent AI care explică piese, desene și ecrane de alarmă"
+        },
+        "cta": "Descarcă de pe Google Play",
+        "facebook": "Urmărește pe Facebook",
+        "meta": "Android · 4 limbi · Fără reclame"
       }
     },
     "howItWorks": {
@@ -142,10 +145,10 @@
       }
     },
     "stats": {
-      "projects": "Proiecte livrate",
-      "experience": "Ani de experiență",
-      "countries": "Țări deservite",
-      "clients": "Clienți mulțumiți"
+      "products": "Produse construite și live",
+      "experience": "Ani de experiență profesională",
+      "languages": "Limbi de lucru",
+      "downloads": "Descărcări CNC Assist"
     },
     "testimonials": {
       "title": "Ce spun clienții",
@@ -169,14 +172,14 @@
     "hero": {
       "eyebrow": "Despre mine",
       "title": "Despre Emad",
-      "subtitle": "Consultant AI, dezvoltator software și consultant tech din România.",
+      "subtitle": "Inginer AI și dezvoltator software din Baia Mare, România — construiesc chatboți AI, site-uri, aplicații web și Android.",
       "downloadResume": "Descarcă CV",
       "contactMe": "Contactează-mă"
     },
     "bio": {
       "title": "O scurtă poveste",
-      "p1": "Sunt Emad — un dezvoltator software devenit consultant AI. În ultimul deceniu am livrat produse în e-commerce, SaaS și fintech, iar în ultimii trei ani m-am concentrat aproape exclusiv pe AI: design de agenți, retrieval, evaluare și transformarea prototipurilor în sisteme de producție fiabile.",
-      "p2": "Locuiesc în Baia Mare. Lucrez cu companii care adoptă AI pentru prima dată, cu echipe de inginerie care construiesc produse agentice și cu persoane care își construiesc cariera în piața tech din România.",
+      "p1": "Sunt Emad — inginer AI și dezvoltator software autodidact. Îmi proiectez, construiesc și lansez propriile produse: Paznic, un scanner AI de securitate pentru site-uri; UNIREAL, o platformă de recenzii pentru universități; CNC Assist, o aplicație Flutter pe Google Play; și o echipă de șase agenți AI care monitorizează site-uri non-stop.",
+      "p2": "Locuiesc în Baia Mare, unde lucrez cu normă întreagă ca operator și programator CNC, și studiez Informatică la Universitatea Tehnică din Cluj-Napoca. Înainte de tech am lucrat ani de zile în management de vânzări și asigurări — peste 15 ani de experiență care m-au învățat să pornesc de la problema clientului, nu de la tehnologie.",
       "p3": "Prefer pragmatismul în locul modei: modelul potrivit, framework-ul potrivit și cel mai mic sistem care chiar rezolvă problema."
     },
     "skills": {
@@ -229,22 +232,16 @@
           "summary": "Operez și programez mașini CNC pentru fabricație de precizie — prelucrare pe 3 axe, găurire, rectificare și frezare. Configurez mașinile, scriu și ajustez cod G și gestionez încărcarea materialelor, controlul calității și termenele zilnice de producție."
         },
         "2": {
-          "role": "Consultant AI & Dezvoltator Web Junior",
+          "role": "Consultant AI & Dezvoltator Web Junior (part-time)",
           "company": "EMAD AI Consultant · Freelance · România (remote)",
           "period": "2024 — Prezent",
-          "summary": "Consiliez companii mici și persoane în adoptarea practică a AI. Construiesc proiecte cu Python, JavaScript, TypeScript și Next.js, folosind Claude API, OpenAI API, LangChain și noțiuni de RAG."
+          "summary": "Proiectez și construiesc produse AI full-stack pentru IMM-uri europene, inclusiv scannere de securitate AI și sisteme multi-agent de monitorizare. Lucrez cu Next.js, TypeScript, Flutter, Python, PostgreSQL, Supabase, Claude API și OpenAI API și ofer consultanță practică și eficientă pentru adoptarea AI."
         },
         "3": {
           "role": "Agent de Asigurări & Manager Echipă Vânzări",
           "company": "Agenție de asigurări · Lahijan, Iran",
           "period": "2016 — 2021",
           "summary": "Am vândut asigurări comerciale, medicale, de viață și de tip investiție către clienți diverși. Am coordonat și instruit o echipă de vânzări de asigurări de viață și sănătate și am urmărit țintele de performanță."
-        },
-        "4": {
-          "role": "Dezvoltator Junior",
-          "company": "Agenție web · Tehran",
-          "period": "2015 — 2018",
-          "summary": "Peste 30 de proiecte client în PHP, Node.js și React timpuriu."
         }
       }
     },
@@ -289,80 +286,8 @@
   "services": {
     "hero": {
       "eyebrow": "Servicii",
-      "title": "Un singur loc pentru AI, automatizare și creștere",
+      "title": "Chatboți, site-uri și aplicații — construite de la cap la coadă",
       "subtitle": "Alege ce se potrivește obiectivului tău. Fiecare serviciu începe cu o discuție gratuită — fără pachete, fără presiune."
-    },
-    "items": {
-      "consult": {
-        "title": "Consultanță și strategie AI",
-        "desc": "Hărți de adopție, alegere de furnizori și planuri AI bazate pe ROI.",
-        "bullets": {
-          "1": "Plan de adopție personalizat",
-          "2": "Analiză build vs buy",
-          "3": "Revizuire risc și conformitate"
-        },
-        "cta": "Contactează-mă"
-      },
-      "agents": {
-        "title": "Design și implementare agenți AI",
-        "desc": "LangChain, CrewAI, AutoGen și agenți custom în producție.",
-        "bullets": {
-          "1": "Arhitectură agent",
-          "2": "Integrări de unelte",
-          "3": "Evaluare și monitorizare"
-        },
-        "cta": "Contactează-mă"
-      },
-      "dev": {
-        "title": "Dezvoltare software custom",
-        "desc": "Aplicații web full-stack, API-uri și integrări.",
-        "bullets": {
-          "1": "Next.js / Node / Python",
-          "2": "Postgres / Supabase",
-          "3": "CI/CD pe Vercel & AWS"
-        },
-        "cta": "Contactează-mă"
-      },
-      "ml": {
-        "title": "Soluții de machine learning",
-        "desc": "Antrenare, fine-tuning și deployment de modele.",
-        "bullets": {
-          "1": "Antrenare modele custom",
-          "2": "Fine-tuning Claude / OSS",
-          "3": "Deployment de inferență"
-        },
-        "cta": "Contactează-mă"
-      },
-      "romaniaTech": {
-        "title": "Consultanță tech pentru companii românești",
-        "desc": "Transformare digitală și integrare AI pentru IMM-uri.",
-        "bullets": {
-          "1": "Digitalizare procese",
-          "2": "Integrare AI",
-          "3": "Upskilling echipă"
-        },
-        "cta": "Contactează-mă"
-      },
-      "workflow": {
-        "title": "Automatizarea fluxurilor de lucru",
-        "desc": "Automatizează procesele repetitive ca echipa ta să se concentreze pe ce contează.",
-        "bullets": {
-          "1": "Preluare lead-uri și actualizări CRM",
-          "2": "Follow-up-uri și notificări automate",
-          "3": "Cartografiere procese și integrare"
-        },
-        "cta": "Contactează-mă"
-      },
-      "career": {
-        "title": "Job hunting și consultanță de carieră în România",
-        "desc": "Revizuire CV, ghidaj de piață și pregătire interviu.",
-        "bullets": {
-          "1": "Revizuire CV / LinkedIn",
-          "2": "Ghidaj piață România",
-          "3": "Pregătire interviu"
-        },
-        "cta": "Contactează-mă"
-      }
     },
     "catalog": {
       "eyebrow": "Pachete gata de cumpărat",
@@ -516,53 +441,51 @@
           }
         }
       },
-      "workflow": {
-        "title": "Automatizare fluxuri",
-        "desc": "Automatizează munca repetitivă pentru ca echipa să se concentreze pe ce contează.",
+      "website": {
+        "title": "Design site-uri web",
+        "desc": "Site-uri rapide, moderne și mobile-first, care arată bine și transformă vizitatorii în clienți.",
         "sub": {
-          "crm": {
-            "title": "Automatizare CRM",
-            "desc": "Conectează, actualizează și automatizează CRM-ul complet."
+          "business": {
+            "title": "Site-uri de prezentare pentru firme",
+            "desc": "O prezență online profesionistă — multilingvă și optimizată SEO."
           },
-          "leadsite": {
-            "title": "Lead-uri & pagini web",
-            "desc": "Landing page-uri și fluxuri de captare care convertesc."
-          }
-        }
-      },
-      "techConsulting": {
-        "title": "Consultanță tehnologică",
-        "desc": "Îndrumare strategică AI și tehnologică pentru companii românești și internaționale.",
-        "sub": {
-          "roadmap": {
-            "title": "Foaie de parcurs AI pentru compania ta",
-            "desc": "Un plan clar și prioritizat pentru adoptarea AI."
+          "landing": {
+            "title": "Landing page-uri",
+            "desc": "Pagini care convertesc, pentru un produs, o campanie sau o lansare."
           },
-          "audit": {
-            "title": "Analiză probleme & riscuri",
-            "desc": "Analizăm blocajele și evaluăm riscurile din compania ta."
+          "ecommerce": {
+            "title": "Magazine online (e-commerce)",
+            "desc": "Vinde online cu plăți sigure și administrare ușoară a produselor."
+          },
+          "portfolio": {
+            "title": "Site-uri de portofoliu și personale",
+            "desc": "Prezintă-ți lucrările, serviciile sau brandul personal."
           }
         }
       },
       "software": {
-        "title": "Dezvoltare software",
-        "desc": "Software web și mobil robust și scalabil, construit de la cap la coadă.",
+        "title": "Aplicații web & Android",
+        "desc": "Aplicații web personalizate și aplicații Android — de la idee la lansare pe web și Google Play.",
         "sub": {
-          "web": {
-            "title": "Dezvoltare aplicații web",
-            "desc": "Aplicații Next.js și React."
+          "saas": {
+            "title": "Platforme SaaS & web",
+            "desc": "Aplicații web multi-utilizator cu conturi, abonamente și plăți."
           },
-          "mobile": {
-            "title": "Aplicații mobile",
-            "desc": "Aplicații iOS și Android."
+          "dashboard": {
+            "title": "Dashboard-uri & unelte de business",
+            "desc": "Panouri de administrare, CRM-uri, sisteme de rezervări și unelte interne."
+          },
+          "pwa": {
+            "title": "Progressive Web Apps (PWA)",
+            "desc": "Aplicații web instalabile, care funcționează offline pe orice dispozitiv."
+          },
+          "android": {
+            "title": "Aplicații Android",
+            "desc": "Aplicații Flutter de calitate nativă, publicate pe Google Play."
           },
           "api": {
             "title": "API & Backend",
-            "desc": "Proiectare API și sisteme backend."
-          },
-          "cloud": {
-            "title": "Cloud & DevOps",
-            "desc": "Implementare cloud și CI/CD."
+            "desc": "API-uri, baze de date și integrări care susțin aplicațiile tale."
           }
         }
       },
@@ -681,18 +604,18 @@
   },
   "consultant": {
     "title": "Consultant AI",
-    "subtitle": "Întreabă despre joburi în România, strategie AI, programare sau construire de agenți.",
+    "subtitle": "Întreabă despre chatboți AI, site-uri, aplicații web și Android sau despre produsele lui Emad.",
     "chips": {
       "job": "Găsește un job în România",
-      "ai": "Consultanță AI",
-      "dev": "Ajutor la programare",
-      "agents": "Agenți AI în România"
+      "ai": "Chatbot AI pentru firma mea",
+      "dev": "Site sau aplicație",
+      "agents": "Produsele lui Emad"
     },
     "starters": {
       "job": "Caut un job tech în România. De unde să încep?",
-      "ai": "Cum ar trebui să adopt AI în companie în 2026?",
-      "dev": "Mă poți ajuta să debughez un proiect Next.js?",
-      "agents": "Care e cel mai bun stack pentru un agent AI dedicat unui IMM din România?"
+      "ai": "Vreau un chatbot AI pentru firma mea (Telegram, WhatsApp sau site). Cum funcționează și cum începem?",
+      "dev": "Am nevoie de un site sau de o aplicație Android pentru firma mea. Ce oferiți și cum decurge procesul?",
+      "agents": "Ce produse a construit Emad?"
     },
     "placeholder": "Scrie întrebarea ta…",
     "send": "Trimite",
@@ -1143,7 +1066,7 @@
     }
   },
   "footer": {
-    "tagline": "Consultant AI și Dezvoltator Software · România",
+    "tagline": "Inginer AI / Dezvoltator Software · România",
     "rights": "Toate drepturile rezervate.",
     "links": {
       "navigation": "Navigare",
@@ -1153,7 +1076,9 @@
     "social": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
-      "twitter": "Twitter / X"
+      "twitter": "Twitter / X",
+      "telegram": "Telegram",
+      "facebook": "Facebook · CNC Assist"
     }
   },
   "floatingChat": {
@@ -1161,8 +1086,9 @@
     "ariaLabel": "Deschide asistentul AI",
     "popupTitle": "Asistent AI",
     "fullChat": "Chat complet",
-    "placeholder": "Întreabă-mă orice…",
-    "continueInFullChat": "Continuă în chat complet"
+    "placeholder": "Întreabă despre servicii sau produse…",
+    "continueInFullChat": "Continuă în chat complet",
+    "welcome": "Salut! Sunt emi, asistentul AI al lui Emad. Întreabă-mă despre chatboți AI, site-uri, aplicații web și Android sau despre produsele lui Emad — Paznic, UNIREAL și CNC Assist."
   },
   "chatbot": {
     "skip": "Sari peste intro",
@@ -1225,15 +1151,16 @@
         "label": "Ce serviciu soliciți?",
         "placeholder": "— Selectează un serviciu —",
         "options": {
-          "chatbot": "🤖 Dezvoltare Chatbot AI",
-          "workflow": "⚙️ Automatizare Fluxuri",
-          "both": "🔗 Ambele: Chatbot + Automatizare",
-          "consulting": "💡 Consultanță AI"
+          "chatbot": "🤖 Chatbot AI",
+          "website": "🌐 Design site web",
+          "webapp": "💻 Aplicație web",
+          "android": "📱 Aplicație Android",
+          "other": "✨ Altceva"
         }
       },
       "projectGoal": {
         "label": "Care este scopul principal?",
-        "placeholder": "ex. Reducerea suportului, automatizarea follow-up..."
+        "placeholder": "ex. Răspunsuri 24/7 pentru clienți, un site de prezentare, o aplicație de rezervări..."
       },
       "targetAudience": {
         "label": "Cine va folosi soluția?",

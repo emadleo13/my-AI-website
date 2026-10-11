@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { DISCOVERY_SERVICE_TYPES } from '@/lib/validators';
 
 const STEPS = ['business', 'project', 'technical', 'timeline'] as const;
 
@@ -23,7 +24,7 @@ const STEP_FIELDS: Record<(typeof STEPS)[number], string[]> = {
 // Select fields and their option values (order matters). Labels are translated
 // via `fields.<key>.options.<value>` so the source of truth for order is here.
 const SELECT_OPTIONS: Record<string, string[]> = {
-  serviceType: ['chatbot', 'workflow', 'both', 'consulting'],
+  serviceType: [...DISCOVERY_SERVICE_TYPES],
   targetAudience: ['customers', 'business', 'internal', 'mixed'],
   hasContent: ['yes_ready', 'yes_partial', 'no'],
   tone: ['professional', 'friendly', 'technical', 'sales'],
@@ -45,8 +46,8 @@ const TEXTAREA_FIELDS = new Set([
 // this form's narrower service set so the dropdown is pre-selected when relevant.
 const SERVICE_PREFILL: Record<string, string> = {
   chatbot: 'chatbot',
-  workflow: 'workflow',
-  techConsulting: 'consulting',
+  website: 'website',
+  software: 'webapp',
 };
 
 const SELECT_CLASS =

@@ -5,17 +5,16 @@ import { ArrowRight, Check } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
 import { Card, CardContent } from '@/components/ui/card';
 import { BorderBeam } from '@/components/ui/border-beam';
-import { FOCUS_CATEGORIES, FOCUS_HIDDEN_SUBS } from '@/lib/services';
+import { FOCUS_CATEGORIES } from '@/lib/services';
 import { ScrollReveal } from './ScrollReveal';
 
 /**
  * Home "What I do" section.
  *
- * Deliberately focused on the two core offerings — Chatbot/Voice/Social bots and
- * Software (web, mobile, front-end & back-end APIs). The other categories
- * (workflow automation, technology consulting, resume/LinkedIn) plus Cloud &
- * DevOps live in the footer Services menu, not here, so the home page stays
- * pointed at what we want to win work on. See FOCUS_* in lib/services.ts.
+ * Deliberately focused on the core offerings — chatbots, website design, and
+ * web & Android apps. Resume / LinkedIn lives in the nav and footer Services
+ * menus, not here, so the home page stays pointed at what we want to win work
+ * on. See FOCUS_* in lib/services.ts.
  */
 export function ServicesPreview() {
   const t = useTranslations('home.servicesPreview');
@@ -32,9 +31,8 @@ export function ServicesPreview() {
         <p className="mt-3 text-muted-foreground">{t('subtitle')}</p>
       </ScrollReveal>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2 max-w-5xl mx-auto">
+      <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
         {focus.map(({ key, icon: Icon, sub }, i) => {
-          const subs = sub.filter((s) => !FOCUS_HIDDEN_SUBS[key]?.includes(s));
           return (
             <ScrollReveal key={key} delay={i * 0.08}>
               <Link href={`/contact?service=${key}`} className="block h-full">
@@ -47,7 +45,7 @@ export function ServicesPreview() {
                     <h3 className="text-2xl font-extrabold tracking-tight">{tCat(`${key}.title`)}</h3>
                     <p className="text-muted-foreground">{tCat(`${key}.desc`)}</p>
                     <ul className="space-y-2 pt-1">
-                      {subs.map((s) => (
+                      {sub.map((s) => (
                         <li key={s} className="flex items-start gap-2">
                           <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
                           <span className="font-semibold">{tCat(`${key}.sub.${s}.title`)}</span>

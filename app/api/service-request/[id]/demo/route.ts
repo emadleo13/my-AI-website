@@ -3,10 +3,12 @@ import Anthropic from '@anthropic-ai/sdk';
 import { getSupabaseServer } from '@/lib/supabase/server';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
 import { rateLimitOr429 } from '@/lib/rate-limit';
+import { SERVICE_MAP } from '@/lib/marketplace-services';
 // Use Haiku for free demos — 12x cheaper than Sonnet (~€0.0001 per demo)
 const DEMO_MODEL = 'claude-haiku-4-5-20251001';
 
 const HOUR = 60 * 60 * 1000;
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const anthropic = process.env.ANTHROPIC_API_KEY
   ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
@@ -85,6 +87,7 @@ export async function POST(
   const { id } = await params;
   const limited = rateLimitOr429(req, 'service-demo', 5, HOUR);
   if (limited) return limited;
+  if (!UUID_RE.test(id)) return NextResponse.json({ error: 'not_found' }, { status: 404 });
 
   const supabase = await getSupabaseServer();
   if (!supabase) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
@@ -100,15 +103,35 @@ export async function POST(
     .single();
 
   if (!request) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-  if (!request.is_automated) return NextResponse.json({ error: 'not_automated' }, { status: 400 });
+  // Trust the server-side catalogue, not the row's is_automated flag.
+  if (!SERVICE_MAP[request.service_type as keyof typeof SERVICE_MAP]?.isAutomated) {
+    return NextResponse.json({ error: 'not_automated' }, { status: 400 });
+  }
   if (request.status !== 'pending') {
     return NextResponse.json({ result: request.result, alreadyDone: true });
   }
 
   if (!anthropic) {
     // Demo fallback
-    const demoResult = { demo: true, message: 'Configure ANTHROPIC_API_KEY for real AI output.' };
+    const demoResult = { demo: true, message: 'AI preview is not configured on this deployment.' };
     return NextResponse.json({ result: demoResult, preview: true });
+  }
+
+  const admin = getSupabaseAdmin();
+  if (!admin) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+
+  // Atomically claim the one free demo: only the request that flips
+  // pending → demo_used proceeds, so parallel clicks can't each trigger a
+  // (paid) generation.
+  const { data: claimed } = await admin
+    .from('service_requests')
+    .update({ status: 'demo_used' })
+    .eq('id', id)
+    .eq('user_id', user.id)
+    .eq('status', 'pending')
+    .select('id');
+  if (!claimed || claimed.length === 0) {
+    return NextResponse.json({ alreadyDone: true });
   }
 
   const prompt = buildPrompt(request.service_type, (request.metadata as Record<string, unknown>) ?? {});
@@ -123,14 +146,12 @@ export async function POST(
     result = JSON.parse(text);
   } catch (err) {
     console.error('[demo] Claude generation failed', err);
+    // Give the claim back so the user can retry their free demo.
+    await admin.from('service_requests').update({ status: 'pending' }).eq('id', id);
     return NextResponse.json({ error: 'generation_failed' }, { status: 500 });
   }
 
-  const admin = getSupabaseAdmin();
-  await (admin ?? supabase)
-    .from('service_requests')
-    .update({ status: 'demo_used', result })
-    .eq('id', id);
+  await admin.from('service_requests').update({ result }).eq('id', id);
 
   return NextResponse.json({ result, preview: true });
 }

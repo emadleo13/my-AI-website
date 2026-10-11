@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 import { sendOwnerSignupAlert } from '@/lib/email';
 import { logUserSignup } from '@/lib/google-sheets';
 import { rateLimitOr429 } from '@/lib/rate-limit';
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   }
 
-  if (!email || !email.includes('@')) {
+  if (!z.string().email().safeParse(email).success) {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   }
 

@@ -39,40 +39,42 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Emad AI',
+    default: 'Emad — AI Engineer / Software Developer',
     template: '%s · Emad',
   },
   description:
-    'AI consultant and software developer based in Romania. AI strategy, agent design, software development, and tech career consulting.',
+    'AI engineer and software developer based in Romania. AI chatbots, website design, web apps and Android apps — plus my own products: Paznic, UNIREAL and CNC Assist.',
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   ),
   applicationName: 'Emad AI',
   authors: [{ name: 'Emad' }],
   keywords: [
-    'AI consultant',
-    'AI agents',
-    'Romania',
-    'Bucharest',
+    'AI engineer',
     'software developer',
+    'AI chatbot',
+    'website design',
+    'web apps',
+    'Android apps',
+    'Flutter',
     'Next.js',
-    'Claude',
-    'LangChain',
+    'Romania',
+    'Baia Mare',
   ],
   openGraph: {
     type: 'website',
     siteName: 'Emad',
-    title: 'Emad AI',
+    title: 'Emad — AI Engineer / Software Developer',
     description:
-      'AI consultant and software developer based in Romania. AI strategy, agent design, and tech career consulting.',
+      'AI engineer and software developer based in Romania. AI chatbots, website design, web apps and Android apps — plus my own products: Paznic, UNIREAL and CNC Assist.',
     locale: 'en_US',
     alternateLocale: ['fa_IR', 'ro_RO'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emad AI',
+    title: 'Emad — AI Engineer / Software Developer',
     description:
-      'AI consultant and software developer based in Romania.',
+      'AI engineer and software developer based in Romania.',
   },
   manifest: '/manifest.webmanifest',
   icons: {

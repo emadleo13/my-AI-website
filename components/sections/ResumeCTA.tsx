@@ -1,4 +1,5 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { cvPathFor } from '@/lib/site-config';
 import { Download, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,6 +7,7 @@ import { ScrollReveal } from './ScrollReveal';
 
 export function ResumeCTA() {
   const t = useTranslations('about.resume');
+  const locale = useLocale();
 
   return (
     <section className="container py-16 md:py-20">
@@ -20,7 +22,7 @@ export function ResumeCTA() {
               <p className="mt-1 text-sm text-muted-foreground">{t('body')}</p>
             </div>
             <Button asChild variant="accent" size="lg" className="gap-2">
-              <a href="/Abdolhamid_Bashari_CV_EN.pdf" download>
+              <a href={cvPathFor(locale)} download>
                 <Download className="h-4 w-4" />
                 {t('download')}
               </a>

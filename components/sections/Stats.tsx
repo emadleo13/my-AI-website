@@ -2,11 +2,13 @@ import { useTranslations } from 'next-intl';
 import { ScrollReveal } from './ScrollReveal';
 import { BorderBeam } from '@/components/ui/border-beam';
 
+// Every number here must be checkable: the products are linked on this page,
+// the experience matches the CV, and downloads are what Google Play shows.
 const STATS = [
-  { key: 'projects',   value: '50+' },
-  { key: 'experience', value: '10+' },
-  { key: 'countries',  value: '3' },
-  { key: 'clients',    value: '40+' },
+  { key: 'products',   value: '4' },    // Paznic, UNIREAL, CNC Assist, the monitoring agent team
+  { key: 'experience', value: '15+' },  // cross-industry work experience (see CV)
+  { key: 'languages',  value: '3' },    // English, Romanian, Persian
+  { key: 'downloads',  value: '100+' }, // CNC Assist on Google Play
 ] as const;
 
 export function Stats() {

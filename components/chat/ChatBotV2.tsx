@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { Trash2, LogIn, ArrowUp } from 'lucide-react';
 import { Link } from '@/lib/i18n-routing';
@@ -26,6 +26,7 @@ function uid() {
 function ChatScreen() {
   const t = useTranslations('consultant');
   const tc = useTranslations('chatbot');
+  const locale = useLocale();
   const [messages, setMessages] = React.useState<ChatMsg[]>([]);
   const [input, setInput] = React.useState('');
   const [streaming, setStreaming] = React.useState(false);
@@ -75,6 +76,7 @@ function ChatScreen() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: next.slice(0, -1).map(({ role, content }) => ({ role, content })),
+          locale,
         }),
       });
 

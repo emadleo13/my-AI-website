@@ -68,7 +68,7 @@ export function Hero() {
           <div className="animate-float-slow motion-reduce:animate-none relative aspect-[16/9] w-full max-w-sm mx-auto md:max-w-none md:w-[640px] rounded-3xl overflow-hidden border border-border ring-1 ring-primary/20 shadow-2xl shadow-primary/10">
             <Image
               src="/AI PIC.png"
-              alt="Emad — AI consultant and software developer"
+              alt="Emad — AI engineer and software developer"
               fill
               priority
               className="object-cover object-center"

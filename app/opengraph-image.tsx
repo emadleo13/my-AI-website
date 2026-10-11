@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Emad AI';
+export const alt = 'Emad — AI Engineer / Software Developer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -33,10 +33,10 @@ export default async function OG() {
             maxWidth: 980,
           }}
         >
-          AI Consultant &amp; Software Developer
+          AI Engineer / Software Developer
         </div>
         <div style={{ fontSize: 36, marginTop: 12, opacity: 0.85 }}>
-          Romania · AI strategy, agents, and engineering
+          Romania · AI chatbots, websites, web &amp; Android apps
         </div>
         <div
           style={{

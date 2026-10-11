@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Emad AI',
     short_name: 'Emad AI',
     description:
-      'AI consultant and software developer based in Romania. AI strategy, agent design, and tech career consulting.',
+      'AI engineer and software developer based in Romania. AI chatbots, websites, web apps and Android apps.',
     start_url: '/en',
     display: 'standalone',
     background_color: '#09090b',

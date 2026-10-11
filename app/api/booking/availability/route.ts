@@ -1,10 +1,16 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseServer } from '@/lib/supabase/server';
 import { isSupabaseConfigured } from '@/lib/env';
+import { rateLimitOr429 } from '@/lib/rate-limit';
+
+const HOUR = 60 * 60 * 1000;
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
+  const limited = rateLimitOr429(req, 'availability', 120, HOUR);
+  if (limited) return limited;
+
   const url = new URL(req.url);
   const date = url.searchParams.get('date');
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
@@ -29,7 +35,8 @@ export async function GET(req: Request) {
     .in('status', ['pending', 'confirmed']);
 
   if (error) {
-    return NextResponse.json({ booked: [], message: error.message });
+    console.error('[availability] query failed:', error.message);
+    return NextResponse.json({ booked: [] });
   }
 
   const booked = (data ?? [])

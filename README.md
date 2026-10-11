@@ -45,7 +45,7 @@ Every page from the original spec is implemented end-to-end, plus a markdown-dri
 | Animation | Framer Motion |
 | i18n | next-intl (`[locale]` segment + middleware) |
 | Auth & DB | Supabase (`@supabase/ssr`) |
-| AI | Anthropic SDK — model `claude-sonnet-4-6` |
+| AI | OpenRouter (free models → `anthropic/claude-haiku-5.5` fallback), Anthropic SDK as last resort |
 | Email | Resend (best-effort, gracefully no-ops without key) |
 | Blog | gray-matter (frontmatter) + next-mdx-remote (MDX) + rehype-highlight + remark-gfm |
 | Tests | Vitest (Node env) with vite-tsconfig-paths for `@/…` imports |

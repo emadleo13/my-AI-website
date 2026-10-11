@@ -5,6 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { ScrollReveal } from './ScrollReveal';
 
+// Mirrors the "Education & Skills" block of the CV (public/Abdolhamid_Bashari_CV_*.pdf)
+// — keep the two in sync so recruiters see the same stack in both places.
 const GROUPS = [
   {
     key: 'manufacturing',
@@ -16,19 +18,18 @@ const GROUPS = [
       'Drilling & Milling',
       'Lathe Operation',
       'Machine Setup',
-      'Material Handling',
       'Quality Control',
     ],
   },
   {
     key: 'languages',
     icon: Code2,
-    skills: ['TypeScript', 'JavaScript', 'Python', 'Go', 'SQL', 'Bash'],
+    skills: ['TypeScript', 'JavaScript', 'Python', 'Dart', 'SQL', 'HTML / CSS'],
   },
   {
     key: 'frameworks',
     icon: Layers,
-    skills: ['Next.js', 'React', 'Node.js', 'FastAPI', 'tRPC', 'Tailwind'],
+    skills: ['Next.js', 'React', 'Node.js', 'Flutter', 'Tailwind CSS'],
   },
   {
     key: 'ai',
@@ -37,24 +38,14 @@ const GROUPS = [
       'Claude API',
       'OpenAI API',
       'LangChain',
-      'CrewAI',
-      'AutoGen',
       'RAG',
-      'Fine-tuning',
+      'Multi-Agent Systems',
     ],
   },
   {
     key: 'infra',
     icon: Database,
-    skills: [
-      'PostgreSQL',
-      'Supabase',
-      'Docker',
-      'AWS',
-      'Vercel',
-      'Redis',
-      'pgvector',
-    ],
+    skills: ['PostgreSQL', 'Supabase', 'Vercel', 'Git & GitHub'],
   },
 ] as const;
 

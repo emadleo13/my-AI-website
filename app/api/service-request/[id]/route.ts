@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getAdminUser } from '@/lib/auth';
 import { getSupabaseAdmin } from '@/lib/supabase/admin';
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 const VALID_STATUSES = ['pending', 'demo_used', 'paid', 'in_progress', 'delivered'] as const;
 
 export async function PATCH(
@@ -9,6 +11,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
+  if (!UUID_RE.test(id)) return NextResponse.json({ error: 'not_found' }, { status: 404 });
 
   // Admin-only endpoint
   const admin = await getAdminUser().catch(() => null);
