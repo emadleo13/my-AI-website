@@ -1,10 +1,25 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-import withPWAInit from '@ducanh2912/next-pwa';
+import withPWAInit, { runtimeCaching as defaultRuntimeCaching } from '@ducanh2912/next-pwa';
 
 const withNextIntl = createNextIntlPlugin('./lib/i18n.ts');
+
+// The service worker must not proxy third-party requests. When it does, it
+// re-fetches them itself, and a worker's fetch() is governed by `connect-src`
+// — so scripts the page is allowed to load (Cloudflare Turnstile, Stripe) got
+// blocked for every returning visitor with the worker installed, while fresh
+// and private windows worked. Without a matching route, the browser loads
+// them natively under the page's own CSP. (Fonts are self-hosted by next/font,
+// so the Google Fonts routes are unused.)
+const THIRD_PARTY_CACHES = new Set(['cross-origin', 'google-fonts-webfonts', 'google-fonts-stylesheets']);
+
 const withPWA = withPWAInit({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
+  workboxOptions: {
+    runtimeCaching: defaultRuntimeCaching.filter(
+      (entry) => !THIRD_PARTY_CACHES.has(entry.options?.cacheName ?? ''),
+    ),
+  },
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://emadai.dev';
