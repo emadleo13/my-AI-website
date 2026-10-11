@@ -584,7 +584,9 @@
     "success": {
       "signedIn": "Signed in successfully.",
       "signedUp": "Check your email to confirm your account."
-    }
+    },
+    "captchaBlocked": "The security check didn't load. If you use an ad or tracker blocker, allow challenges.cloudflare.com on this site and reload the page — or use a private window.",
+    "captchaReload": "Reload page"
   },
   "consultant": {
     "title": "AI Consultant",

@@ -584,7 +584,9 @@
     "success": {
       "signedIn": "Autentificare reușită.",
       "signedUp": "Verifică emailul pentru a confirma contul."
-    }
+    },
+    "captchaBlocked": "Verificarea de securitate nu s-a încărcat. Dacă folosești un blocant de reclame sau trackere, permite challenges.cloudflare.com pe acest site și reîncarcă pagina — sau folosește o fereastră privată.",
+    "captchaReload": "Reîncarcă pagina"
   },
   "consultant": {
     "title": "Consultant AI",
