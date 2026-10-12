@@ -2,17 +2,20 @@
 
 import { useTranslations } from 'next-intl';
 import {
+  ArrowRight,
   ArrowUpRight,
   Check,
   Cog,
   Facebook,
   GraduationCap,
+  Radar,
   ShieldCheck,
   type LucideIcon,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { Button } from '@/components/ui/button';
+import { Link } from '@/lib/i18n-routing';
 import { PRODUCT_URLS, SOCIAL } from '@/lib/site-config';
 import { ScrollReveal } from './ScrollReveal';
 
@@ -28,9 +31,22 @@ import { ScrollReveal } from './ScrollReveal';
  *
  * UNIREAL and CNC Assist follow as a second row. Their copy is taken from the
  * live sites / Google Play listing — keep it in sync when those change.
+ *
+ * The Emad Agent Team closes the section as a wide card. Its repo is private,
+ * so instead of an outbound link it invites visitors to book a call.
  */
 
 const PAZNIC_FEATURES = ['passive', 'plain', 'alerts'] as const;
+
+const AGENTS = [
+  { key: 'sentinel', name: 'Sentinel', emoji: '🛡️' },
+  { key: 'diagnostician', name: 'Diagnostician', emoji: '🔍' },
+  { key: 'medic', name: 'Medic', emoji: '💊' },
+  { key: 'herald', name: 'Herald', emoji: '📨' },
+  { key: 'foreman', name: 'Foreman', emoji: '👷' },
+  { key: 'coordinator', name: 'Coordinator', emoji: '🎯' },
+] as const;
+const AGENT_FEATURES = ['alerts', 'safe', 'learn'] as const;
 
 interface SecondaryProduct {
   key: 'unireal' | 'cnc';
@@ -64,7 +80,7 @@ export function Products() {
   const t = useTranslations('home.products');
 
   return (
-    <section className="container py-20 md:py-28">
+    <section id="products" className="container scroll-mt-28 py-20 md:py-28">
       <ScrollReveal className="text-center max-w-2xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{t('title')}</h2>
         <p className="mt-3 text-muted-foreground">{t('subtitle')}</p>
@@ -177,6 +193,63 @@ export function Products() {
           </ScrollReveal>
         ))}
       </div>
+
+      <ScrollReveal className="mt-6 max-w-5xl mx-auto" delay={0.1}>
+        <Card className="group relative overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl hover:border-primary/50">
+          <BorderBeam size={220} duration={16} delay={8} colorFrom="#ffaa40" colorTo="#9c40ff" />
+          <CardContent className="pt-7 grid gap-8 md:grid-cols-[1fr_1.2fr] md:items-start">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="grid h-14 w-14 flex-shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <Radar className="h-7 w-7" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-extrabold tracking-tight">{t('agents.name')}</h3>
+                  <p className="text-sm text-muted-foreground">{t('agents.tagline')}</p>
+                </div>
+              </div>
+
+              <p className="text-muted-foreground">{t('agents.desc')}</p>
+
+              <blockquote className="border-s-2 border-accent ps-4 text-sm italic text-muted-foreground">
+                {t('agents.why')}
+              </blockquote>
+
+              <ul className="space-y-2">
+                {AGENT_FEATURES.map((f) => (
+                  <li key={f} className="flex items-start gap-2">
+                    <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
+                    <span className="text-sm font-medium">{t(`agents.features.${f}`)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-5">
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {AGENTS.map(({ key, name, emoji }) => (
+                  <li key={key} className="rounded-xl border border-border/70 bg-background/40 p-3">
+                    <p className="flex items-center gap-2 font-semibold" dir="ltr">
+                      <span aria-hidden>{emoji}</span>
+                      {name}
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">{t(`agents.agents.${key}`)}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <Button asChild size="lg" variant="outline" className="h-auto w-full whitespace-normal py-3">
+                <Link href="/contact">
+                  {t('agents.cta')}
+                  <ArrowRight className="h-4 w-4 flex-shrink-0 rtl:rotate-180" />
+                </Link>
+              </Button>
+
+              <p className="text-center text-xs text-muted-foreground">{t('agents.meta')}</p>
+            </div>
+          </CardContent>
+        </Card>
+      </ScrollReveal>
     </section>
   );
 }

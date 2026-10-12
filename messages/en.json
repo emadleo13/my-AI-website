@@ -100,6 +100,27 @@
         "cta": "Get it on Google Play",
         "facebook": "Follow on Facebook",
         "meta": "Android · 4 languages · No ads"
+      },
+      "agents": {
+        "name": "Emad Agent Team",
+        "tagline": "Six AI agents that watch websites 24/7",
+        "desc": "A team of six specialized AI agents that watch websites around the clock: they detect problems, find the root cause, apply safe fixes and report everything on Telegram and email — daily, weekly and monthly. Currently monitoring unireal.study.",
+        "why": "I'm a solo founder running four production products. These agents are my unfair advantage.",
+        "agents": {
+          "sentinel": "Monitors uptime, performance and response times",
+          "diagnostician": "Detects issues and analyzes root causes",
+          "medic": "Applies safe, pre-approved fixes",
+          "herald": "Delivers reports and alerts via Telegram & email",
+          "foreman": "Coordinates task execution across agents",
+          "coordinator": "Orchestrates the whole team"
+        },
+        "features": {
+          "alerts": "Instant alerts the moment something breaks — 24/7",
+          "safe": "Safe, whitelisted fixes — anything risky waits for my approval",
+          "learn": "Learns from past incidents"
+        },
+        "meta": "Claude API · shared PostgreSQL state · Telegram · Email",
+        "cta": "Want this team watching your site? Book a free call"
       }
     },
     "howItWorks": {

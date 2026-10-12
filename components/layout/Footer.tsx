@@ -16,6 +16,8 @@ const PRODUCTS = [
   { key: 'paznic', href: PRODUCT_URLS.paznic },
   { key: 'unireal', href: PRODUCT_URLS.unireal },
   { key: 'cnc', href: PRODUCT_URLS.cncAssist },
+  // Private repo — points at its card on the home page instead.
+  { key: 'agents', href: '/#products' },
 ] as const;
 
 const SOCIAL_LINKS = [
@@ -56,15 +58,24 @@ export function Footer() {
               <ul className="space-y-2">
                 {PRODUCTS.map(({ key, href }) => (
                   <li key={key}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors"
-                    >
-                      {t(`home.products.${key}.name`)}
-                      <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
-                    </a>
+                    {href.startsWith('/') ? (
+                      <Link
+                        href={href}
+                        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors"
+                      >
+                        {t(`home.products.${key}.name`)}
+                      </Link>
+                    ) : (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#3ca2fa] transition-colors"
+                      >
+                        {t(`home.products.${key}.name`)}
+                        <ArrowUpRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
+                      </a>
+                    )}
                     <p className="text-xs text-gray-500 max-w-xs leading-relaxed">
                       {t(`home.products.${key}.tagline`)}
                     </p>

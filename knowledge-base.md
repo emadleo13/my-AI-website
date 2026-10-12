@@ -59,7 +59,14 @@ Real reviews and answers about universities worldwide. Compare thousands of univ
 Speeds & feeds calculator, G-code analyzer (Haas, Siemens Sinumerik, ISO), 270+ CNC alarm codes (Haas, Fanuc, Sinumerik), 250+ G/M-codes explained, and an AI machining assistant. Free, works offline, no ads; some advanced AI features may require a subscription. English, Romanian, Persian and Arabic.
 
 **Emad Agent Team**
-Six specialized AI agents (Sentinel, Diagnostician, Medic, Herald, Foreman, Coordinator) that monitor websites 24/7 and send daily, weekly and monthly reports via Telegram and email.
+Six specialized AI agents that watch websites 24/7 (currently monitoring unireal.study):
+- Sentinel — monitors uptime, performance and response times
+- Diagnostician — detects issues and analyzes root causes
+- Medic — applies safe, pre-approved (whitelisted) fixes; anything risky waits for Emad's approval
+- Herald — sends alerts and daily, weekly and monthly reports via Telegram and email
+- Foreman — coordinates task execution across agents
+- Coordinator — orchestrates the whole team
+The team learns from past incidents. Each agent is a specialized Claude API call with its own context and tools; the Coordinator orchestrates them through shared PostgreSQL state. Want this for your site? Book the free discovery call.
 
 **emadai.dev** — this website: Next.js / TypeScript, trilingual (EN/RO/FA), deployed on Vercel.
 

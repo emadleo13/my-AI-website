@@ -100,6 +100,27 @@
         "cta": "Descarcă de pe Google Play",
         "facebook": "Urmărește pe Facebook",
         "meta": "Android · 4 limbi · Fără reclame"
+      },
+      "agents": {
+        "name": "Emad Agent Team",
+        "tagline": "Șase agenți AI care supraveghează site-uri 24/7",
+        "desc": "O echipă de șase agenți AI specializați care supraveghează site-uri non-stop: detectează problemele, găsesc cauza, aplică remedieri sigure și raportează totul pe Telegram și email — zilnic, săptămânal și lunar. În prezent monitorizează unireal.study.",
+        "why": "Sunt fondator solo și administrez patru produse în producție. Acești agenți sunt avantajul meu.",
+        "agents": {
+          "sentinel": "Monitorizează disponibilitatea, performanța și timpii de răspuns",
+          "diagnostician": "Detectează problemele și analizează cauza",
+          "medic": "Aplică remedieri sigure, aprobate în prealabil",
+          "herald": "Trimite rapoarte și alerte pe Telegram și email",
+          "foreman": "Coordonează execuția sarcinilor între agenți",
+          "coordinator": "Orchestrează întreaga echipă"
+        },
+        "features": {
+          "alerts": "Alertă imediată când ceva se strică — 24/7",
+          "safe": "Doar remedieri sigure, predefinite — orice risc așteaptă aprobarea mea",
+          "learn": "Învață din incidentele anterioare"
+        },
+        "meta": "Claude API · stare comună în PostgreSQL · Telegram · Email",
+        "cta": "Vrei echipa asta pentru site-ul tău? Rezervă un apel gratuit"
       }
     },
     "howItWorks": {
