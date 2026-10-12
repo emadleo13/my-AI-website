@@ -50,5 +50,8 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  // Skip API routes, Next internals, files with an extension, and the
+  // generated social-preview image (app/opengraph-image.tsx) — locale
+  // redirecting that one sent crawlers to a 404, so shared links had no image.
+  matcher: ['/((?!api|_next|_vercel|opengraph-image|.*\\..*).*)'],
 };

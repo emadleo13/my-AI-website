@@ -35,7 +35,7 @@ export function Hero() {
             {t('eyebrow')}
           </span>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-balance">
-            <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+            <span className="whitespace-pre-line bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
               {t('title')}
             </span>
             <span className="block text-2xl md:text-3xl font-semibold text-muted-foreground mt-3">

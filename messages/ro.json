@@ -1,7 +1,7 @@
 {
   "common": {
     "brand": "Emad AI",
-    "tagline": "Inginer AI / Dezvoltator Software · România",
+    "tagline": "Inginer AI · Dezvoltator Software · România",
     "bookNow": "Rezervă acum",
     "loading": "Se încarcă…",
     "errorGeneric": "Ceva nu a mers. Te rog încearcă din nou.",
@@ -38,7 +38,7 @@
   "home": {
     "hero": {
       "eyebrow": "Salut, sunt Emad",
-      "title": "Inginer AI / Dezvoltator Software",
+      "title": "Inginer AI\nDezvoltator Software",
       "subtitle": "România",
       "tagline": "Construiesc chatboți AI, site-uri web, aplicații web și aplicații Android — și lansez și administrez propriile mele produse.",
       "ctaPrimary": "Rezervă o consultație",
@@ -1073,7 +1073,7 @@
     }
   },
   "footer": {
-    "tagline": "Inginer AI / Dezvoltator Software · România",
+    "tagline": "Inginer AI · Dezvoltator Software · România",
     "rights": "Toate drepturile rezervate.",
     "links": {
       "navigation": "Navigare",

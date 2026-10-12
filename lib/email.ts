@@ -23,7 +23,7 @@ function shell(title: string, content: string): string {
   <div style="max-width:560px;margin:0 auto;background:#111827;border:1px solid #1F2937;border-radius:12px;overflow:hidden">
     <div style="padding:20px 24px;background:linear-gradient(135deg,#1E3A8A,#B45309);color:#F8FAFC;font-weight:700;font-size:18px">${escape(title)}</div>
     <div style="padding:24px;line-height:1.55;font-size:15px">${content}</div>
-    <div style="padding:14px 24px;border-top:1px solid #1F2937;font-size:12px;color:#9CA3AF">Sent from emad.dev portfolio</div>
+    <div style="padding:14px 24px;border-top:1px solid #1F2937;font-size:12px;color:#9CA3AF">Sent from emadai.dev</div>
   </div>
 </body></html>`;
 }

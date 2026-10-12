@@ -39,7 +39,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Emad — AI Engineer / Software Developer',
+    default: 'Emad — AI Engineer · Software Developer',
     template: '%s · Emad',
   },
   description:
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Emad',
-    title: 'Emad — AI Engineer / Software Developer',
+    title: 'Emad — AI Engineer · Software Developer',
     description:
       'AI engineer and software developer based in Romania. AI chatbots, website design, web apps and Android apps — plus my own products: Paznic, UNIREAL and CNC Assist.',
     locale: 'en_US',
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emad — AI Engineer / Software Developer',
+    title: 'Emad — AI Engineer · Software Developer',
     description:
       'AI engineer and software developer based in Romania.',
   },

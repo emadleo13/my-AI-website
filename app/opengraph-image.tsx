@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Emad — AI Engineer / Software Developer';
+export const alt = 'Emad — AI Engineer · Software Developer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -26,6 +26,8 @@ export default async function OG() {
         </div>
         <div
           style={{
+            display: 'flex',
+            flexDirection: 'column',
             fontSize: 84,
             fontWeight: 800,
             marginTop: 16,
@@ -33,7 +35,8 @@ export default async function OG() {
             maxWidth: 980,
           }}
         >
-          AI Engineer / Software Developer
+          <div>AI Engineer</div>
+          <div>Software Developer</div>
         </div>
         <div style={{ fontSize: 36, marginTop: 12, opacity: 0.85 }}>
           Romania · AI chatbots, websites, web &amp; Android apps
@@ -47,7 +50,7 @@ export default async function OG() {
             opacity: 0.8,
           }}
         >
-          emad.dev
+          emadai.dev
         </div>
       </div>
     ),
